@@ -1,0 +1,3 @@
+-- Legacy SQL seed (deprecated)
+-- This project now uses Prisma seed at prisma/seed.js.
+-- Keep this file empty to avoid accidental demo data imports.

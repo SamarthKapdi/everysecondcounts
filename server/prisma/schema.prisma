@@ -1,0 +1,203 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  PATIENT
+  HOSPITAL_STAFF
+  DOCTOR
+  AMBULANCE_DRIVER
+  SUPER_ADMIN
+}
+
+enum Severity {
+  GREEN
+  YELLOW
+  ORANGE
+  RED
+}
+
+enum Status {
+  PENDING
+  DISPATCHED
+  ADMITTED
+  RESOLVED
+  CANCELLED
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  passwordHash  String
+  role          Role      @default(PATIENT)
+  phone         String?
+  avatarUrl     String?
+  languagePref  String    @default("en")
+  isDeleted     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  emergencies   EmergencyCase[] @relation("PatientEmergencies")
+  doctorNotes   DoctorNote[]
+  triageLogs    TriageLog[]
+  ambulances    Ambulance[]     @relation("AmbulanceDriver")
+  patientConsultations  Consultation[] @relation("PatientConsultations")
+  doctorConsultations   Consultation[] @relation("DoctorConsultations")
+}
+
+model Hospital {
+  id            String    @id @default(uuid())
+  name          String
+  locationLat   Float
+  locationLng   Float
+  availableBeds Int       @default(0)
+  hasICU        Boolean   @default(false)
+  specialties   String[]  // Array of strings, supported natively in Postgres
+  currentLoad   Int       @default(0) // 0-100% capacity measure
+  phone         String?
+  address       String?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  emergencies   EmergencyCase[]
+  resources     HospitalResource[]
+}
+
+model HospitalResource {
+  id            String    @id @default(uuid())
+  hospitalId    String
+  resourceType  String    // e.g., "VENTILATOR", "BLOOD_TYPE_O_NEG", "SURGICAL_WARD"
+  quantity      Int
+  hospital      Hospital  @relation(fields: [hospitalId], references: [id])
+  updatedAt     DateTime  @updatedAt
+
+  @@index([hospitalId])
+}
+
+model EmergencyCase {
+  id                String    @id @default(uuid())
+  patientId         String
+  hospitalId        String?
+  ambulanceId       String?
+  symptoms          String[]
+  severity          Severity
+  aiConfidenceScore Float?
+  aiReasoning       String?   @db.Text
+  recommendedAction String?   @db.Text
+  status            Status    @default(PENDING)
+  locationLat       Float
+  locationLng       Float
+  notes             String?   @db.Text
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  resolvedAt        DateTime?
+
+  patient           User      @relation("PatientEmergencies", fields: [patientId], references: [id])
+  hospital          Hospital? @relation(fields: [hospitalId], references: [id])
+  ambulance         Ambulance? @relation(fields: [ambulanceId], references: [id])
+  
+  triageLogs        TriageLog[]
+  aiAnalyses        AIAnalysis[]
+  doctorNotes       DoctorNote[]
+
+  @@index([patientId])
+  @@index([hospitalId])
+  @@index([status])
+}
+
+model Ambulance {
+  id            String    @id @default(uuid())
+  driverId      String
+  currentLat    Float
+  currentLng    Float
+  status        String    @default("AVAILABLE") // AVAILABLE, BUSY, OFFLINE
+  vehicleNumber String    @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  driver        User      @relation("AmbulanceDriver", fields: [driverId], references: [id])
+  emergencies   EmergencyCase[]
+
+  @@index([driverId])
+}
+
+model TriageLog {
+  id            String    @id @default(uuid())
+  emergencyId   String
+  loggedById    String
+  actionTaken   String    @db.Text
+  createdAt     DateTime  @default(now())
+
+  emergency     EmergencyCase @relation(fields: [emergencyId], references: [id])
+  loggedBy      User          @relation(fields: [loggedById], references: [id])
+
+  @@index([emergencyId])
+}
+
+model DoctorNote {
+  id            String    @id @default(uuid())
+  emergencyId   String
+  doctorId      String
+  note          String    @db.Text
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  emergency     EmergencyCase @relation(fields: [emergencyId], references: [id])
+  doctor        User          @relation(fields: [doctorId], references: [id])
+
+  @@index([emergencyId])
+  @@index([doctorId])
+}
+
+model AIAnalysis {
+  id            String    @id @default(uuid())
+  emergencyId   String
+  inputSymptoms String[]
+  aiResponse    Json      // Stores the structured JSON response from Gemini
+  createdAt     DateTime  @default(now())
+
+  emergency     EmergencyCase @relation(fields: [emergencyId], references: [id])
+
+  @@index([emergencyId])
+}
+
+model Consultation {
+  id            String    @id @default(uuid())
+  patientId     String
+  doctorId      String?
+  patientName   String
+  doctorName    String?
+  query         String    @db.Text
+  status        String    @default("PENDING") // PENDING, ACTIVE, COMPLETED
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  patient       User      @relation("PatientConsultations", fields: [patientId], references: [id])
+  doctor        User?     @relation("DoctorConsultations", fields: [doctorId], references: [id])
+
+  @@index([patientId])
+  @@index([doctorId])
+  @@index([status])
+}
+
+model Notification {
+  id            String    @id @default(uuid())
+  userId        String
+  title         String
+  message       String    @db.Text
+  type          String    // e.g., "ALERT", "UPDATE", "INFO"
+  isRead        Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+
+  @@index([userId])
+}
