@@ -7,7 +7,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(() => localStorage.getItem('medinova-token'));
+  const [token, setToken] = useState(() => localStorage.getItem('pulsepath-token'));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,28 +32,37 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await api.post('/auth/login', { email, password });
-    const { token: newToken, data } = res.data;
+    const newToken = res.data.tokens.accessToken;
+    const { user: userData } = res.data.data;
     setToken(newToken);
-    setUser(data.user);
-    localStorage.setItem('medinova-token', newToken);
+    setUser(userData);
+    localStorage.setItem('pulsepath-token', newToken);
+    if (res.data.tokens.refreshToken) {
+      localStorage.setItem('pulsepath-refresh-token', res.data.tokens.refreshToken);
+    }
     api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-    return data.user;
+    return userData;
   };
 
   const register = async (userData) => {
     const res = await api.post('/auth/register', userData);
-    const { token: newToken, data } = res.data;
+    const newToken = res.data.tokens.accessToken;
+    const { user: newUser } = res.data.data;
     setToken(newToken);
-    setUser(data.user);
-    localStorage.setItem('medinova-token', newToken);
+    setUser(newUser);
+    localStorage.setItem('pulsepath-token', newToken);
+    if (res.data.tokens.refreshToken) {
+      localStorage.setItem('pulsepath-refresh-token', res.data.tokens.refreshToken);
+    }
     api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-    return data.user;
+    return newUser;
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('medinova-token');
+    localStorage.removeItem('pulsepath-token');
+    localStorage.removeItem('pulsepath-refresh-token');
     delete api.defaults.headers.common['Authorization'];
   };
 

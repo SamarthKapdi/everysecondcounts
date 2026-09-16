@@ -1,7 +1,5 @@
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prismaClient');
 const AppError = require('../utils/AppError');
-
-const prisma = new PrismaClient();
 
 exports.getUsersByRole = async (req, res, next) => {
   try {

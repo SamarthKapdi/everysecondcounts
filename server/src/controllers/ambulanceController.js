@@ -1,7 +1,5 @@
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prismaClient');
 const AppError = require('../utils/AppError');
-
-const prisma = new PrismaClient();
 
 exports.getAllAmbulances = async (req, res, next) => {
   try {
@@ -19,7 +17,7 @@ exports.getAllAmbulances = async (req, res, next) => {
     const formatted = ambulances.map(amb => ({
       id: amb.vehicleNumber,
       status: amb.status,
-      driver: amb.driver.name,
+      driver: amb.driver?.name || 'Unassigned',
       location: `${amb.currentLat}, ${amb.currentLng}`,
       vehicle: amb.vehicleNumber,
       lastUpdate: 'Just now'
