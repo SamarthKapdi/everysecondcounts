@@ -28,7 +28,7 @@ export const useSocket = () => {
 
   useEffect(() => {
     // Get auth token for socket authentication
-    const token = localStorage.getItem('pulsepath-token');
+    const token = localStorage.getItem('esc-token');
 
     // If socket already exists and has the same token, reuse it
     if (socketInstance && socketInstance.connected) {

@@ -40,7 +40,7 @@ const Login = () => {
             <Activity className="w-6 h-6 animate-pulse" />
           </div>
           <h2 className="text-2xl font-black">Welcome Back</h2>
-          <p className="text-xs text-slate-400 mt-1">Access the PulsePath AI Health Triage Network</p>
+          <p className="text-xs text-slate-400 mt-1">Access the Every Second Counts Health Triage Network</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -50,7 +50,7 @@ const Login = () => {
               <Mail className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
               <input
                 type="email"
-                placeholder="doctor@pulsepath.ai or patient@gmail.com"
+                placeholder="doctor@Every Second Counts.ai or patient@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input-field pl-12 text-sm"

@@ -58,7 +58,7 @@ const DoctorDashboard = () => {
             {incomingEmergencies > 0 && pendingConsults > 0 && ' and '}
             {pendingConsults > 0 && <span className="text-purple-400 font-bold">{pendingConsults} pending {pendingConsults === 1 ? 'consult' : 'consults'}</span>}
             {incomingEmergencies === 0 && pendingConsults === 0 && 'No pending items. System monitoring active.'}
-            . PulsePath AI is routing patients in real-time.
+            . Every Second Counts is routing patients in real-time.
           </p>
         </div>
         

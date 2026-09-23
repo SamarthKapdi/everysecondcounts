@@ -111,7 +111,7 @@ const Footer = () => {
           isDark ? 'border-[#1E293B]' : 'border-[#E2E8F0]'
         }`}>
           <p className={`text-sm ${isDark ? 'text-[#94A3B8]' : 'text-[#475569]'}`}>
-            © 2024 PulsePath AI. All rights reserved.
+            © 2024 Every Second Counts. All rights reserved.
           </p>
           <p className={`text-sm flex items-center gap-1 ${isDark ? 'text-[#94A3B8]' : 'text-[#475569]'}`}>
             Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> for healthcare

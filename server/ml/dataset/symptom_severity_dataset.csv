@@ -1,0 +1,3201 @@
+symptoms,severity,max_weight,num_symptoms
+"minor mouth ulcer, sneezing, loss of consciousness brief",ORANGE,6,3
+"mild cough, mild fatigue, mild body ache",GREEN,2,3
+ankle swelling,YELLOW,3,1
+"ear pain, skin rash with fever, stuffy nose, animal bite deep, eye injury",ORANGE,5,5
+"stab wound, not breathing",RED,7,2
+multi organ failure signs,RED,7,1
+wheezing,YELLOW,4,1
+"broken bone visible, open wound deep, shortness of breath",ORANGE,6,3
+"diabetic emergency, seizure single, dry skin, painful urination",ORANGE,6,4
+"toothache severe, sore throat with fever",YELLOW,4,2
+"dry skin, minor mouth ulcer",GREEN,2,2
+"swollen lymph nodes, nausea and vomiting, wheezing, insomnia, minor rash, mild fatigue",YELLOW,4,6
+"severe dehydration, choking, septic shock symptoms, muscle cramps, loss of consciousness brief",RED,7,5
+"mild bloating, common cold",GREEN,2,2
+"seizure single, chemical exposure, confusion, ear pain",ORANGE,6,4
+"dandruff, hiccups, paper cut, frequent urination",YELLOW,3,4
+"high fever with chills, migraine, chest pain, minor rash",RED,7,4
+"minor rash, mild fatigue, mild sunburn",GREEN,2,3
+"urinary burning, mild headache, high fever",YELLOW,4,3
+"mild itching, minor rash, common cold",GREEN,2,3
+"ear pain, vomiting",YELLOW,4,2
+"vomiting, mild bloating",YELLOW,4,2
+"severe pain, eye injury, seizure single",ORANGE,5,3
+"mild constipation, stuffy nose",GREEN,2,2
+"hiccups, minor mouth ulcer, dandruff",GREEN,2,3
+"difficulty breathing, numbness one side, migraine, dizziness, mild stomach discomfort, loss of consciousness brief",ORANGE,6,6
+"stab wound, broken bone visible, painful urination, mild cough",RED,7,4
+"hiccups, occasional heartburn, insomnia, skin infection, swollen lymph nodes",YELLOW,3,5
+"mild acne, minor rash",GREEN,2,2
+"insomnia, difficulty breathing, loss of consciousness prolonged, no pulse detected, frequent urination",RED,7,5
+"high fever with chills, eye injury, confusion, stuffy nose",ORANGE,5,4
+"mild allergies, gunshot wound, dry skin",RED,7,3
+"runny nose, mild sunburn, insomnia",GREEN,2,3
+"muscle cramps, mild allergies, back pain, minor rash, sprained ankle",YELLOW,3,5
+sprained ankle,YELLOW,3,1
+"mild headache, abdominal pain",YELLOW,4,2
+"mild allergies, mild itching, chronic indigestion, dehydration, chapped lips, jaundice",YELLOW,4,6
+"mild sunburn, slight sore throat",GREEN,2,2
+"mild cough, persistent headache, back pain, weight loss unintentional",YELLOW,4,4
+mild bloating,GREEN,2,1
+"high fever with chills, fever, mild anxiety, stuffy nose",ORANGE,5,4
+"minor rash, severe headache",ORANGE,5,2
+"no pulse detected, numbness one side",RED,7,2
+severe headache,ORANGE,5,1
+"paper cut, choking, mild cough, chemical exposure",RED,7,4
+"watery eyes, septic shock symptoms, heart attack symptoms, nausea and vomiting",RED,7,4
+"open wound deep, coughing blood",ORANGE,6,2
+"severe trauma, choking, chest pain",RED,7,3
+"confusion, stuffy nose, mild body ache",ORANGE,5,3
+common cold,GREEN,1,1
+"fever, blood in stool",ORANGE,5,2
+mild constipation,GREEN,2,1
+"loss of consciousness brief, poisoning suspected, difficulty speaking suddenly, massive hemorrhage, tension pneumothorax",RED,7,5
+"electrocution, drowning, mild acne, night sweats, dizziness",RED,7,5
+"severe infection signs, severe headache, jaundice, back pain, urinary burning",ORANGE,5,5
+"runny nose, stuffy nose, mild anxiety",GREEN,2,3
+chest pain,RED,7,1
+chapped lips,GREEN,1,1
+"toothache severe, minor rash, severe headache",ORANGE,5,3
+common cold,GREEN,1,1
+"cardiac arrest, blue lips",RED,7,2
+"severe trauma, mild allergies, stuffy nose, cardiac arrest",RED,7,4
+runny nose,GREEN,1,1
+"severe bleeding uncontrolled, fever, gunshot wound, dry skin, jaundice, blue lips",RED,7,6
+"swollen lymph nodes, coughing blood, frequent urination, severe infection signs, ear pain",ORANGE,6,5
+"swollen lymph nodes, severe burn, mild itching, vomiting",ORANGE,6,4
+"severe bleeding uncontrolled, massive hemorrhage, drowning, sprained ankle",RED,7,4
+"blood in urine, high fever, eye pain, chapped lips, mild itching",YELLOW,4,5
+"runny nose, diarrhea",YELLOW,3,2
+"loss of consciousness brief, high fever with chills",ORANGE,6,2
+"eye pain, blood in urine, blood in stool, severe burn, poisoning suspected, mild constipation",ORANGE,6,6
+loss of consciousness prolonged,RED,7,1
+"mild headache, stab wound, muscle soreness after exercise, ankle swelling",RED,7,4
+"paper cut, migraine",YELLOW,4,2
+"wheezing, dandruff, common cold, muscle cramps",YELLOW,4,4
+"runny nose, muscle soreness after exercise, dandruff",GREEN,2,3
+"mild headache, stab wound, chest pain",RED,7,3
+"no pulse detected, multi organ failure signs, muscle cramps, eye pain",RED,7,4
+"back pain, difficulty speaking suddenly, severe dehydration",ORANGE,6,3
+"loss of consciousness brief, severe asthma attack, severe burn",ORANGE,6,3
+"dandruff, mild body ache, swollen lymph nodes",YELLOW,3,3
+mild stomach discomfort,GREEN,2,1
+"severe burn, sudden weakness, severe pain",ORANGE,6,3
+"eye pain, dry skin",YELLOW,3,2
+anaphylaxis,RED,7,1
+"runny nose, mild acne",GREEN,1,2
+blue lips,RED,7,1
+"dandruff, sneezing, paper cut",GREEN,1,3
+"severe abdominal pain, chest pain, vomiting blood, heart attack symptoms",RED,7,4
+"dehydration, mild itching, sneezing, chapped lips",YELLOW,4,4
+"chest pain, severe head trauma, spinal injury suspected",RED,7,3
+"muscle soreness after exercise, eye pain, minor bruise, joint pain",YELLOW,3,4
+"poisoning suspected, severe chest tightness, confusion",ORANGE,6,3
+"minor fracture pain, skin rash with fever, vomiting blood, diabetic emergency",ORANGE,6,4
+watery eyes,GREEN,1,1
+"sprained ankle, minor bruise, persistent headache, insomnia, occasional heartburn",YELLOW,3,5
+"severe allergic reaction, abdominal pain, jaundice, animal bite deep",ORANGE,6,4
+"mild cough, dehydration, minor fracture pain, migraine",YELLOW,4,4
+"choking, severe head trauma, jaundice, gunshot wound",RED,7,4
+"severe head trauma, heart attack symptoms, unconscious",RED,7,3
+"frequent urination, mild bloating",YELLOW,3,2
+"seizure single, ear pain, severe back pain radiating, broken bone visible",ORANGE,6,4
+"mild anxiety, chronic indigestion",YELLOW,3,2
+"mild sunburn, mild itching, stuffy nose",GREEN,2,3
+"mild acne, back pain, sore throat with fever, minor rash, mild anxiety",YELLOW,4,5
+"persistent headache, joint pain, frequent urination",YELLOW,3,3
+"dandruff, mild fatigue, occasional heartburn, frequent urination, chest tightness",YELLOW,4,5
+"severe asthma attack, shortness of breath",ORANGE,6,2
+"mild constipation, minor bruise, common cold",GREEN,2,3
+"severe allergic reaction, stuffy nose, stab wound, shortness of breath, drowning",RED,7,5
+"stuffy nose, night sweats, confusion, muscle cramps, drug overdose suspected, difficulty speaking suddenly",ORANGE,6,6
+"chest pain, no pulse detected",RED,7,2
+"numbness one side, drug overdose suspected, mild allergies, severe pain",ORANGE,6,4
+"persistent cough, urinary burning",YELLOW,4,2
+"joint pain, ear pain",YELLOW,3,2
+"stuffy nose, watery eyes",GREEN,1,2
+"persistent headache, minor rash",YELLOW,3,2
+"high fever with chills, confusion, chest tightness, difficulty speaking suddenly, minor mouth ulcer, mild fatigue",ORANGE,6,6
+"severe dehydration, jaundice",ORANGE,5,2
+"abdominal pain, dehydration, ankle swelling, mild acne",YELLOW,4,4
+"skin rash with fever, persistent fatigue",YELLOW,4,2
+"persistent cough, massive hemorrhage, sneezing",RED,7,3
+"hiccups, muscle soreness after exercise",GREEN,2,2
+"back pain, mild bloating, stuffy nose",YELLOW,3,3
+"seizure single, diabetic emergency, animal bite deep, mild nausea, sore throat with fever, back pain",ORANGE,6,6
+"joint pain, watery eyes, mild constipation, chapped lips",YELLOW,3,4
+"sore throat with fever, shortness of breath",ORANGE,6,2
+"chest pain, severe bleeding uncontrolled",RED,7,2
+"facial drooping, severe burn, multi organ failure signs",RED,7,3
+"mild bloating, skin infection, ankle swelling, mild acne",YELLOW,3,4
+"eye injury, blue lips, chapped lips, electrocution, anaphylaxis",RED,7,5
+"watery eyes, choking, severe asthma attack",RED,7,3
+"mild sunburn, no pulse detected, vomiting, back pain, not breathing, stab wound",RED,7,6
+minor mouth ulcer,GREEN,2,1
+"watery eyes, mild acne",GREEN,1,2
+"sprained ankle, blurred vision, dry skin",YELLOW,4,3
+"weight loss unintentional, mild sunburn, slight sore throat, hiccups",YELLOW,4,4
+"stab wound, electrocution",RED,7,2
+"mild anxiety, mild cough, mild constipation, high fever",YELLOW,4,4
+"mild bloating, painful urination",YELLOW,3,2
+"hiccups, mild cough, high fever with chills, confusion, broken bone visible",ORANGE,6,5
+"hiccups, minor bruise",GREEN,1,2
+"eye pain, watery eyes, common cold",YELLOW,3,3
+"mild headache, chest pain, severe bleeding uncontrolled, persistent headache",RED,7,4
+"slight sore throat, mild itching, broken bone visible",ORANGE,6,3
+"animal bite deep, not breathing, sneezing, stab wound, diabetic emergency, cardiac arrest",RED,7,6
+"severe headache, severe pain, minor fracture pain",ORANGE,5,3
+coughing blood,ORANGE,6,1
+"eye pain, dehydration, migraine",YELLOW,4,3
+"spinal injury suspected, persistent headache, chest pain, toothache severe",RED,7,4
+"coughing blood, severe allergic reaction, diabetic emergency",ORANGE,6,3
+"chest tightness, minor bruise, blood in urine, numbness in fingers",YELLOW,4,4
+"loss of consciousness prolonged, septic shock symptoms",RED,7,2
+"hiccups, paper cut",GREEN,1,2
+"electrocution, runny nose",RED,7,2
+"minor bruise, mild bloating, slight sore throat",GREEN,2,3
+"mild fatigue, runny nose, fever, severe asthma attack",ORANGE,6,4
+"slight sore throat, insomnia, urinary burning, severe back pain radiating",ORANGE,5,4
+"chapped lips, common cold",GREEN,1,2
+"mild itching, blurred vision, poisoning suspected, confusion, wheezing, difficulty speaking suddenly",ORANGE,6,6
+"ear pain, sudden weakness, shortness of breath, difficulty speaking suddenly",ORANGE,6,4
+"stuffy nose, open wound deep, severe nosebleed, mild allergies, vomiting, severe back pain radiating",ORANGE,5,6
+"mild sunburn, persistent cough, nausea and vomiting, minor mouth ulcer, back pain",YELLOW,4,5
+"mild anxiety, not breathing, confusion, frequent urination, chest pain, blue lips",RED,7,6
+"fever, mild itching, mild nausea",YELLOW,4,3
+"facial drooping, difficulty breathing",ORANGE,6,2
+"muscle soreness after exercise, toothache severe, skin infection, mild acne, mild stomach discomfort",YELLOW,3,5
+"difficulty breathing, eye injury",ORANGE,6,2
+"heart attack symptoms, coughing blood, stuffy nose, severe head trauma, unconscious, wheezing",RED,7,6
+"blurred vision, animal bite deep, mild body ache",ORANGE,5,3
+broken bone visible,ORANGE,6,1
+"numbness in fingers, facial drooping, eye injury, muscle cramps, high fever, severe nosebleed",ORANGE,6,6
+"hiccups, minor rash",GREEN,2,2
+"muscle soreness after exercise, minor bruise",GREEN,2,2
+"mild anxiety, fever, mild fatigue, difficulty breathing",ORANGE,6,4
+dandruff,GREEN,1,1
+"broken bone visible, minor mouth ulcer",ORANGE,6,2
+"skin rash with fever, blue lips, seizure continuous, unconscious, vomiting blood, mild stomach discomfort",RED,7,6
+"weight loss unintentional, urinary burning, severe dehydration",ORANGE,5,3
+stuffy nose,GREEN,1,1
+"mild nausea, muscle soreness after exercise",GREEN,2,2
+"difficulty breathing, minor mouth ulcer, severe allergic reaction, mild allergies, head injury, slight sore throat",ORANGE,6,6
+"chest tightness, coughing blood, head injury",ORANGE,6,3
+"mild body ache, minor bruise",GREEN,2,2
+"mild sunburn, dry skin, sneezing",GREEN,2,3
+"blood in stool, chest tightness, joint pain, difficulty breathing",ORANGE,6,4
+"chest tightness, blurred vision, mild itching, jaundice, minor rash",YELLOW,4,5
+"persistent fatigue, numbness one side, high fever, mild nausea",ORANGE,6,4
+"mild body ache, skin infection, paper cut, mild headache, migraine",YELLOW,4,5
+"persistent cough, severe allergic reaction, swollen lymph nodes",ORANGE,6,3
+"mild allergies, muscle soreness after exercise, high fever, painful urination, dandruff",YELLOW,4,5
+numbness one side,ORANGE,6,1
+"minor rash, open wound deep",ORANGE,5,2
+"severe back pain radiating, stuffy nose, loss of consciousness brief",ORANGE,6,3
+"minor mouth ulcer, mild body ache, insomnia",GREEN,2,3
+"occasional heartburn, insomnia, common cold, severe abdominal pain",ORANGE,6,4
+"migraine, diabetic emergency, loss of consciousness brief, occasional heartburn, severe nosebleed, ear pain",ORANGE,6,6
+"tension pneumothorax, drowning, choking",RED,7,3
+"loss of consciousness brief, dandruff, eye injury, mild bloating, minor bruise",ORANGE,6,5
+occasional heartburn,GREEN,2,1
+massive hemorrhage,RED,7,1
+"multi organ failure signs, severe bleeding uncontrolled, anaphylaxis, hiccups, minor rash, sudden weakness",RED,7,6
+"slight sore throat, septic shock symptoms, electrocution, blue lips, vomiting",RED,7,5
+"spinal injury suspected, open wound deep, swollen lymph nodes, runny nose",RED,7,4
+watery eyes,GREEN,1,1
+"difficulty breathing, severe chest tightness, severe abdominal pain",ORANGE,6,3
+"muscle soreness after exercise, hiccups, mild acne",GREEN,2,3
+"blue lips, mild fatigue",RED,7,2
+"dandruff, mild allergies",GREEN,2,2
+"drowning, persistent fatigue, migraine",RED,7,3
+"diabetic emergency, severe headache, paper cut, difficulty breathing",ORANGE,6,4
+"stroke symptoms, abdominal pain, chronic indigestion",RED,7,3
+"eye injury, mild constipation, blurred vision",ORANGE,5,3
+"mild stomach discomfort, urinary burning, vomiting, mild constipation, sneezing",YELLOW,4,5
+"painful urination, migraine, skin rash with fever",YELLOW,4,3
+"mild bloating, mild sunburn, stuffy nose",GREEN,2,3
+muscle soreness after exercise,GREEN,2,1
+"severe infection signs, facial drooping, head injury",ORANGE,6,3
+common cold,GREEN,1,1
+"minor mouth ulcer, mild fatigue",GREEN,2,2
+"mild bloating, blood in urine",YELLOW,4,2
+"wheezing, common cold, blurred vision",YELLOW,4,3
+"paper cut, dry skin, minor bruise",GREEN,1,3
+"vomiting blood, numbness one side, urinary burning, occasional heartburn, poisoning suspected, ankle swelling",ORANGE,6,6
+"severe burn, eye injury, painful urination",ORANGE,6,3
+"persistent cough, gunshot wound, heart attack symptoms, drug overdose suspected, mild nausea",RED,7,5
+"mild nausea, mild bloating",GREEN,2,2
+"watery eyes, facial drooping, severe abdominal pain, broken bone visible",ORANGE,6,4
+"abdominal pain, diabetic emergency, diarrhea, migraine",ORANGE,6,4
+"mild itching, joint pain, blue lips, tension pneumothorax",RED,7,4
+"mild itching, insomnia, blurred vision",YELLOW,4,3
+"mild body ache, insomnia, slight sore throat",GREEN,2,3
+severe pain,ORANGE,5,1
+mild allergies,GREEN,2,1
+"open wound deep, severe trauma, skin rash with fever",RED,7,3
+common cold,GREEN,1,1
+seizure continuous,RED,7,1
+mild acne,GREEN,1,1
+mild body ache,GREEN,2,1
+"mild allergies, severe bleeding uncontrolled, drowning, vomiting blood",RED,7,4
+"mild stomach discomfort, mild constipation, weight loss unintentional, mild fatigue",YELLOW,4,4
+"watery eyes, sneezing, dehydration, sore throat with fever, abdominal pain, common cold",YELLOW,4,6
+"mild headache, occasional heartburn",GREEN,2,2
+"swollen lymph nodes, diabetic emergency",ORANGE,6,2
+"mild allergies, occasional heartburn, minor bruise",GREEN,2,3
+"skin infection, persistent headache, mild nausea",YELLOW,3,3
+"sneezing, mild stomach discomfort",GREEN,2,2
+"mild stomach discomfort, slight sore throat, ear pain",YELLOW,3,3
+"mild nausea, sore throat with fever, mild acne, chest tightness, muscle cramps",YELLOW,4,5
+"multi organ failure signs, chest pain, cardiac arrest, dizziness, severe nosebleed",RED,7,5
+slight sore throat,GREEN,1,1
+"no pulse detected, severe nosebleed, joint pain, anaphylaxis, choking",RED,7,5
+"ear pain, sneezing, persistent cough, severe chest tightness, severe back pain radiating",ORANGE,6,5
+"confusion, dehydration, night sweats, head injury",ORANGE,6,4
+"mild acne, mild allergies, mild cough, joint pain",YELLOW,3,4
+"muscle soreness after exercise, hiccups",GREEN,2,2
+"sneezing, mild itching, wheezing",YELLOW,4,3
+mild anxiety,GREEN,2,1
+"muscle soreness after exercise, watery eyes",GREEN,2,2
+"dry skin, fever, blurred vision, abdominal pain",YELLOW,4,4
+"stroke symptoms, dizziness, seizure continuous, chest pain",RED,7,4
+"skin infection, abdominal pain, severe pain, watery eyes",ORANGE,5,4
+"high fever with chills, eye injury, poisoning suspected",ORANGE,6,3
+"no pulse detected, chapped lips, swollen lymph nodes, mild itching",RED,7,4
+"mild bloating, sneezing, mild itching",GREEN,2,3
+"painful urination, persistent cough, loss of consciousness prolonged",RED,7,3
+"numbness one side, night sweats, animal bite deep, shortness of breath",ORANGE,6,4
+"hiccups, chapped lips, mild nausea",GREEN,2,3
+"mild body ache, sneezing, mild sunburn",GREEN,2,3
+"watery eyes, mild itching",GREEN,1,2
+"shortness of breath, electrocution, persistent fatigue, mild nausea",RED,7,4
+"blue lips, massive hemorrhage, no pulse detected",RED,7,3
+high fever,YELLOW,4,1
+"mild stomach discomfort, minor mouth ulcer, insomnia",GREEN,2,3
+"skin infection, no pulse detected, numbness in fingers",RED,7,3
+"hiccups, mild constipation, chemical exposure",ORANGE,6,3
+"persistent fatigue, nausea and vomiting, cardiac arrest",RED,7,3
+"numbness one side, poisoning suspected",ORANGE,6,2
+"minor bruise, sore throat with fever, open wound deep, ankle swelling",ORANGE,5,4
+"diarrhea, sore throat with fever, stuffy nose, minor mouth ulcer, mild acne",YELLOW,4,5
+"severe chest tightness, seizure continuous, stroke symptoms",RED,7,3
+"dandruff, insomnia",GREEN,2,2
+"insomnia, mild acne, mild constipation",GREEN,2,3
+"dandruff, minor rash, mild body ache",GREEN,2,3
+"mild nausea, chronic indigestion, minor bruise, blood in stool",ORANGE,5,4
+"chronic indigestion, septic shock symptoms, choking",RED,7,3
+sprained ankle,YELLOW,3,1
+"shortness of breath, diabetic emergency, persistent headache, severe asthma attack, migraine",ORANGE,6,5
+"dandruff, severe nosebleed, high fever with chills",ORANGE,5,3
+"severe bleeding uncontrolled, anaphylaxis, severe allergic reaction, seizure continuous, sprained ankle",RED,7,5
+"open wound deep, muscle soreness after exercise, occasional heartburn, watery eyes, severe headache",ORANGE,5,5
+severe pain,ORANGE,5,1
+"toothache severe, mild itching, common cold, paper cut",YELLOW,3,4
+severe bleeding uncontrolled,RED,7,1
+"eye injury, head injury",ORANGE,6,2
+"chapped lips, severe trauma, sudden weakness",RED,7,3
+"toothache severe, severe head trauma",RED,7,2
+"electrocution, insomnia, hiccups, loss of consciousness prolonged, spinal injury suspected",RED,7,5
+"occasional heartburn, muscle soreness after exercise",GREEN,2,2
+"sudden weakness, difficulty breathing, spinal injury suspected, massive hemorrhage, cardiac arrest",RED,7,5
+"muscle cramps, coughing blood, open wound deep, mild fatigue, severe allergic reaction",ORANGE,6,5
+"severe burn, open wound deep, diabetic emergency",ORANGE,6,3
+"mild fatigue, watery eyes",GREEN,2,2
+"chest pain, cardiac arrest, minor bruise, seizure continuous, common cold",RED,7,5
+"sore throat with fever, common cold, fever, drug overdose suspected",ORANGE,6,4
+minor mouth ulcer,GREEN,2,1
+severe trauma,RED,7,1
+"mild itching, tension pneumothorax, stroke symptoms, seizure continuous",RED,7,4
+"minor rash, seizure continuous, blue lips, loss of consciousness prolonged",RED,7,4
+"common cold, joint pain, minor mouth ulcer, diarrhea, skin rash with fever",YELLOW,4,5
+eye pain,YELLOW,3,1
+"watery eyes, severe burn",ORANGE,6,2
+"chapped lips, mild nausea, seizure continuous, chest pain, unconscious",RED,7,5
+"severe back pain radiating, frequent urination, shortness of breath, severe asthma attack",ORANGE,6,4
+"mild nausea, jaundice, slight sore throat, mild stomach discomfort",YELLOW,4,4
+"wheezing, unconscious, severe pain, loss of consciousness prolonged",RED,7,4
+"skin infection, diarrhea",YELLOW,3,2
+"ear pain, minor bruise, persistent headache, diarrhea",YELLOW,3,4
+"skin rash with fever, urinary burning, migraine",YELLOW,4,3
+mild constipation,GREEN,2,1
+"back pain, persistent cough",YELLOW,3,2
+severe head trauma,RED,7,1
+"paper cut, persistent cough, wheezing, hiccups, blood in urine",YELLOW,4,5
+"sore throat with fever, jaundice",YELLOW,4,2
+"runny nose, common cold",GREEN,1,2
+"hiccups, frequent urination, ear pain, dry skin",YELLOW,3,4
+"swollen lymph nodes, mild body ache, mild constipation, mild cough, skin rash with fever",YELLOW,4,5
+"runny nose, back pain, severe headache, paper cut",ORANGE,5,4
+"runny nose, seizure single, loss of consciousness prolonged, no pulse detected, chest pain",RED,7,5
+sneezing,GREEN,1,1
+"weight loss unintentional, skin rash with fever",YELLOW,4,2
+mild constipation,GREEN,2,1
+"dizziness, high fever",YELLOW,4,2
+"mild constipation, mild anxiety, insomnia",GREEN,2,3
+"occasional heartburn, runny nose, numbness in fingers, mild cough, persistent fatigue, dehydration",YELLOW,4,6
+"spinal injury suspected, minor rash, chest tightness",RED,7,3
+"loss of consciousness brief, painful urination, difficulty breathing, weight loss unintentional, sprained ankle, eye injury",ORANGE,6,6
+"blood in stool, dandruff, high fever, diabetic emergency",ORANGE,6,4
+"severe dehydration, paper cut, mild cough, severe back pain radiating",ORANGE,5,4
+"mild allergies, night sweats, sore throat with fever",YELLOW,4,3
+drug overdose suspected,ORANGE,6,1
+"fever, migraine",YELLOW,4,2
+poisoning suspected,ORANGE,6,1
+"paper cut, muscle soreness after exercise",GREEN,2,2
+"minor bruise, fever, watery eyes, paper cut",YELLOW,4,4
+"sore throat with fever, stroke symptoms, no pulse detected, swollen lymph nodes",RED,7,4
+not breathing,RED,7,1
+"mild anxiety, nausea and vomiting, painful urination, dandruff, sprained ankle, mild sunburn",YELLOW,4,6
+"sneezing, fever",YELLOW,4,2
+"stroke symptoms, chest pain, not breathing, seizure single",RED,7,4
+mild body ache,GREEN,2,1
+"vomiting, mild itching, dry skin, minor bruise",YELLOW,4,4
+"severe chest tightness, stuffy nose",ORANGE,6,2
+"mild allergies, minor bruise, mild cough",GREEN,2,3
+"open wound deep, swollen lymph nodes, wheezing, numbness one side, severe infection signs",ORANGE,6,5
+"dry skin, urinary burning, mild itching",YELLOW,4,3
+"insomnia, mild cough",GREEN,2,2
+mild acne,GREEN,1,1
+"migraine, tension pneumothorax, no pulse detected",RED,7,3
+"sudden weakness, migraine, hiccups, severe pain",ORANGE,5,4
+mild itching,GREEN,1,1
+"urinary burning, sprained ankle, nausea and vomiting",YELLOW,4,3
+"frequent urination, severe burn, animal bite deep",ORANGE,6,3
+"mild fatigue, frequent urination",YELLOW,3,2
+watery eyes,GREEN,1,1
+unconscious,RED,7,1
+"broken bone visible, eye pain, severe asthma attack",ORANGE,6,3
+"mild stomach discomfort, nausea and vomiting",YELLOW,4,2
+"ankle swelling, dry skin, jaundice, watery eyes",YELLOW,4,4
+"diabetic emergency, open wound deep, severe allergic reaction, minor mouth ulcer",ORANGE,6,4
+"septic shock symptoms, seizure continuous, tension pneumothorax, facial drooping, muscle cramps",RED,7,5
+"night sweats, watery eyes, sprained ankle, toothache severe, chapped lips",YELLOW,4,5
+"open wound deep, head injury",ORANGE,6,2
+"chest pain, severe head trauma",RED,7,2
+"mild constipation, hiccups, mild headache",GREEN,2,3
+"stroke symptoms, mild bloating, severe back pain radiating, blurred vision, chest pain",RED,7,5
+"slight sore throat, mild bloating",GREEN,2,2
+"severe nosebleed, frequent urination, swollen lymph nodes",ORANGE,5,3
+"severe trauma, severe head trauma, broken bone visible",RED,7,3
+"watery eyes, numbness one side, mild sunburn, minor rash",ORANGE,6,4
+"ear pain, blood in urine",YELLOW,4,2
+occasional heartburn,GREEN,2,1
+"eye pain, mild bloating, mild acne, ear pain, fever",YELLOW,4,5
+"severe dehydration, heart attack symptoms, severe headache, high fever with chills",RED,7,4
+"shortness of breath, severe nosebleed, common cold, urinary burning",ORANGE,6,4
+head injury,ORANGE,6,1
+"wheezing, minor fracture pain, insomnia, fever, mild anxiety, sneezing",YELLOW,4,6
+"minor bruise, minor fracture pain, mild stomach discomfort, sore throat with fever, stuffy nose",YELLOW,4,5
+"sprained ankle, septic shock symptoms, sore throat with fever",RED,7,3
+"chest pain, loss of consciousness prolonged, severe trauma",RED,7,3
+"minor mouth ulcer, mild itching",GREEN,2,2
+"persistent cough, nausea and vomiting, minor fracture pain",YELLOW,4,3
+"mild cough, mild allergies, severe dehydration",ORANGE,5,3
+"high fever, frequent urination, numbness in fingers",YELLOW,4,3
+"mild acne, difficulty breathing, mild stomach discomfort, diabetic emergency, dandruff",ORANGE,6,5
+"frequent urination, drowning, electrocution, mild fatigue, not breathing",RED,7,5
+"mild bloating, insomnia, weight loss unintentional, chronic indigestion, back pain",YELLOW,4,5
+slight sore throat,GREEN,1,1
+"mild sunburn, mild headache",GREEN,2,2
+"severe trauma, vomiting blood, chest pain, muscle cramps",RED,7,4
+"minor bruise, head injury, drug overdose suspected, poisoning suspected, sprained ankle, mild sunburn",ORANGE,6,6
+"dandruff, insomnia, diarrhea, minor bruise",YELLOW,3,4
+"severe bleeding uncontrolled, electrocution, poisoning suspected, severe nosebleed",RED,7,4
+stroke symptoms,RED,7,1
+"severe abdominal pain, paper cut, jaundice, numbness one side, head injury",ORANGE,6,5
+"severe asthma attack, sudden weakness",ORANGE,6,2
+"minor bruise, frequent urination, back pain, slight sore throat",YELLOW,3,4
+"dehydration, mild bloating, anaphylaxis, chest pain",RED,7,4
+"minor bruise, runny nose, chapped lips",GREEN,1,3
+eye injury,ORANGE,5,1
+"dizziness, weight loss unintentional, mild sunburn",YELLOW,4,3
+"mild headache, runny nose",GREEN,1,2
+"hiccups, septic shock symptoms, anaphylaxis, multi organ failure signs, muscle soreness after exercise",RED,7,5
+"ankle swelling, painful urination, persistent fatigue",YELLOW,3,3
+mild constipation,GREEN,2,1
+"head injury, persistent fatigue, eye injury, dandruff, muscle soreness after exercise, severe back pain radiating",ORANGE,6,6
+"mild body ache, mild fatigue, severe pain, minor fracture pain, severe dehydration",ORANGE,5,5
+"animal bite deep, unconscious, severe head trauma, abdominal pain, chest pain",RED,7,5
+severe allergic reaction,ORANGE,6,1
+difficulty speaking suddenly,ORANGE,6,1
+"chapped lips, stab wound, drowning, chest pain, jaundice",RED,7,5
+minor fracture pain,YELLOW,4,1
+"dry skin, mild sunburn, mild stomach discomfort",GREEN,2,3
+minor bruise,GREEN,1,1
+"diarrhea, abdominal pain, persistent fatigue",YELLOW,4,3
+"seizure single, drug overdose suspected, skin rash with fever",ORANGE,6,3
+"electrocution, numbness in fingers, mild nausea, gunshot wound, severe bleeding uncontrolled, ear pain",RED,7,6
+"mild body ache, shortness of breath, wheezing, chest tightness, poisoning suspected",ORANGE,6,5
+"severe headache, severe back pain radiating",ORANGE,5,2
+drowning,RED,7,1
+"coughing blood, mild cough, common cold, severe head trauma",RED,7,4
+muscle cramps,YELLOW,3,1
+"mild anxiety, occasional heartburn, runny nose",GREEN,2,3
+"gunshot wound, heart attack symptoms, numbness one side, vomiting blood, nausea and vomiting",RED,7,5
+"sudden weakness, seizure single, high fever, muscle soreness after exercise, nausea and vomiting, difficulty speaking suddenly",ORANGE,6,6
+"mild constipation, occasional heartburn, mild sunburn",GREEN,2,3
+mild headache,GREEN,1,1
+"seizure continuous, cardiac arrest",RED,7,2
+"vomiting, mild fatigue, sore throat with fever, toothache severe, mild acne",YELLOW,4,5
+"stab wound, gunshot wound",RED,7,2
+"mild headache, paper cut",GREEN,1,2
+"diabetic emergency, heart attack symptoms, mild itching, mild nausea",RED,7,4
+unconscious,RED,7,1
+"seizure continuous, stab wound",RED,7,2
+"dry skin, dandruff, mild constipation",GREEN,2,3
+mild constipation,GREEN,2,1
+"chest tightness, weight loss unintentional, persistent cough",YELLOW,4,3
+"numbness one side, electrocution, massive hemorrhage, choking",RED,7,4
+"severe head trauma, loss of consciousness prolonged, facial drooping",RED,7,3
+"dehydration, ear pain, chapped lips, minor bruise, hiccups",YELLOW,4,5
+"skin rash with fever, occasional heartburn, mild body ache, insomnia, sprained ankle",YELLOW,4,5
+"hiccups, minor bruise",GREEN,1,2
+"eye pain, fever",YELLOW,4,2
+"sudden weakness, night sweats, severe pain",ORANGE,5,3
+"dry skin, mild acne, blurred vision, mild anxiety, eye pain",YELLOW,4,5
+"multi organ failure signs, choking, severe chest tightness",RED,7,3
+"head injury, unconscious, sore throat with fever",RED,7,3
+"sneezing, severe back pain radiating, blurred vision, head injury, severe dehydration",ORANGE,6,5
+"mild bloating, runny nose, muscle soreness after exercise",GREEN,2,3
+"sudden weakness, severe allergic reaction, dandruff, severe asthma attack",ORANGE,6,4
+diarrhea,YELLOW,3,1
+"chronic indigestion, skin rash with fever",YELLOW,4,2
+"seizure continuous, septic shock symptoms, massive hemorrhage",RED,7,3
+"common cold, mild nausea",GREEN,2,2
+severe dehydration,ORANGE,5,1
+"common cold, mild cough, mild nausea",GREEN,2,3
+stroke symptoms,RED,7,1
+"not breathing, difficulty breathing, unconscious, blood in urine",RED,7,4
+"mild fatigue, skin rash with fever, migraine, paper cut, dry skin",YELLOW,4,5
+"watery eyes, dry skin",GREEN,1,2
+"facial drooping, dizziness, stuffy nose, eye injury, numbness in fingers",ORANGE,6,5
+"occasional heartburn, stuffy nose",GREEN,2,2
+"urinary burning, skin rash with fever, chest tightness",YELLOW,4,3
+"severe trauma, electrocution",RED,7,2
+"mild nausea, multi organ failure signs, severe back pain radiating, drowning, jaundice, chest pain",RED,7,6
+"mild acne, occasional heartburn, mild sunburn",GREEN,2,3
+"ankle swelling, eye injury, severe asthma attack, mild anxiety, blood in urine",ORANGE,6,5
+"chest pain, wheezing",RED,7,2
+"mild cough, mild fatigue, common cold",GREEN,2,3
+"vomiting, chronic indigestion, chest tightness",YELLOW,4,3
+"sprained ankle, severe burn, severe chest tightness, diabetic emergency",ORANGE,6,4
+"multi organ failure signs, seizure single, mild constipation, seizure continuous",RED,7,4
+"dandruff, high fever, toothache severe, mild acne",YELLOW,4,4
+"mild allergies, nausea and vomiting, dizziness, chapped lips, muscle soreness after exercise",YELLOW,4,5
+"joint pain, minor mouth ulcer, mild allergies, high fever with chills",ORANGE,5,4
+chest pain,RED,7,1
+"muscle cramps, wheezing, dehydration",YELLOW,4,3
+"stuffy nose, mild nausea",GREEN,2,2
+"mild nausea, stuffy nose, minor bruise",GREEN,2,3
+"unconscious, insomnia, common cold, chapped lips, multi organ failure signs",RED,7,5
+"blue lips, anaphylaxis",RED,7,2
+"choking, urinary burning",RED,7,2
+"diarrhea, jaundice, mild headache, dandruff, mild stomach discomfort",YELLOW,4,5
+mild cough,GREEN,1,1
+"sneezing, runny nose, mild stomach discomfort",GREEN,2,3
+"chemical exposure, severe allergic reaction",ORANGE,6,2
+"chest pain, gunshot wound",RED,7,2
+"severe asthma attack, severe allergic reaction, skin infection, severe pain, persistent headache, persistent fatigue",ORANGE,6,6
+"loss of consciousness prolonged, gunshot wound",RED,7,2
+mild bloating,GREEN,2,1
+"muscle soreness after exercise, joint pain, vomiting, chest tightness",YELLOW,4,4
+mild nausea,GREEN,2,1
+"dry skin, mild allergies",GREEN,2,2
+"mild headache, mild fatigue, insomnia",GREEN,2,3
+"persistent cough, mild stomach discomfort",YELLOW,3,2
+"severe pain, blue lips, severe back pain radiating, tension pneumothorax",RED,7,4
+tension pneumothorax,RED,7,1
+"seizure single, poisoning suspected",ORANGE,6,2
+"severe chest tightness, chapped lips, poisoning suspected, severe asthma attack",ORANGE,6,4
+"electrocution, severe trauma",RED,7,2
+"stuffy nose, weight loss unintentional, severe headache, severe bleeding uncontrolled",RED,7,4
+"back pain, skin rash with fever, jaundice",YELLOW,4,3
+"ear pain, gunshot wound, severe bleeding uncontrolled, severe head trauma",RED,7,4
+"severe pain, confusion",ORANGE,5,2
+unconscious,RED,7,1
+"animal bite deep, dry skin, nausea and vomiting, shortness of breath, skin infection",ORANGE,6,5
+sore throat with fever,YELLOW,4,1
+"insomnia, persistent headache, sprained ankle, mild acne",YELLOW,3,4
+"severe pain, severe back pain radiating, mild acne",ORANGE,5,3
+"seizure continuous, painful urination",RED,7,2
+"painful urination, abdominal pain",YELLOW,4,2
+"blood in urine, dehydration, numbness one side, head injury, skin infection",ORANGE,6,5
+poisoning suspected,ORANGE,6,1
+"difficulty speaking suddenly, jaundice, paper cut, poisoning suspected",ORANGE,6,4
+drowning,RED,7,1
+"hiccups, mild fatigue, numbness in fingers",YELLOW,3,3
+"occasional heartburn, mild body ache",GREEN,2,2
+"dizziness, blood in urine, minor rash",YELLOW,4,3
+toothache severe,YELLOW,3,1
+"slight sore throat, seizure continuous",RED,7,2
+"joint pain, gunshot wound, muscle cramps, severe trauma",RED,7,4
+"mild itching, dry skin",GREEN,1,2
+"blue lips, chest pain, gunshot wound",RED,7,3
+"sore throat with fever, chemical exposure, difficulty speaking suddenly",ORANGE,6,3
+"mild cough, stuffy nose, persistent fatigue, fever, minor rash",YELLOW,4,5
+"tension pneumothorax, seizure continuous",RED,7,2
+"blood in stool, severe asthma attack, blurred vision, numbness one side",ORANGE,6,4
+"paper cut, confusion",ORANGE,5,2
+"mild cough, insomnia, mild headache",GREEN,2,3
+"paper cut, joint pain, minor bruise, minor mouth ulcer",YELLOW,3,4
+"hiccups, swollen lymph nodes, gunshot wound, anaphylaxis, no pulse detected",RED,7,5
+"mild stomach discomfort, massive hemorrhage, septic shock symptoms, multi organ failure signs",RED,7,4
+"animal bite deep, jaundice, insomnia, severe pain",ORANGE,5,4
+"blood in urine, fever, severe dehydration",ORANGE,5,3
+"chemical exposure, insomnia, eye injury",ORANGE,6,3
+"sprained ankle, slight sore throat, mild constipation, persistent fatigue, swollen lymph nodes",YELLOW,3,5
+"jaundice, mild acne, mild bloating",YELLOW,4,3
+"toothache severe, blurred vision, frequent urination, insomnia, watery eyes",YELLOW,4,5
+"massive hemorrhage, blue lips, nausea and vomiting",RED,7,3
+"mild itching, multi organ failure signs, minor rash, gunshot wound",RED,7,4
+"blue lips, choking",RED,7,2
+"dry skin, chapped lips",GREEN,1,2
+"minor rash, mild anxiety",GREEN,2,2
+"abdominal pain, mild acne, mild allergies, common cold, minor fracture pain",YELLOW,4,5
+"severe head trauma, frequent urination, mild itching, stroke symptoms, seizure single, not breathing",RED,7,6
+"loss of consciousness prolonged, gunshot wound",RED,7,2
+mild nausea,GREEN,2,1
+"back pain, dry skin, ankle swelling, chapped lips, high fever",YELLOW,4,5
+"painful urination, numbness in fingers",YELLOW,3,2
+"mild bloating, nausea and vomiting",YELLOW,4,2
+"minor rash, mild sunburn",GREEN,2,2
+"nausea and vomiting, severe head trauma, heart attack symptoms, mild fatigue",RED,7,4
+"abdominal pain, jaundice, runny nose",YELLOW,4,3
+"blue lips, chest pain, choking",RED,7,3
+"sprained ankle, minor rash, back pain, ankle swelling",YELLOW,3,4
+"paper cut, skin infection, skin rash with fever",YELLOW,4,3
+"diabetic emergency, dandruff, hiccups",ORANGE,6,3
+"jaundice, chest tightness, sneezing, nausea and vomiting, mild cough",YELLOW,4,5
+"mild allergies, insomnia, mild bloating",GREEN,2,3
+"confusion, poisoning suspected, tension pneumothorax, eye injury",RED,7,4
+"mild nausea, mild bloating",GREEN,2,2
+"chapped lips, mild cough, sneezing",GREEN,1,3
+"unconscious, severe pain, seizure continuous, blue lips, persistent headache, mild itching",RED,7,6
+"occasional heartburn, mild anxiety, slight sore throat",GREEN,2,3
+"chapped lips, mild itching",GREEN,1,2
+open wound deep,ORANGE,5,1
+mild sunburn,GREEN,2,1
+"seizure continuous, severe head trauma, gunshot wound, joint pain, open wound deep, dry skin",RED,7,6
+"sneezing, minor bruise",GREEN,1,2
+chemical exposure,ORANGE,6,1
+"anaphylaxis, stroke symptoms, gunshot wound",RED,7,3
+"watery eyes, mild cough, skin rash with fever, migraine, urinary burning",YELLOW,4,5
+"sneezing, dizziness, swollen lymph nodes, minor rash",YELLOW,4,4
+"vomiting, difficulty breathing, severe asthma attack, mild acne",ORANGE,6,4
+"severe trauma, anaphylaxis",RED,7,2
+"dandruff, weight loss unintentional, mild body ache",YELLOW,4,3
+"mild stomach discomfort, skin infection, persistent fatigue, septic shock symptoms, drowning",RED,7,5
+"mild itching, skin infection, ankle swelling, urinary burning, mild allergies",YELLOW,4,5
+"muscle cramps, sneezing",YELLOW,3,2
+difficulty breathing,ORANGE,6,1
+"mild acne, mild cough",GREEN,1,2
+"mild anxiety, nausea and vomiting, paper cut, blood in urine, minor mouth ulcer",YELLOW,4,5
+"head injury, drug overdose suspected, vomiting blood, slight sore throat, blurred vision, insomnia",ORANGE,6,6
+"minor mouth ulcer, anaphylaxis",RED,7,2
+"dizziness, sprained ankle, dehydration",YELLOW,4,3
+watery eyes,GREEN,1,1
+"cardiac arrest, severe head trauma",RED,7,2
+"vomiting, minor fracture pain, back pain",YELLOW,4,3
+"sneezing, mild constipation, mild stomach discomfort",GREEN,2,3
+"sneezing, occasional heartburn",GREEN,2,2
+severe dehydration,ORANGE,5,1
+"sore throat with fever, chronic indigestion, occasional heartburn, drug overdose suspected",ORANGE,6,4
+"head injury, severe headache, vomiting, chronic indigestion, severe pain",ORANGE,6,5
+"massive hemorrhage, blue lips",RED,7,2
+"diarrhea, severe burn, severe dehydration, sprained ankle, mild acne, sudden weakness",ORANGE,6,6
+"mild constipation, mild nausea, urinary burning, runny nose",YELLOW,4,4
+"sneezing, massive hemorrhage, coughing blood",RED,7,3
+"occasional heartburn, head injury, severe burn, mild allergies, joint pain, severe abdominal pain",ORANGE,6,6
+"minor bruise, hiccups",GREEN,1,2
+"mild stomach discomfort, mild nausea",GREEN,2,2
+"common cold, chest tightness, mild itching",YELLOW,4,3
+toothache severe,YELLOW,3,1
+"stab wound, coughing blood, drowning, dandruff, cardiac arrest",RED,7,5
+mild anxiety,GREEN,2,1
+"insomnia, mild headache",GREEN,2,2
+"dry skin, mild nausea, muscle soreness after exercise, persistent fatigue",YELLOW,3,4
+"severe nosebleed, ear pain, drowning",RED,7,3
+"chapped lips, mild headache",GREEN,1,2
+"choking, mild fatigue, anaphylaxis",RED,7,3
+"muscle soreness after exercise, difficulty breathing, runny nose, loss of consciousness prolonged, gunshot wound",RED,7,5
+"skin rash with fever, diarrhea, watery eyes, mild fatigue, mild cough",YELLOW,4,5
+"numbness one side, sudden weakness, muscle soreness after exercise, stab wound, septic shock symptoms, heart attack symptoms",RED,7,6
+"blood in stool, difficulty speaking suddenly, back pain, difficulty breathing",ORANGE,6,4
+"unconscious, multi organ failure signs",RED,7,2
+"difficulty breathing, coughing blood, dandruff, confusion",ORANGE,6,4
+"mild headache, mild acne",GREEN,1,2
+"broken bone visible, numbness one side",ORANGE,6,2
+"toothache severe, broken bone visible, severe headache",ORANGE,6,3
+stroke symptoms,RED,7,1
+persistent fatigue,YELLOW,3,1
+"ear pain, mild body ache",YELLOW,3,2
+"severe headache, diabetic emergency",ORANGE,6,2
+"spinal injury suspected, gunshot wound",RED,7,2
+"confusion, slight sore throat, vomiting blood, severe chest tightness",ORANGE,6,4
+"severe abdominal pain, head injury",ORANGE,6,2
+occasional heartburn,GREEN,2,1
+"open wound deep, migraine, severe dehydration, seizure single",ORANGE,5,4
+stroke symptoms,RED,7,1
+mild stomach discomfort,GREEN,2,1
+"mild body ache, chapped lips, minor bruise",GREEN,2,3
+"dandruff, runny nose, minor rash",GREEN,2,3
+paper cut,GREEN,1,1
+"chapped lips, mild cough",GREEN,1,2
+"minor bruise, insomnia, hiccups",GREEN,2,3
+mild body ache,GREEN,2,1
+"eye pain, anaphylaxis, poisoning suspected",RED,7,3
+common cold,GREEN,1,1
+"mild bloating, mild cough, mild allergies",GREEN,2,3
+"blue lips, severe burn, drowning, mild itching, mild body ache",RED,7,5
+"severe trauma, septic shock symptoms",RED,7,2
+"chapped lips, mild acne",GREEN,1,2
+"seizure single, chronic indigestion, urinary burning, chest tightness",ORANGE,5,4
+"jaundice, stuffy nose, night sweats, urinary burning",YELLOW,4,4
+"common cold, swollen lymph nodes, mild nausea, broken bone visible, severe allergic reaction",ORANGE,6,5
+"mild constipation, sprained ankle, hiccups, high fever",YELLOW,4,4
+"numbness one side, diabetic emergency, chapped lips",ORANGE,6,3
+"sprained ankle, ankle swelling, mild body ache, runny nose, chapped lips",YELLOW,3,5
+"minor mouth ulcer, chronic indigestion, severe infection signs, abdominal pain",ORANGE,5,4
+"mild fatigue, dandruff",GREEN,2,2
+anaphylaxis,RED,7,1
+"severe nosebleed, joint pain, blue lips, anaphylaxis, persistent cough",RED,7,5
+"skin rash with fever, minor mouth ulcer, mild allergies",YELLOW,4,3
+"minor fracture pain, toothache severe, ear pain",YELLOW,4,3
+"persistent fatigue, watery eyes, weight loss unintentional, mild sunburn, diarrhea",YELLOW,4,5
+"mild allergies, mild stomach discomfort",GREEN,2,2
+blue lips,RED,7,1
+"swollen lymph nodes, insomnia, mild nausea, severe nosebleed, blood in stool",ORANGE,5,5
+"no pulse detected, massive hemorrhage, severe chest tightness, ear pain, mild allergies, cardiac arrest",RED,7,6
+"minor bruise, sprained ankle",YELLOW,3,2
+"common cold, mild cough, mild anxiety",GREEN,2,3
+"severe back pain radiating, mild constipation, severe head trauma, persistent headache, drowning",RED,7,5
+"gunshot wound, cardiac arrest, heart attack symptoms",RED,7,3
+"multi organ failure signs, severe head trauma, chest pain",RED,7,3
+"minor mouth ulcer, mild allergies",GREEN,2,2
+"mild nausea, dandruff",GREEN,2,2
+mild anxiety,GREEN,2,1
+"runny nose, occasional heartburn, mild nausea",GREEN,2,3
+"anaphylaxis, septic shock symptoms, unconscious",RED,7,3
+"runny nose, paper cut",GREEN,1,2
+"ear pain, night sweats",YELLOW,4,2
+"blurred vision, insomnia, eye injury, cardiac arrest, tension pneumothorax",RED,7,5
+"mild cough, stuffy nose, minor bruise",GREEN,1,3
+"severe nosebleed, septic shock symptoms, blood in urine, no pulse detected, blue lips",RED,7,5
+"mild acne, stab wound, heart attack symptoms, chest pain",RED,7,4
+"septic shock symptoms, not breathing",RED,7,2
+"severe head trauma, multi organ failure signs",RED,7,2
+"sneezing, chest tightness, mild anxiety, occasional heartburn",YELLOW,4,4
+"insomnia, diarrhea",YELLOW,3,2
+"mild sunburn, chest tightness, severe dehydration",ORANGE,5,3
+"open wound deep, coughing blood",ORANGE,6,2
+"unconscious, persistent fatigue, gunshot wound, severe head trauma, severe allergic reaction",RED,7,5
+"minor bruise, muscle soreness after exercise",GREEN,2,2
+sudden weakness,ORANGE,5,1
+"sneezing, dehydration, chapped lips, joint pain",YELLOW,4,4
+drug overdose suspected,ORANGE,6,1
+"mild fatigue, choking",RED,7,2
+"blood in urine, skin infection, sneezing, occasional heartburn",YELLOW,4,4
+"mild sunburn, night sweats, severe trauma, chest pain, diarrhea, choking",RED,7,6
+"facial drooping, severe bleeding uncontrolled, gunshot wound, anaphylaxis",RED,7,4
+"occasional heartburn, hiccups, runny nose",GREEN,2,3
+"drug overdose suspected, electrocution, toothache severe, severe trauma, severe head trauma, occasional heartburn",RED,7,6
+"abdominal pain, tension pneumothorax, severe head trauma",RED,7,3
+"shortness of breath, minor fracture pain, minor mouth ulcer, muscle cramps, severe dehydration, seizure single",ORANGE,6,6
+"unconscious, fever, mild allergies, severe trauma",RED,7,4
+mild cough,GREEN,1,1
+"mild allergies, slight sore throat",GREEN,2,2
+"persistent cough, ankle swelling, severe chest tightness, insomnia",ORANGE,6,4
+"eye pain, skin rash with fever, paper cut, chest tightness",YELLOW,4,4
+difficulty breathing,ORANGE,6,1
+stuffy nose,GREEN,1,1
+"dandruff, diabetic emergency, chapped lips",ORANGE,6,3
+"insomnia, watery eyes, runny nose",GREEN,2,3
+"choking, mild cough, high fever with chills",RED,7,3
+"sneezing, mild stomach discomfort, watery eyes",GREEN,2,3
+"difficulty breathing, severe dehydration",ORANGE,6,2
+"difficulty breathing, severe allergic reaction, severe back pain radiating, high fever",ORANGE,6,4
+"minor mouth ulcer, muscle soreness after exercise, insomnia",GREEN,2,3
+minor mouth ulcer,GREEN,2,1
+"severe allergic reaction, persistent headache, head injury",ORANGE,6,3
+"electrocution, massive hemorrhage",RED,7,2
+"dandruff, mild constipation, stuffy nose",GREEN,2,3
+"mild body ache, stab wound, runny nose, urinary burning",RED,7,4
+"dehydration, dry skin, fever",YELLOW,4,3
+"toothache severe, slight sore throat, mild itching",YELLOW,3,3
+"severe chest tightness, vomiting blood",ORANGE,6,2
+"muscle soreness after exercise, mild acne",GREEN,2,2
+occasional heartburn,GREEN,2,1
+"sore throat with fever, facial drooping, minor rash, paper cut",ORANGE,6,4
+animal bite deep,ORANGE,5,1
+"drug overdose suspected, severe dehydration, frequent urination, severe pain, mild sunburn",ORANGE,6,5
+severe chest tightness,ORANGE,6,1
+"seizure single, broken bone visible, chest tightness",ORANGE,6,3
+"dry skin, persistent cough, mild headache, weight loss unintentional, chapped lips, toothache severe",YELLOW,4,6
+common cold,GREEN,1,1
+mild allergies,GREEN,2,1
+"minor rash, seizure continuous, gunshot wound",RED,7,3
+"chemical exposure, heart attack symptoms, sneezing, minor rash",RED,7,4
+"numbness one side, poisoning suspected",ORANGE,6,2
+"eye injury, severe asthma attack, joint pain",ORANGE,6,3
+"heart attack symptoms, multi organ failure signs",RED,7,2
+"runny nose, fever, severe pain, chapped lips",ORANGE,5,4
+"slight sore throat, urinary burning",YELLOW,4,2
+"severe headache, paper cut, eye injury",ORANGE,5,3
+"mild fatigue, minor bruise",GREEN,2,2
+"mild acne, difficulty speaking suddenly, persistent headache, toothache severe, difficulty breathing",ORANGE,6,5
+"occasional heartburn, sneezing",GREEN,2,2
+"muscle soreness after exercise, hiccups, mild cough",GREEN,2,3
+"back pain, mild bloating, high fever",YELLOW,4,3
+mild anxiety,GREEN,2,1
+"mild fatigue, common cold, joint pain, minor rash, night sweats, persistent cough",YELLOW,4,6
+"gunshot wound, urinary burning, unconscious, spinal injury suspected",RED,7,4
+"runny nose, mild stomach discomfort, mild nausea",GREEN,2,3
+"blurred vision, chest tightness, ankle swelling",YELLOW,4,3
+"weight loss unintentional, mild nausea, chronic indigestion, numbness in fingers",YELLOW,4,4
+"unconscious, spinal injury suspected, abdominal pain, heart attack symptoms",RED,7,4
+"sneezing, insomnia, mild stomach discomfort, eye pain, ear pain",YELLOW,3,5
+sudden weakness,ORANGE,5,1
+"mild headache, mild sunburn, dry skin",GREEN,2,3
+migraine,YELLOW,4,1
+"minor rash, high fever, sore throat with fever, persistent headache",YELLOW,4,4
+"drowning, blue lips, gunshot wound",RED,7,3
+"minor rash, high fever, mild cough, minor bruise",YELLOW,4,4
+"mild acne, no pulse detected, unconscious, drowning, muscle soreness after exercise",RED,7,5
+"severe asthma attack, migraine, toothache severe, difficulty speaking suddenly, difficulty breathing, back pain",ORANGE,6,6
+"chapped lips, nausea and vomiting, chemical exposure, frequent urination, broken bone visible",ORANGE,6,5
+"skin infection, joint pain, common cold, diabetic emergency",ORANGE,6,4
+"mild sunburn, blood in stool, blue lips",RED,7,3
+"severe headache, coughing blood, vomiting blood",ORANGE,6,3
+"back pain, persistent fatigue",YELLOW,3,2
+"dry skin, mild nausea, stuffy nose",GREEN,2,3
+"paper cut, blurred vision, slight sore throat",YELLOW,4,3
+"poisoning suspected, severe pain",ORANGE,6,2
+"sore throat with fever, ear pain, jaundice",YELLOW,4,3
+"muscle soreness after exercise, mild body ache",GREEN,2,2
+"chemical exposure, sudden weakness, severe back pain radiating",ORANGE,6,3
+"vomiting blood, mild anxiety, mild cough, numbness one side, coughing blood",ORANGE,6,5
+not breathing,RED,7,1
+"blurred vision, persistent fatigue",YELLOW,4,2
+"blue lips, severe trauma, stroke symptoms, severe pain",RED,7,4
+frequent urination,YELLOW,3,1
+"animal bite deep, wheezing, seizure single, insomnia",ORANGE,5,4
+"mild stomach discomfort, mild fatigue, occasional heartburn",GREEN,2,3
+"watery eyes, gunshot wound, skin rash with fever, not breathing, electrocution, seizure single",RED,7,6
+"urinary burning, head injury, difficulty speaking suddenly",ORANGE,6,3
+"chapped lips, mild nausea, minor rash",GREEN,2,3
+"stuffy nose, diarrhea",YELLOW,3,2
+"muscle soreness after exercise, chapped lips",GREEN,2,2
+"chest tightness, frequent urination, back pain",YELLOW,4,3
+"occasional heartburn, mild fatigue",GREEN,2,2
+"runny nose, mild stomach discomfort, dandruff",GREEN,2,3
+"sprained ankle, persistent fatigue",YELLOW,3,2
+"severe back pain radiating, severe abdominal pain, mild acne, sneezing, confusion",ORANGE,6,5
+occasional heartburn,GREEN,2,1
+"seizure single, open wound deep, sore throat with fever, sneezing, severe headache",ORANGE,5,5
+"chest pain, severe back pain radiating, no pulse detected, high fever, severe head trauma, toothache severe",RED,7,6
+"vomiting blood, eye pain, mild stomach discomfort",ORANGE,6,3
+"joint pain, high fever, eye pain, minor bruise, mild sunburn",YELLOW,4,5
+broken bone visible,ORANGE,6,1
+"mild itching, skin rash with fever, ankle swelling, chapped lips, muscle soreness after exercise, jaundice",YELLOW,4,6
+"eye pain, dehydration, muscle soreness after exercise, mild headache",YELLOW,4,4
+"night sweats, mild cough, chest tightness, fever, minor bruise",YELLOW,4,5
+"muscle soreness after exercise, mild fatigue",GREEN,2,2
+"choking, blue lips, mild allergies, tension pneumothorax, nausea and vomiting",RED,7,5
+"diarrhea, fever, chapped lips",YELLOW,4,3
+"night sweats, numbness in fingers, chronic indigestion",YELLOW,4,3
+"drug overdose suspected, severe back pain radiating, vomiting blood, dizziness, painful urination, blurred vision",ORANGE,6,6
+"high fever with chills, severe dehydration, mild fatigue, common cold",ORANGE,5,4
+"joint pain, fever",YELLOW,4,2
+"hiccups, minor rash, jaundice, dizziness",YELLOW,4,4
+"severe abdominal pain, seizure single, coughing blood",ORANGE,6,3
+"hiccups, muscle soreness after exercise",GREEN,2,2
+seizure continuous,RED,7,1
+"runny nose, minor bruise",GREEN,1,2
+not breathing,RED,7,1
+"blood in urine, mild headache, joint pain, mild itching",YELLOW,4,4
+"mild nausea, hiccups",GREEN,2,2
+"cardiac arrest, blue lips, hiccups, no pulse detected",RED,7,4
+"high fever, mild allergies",YELLOW,4,2
+"mild itching, minor rash, frequent urination",YELLOW,3,3
+chemical exposure,ORANGE,6,1
+"vomiting, minor mouth ulcer, common cold, diarrhea, dehydration",YELLOW,4,5
+"muscle soreness after exercise, numbness in fingers, minor mouth ulcer, back pain, minor fracture pain",YELLOW,4,5
+diarrhea,YELLOW,3,1
+"runny nose, mild headache, painful urination, dizziness",YELLOW,4,4
+"chest pain, diarrhea, severe trauma",RED,7,3
+"not breathing, septic shock symptoms",RED,7,2
+"dehydration, unconscious, chest pain",RED,7,3
+"high fever, blue lips, mild nausea, night sweats",RED,7,4
+mild cough,GREEN,1,1
+"stuffy nose, mild acne, diarrhea, paper cut",YELLOW,3,4
+"minor bruise, mild itching",GREEN,1,2
+"massive hemorrhage, not breathing",RED,7,2
+"mild acne, mild itching",GREEN,1,2
+"sore throat with fever, sprained ankle",YELLOW,4,2
+"head injury, mild body ache",ORANGE,6,2
+"vomiting blood, minor bruise, severe pain, severe nosebleed",ORANGE,6,4
+"seizure continuous, persistent fatigue, confusion, skin infection, anaphylaxis, multi organ failure signs",RED,7,6
+"massive hemorrhage, unconscious, stab wound",RED,7,3
+"vomiting, blurred vision, severe allergic reaction, numbness one side, facial drooping",ORANGE,6,5
+"severe dehydration, severe nosebleed",ORANGE,5,2
+"mild headache, tension pneumothorax",RED,7,2
+"mild cough, sneezing",GREEN,1,2
+"jaundice, mild stomach discomfort, weight loss unintentional, coughing blood",ORANGE,6,4
+"nausea and vomiting, muscle cramps, blue lips, mild nausea, heart attack symptoms",RED,7,5
+"insomnia, chronic indigestion, high fever, stab wound",RED,7,4
+"fever, drowning, seizure continuous",RED,7,3
+"broken bone visible, seizure continuous, difficulty breathing, ankle swelling, tension pneumothorax",RED,7,5
+"severe abdominal pain, sudden weakness",ORANGE,6,2
+"migraine, skin infection",YELLOW,4,2
+"mild stomach discomfort, mild cough",GREEN,2,2
+"insomnia, hiccups, dehydration, mild bloating, jaundice, frequent urination",YELLOW,4,6
+"spinal injury suspected, severe bleeding uncontrolled, blurred vision, chest pain",RED,7,4
+"chest tightness, skin infection, gunshot wound, not breathing",RED,7,4
+difficulty speaking suddenly,ORANGE,6,1
+"stuffy nose, mild anxiety, insomnia",GREEN,2,3
+"skin rash with fever, minor rash, muscle soreness after exercise",YELLOW,4,3
+"chapped lips, drug overdose suspected, poisoning suspected",ORANGE,6,3
+"persistent cough, painful urination, eye pain",YELLOW,3,3
+"animal bite deep, severe headache, high fever with chills",ORANGE,5,3
+"blood in stool, insomnia, minor fracture pain, heart attack symptoms",RED,7,4
+"chemical exposure, severe head trauma, mild itching",RED,7,3
+"mild anxiety, mild body ache",GREEN,2,2
+"skin infection, mild headache, abdominal pain",YELLOW,4,3
+"minor mouth ulcer, mild fatigue, mild stomach discomfort",GREEN,2,3
+"muscle cramps, septic shock symptoms",RED,7,2
+"severe trauma, cardiac arrest, heart attack symptoms",RED,7,3
+"severe asthma attack, frequent urination",ORANGE,6,2
+"multi organ failure signs, gunshot wound",RED,7,2
+"paper cut, urinary burning, severe back pain radiating, severe burn, mild acne, severe nosebleed",ORANGE,6,6
+"back pain, severe dehydration",ORANGE,5,2
+"hiccups, mild stomach discomfort, ankle swelling, mild anxiety",YELLOW,3,4
+"chest pain, blood in urine, seizure continuous, facial drooping, mild acne",RED,7,5
+"severe bleeding uncontrolled, tension pneumothorax, no pulse detected",RED,7,3
+"swollen lymph nodes, stroke symptoms, spinal injury suspected",RED,7,3
+"chapped lips, weight loss unintentional",YELLOW,4,2
+"severe trauma, occasional heartburn, chest tightness, jaundice",RED,7,4
+"abdominal pain, broken bone visible",ORANGE,6,2
+"minor fracture pain, mild allergies, sore throat with fever",YELLOW,4,3
+"dehydration, numbness one side, spinal injury suspected, stuffy nose",RED,7,4
+"high fever, not breathing, anaphylaxis, septic shock symptoms",RED,7,4
+"jaundice, dry skin, nausea and vomiting, facial drooping",ORANGE,6,4
+"common cold, slight sore throat",GREEN,1,2
+"nausea and vomiting, drug overdose suspected, dizziness, mild acne, broken bone visible, severe back pain radiating",ORANGE,6,6
+"septic shock symptoms, unconscious, ear pain, mild anxiety, dehydration",RED,7,5
+"vomiting, hiccups, vomiting blood, sneezing, broken bone visible",ORANGE,6,5
+"migraine, vomiting",YELLOW,4,2
+"common cold, dry skin, mild constipation",GREEN,2,3
+"broken bone visible, insomnia, chapped lips, animal bite deep, confusion",ORANGE,6,5
+"paper cut, dry skin, common cold, severe chest tightness",ORANGE,6,4
+"hiccups, dandruff",GREEN,1,2
+"hiccups, muscle cramps, mild constipation, abdominal pain, eye pain, dry skin",YELLOW,4,6
+"mild anxiety, chapped lips",GREEN,2,2
+chapped lips,GREEN,1,1
+"ankle swelling, insomnia, minor fracture pain, stuffy nose, abdominal pain, mild acne",YELLOW,4,6
+"septic shock symptoms, spinal injury suspected, ankle swelling, unconscious",RED,7,4
+"slight sore throat, minor mouth ulcer",GREEN,2,2
+"wheezing, facial drooping",ORANGE,6,2
+"severe bleeding uncontrolled, unconscious, septic shock symptoms",RED,7,3
+minor mouth ulcer,GREEN,2,1
+"seizure continuous, severe head trauma",RED,7,2
+"severe pain, ankle swelling",ORANGE,5,2
+"difficulty speaking suddenly, diarrhea, muscle soreness after exercise, muscle cramps, severe allergic reaction, chemical exposure",ORANGE,6,6
+"dry skin, blue lips, facial drooping, severe head trauma, drowning",RED,7,5
+"mild anxiety, wheezing, insomnia, numbness in fingers, frequent urination",YELLOW,4,5
+"mild cough, high fever, nausea and vomiting, sneezing",YELLOW,4,4
+mild sunburn,GREEN,2,1
+"chapped lips, mild headache, skin infection, mild bloating, night sweats, ankle swelling",YELLOW,4,6
+"mild headache, loss of consciousness brief, severe chest tightness, coughing blood",ORANGE,6,4
+"common cold, blood in urine, fever, joint pain, mild body ache, watery eyes",YELLOW,4,6
+"mild sunburn, dry skin",GREEN,2,2
+"severe chest tightness, severe allergic reaction, chemical exposure",ORANGE,6,3
+"multi organ failure signs, mild acne, loss of consciousness prolonged",RED,7,3
+mild itching,GREEN,1,1
+"wheezing, severe burn, slight sore throat, numbness one side, chemical exposure, painful urination",ORANGE,6,6
+"mild allergies, paper cut",GREEN,2,2
+"mild headache, chapped lips, insomnia",GREEN,2,3
+"swollen lymph nodes, ear pain, stuffy nose, severe chest tightness",ORANGE,6,4
+"ankle swelling, insomnia, joint pain, migraine",YELLOW,4,4
+"chest pain, heart attack symptoms, electrocution",RED,7,3
+"multi organ failure signs, anaphylaxis, severe trauma",RED,7,3
+"chapped lips, mild fatigue, mild sunburn",GREEN,2,3
+"eye injury, fever, dry skin, severe asthma attack",ORANGE,6,4
+"severe allergic reaction, diarrhea, eye pain, coughing blood, persistent cough",ORANGE,6,5
+"sneezing, dizziness, difficulty breathing",ORANGE,6,3
+"persistent fatigue, tension pneumothorax, mild sunburn, high fever with chills",RED,7,4
+"runny nose, slight sore throat",GREEN,1,2
+"common cold, occasional heartburn",GREEN,2,2
+"weight loss unintentional, occasional heartburn, chest pain, migraine",RED,7,4
+"joint pain, mild nausea, skin infection",YELLOW,3,3
+mild stomach discomfort,GREEN,2,1
+"back pain, mild nausea, joint pain, mild sunburn",YELLOW,3,4
+chest tightness,YELLOW,4,1
+"mild nausea, common cold, mild itching",GREEN,2,3
+"no pulse detected, confusion",RED,7,2
+"broken bone visible, severe pain, urinary burning, runny nose, severe abdominal pain",ORANGE,6,5
+"weight loss unintentional, coughing blood, chapped lips, severe headache",ORANGE,6,4
+"chest tightness, insomnia",YELLOW,4,2
+"mild itching, runny nose, mild sunburn",GREEN,2,3
+"spinal injury suspected, persistent fatigue, persistent headache",RED,7,3
+"persistent fatigue, dehydration, fever, mild stomach discomfort",YELLOW,4,4
+"minor mouth ulcer, persistent fatigue",YELLOW,3,2
+"muscle soreness after exercise, chapped lips",GREEN,2,2
+"animal bite deep, numbness one side",ORANGE,6,2
+"severe head trauma, dry skin, eye injury",RED,7,3
+"urinary burning, joint pain, back pain",YELLOW,4,3
+"mild constipation, ear pain",YELLOW,3,2
+"severe dehydration, seizure single",ORANGE,5,2
+"blurred vision, paper cut, slight sore throat, muscle soreness after exercise",YELLOW,4,4
+"mild fatigue, minor bruise, mild sunburn",GREEN,2,3
+dry skin,GREEN,1,1
+"mild fatigue, hiccups",GREEN,2,2
+"migraine, no pulse detected, gunshot wound, stroke symptoms, poisoning suspected",RED,7,5
+"joint pain, nausea and vomiting, mild headache, skin rash with fever, mild itching, mild nausea",YELLOW,4,6
+"dandruff, severe asthma attack",ORANGE,6,2
+confusion,ORANGE,5,1
+"dandruff, mild body ache",GREEN,2,2
+animal bite deep,ORANGE,5,1
+"electrocution, severe trauma, abdominal pain, severe back pain radiating",RED,7,4
+chemical exposure,ORANGE,6,1
+"mild allergies, insomnia, minor rash",GREEN,2,3
+"watery eyes, hiccups",GREEN,1,2
+"not breathing, drowning, shortness of breath, severe bleeding uncontrolled, high fever, dehydration",RED,7,6
+"persistent fatigue, persistent headache, back pain",YELLOW,3,3
+"electrocution, multi organ failure signs",RED,7,2
+"chest pain, dizziness, seizure single",RED,7,3
+"minor bruise, mild constipation, minor mouth ulcer",GREEN,2,3
+"stuffy nose, chest pain, blood in stool",RED,7,3
+"high fever, severe headache, minor mouth ulcer, mild headache, severe asthma attack, severe burn",ORANGE,6,6
+migraine,YELLOW,4,1
+mild constipation,GREEN,2,1
+"mild sunburn, swollen lymph nodes, mild bloating, slight sore throat",YELLOW,3,4
+"coughing blood, dizziness, severe dehydration, confusion, mild body ache, insomnia",ORANGE,6,6
+"mild headache, dizziness, mild sunburn, ankle swelling, persistent headache",YELLOW,4,5
+"chest pain, occasional heartburn",RED,7,2
+"slight sore throat, dry skin",GREEN,1,2
+"tension pneumothorax, electrocution",RED,7,2
+"watery eyes, mild allergies",GREEN,2,2
+"insomnia, common cold, minor mouth ulcer, persistent cough",YELLOW,3,4
+mild headache,GREEN,1,1
+"runny nose, mild nausea, minor bruise",GREEN,2,3
+"severe dehydration, severe allergic reaction",ORANGE,6,2
+minor rash,GREEN,2,1
+"minor bruise, mild anxiety",GREEN,2,2
+"sneezing, minor mouth ulcer",GREEN,2,2
+"occasional heartburn, minor rash",GREEN,2,2
+"mild constipation, watery eyes, mild headache",GREEN,2,3
+"dandruff, chest tightness, mild body ache, minor fracture pain",YELLOW,4,4
+"chapped lips, runny nose, stuffy nose, toothache severe",YELLOW,3,4
+mild nausea,GREEN,2,1
+"common cold, slight sore throat",GREEN,1,2
+"blood in stool, back pain, head injury, minor rash, drug overdose suspected",ORANGE,6,5
+"chapped lips, mild allergies",GREEN,2,2
+"mild stomach discomfort, blood in urine, head injury, stuffy nose, severe allergic reaction",ORANGE,6,5
+"common cold, septic shock symptoms, seizure continuous, blue lips",RED,7,4
+"spinal injury suspected, minor fracture pain",RED,7,2
+"mild fatigue, mild nausea, common cold",GREEN,2,3
+"diabetic emergency, coughing blood",ORANGE,6,2
+"dehydration, eye pain",YELLOW,4,2
+"chest pain, heart attack symptoms, skin infection",RED,7,3
+"confusion, sudden weakness, coughing blood",ORANGE,6,3
+"mild body ache, mild cough",GREEN,2,2
+"skin infection, mild fatigue, dizziness",YELLOW,4,3
+"high fever, severe abdominal pain, severe infection signs, chest tightness, swollen lymph nodes",ORANGE,6,5
+hiccups,GREEN,1,1
+"high fever with chills, fever, night sweats, severe headache, seizure single",ORANGE,5,5
+"mild constipation, choking, cardiac arrest, drug overdose suspected",RED,7,4
+"sudden weakness, poisoning suspected, loss of consciousness brief",ORANGE,6,3
+"blue lips, massive hemorrhage, anaphylaxis, confusion",RED,7,4
+hiccups,GREEN,1,1
+"severe chest tightness, sudden weakness, dry skin, blood in urine",ORANGE,6,4
+"night sweats, eye injury, mild acne, blurred vision",ORANGE,5,4
+severe headache,ORANGE,5,1
+"loss of consciousness brief, dehydration, severe asthma attack",ORANGE,6,3
+"stab wound, sudden weakness, severe bleeding uncontrolled",RED,7,3
+"chest pain, anaphylaxis, gunshot wound",RED,7,3
+"high fever, occasional heartburn, watery eyes, numbness in fingers, common cold",YELLOW,4,5
+"sore throat with fever, muscle soreness after exercise, stuffy nose, mild stomach discomfort",YELLOW,4,4
+"runny nose, mild sunburn, mild cough",GREEN,2,3
+"mild constipation, mild acne, wheezing, persistent headache, common cold",YELLOW,4,5
+drug overdose suspected,ORANGE,6,1
+septic shock symptoms,RED,7,1
+"blood in stool, severe pain, hiccups",ORANGE,5,3
+"severe burn, mild anxiety",ORANGE,6,2
+"severe burn, mild allergies, dandruff, runny nose, sudden weakness, facial drooping",ORANGE,6,6
+"mild cough, mild stomach discomfort",GREEN,2,2
+"muscle soreness after exercise, loss of consciousness prolonged, dry skin, mild nausea",RED,7,4
+"severe infection signs, back pain, night sweats, sprained ankle, confusion",ORANGE,5,5
+minor rash,GREEN,2,1
+"seizure continuous, choking",RED,7,2
+"minor bruise, stuffy nose",GREEN,1,2
+"paper cut, minor bruise",GREEN,1,2
+"persistent headache, mild anxiety, slight sore throat, mild cough",YELLOW,3,4
+"loss of consciousness prolonged, heart attack symptoms, tension pneumothorax",RED,7,3
+"mild constipation, mild nausea",GREEN,2,2
+mild sunburn,GREEN,2,1
+"diarrhea, mild fatigue",YELLOW,3,2
+"difficulty speaking suddenly, persistent headache",ORANGE,6,2
+"confusion, severe nosebleed, back pain, broken bone visible",ORANGE,6,4
+"massive hemorrhage, sprained ankle, stroke symptoms, vomiting blood, choking",RED,7,5
+"loss of consciousness prolonged, cardiac arrest, severe bleeding uncontrolled, diarrhea",RED,7,4
+"unconscious, numbness one side, stroke symptoms",RED,7,3
+"sneezing, skin infection, skin rash with fever, painful urination, minor rash, dandruff",YELLOW,4,6
+"mild body ache, minor mouth ulcer, back pain, urinary burning, stuffy nose",YELLOW,4,5
+"severe dehydration, minor fracture pain, stab wound",RED,7,3
+"vomiting, severe headache, night sweats, sprained ankle",ORANGE,5,4
+"diabetic emergency, mild stomach discomfort, severe nosebleed, diarrhea, sudden weakness",ORANGE,6,5
+"dizziness, chest tightness, toothache severe, mild sunburn, mild fatigue, chapped lips",YELLOW,4,6
+"numbness in fingers, mild acne, broken bone visible",ORANGE,6,3
+"dry skin, mild nausea, mild bloating",GREEN,2,3
+"hiccups, insomnia",GREEN,2,2
+"spinal injury suspected, coughing blood, loss of consciousness prolonged, mild sunburn, muscle soreness after exercise",RED,7,5
+"ankle swelling, frequent urination",YELLOW,3,2
+"diabetic emergency, migraine, difficulty breathing, dry skin",ORANGE,6,4
+"dandruff, high fever, abdominal pain, mild headache, minor fracture pain",YELLOW,4,5
+"difficulty speaking suddenly, severe back pain radiating",ORANGE,6,2
+"stuffy nose, open wound deep, seizure single",ORANGE,5,3
+"minor rash, mild headache, occasional heartburn",GREEN,2,3
+"blue lips, multi organ failure signs, mild nausea, gunshot wound",RED,7,4
+"poisoning suspected, dandruff, mild acne, vomiting blood, confusion",ORANGE,6,5
+"chest pain, multi organ failure signs, massive hemorrhage",RED,7,3
+"minor fracture pain, skin infection, chest tightness",YELLOW,4,3
+"dehydration, drug overdose suspected",ORANGE,6,2
+"severe burn, blood in stool, facial drooping",ORANGE,6,3
+"chemical exposure, severe nosebleed, chest tightness, numbness one side",ORANGE,6,4
+"muscle soreness after exercise, minor rash",GREEN,2,2
+"hiccups, minor mouth ulcer, chapped lips",GREEN,2,3
+"ankle swelling, mild allergies, mild nausea, paper cut",YELLOW,3,4
+"sore throat with fever, slight sore throat, persistent fatigue, sprained ankle, mild allergies, occasional heartburn",YELLOW,4,6
+sneezing,GREEN,1,1
+"insomnia, drowning, dehydration, confusion",RED,7,4
+"seizure single, muscle cramps, chest tightness",ORANGE,5,3
+"sneezing, mild anxiety",GREEN,2,2
+multi organ failure signs,RED,7,1
+"nausea and vomiting, runny nose",YELLOW,4,2
+"occasional heartburn, gunshot wound, loss of consciousness prolonged",RED,7,3
+"persistent headache, mild nausea, multi organ failure signs, electrocution",RED,7,4
+"migraine, persistent cough, blue lips, animal bite deep",RED,7,4
+"joint pain, stroke symptoms, multi organ failure signs",RED,7,3
+"severe headache, chapped lips, open wound deep",ORANGE,5,3
+"occasional heartburn, mild fatigue, frequent urination, fever, paper cut",YELLOW,4,5
+mild body ache,GREEN,2,1
+"mild allergies, mild bloating",GREEN,2,2
+"occasional heartburn, wheezing, hiccups, confusion",ORANGE,5,4
+"spinal injury suspected, drowning, dehydration, eye injury",RED,7,4
+"occasional heartburn, minor mouth ulcer",GREEN,2,2
+"mild anxiety, dandruff, head injury, severe burn",ORANGE,6,4
+electrocution,RED,7,1
+"mild acne, mild bloating, muscle soreness after exercise",GREEN,2,3
+mild nausea,GREEN,2,1
+"mild fatigue, dandruff, hiccups",GREEN,2,3
+"dry skin, minor rash, mild fatigue",GREEN,2,3
+"minor mouth ulcer, drowning",RED,7,2
+"seizure continuous, severe nosebleed, severe dehydration",RED,7,3
+"skin rash with fever, dizziness, eye pain",YELLOW,4,3
+back pain,YELLOW,3,1
+"mild bloating, chapped lips, mild constipation, minor fracture pain",YELLOW,4,4
+"stuffy nose, mild allergies, minor mouth ulcer",GREEN,2,3
+"chapped lips, nausea and vomiting, open wound deep, severe asthma attack",ORANGE,6,4
+"mild itching, vomiting",YELLOW,4,2
+"slight sore throat, mild body ache, dizziness, urinary burning",YELLOW,4,4
+"open wound deep, mild constipation, cardiac arrest",RED,7,3
+"severe trauma, dizziness, stroke symptoms, joint pain, massive hemorrhage",RED,7,5
+"dehydration, jaundice",YELLOW,4,2
+"severe head trauma, severe trauma, seizure continuous, broken bone visible, watery eyes, eye pain",RED,7,6
+migraine,YELLOW,4,1
+mild stomach discomfort,GREEN,2,1
+"chest pain, tension pneumothorax, unconscious",RED,7,3
+"numbness in fingers, head injury",ORANGE,6,2
+"heart attack symptoms, massive hemorrhage, severe head trauma, stuffy nose",RED,7,4
+"nausea and vomiting, painful urination",YELLOW,4,2
+"severe nosebleed, ankle swelling",ORANGE,5,2
+"mild anxiety, ear pain, mild allergies, mild cough",YELLOW,3,4
+"not breathing, mild body ache, blood in urine",RED,7,3
+"drowning, not breathing, minor mouth ulcer",RED,7,3
+"mild itching, mild bloating, mild sunburn",GREEN,2,3
+"severe head trauma, seizure continuous, stab wound",RED,7,3
+"confusion, severe nosebleed",ORANGE,5,2
+"common cold, mild allergies",GREEN,2,2
+"chronic indigestion, mild cough, sneezing, minor mouth ulcer, diarrhea",YELLOW,3,5
+"occasional heartburn, common cold, mild cough",GREEN,2,3
+"abdominal pain, dry skin, stuffy nose, watery eyes, jaundice",YELLOW,4,5
+"mild allergies, mild itching",GREEN,2,2
+"skin rash with fever, severe trauma, anaphylaxis",RED,7,3
+"skin infection, mild body ache, hiccups, swollen lymph nodes, fever, mild cough",YELLOW,4,6
+"not breathing, severe bleeding uncontrolled",RED,7,2
+"dandruff, chapped lips, mild allergies",GREEN,2,3
+"mild bloating, mild itching, severe dehydration, night sweats, blood in stool, chemical exposure",ORANGE,6,6
+"stuffy nose, swollen lymph nodes, mild sunburn",YELLOW,3,3
+paper cut,GREEN,1,1
+"mild sunburn, mild itching",GREEN,2,2
+"chapped lips, severe head trauma",RED,7,2
+"sneezing, insomnia",GREEN,2,2
+"not breathing, wheezing, hiccups, stab wound, chest pain",RED,7,5
+"blue lips, sneezing, mild itching, severe trauma, coughing blood, anaphylaxis",RED,7,6
+"dry skin, mild allergies, ankle swelling, sore throat with fever, muscle cramps",YELLOW,4,5
+mild body ache,GREEN,2,1
+"mild nausea, chapped lips",GREEN,2,2
+"dry skin, persistent fatigue, minor fracture pain",YELLOW,4,3
+"muscle cramps, mild itching, mild constipation, mild stomach discomfort, ankle swelling",YELLOW,3,5
+"blue lips, severe bleeding uncontrolled",RED,7,2
+"massive hemorrhage, vomiting blood, unconscious",RED,7,3
+"mild stomach discomfort, choking",RED,7,2
+"stab wound, no pulse detected",RED,7,2
+"minor mouth ulcer, hiccups, skin rash with fever",YELLOW,4,3
+"fever, massive hemorrhage, dizziness, electrocution, drowning, minor bruise",RED,7,6
+"drowning, blue lips, septic shock symptoms",RED,7,3
+"toothache severe, dehydration, mild allergies, common cold",YELLOW,4,4
+"chapped lips, coughing blood",ORANGE,6,2
+"difficulty breathing, eye pain",ORANGE,6,2
+"dandruff, muscle cramps, chapped lips, mild itching",YELLOW,3,4
+"blood in urine, cardiac arrest, ankle swelling, heart attack symptoms, high fever",RED,7,5
+dandruff,GREEN,1,1
+"mild headache, muscle soreness after exercise, mild cough",GREEN,2,3
+"electrocution, head injury, severe trauma, spinal injury suspected",RED,7,4
+"minor rash, runny nose, muscle soreness after exercise",GREEN,2,3
+cardiac arrest,RED,7,1
+"unconscious, seizure continuous",RED,7,2
+"watery eyes, blurred vision, severe allergic reaction",ORANGE,6,3
+"facial drooping, muscle cramps, abdominal pain",ORANGE,6,3
+"chest tightness, watery eyes, chapped lips, jaundice",YELLOW,4,4
+"weight loss unintentional, dehydration, muscle cramps, mild cough",YELLOW,4,4
+"ear pain, urinary burning",YELLOW,4,2
+"mild cough, mild headache, sneezing",GREEN,1,3
+"severe back pain radiating, no pulse detected, cardiac arrest, severe asthma attack, stab wound, migraine",RED,7,6
+"severe trauma, stroke symptoms, unconscious",RED,7,3
+"mild constipation, mild acne",GREEN,2,2
+"toothache severe, runny nose",YELLOW,3,2
+"severe burn, severe allergic reaction, blood in urine",ORANGE,6,3
+"hiccups, severe infection signs, loss of consciousness brief, drug overdose suspected",ORANGE,6,4
+"mild sunburn, mild body ache",GREEN,2,2
+stuffy nose,GREEN,1,1
+"ear pain, dandruff, paper cut, mild constipation, chronic indigestion",YELLOW,3,5
+"mild body ache, choking",RED,7,2
+"stab wound, mild body ache",RED,7,2
+minor mouth ulcer,GREEN,2,1
+"hiccups, mild body ache, sneezing, muscle cramps",YELLOW,3,4
+"mild nausea, mild cough, minor bruise",GREEN,2,3
+"mild acne, mild body ache",GREEN,2,2
+"severe head trauma, spinal injury suspected, drowning",RED,7,3
+persistent headache,YELLOW,3,1
+skin rash with fever,YELLOW,4,1
+"mild nausea, stuffy nose",GREEN,2,2
+"skin rash with fever, open wound deep, mild bloating, animal bite deep, persistent fatigue, severe infection signs",ORANGE,5,6
+high fever,YELLOW,4,1
+"sudden weakness, facial drooping, heart attack symptoms, multi organ failure signs, massive hemorrhage",RED,7,5
+seizure single,ORANGE,5,1
+loss of consciousness prolonged,RED,7,1
+electrocution,RED,7,1
+"chapped lips, mild anxiety",GREEN,2,2
+"sprained ankle, dizziness, severe head trauma, spinal injury suspected, no pulse detected",RED,7,5
+"minor rash, runny nose, mild constipation",GREEN,2,3
+"muscle soreness after exercise, abdominal pain, back pain",YELLOW,4,3
+"mild cough, dandruff",GREEN,1,2
+"weight loss unintentional, numbness in fingers, eye pain, slight sore throat, mild anxiety",YELLOW,4,5
+"muscle cramps, seizure single, loss of consciousness brief",ORANGE,6,3
+blood in stool,ORANGE,5,1
+"sneezing, mild acne, mild fatigue",GREEN,2,3
+seizure single,ORANGE,5,1
+mild body ache,GREEN,2,1
+"severe dehydration, watery eyes, mild itching, paper cut, confusion",ORANGE,5,5
+mild constipation,GREEN,2,1
+"eye injury, poisoning suspected",ORANGE,6,2
+"muscle soreness after exercise, mild headache",GREEN,2,2
+mild constipation,GREEN,2,1
+blue lips,RED,7,1
+"severe chest tightness, eye injury, unconscious",RED,7,3
+"migraine, skin rash with fever, occasional heartburn, sneezing",YELLOW,4,4
+"watery eyes, minor rash, sneezing",GREEN,2,3
+"blurred vision, vomiting, minor mouth ulcer, sprained ankle, sneezing",YELLOW,4,5
+"skin infection, chapped lips, mild acne",YELLOW,3,3
+"mild stomach discomfort, wheezing, weight loss unintentional, mild fatigue",YELLOW,4,4
+"hiccups, dry skin",GREEN,1,2
+"persistent headache, mild sunburn, skin infection, mild bloating, blood in urine",YELLOW,4,5
+"nausea and vomiting, swollen lymph nodes, mild constipation, mild headache, skin infection, mild acne",YELLOW,4,6
+"vomiting blood, persistent cough, severe nosebleed, fever",ORANGE,6,4
+"watery eyes, minor bruise",GREEN,1,2
+"skin infection, severe nosebleed, shortness of breath, urinary burning",ORANGE,6,4
+"wheezing, minor fracture pain, sudden weakness",ORANGE,5,3
+"skin rash with fever, runny nose, insomnia, mild constipation",YELLOW,4,4
+slight sore throat,GREEN,1,1
+sneezing,GREEN,1,1
+"severe abdominal pain, open wound deep",ORANGE,6,2
+"vomiting blood, severe pain, wheezing, jaundice, facial drooping",ORANGE,6,5
+"animal bite deep, diabetic emergency, difficulty speaking suddenly",ORANGE,6,3
+"sprained ankle, shortness of breath",ORANGE,6,2
+"runny nose, chest tightness, night sweats",YELLOW,4,3
+"diabetic emergency, drug overdose suspected, loss of consciousness brief",ORANGE,6,3
+"wheezing, abdominal pain, skin rash with fever",YELLOW,4,3
+slight sore throat,GREEN,1,1
+"toothache severe, swollen lymph nodes, night sweats, dandruff",YELLOW,4,4
+"muscle soreness after exercise, gunshot wound, mild acne, massive hemorrhage, no pulse detected",RED,7,5
+minor mouth ulcer,GREEN,2,1
+"mild stomach discomfort, chapped lips, mild constipation",GREEN,2,3
+"chemical exposure, severe asthma attack, seizure single",ORANGE,6,3
+"cardiac arrest, severe head trauma, severe bleeding uncontrolled",RED,7,3
+"blood in stool, loss of consciousness brief, hiccups, severe chest tightness",ORANGE,6,4
+"mild stomach discomfort, hiccups, migraine",YELLOW,4,3
+"loss of consciousness prolonged, cardiac arrest, vomiting, stroke symptoms, diabetic emergency",RED,7,5
+"severe pain, coughing blood",ORANGE,6,2
+"minor bruise, ear pain, severe back pain radiating, persistent headache",ORANGE,5,4
+"weight loss unintentional, abdominal pain, vomiting blood, drug overdose suspected, animal bite deep",ORANGE,6,5
+"mild body ache, mild bloating, mild nausea, dehydration",YELLOW,4,4
+"blood in urine, chapped lips",YELLOW,4,2
+"slight sore throat, drowning, mild acne, severe abdominal pain, severe bleeding uncontrolled, seizure continuous",RED,7,6
+common cold,GREEN,1,1
+"animal bite deep, sneezing, difficulty breathing, severe chest tightness",ORANGE,6,4
+"mild acne, muscle cramps, severe chest tightness, severe headache",ORANGE,6,4
+"paper cut, dry skin",GREEN,1,2
+"massive hemorrhage, high fever with chills, minor bruise, severe head trauma, muscle cramps, gunshot wound",RED,7,6
+"facial drooping, mild allergies, seizure continuous",RED,7,3
+"seizure single, mild nausea, persistent cough, drug overdose suspected",ORANGE,6,4
+"loss of consciousness prolonged, gunshot wound, choking",RED,7,3
+severe abdominal pain,ORANGE,6,1
+"minor fracture pain, night sweats, nausea and vomiting",YELLOW,4,3
+"severe back pain radiating, numbness in fingers, wheezing, skin rash with fever, coughing blood",ORANGE,6,5
+vomiting,YELLOW,4,1
+"severe allergic reaction, numbness one side",ORANGE,6,2
+"loss of consciousness prolonged, no pulse detected, dizziness, sudden weakness, septic shock symptoms, high fever with chills",RED,7,6
+back pain,YELLOW,3,1
+"swollen lymph nodes, numbness in fingers, skin infection, mild stomach discomfort",YELLOW,3,4
+"seizure continuous, stroke symptoms",RED,7,2
+"cardiac arrest, stab wound, joint pain",RED,7,3
+"massive hemorrhage, gunshot wound",RED,7,2
+"joint pain, numbness in fingers, persistent cough, common cold",YELLOW,3,4
+severe bleeding uncontrolled,RED,7,1
+"common cold, fever, septic shock symptoms",RED,7,3
+"choking, persistent fatigue, mild acne, multi organ failure signs, anaphylaxis, diabetic emergency",RED,7,6
+"common cold, sore throat with fever, frequent urination",YELLOW,4,3
+"watery eyes, mild sunburn",GREEN,2,2
+watery eyes,GREEN,1,1
+"loss of consciousness prolonged, unconscious, septic shock symptoms",RED,7,3
+"sneezing, minor mouth ulcer",GREEN,2,2
+"choking, not breathing, mild sunburn, no pulse detected, paper cut",RED,7,5
+"severe bleeding uncontrolled, loss of consciousness prolonged, vomiting blood",RED,7,3
+"severe bleeding uncontrolled, chest pain",RED,7,2
+"slight sore throat, severe allergic reaction, dry skin, mild allergies",ORANGE,6,4
+"severe trauma, abdominal pain, eye pain",RED,7,3
+"high fever with chills, severe nosebleed, seizure single",ORANGE,5,3
+"severe infection signs, severe asthma attack",ORANGE,6,2
+ankle swelling,YELLOW,3,1
+"joint pain, dehydration, toothache severe",YELLOW,4,3
+"sneezing, joint pain, watery eyes, mild nausea",YELLOW,3,4
+"minor bruise, occasional heartburn",GREEN,2,2
+"mild bloating, muscle soreness after exercise",GREEN,2,2
+"blue lips, stroke symptoms",RED,7,2
+"high fever with chills, insomnia, nausea and vomiting, broken bone visible, animal bite deep, common cold",ORANGE,6,6
+"minor rash, mild constipation",GREEN,2,2
+"night sweats, numbness in fingers, facial drooping",ORANGE,6,3
+mild sunburn,GREEN,2,1
+wheezing,YELLOW,4,1
+"mild allergies, minor mouth ulcer",GREEN,2,2
+"spinal injury suspected, chest pain, blood in urine, minor rash, anaphylaxis",RED,7,5
+"muscle soreness after exercise, mild cough",GREEN,2,2
+"multi organ failure signs, drowning, cardiac arrest, back pain",RED,7,4
+"chest tightness, difficulty speaking suddenly",ORANGE,6,2
+"painful urination, vomiting, muscle soreness after exercise, blurred vision, dandruff",YELLOW,4,5
+"blue lips, persistent cough, seizure continuous, muscle cramps",RED,7,4
+"mild body ache, stuffy nose, toothache severe, mild cough, eye pain",YELLOW,3,5
+"unconscious, tension pneumothorax",RED,7,2
+"dizziness, blue lips, mild bloating, vomiting, no pulse detected",RED,7,5
+"occasional heartburn, dry skin, back pain, dandruff",YELLOW,3,4
+"mild cough, skin rash with fever, persistent fatigue, blurred vision",YELLOW,4,4
+"occasional heartburn, sneezing, insomnia",GREEN,2,3
+"mild fatigue, chest tightness",YELLOW,4,2
+"dandruff, muscle soreness after exercise",GREEN,2,2
+"eye pain, vomiting blood, severe asthma attack, severe back pain radiating",ORANGE,6,4
+"dandruff, mild anxiety, sprained ankle, runny nose, dehydration",YELLOW,4,5
+"high fever with chills, severe trauma, loss of consciousness prolonged",RED,7,3
+"minor rash, mild sunburn",GREEN,2,2
+"difficulty speaking suddenly, electrocution",RED,7,2
+"mild nausea, dandruff, stuffy nose",GREEN,2,3
+"hiccups, dandruff, mild fatigue",GREEN,2,3
+"fever, minor fracture pain, severe burn, sudden weakness",ORANGE,6,4
+"severe bleeding uncontrolled, unconscious",RED,7,2
+"weight loss unintentional, severe back pain radiating, toothache severe, joint pain",ORANGE,5,4
+"ear pain, sore throat with fever",YELLOW,4,2
+"choking, chest tightness",RED,7,2
+"blurred vision, joint pain, frequent urination, mild fatigue",YELLOW,4,4
+"mild bloating, diarrhea, head injury, frequent urination",ORANGE,6,4
+"migraine, mild acne, poisoning suspected",ORANGE,6,3
+"toothache severe, drug overdose suspected",ORANGE,6,2
+"seizure continuous, drowning, stab wound",RED,7,3
+"dehydration, skin infection, eye pain, mild body ache, watery eyes, dandruff",YELLOW,4,6
+"multi organ failure signs, chapped lips",RED,7,2
+"facial drooping, coughing blood",ORANGE,6,2
+"mild body ache, mild stomach discomfort",GREEN,2,2
+"mild itching, severe abdominal pain, severe chest tightness, coughing blood, skin infection, common cold",ORANGE,6,6
+"severe asthma attack, diabetic emergency",ORANGE,6,2
+"insomnia, seizure continuous",RED,7,2
+"dandruff, insomnia, high fever, migraine",YELLOW,4,4
+"mild nausea, mild cough",GREEN,2,2
+"high fever, ear pain, mild acne, mild fatigue, slight sore throat",YELLOW,4,5
+"blood in stool, coughing blood",ORANGE,6,2
+"poisoning suspected, minor mouth ulcer, toothache severe",ORANGE,6,3
+"severe dehydration, severe burn, animal bite deep",ORANGE,6,3
+"sneezing, stuffy nose, mild sunburn",GREEN,2,3
+"stuffy nose, mild headache, chapped lips",GREEN,1,3
+"paper cut, mild itching",GREEN,1,2
+electrocution,RED,7,1
+"painful urination, night sweats, ankle swelling",YELLOW,4,3
+"mild cough, watery eyes, runny nose, diarrhea",YELLOW,3,4
+"mild constipation, blurred vision, mild itching, frequent urination, muscle soreness after exercise, joint pain",YELLOW,4,6
+insomnia,GREEN,2,1
+"frequent urination, urinary burning, weight loss unintentional",YELLOW,4,3
+severe dehydration,ORANGE,5,1
+"high fever with chills, dry skin, poisoning suspected, blurred vision, loss of consciousness brief",ORANGE,6,5
+"mild constipation, dry skin, skin infection, mild fatigue",YELLOW,3,4
+"minor rash, hiccups",GREEN,2,2
+"anaphylaxis, unconscious, severe burn, severe trauma, severe abdominal pain, persistent headache",RED,7,6
+"high fever, paper cut, diarrhea, mild allergies, sprained ankle",YELLOW,4,5
+"multi organ failure signs, no pulse detected, frequent urination",RED,7,3
+"eye pain, unconscious, severe head trauma, severe asthma attack, septic shock symptoms, nausea and vomiting",RED,7,6
+"mild bloating, minor mouth ulcer",GREEN,2,2
+"insomnia, mild sunburn, dry skin",GREEN,2,3
+"wheezing, numbness one side, loss of consciousness brief",ORANGE,6,3
+"insomnia, minor mouth ulcer, mild sunburn, blood in urine",YELLOW,4,4
+"stuffy nose, runny nose, coughing blood, hiccups, severe burn",ORANGE,6,5
+"severe infection signs, fever, loss of consciousness brief",ORANGE,6,3
+"chest pain, diabetic emergency, gunshot wound, jaundice, severe nosebleed, anaphylaxis",RED,7,6
+severe trauma,RED,7,1
+frequent urination,YELLOW,3,1
+"loss of consciousness prolonged, severe trauma, not breathing",RED,7,3
+"nausea and vomiting, numbness one side, numbness in fingers, open wound deep, high fever with chills",ORANGE,6,5
+"mild nausea, minor bruise",GREEN,2,2
+"mild constipation, severe pain, severe headache",ORANGE,5,3
+"head injury, chemical exposure, severe allergic reaction",ORANGE,6,3
+"massive hemorrhage, mild stomach discomfort",RED,7,2
+"cardiac arrest, seizure continuous, severe trauma",RED,7,3
+"common cold, stuffy nose, mild headache, gunshot wound, massive hemorrhage",RED,7,5
+difficulty breathing,ORANGE,6,1
+"mild fatigue, sudden weakness",ORANGE,5,2
+"mild sunburn, weight loss unintentional, mild itching, persistent cough, ankle swelling",YELLOW,4,5
+"multi organ failure signs, confusion, seizure continuous, not breathing",RED,7,4
+"chapped lips, weight loss unintentional, skin rash with fever, high fever, insomnia",YELLOW,4,5
+"high fever with chills, poisoning suspected, open wound deep, occasional heartburn",ORANGE,6,4
+"difficulty speaking suddenly, no pulse detected, blue lips, spinal injury suspected, skin infection",RED,7,5
+"mild bloating, minor rash, mild allergies",GREEN,2,3
+"insomnia, mild anxiety",GREEN,2,2
+"mild constipation, insomnia, back pain",YELLOW,3,3
+"wheezing, watery eyes, electrocution, persistent fatigue, tension pneumothorax",RED,7,5
+mild constipation,GREEN,2,1
+"dandruff, mild sunburn",GREEN,2,2
+"severe nosebleed, gunshot wound, choking, chest pain, jaundice",RED,7,5
+"difficulty speaking suddenly, chest pain, unconscious",RED,7,3
+"head injury, mild stomach discomfort",ORANGE,6,2
+"no pulse detected, chest pain",RED,7,2
+"seizure continuous, gunshot wound, spinal injury suspected",RED,7,3
+"electrocution, no pulse detected",RED,7,2
+"urinary burning, blood in urine, muscle cramps",YELLOW,4,3
+"heart attack symptoms, blue lips, drowning",RED,7,3
+"abdominal pain, confusion, electrocution, mild stomach discomfort",RED,7,4
+"mild nausea, minor fracture pain, blood in urine, sprained ankle",YELLOW,4,4
+"choking, severe trauma, spinal injury suspected",RED,7,3
+"eye injury, confusion, blood in stool, joint pain",ORANGE,5,4
+"vomiting blood, minor fracture pain",ORANGE,6,2
+"mild bloating, mild acne, chronic indigestion, mild stomach discomfort",YELLOW,3,4
+jaundice,YELLOW,4,1
+"high fever with chills, heart attack symptoms",RED,7,2
+"diabetic emergency, difficulty speaking suddenly, severe burn",ORANGE,6,3
+"vomiting blood, severe bleeding uncontrolled, occasional heartburn, drowning, blood in stool",RED,7,5
+"anaphylaxis, blue lips, no pulse detected, chemical exposure, mild nausea",RED,7,5
+"migraine, eye injury, numbness in fingers, sudden weakness, facial drooping",ORANGE,6,5
+chemical exposure,ORANGE,6,1
+mild bloating,GREEN,2,1
+jaundice,YELLOW,4,1
+"mild itching, sore throat with fever, jaundice",YELLOW,4,3
+"slight sore throat, seizure single, dandruff, numbness in fingers",ORANGE,5,4
+"severe head trauma, multi organ failure signs, diarrhea, seizure continuous, migraine",RED,7,5
+"numbness one side, chapped lips, seizure single, common cold, minor bruise",ORANGE,6,5
+"no pulse detected, mild allergies, mild fatigue, electrocution, severe allergic reaction",RED,7,5
+"drug overdose suspected, diabetic emergency, migraine",ORANGE,6,3
+"mild bloating, dandruff, mild allergies",GREEN,2,3
+"minor rash, mild anxiety",GREEN,2,2
+"mild body ache, hiccups, mild cough",GREEN,2,3
+"mild body ache, mild fatigue, mild anxiety",GREEN,2,3
+"chest tightness, runny nose, blood in urine",YELLOW,4,3
+"mild body ache, mild constipation",GREEN,2,2
+"head injury, watery eyes, persistent cough",ORANGE,6,3
+"joint pain, numbness in fingers, broken bone visible, drug overdose suspected, severe abdominal pain",ORANGE,6,5
+"dandruff, slight sore throat",GREEN,1,2
+"minor bruise, drug overdose suspected",ORANGE,6,2
+chest pain,RED,7,1
+"mild anxiety, mild allergies, severe nosebleed, muscle cramps",ORANGE,5,4
+"mild constipation, high fever with chills, stuffy nose, common cold, seizure single",ORANGE,5,5
+"mild sunburn, dandruff, mild stomach discomfort, minor fracture pain",YELLOW,4,4
+"septic shock symptoms, anaphylaxis",RED,7,2
+"loss of consciousness brief, vomiting, blood in stool, mild acne, mild allergies",ORANGE,6,5
+"mild anxiety, mild stomach discomfort, mild bloating",GREEN,2,3
+"high fever with chills, cardiac arrest",RED,7,2
+"animal bite deep, drug overdose suspected, open wound deep",ORANGE,6,3
+"coughing blood, blood in stool, sore throat with fever, mild anxiety, dehydration, severe nosebleed",ORANGE,6,6
+"severe infection signs, sudden weakness, fever, loss of consciousness brief, minor bruise",ORANGE,6,5
+"septic shock symptoms, chest pain, watery eyes",RED,7,3
+"occasional heartburn, mild acne, mild sunburn, nausea and vomiting",YELLOW,4,4
+"severe headache, hiccups, minor fracture pain, persistent headache",ORANGE,5,4
+vomiting blood,ORANGE,6,1
+"muscle soreness after exercise, paper cut",GREEN,2,2
+"gunshot wound, no pulse detected, drowning",RED,7,3
+"fever, ankle swelling, urinary burning",YELLOW,4,3
+"minor rash, chapped lips",GREEN,2,2
+confusion,ORANGE,5,1
+"runny nose, severe back pain radiating, severe headache, severe pain",ORANGE,5,4
+choking,RED,7,1
+"severe bleeding uncontrolled, mild fatigue, facial drooping, persistent headache",RED,7,4
+"electrocution, septic shock symptoms, painful urination, massive hemorrhage, dizziness",RED,7,5
+"mild constipation, back pain",YELLOW,3,2
+"mild acne, common cold",GREEN,1,2
+"mild headache, stuffy nose, insomnia",GREEN,2,3
+"unconscious, spinal injury suspected, mild nausea, blue lips, high fever with chills",RED,7,5
+shortness of breath,ORANGE,6,1
+"stuffy nose, watery eyes",GREEN,1,2
+loss of consciousness prolonged,RED,7,1
+"diabetic emergency, back pain, severe burn",ORANGE,6,3
+"mild constipation, ear pain, mild headache, slight sore throat",YELLOW,3,4
+"head injury, persistent fatigue, no pulse detected, stab wound, severe head trauma, joint pain",RED,7,6
+"not breathing, electrocution, spinal injury suspected",RED,7,3
+"mild acne, mild itching",GREEN,1,2
+"loss of consciousness prolonged, not breathing",RED,7,2
+"severe asthma attack, severe allergic reaction, severe headache, eye pain",ORANGE,6,4
+"chapped lips, frequent urination, mild allergies, chronic indigestion, watery eyes",YELLOW,3,5
+"skin infection, drug overdose suspected",ORANGE,6,2
+"jaundice, mild constipation, numbness in fingers, severe back pain radiating",ORANGE,5,4
+"mild acne, mild body ache, mild bloating",GREEN,2,3
+"minor mouth ulcer, watery eyes",GREEN,2,2
+"loss of consciousness prolonged, seizure continuous, joint pain, tension pneumothorax",RED,7,4
+"fever, cardiac arrest, no pulse detected, blue lips, dry skin, severe chest tightness",RED,7,6
+septic shock symptoms,RED,7,1
+"skin rash with fever, nausea and vomiting, chronic indigestion",YELLOW,4,3
+"minor bruise, slight sore throat, common cold",GREEN,1,3
+"fever, painful urination",YELLOW,4,2
+common cold,GREEN,1,1
+"mild stomach discomfort, mild anxiety",GREEN,2,2
+"mild allergies, mild body ache",GREEN,2,2
+"minor mouth ulcer, hiccups",GREEN,2,2
+"unconscious, blue lips, choking",RED,7,3
+"unconscious, coughing blood, high fever with chills",RED,7,3
+"stuffy nose, occasional heartburn, mild stomach discomfort",GREEN,2,3
+"migraine, mild itching, diarrhea",YELLOW,4,3
+mild anxiety,GREEN,2,1
+"blue lips, septic shock symptoms, severe chest tightness, no pulse detected",RED,7,4
+insomnia,GREEN,2,1
+"head injury, fever, drug overdose suspected, severe back pain radiating",ORANGE,6,4
+animal bite deep,ORANGE,5,1
+"numbness in fingers, mild cough, fever, dry skin, stuffy nose",YELLOW,4,5
+"minor mouth ulcer, occasional heartburn",GREEN,2,2
+"muscle soreness after exercise, sneezing, insomnia",GREEN,2,3
+"severe bleeding uncontrolled, poisoning suspected, high fever with chills, gunshot wound",RED,7,4
+seizure single,ORANGE,5,1
+"hiccups, slight sore throat",GREEN,1,2
+"tension pneumothorax, no pulse detected",RED,7,2
+"paper cut, slight sore throat, mild anxiety",GREEN,2,3
+"blood in stool, mild sunburn, severe chest tightness, severe bleeding uncontrolled",RED,7,4
+"chapped lips, ankle swelling, minor rash",YELLOW,3,3
+"high fever, slight sore throat, mild bloating",YELLOW,4,3
+"difficulty breathing, confusion, joint pain, chemical exposure",ORANGE,6,4
+"drug overdose suspected, head injury, sneezing, severe chest tightness",ORANGE,6,4
+"stab wound, mild cough, stroke symptoms, common cold, anaphylaxis",RED,7,5
+"occasional heartburn, open wound deep, shortness of breath",ORANGE,6,3
+"persistent fatigue, severe back pain radiating, heart attack symptoms, shortness of breath",RED,7,4
+"chapped lips, muscle soreness after exercise, dizziness, mild allergies, swollen lymph nodes, eye pain",YELLOW,4,6
+"septic shock symptoms, mild cough, severe pain, multi organ failure signs, tension pneumothorax",RED,7,5
+"common cold, septic shock symptoms, not breathing",RED,7,3
+"mild anxiety, insomnia, sore throat with fever, persistent cough",YELLOW,4,4
+"seizure single, mild anxiety, choking, difficulty breathing, severe trauma",RED,7,5
+sudden weakness,ORANGE,5,1
+"ear pain, mild acne, weight loss unintentional, abdominal pain",YELLOW,4,4
+"seizure single, mild fatigue, no pulse detected, minor fracture pain",RED,7,4
+"animal bite deep, diabetic emergency",ORANGE,6,2
+"mild stomach discomfort, insomnia",GREEN,2,2
+"broken bone visible, numbness one side, severe infection signs, chapped lips, hiccups",ORANGE,6,5
+"mild sunburn, night sweats, ankle swelling",YELLOW,4,3
+"shortness of breath, mild stomach discomfort, loss of consciousness prolonged",RED,7,3
+"weight loss unintentional, occasional heartburn, wheezing, chest tightness",YELLOW,4,4
+severe asthma attack,ORANGE,6,1
+"dandruff, dry skin, mild sunburn",GREEN,2,3
+"mild stomach discomfort, mild cough, persistent headache, hiccups",YELLOW,3,4
+"severe infection signs, coughing blood",ORANGE,6,2
+"mild bloating, common cold, persistent fatigue",YELLOW,3,3
+"blood in urine, multi organ failure signs, massive hemorrhage",RED,7,3
+"gunshot wound, mild body ache, severe head trauma, watery eyes, loss of consciousness prolonged",RED,7,5
+"swollen lymph nodes, blurred vision, diarrhea",YELLOW,4,3
+"mild itching, paper cut, runny nose",GREEN,1,3
+"severe pain, chemical exposure, severe allergic reaction",ORANGE,6,3
+"severe infection signs, severe back pain radiating",ORANGE,5,2
+"sprained ankle, diarrhea, jaundice",YELLOW,4,3
+"minor bruise, vomiting blood, difficulty breathing",ORANGE,6,3
+"jaundice, multi organ failure signs, wheezing, no pulse detected",RED,7,4
+"facial drooping, severe nosebleed, no pulse detected, blue lips, not breathing, severe infection signs",RED,7,6
+"mild headache, mild acne, chapped lips",GREEN,1,3
+"mild nausea, dry skin",GREEN,2,2
+cardiac arrest,RED,7,1
+"abdominal pain, severe head trauma, broken bone visible",RED,7,3
+"persistent cough, poisoning suspected, severe headache, head injury",ORANGE,6,4
+spinal injury suspected,RED,7,1
+"vomiting, hiccups, sneezing",YELLOW,4,3
+mild sunburn,GREEN,2,1
+"common cold, hiccups, back pain, mild constipation",YELLOW,3,4
+severe head trauma,RED,7,1
+"night sweats, severe head trauma",RED,7,2
+"mild fatigue, dandruff",GREEN,2,2
+"spinal injury suspected, severe allergic reaction, chest tightness, electrocution, difficulty speaking suddenly",RED,7,5
+"urinary burning, open wound deep, blue lips, not breathing",RED,7,4
+"abdominal pain, stuffy nose, mild headache, common cold",YELLOW,4,4
+"mild nausea, frequent urination, difficulty speaking suddenly, difficulty breathing, joint pain, severe back pain radiating",ORANGE,6,6
+"runny nose, mild anxiety, mild fatigue",GREEN,2,3
+"blue lips, unconscious",RED,7,2
+"nausea and vomiting, numbness in fingers, mild anxiety, mild itching, minor mouth ulcer",YELLOW,4,5
+blurred vision,YELLOW,4,1
+"open wound deep, drowning",RED,7,2
+"persistent fatigue, severe pain, not breathing, seizure single",RED,7,4
+"mild fatigue, minor bruise",GREEN,2,2
+"spinal injury suspected, gunshot wound, tension pneumothorax",RED,7,3
+"skin infection, severe pain, blood in stool, sudden weakness",ORANGE,5,4
+"mild allergies, mild cough",GREEN,2,2
+"painful urination, severe chest tightness, nausea and vomiting, eye injury",ORANGE,6,4
+"runny nose, numbness in fingers, mild stomach discomfort, difficulty breathing",ORANGE,6,4
+mild acne,GREEN,1,1
+"severe asthma attack, chronic indigestion, severe nosebleed, weight loss unintentional",ORANGE,6,4
+"vomiting blood, severe dehydration, high fever with chills",ORANGE,6,3
+"blurred vision, blood in urine",YELLOW,4,2
+"animal bite deep, blurred vision",ORANGE,5,2
+mild headache,GREEN,1,1
+"mild sunburn, chapped lips, mild stomach discomfort, dehydration",YELLOW,4,4
+"difficulty speaking suddenly, loss of consciousness brief, sprained ankle",ORANGE,6,3
+mild anxiety,GREEN,2,1
+"minor bruise, dry skin",GREEN,1,2
+"poisoning suspected, broken bone visible, choking, seizure single, severe bleeding uncontrolled, not breathing",RED,7,6
+"vomiting, common cold, mild acne, wheezing, insomnia",YELLOW,4,5
+"stuffy nose, sneezing, persistent fatigue, night sweats, persistent cough, paper cut",YELLOW,4,6
+"common cold, sneezing, watery eyes",GREEN,1,3
+"sore throat with fever, migraine, high fever",YELLOW,4,3
+back pain,YELLOW,3,1
+"mild sunburn, mild acne, diarrhea, sprained ankle, blurred vision",YELLOW,4,5
+septic shock symptoms,RED,7,1
+"skin rash with fever, minor fracture pain, mild constipation",YELLOW,4,3
+"mild allergies, dandruff, minor mouth ulcer",GREEN,2,3
+"insomnia, mild sunburn, mild acne",GREEN,2,3
+mild nausea,GREEN,2,1
+"dandruff, joint pain, mild constipation, dizziness, mild bloating",YELLOW,4,5
+"high fever, stuffy nose, diarrhea, nausea and vomiting",YELLOW,4,4
+"frequent urination, severe head trauma, persistent fatigue, loss of consciousness prolonged",RED,7,4
+"dandruff, mild allergies, mild bloating, vomiting, blood in urine",YELLOW,4,5
+"painful urination, sneezing, mild headache, blurred vision, urinary burning, mild stomach discomfort",YELLOW,4,6
+"back pain, ankle swelling, seizure single, mild sunburn, severe headache",ORANGE,5,5
+"mild sunburn, mild bloating",GREEN,2,2
+"gunshot wound, severe trauma, not breathing",RED,7,3
+blue lips,RED,7,1
+"frequent urination, painful urination, skin rash with fever",YELLOW,4,3
+"minor mouth ulcer, mild acne",GREEN,2,2
+"swollen lymph nodes, severe abdominal pain",ORANGE,6,2
+"dandruff, chapped lips, mild headache",GREEN,1,3
+"hiccups, ankle swelling, occasional heartburn, sneezing",YELLOW,3,4
+muscle soreness after exercise,GREEN,2,1
+massive hemorrhage,RED,7,1
+"migraine, blood in urine, seizure single, animal bite deep, coughing blood, high fever",ORANGE,6,6
+"blood in urine, ear pain",YELLOW,4,2
+loss of consciousness prolonged,RED,7,1
+mild constipation,GREEN,2,1
+"severe abdominal pain, sudden weakness, blood in stool",ORANGE,6,3
+"urinary burning, animal bite deep",ORANGE,5,2
+"persistent cough, minor fracture pain",YELLOW,4,2
+mild bloating,GREEN,2,1
+high fever,YELLOW,4,1
+"runny nose, joint pain, sneezing",YELLOW,3,3
+animal bite deep,ORANGE,5,1
+"loss of consciousness brief, diarrhea",ORANGE,6,2
+"minor rash, mild constipation",GREEN,2,2
+"insomnia, difficulty speaking suddenly, numbness one side, runny nose, joint pain",ORANGE,6,5
+"seizure continuous, multi organ failure signs",RED,7,2
+mild headache,GREEN,1,1
+"common cold, minor fracture pain, blood in stool, chronic indigestion",ORANGE,5,4
+"minor mouth ulcer, chronic indigestion, minor rash, watery eyes",YELLOW,3,4
+"chapped lips, watery eyes, muscle soreness after exercise",GREEN,2,3
+"urinary burning, dizziness, high fever",YELLOW,4,3
+"painful urination, mild constipation",YELLOW,3,2
+"numbness in fingers, paper cut, back pain, common cold",YELLOW,3,4
+"vomiting, minor mouth ulcer, joint pain",YELLOW,4,3
+"insomnia, minor rash",GREEN,2,2
+"mild nausea, dry skin",GREEN,2,2
+mild cough,GREEN,1,1
+"vomiting, persistent headache",YELLOW,4,2
+"migraine, mild acne, dizziness, sore throat with fever",YELLOW,4,4
+"runny nose, mild acne, mild cough",GREEN,1,3
+"migraine, mild headache, mild acne, shortness of breath, severe pain, loss of consciousness brief",ORANGE,6,6
+"mild sunburn, slight sore throat, mild bloating",GREEN,2,3
+"muscle soreness after exercise, watery eyes",GREEN,2,2
+sudden weakness,ORANGE,5,1
+"severe infection signs, severe pain",ORANGE,5,2
+"minor mouth ulcer, shortness of breath, seizure single, slight sore throat, persistent fatigue",ORANGE,6,5
+"hiccups, chronic indigestion, persistent fatigue, minor mouth ulcer",YELLOW,3,4
+"common cold, mild body ache, sneezing",GREEN,2,3
+"common cold, watery eyes, mild constipation",GREEN,2,3
+"swollen lymph nodes, sneezing, severe infection signs, animal bite deep",ORANGE,5,4
+mild body ache,GREEN,2,1
+"anaphylaxis, stroke symptoms, no pulse detected",RED,7,3
+"minor rash, diarrhea, dry skin, dizziness",YELLOW,4,4
+"spinal injury suspected, dehydration, chemical exposure, stab wound, stroke symptoms",RED,7,5
+"high fever with chills, severe infection signs",ORANGE,5,2
+"high fever, dizziness",YELLOW,4,2
+"night sweats, anaphylaxis, choking, massive hemorrhage",RED,7,4
+"chapped lips, mild acne, occasional heartburn",GREEN,2,3
+seizure continuous,RED,7,1
+"facial drooping, head injury",ORANGE,6,2
+"drug overdose suspected, multi organ failure signs, mild fatigue, shortness of breath",RED,7,4
+"mild nausea, back pain, chapped lips, sprained ankle, mild allergies",YELLOW,3,5
+"mild allergies, skin rash with fever, mild anxiety, runny nose",YELLOW,4,4
+"heart attack symptoms, eye pain, high fever, massive hemorrhage, severe pain",RED,7,5
+"runny nose, sprained ankle, minor bruise",YELLOW,3,3
+"paper cut, chest pain",RED,7,2
+"insomnia, common cold",GREEN,2,2
+chapped lips,GREEN,1,1
+"loss of consciousness prolonged, stab wound",RED,7,2
+"severe head trauma, severe nosebleed, stab wound, not breathing, sudden weakness",RED,7,5
+"open wound deep, minor bruise, severe back pain radiating",ORANGE,5,3
+"severe trauma, broken bone visible, paper cut",RED,7,3
+"septic shock symptoms, spinal injury suspected",RED,7,2
+"swollen lymph nodes, minor mouth ulcer",YELLOW,3,2
+"runny nose, ear pain, nausea and vomiting, mild nausea",YELLOW,4,4
+"sneezing, blurred vision, chapped lips, mild bloating, abdominal pain",YELLOW,4,5
+"severe trauma, gunshot wound, unconscious",RED,7,3
+sprained ankle,YELLOW,3,1
+"occasional heartburn, sneezing, mild itching",GREEN,2,3
+"stab wound, no pulse detected, electrocution, muscle cramps, common cold",RED,7,5
+"mild headache, mild nausea, runny nose",GREEN,2,3
+"mild nausea, mild anxiety, chapped lips",GREEN,2,3
+"frequent urination, muscle soreness after exercise, skin rash with fever, nausea and vomiting, mild headache",YELLOW,4,5
+"chapped lips, eye pain, chest pain, spinal injury suspected, sudden weakness",RED,7,5
+"mild bloating, mild sunburn",GREEN,2,2
+"shortness of breath, not breathing",RED,7,2
+"nausea and vomiting, eye pain",YELLOW,4,2
+seizure single,ORANGE,5,1
+"insomnia, sneezing, common cold, ear pain",YELLOW,3,4
+"persistent cough, mild anxiety, diarrhea, dehydration, sneezing, insomnia",YELLOW,4,6
+"seizure continuous, severe back pain radiating, stab wound, abdominal pain",RED,7,4
+"sneezing, runny nose, swollen lymph nodes",YELLOW,3,3
+"joint pain, swollen lymph nodes, nausea and vomiting",YELLOW,4,3
+"sneezing, mild body ache",GREEN,2,2
+"ankle swelling, sprained ankle, blood in urine",YELLOW,4,3
+"minor rash, minor mouth ulcer",GREEN,2,2
+"broken bone visible, severe headache",ORANGE,6,2
+"severe infection signs, vomiting blood, severe allergic reaction",ORANGE,6,3
+"mild fatigue, mild constipation",GREEN,2,2
+"skin rash with fever, weight loss unintentional, mild sunburn",YELLOW,4,3
+"slight sore throat, dandruff, common cold",GREEN,1,3
+"mild stomach discomfort, blurred vision, severe back pain radiating, septic shock symptoms, no pulse detected, seizure continuous",RED,7,6
+skin infection,YELLOW,3,1
+"dandruff, unconscious, electrocution, no pulse detected",RED,7,4
+"muscle soreness after exercise, severe allergic reaction, diabetic emergency, minor rash",ORANGE,6,4
+"mild itching, mild nausea, mild sunburn",GREEN,2,3
+skin rash with fever,YELLOW,4,1
+"minor rash, sneezing, mild allergies",GREEN,2,3
+"poisoning suspected, painful urination, severe infection signs, shortness of breath, skin infection",ORANGE,6,5
+"mild itching, mild nausea, shortness of breath, diabetic emergency, skin rash with fever",ORANGE,6,5
+abdominal pain,YELLOW,4,1
+"chronic indigestion, dandruff, minor rash, hiccups, ankle swelling",YELLOW,3,5
+"slight sore throat, minor rash",GREEN,2,2
+"poisoning suspected, diarrhea, eye injury",ORANGE,6,3
+"dizziness, sudden weakness",ORANGE,5,2
+"gunshot wound, choking",RED,7,2
+chapped lips,GREEN,1,1
+"insomnia, mild fatigue, joint pain",YELLOW,3,3
+"chapped lips, weight loss unintentional, skin rash with fever, vomiting",YELLOW,4,4
+"severe burn, difficulty breathing, swollen lymph nodes",ORANGE,6,3
+"common cold, mild fatigue, dandruff",GREEN,2,3
+"watery eyes, stuffy nose, dehydration, swollen lymph nodes, mild body ache",YELLOW,4,5
+"severe headache, muscle cramps, swollen lymph nodes, severe back pain radiating, chronic indigestion, facial drooping",ORANGE,6,6
+"loss of consciousness brief, urinary burning",ORANGE,6,2
+"diarrhea, septic shock symptoms",RED,7,2
+mild fatigue,GREEN,2,1
+"persistent headache, persistent cough, weight loss unintentional, mild constipation",YELLOW,4,4
+abdominal pain,YELLOW,4,1
+mild stomach discomfort,GREEN,2,1
+"ear pain, blurred vision, dehydration",YELLOW,4,3
+"chapped lips, dry skin, paper cut",GREEN,1,3
+vomiting blood,ORANGE,6,1
+"stuffy nose, open wound deep, diabetic emergency",ORANGE,6,3
+"minor rash, high fever with chills, severe burn, coughing blood",ORANGE,6,4
+"massive hemorrhage, cardiac arrest, animal bite deep, blue lips",RED,7,4
+"seizure single, minor bruise, severe chest tightness, drug overdose suspected",ORANGE,6,4
+"mild allergies, ear pain, mild body ache, paper cut, numbness in fingers, persistent headache",YELLOW,3,6
+"not breathing, minor fracture pain, watery eyes, septic shock symptoms, electrocution, diarrhea",RED,7,6
+"dizziness, minor fracture pain, seizure continuous, stroke symptoms",RED,7,4
+"numbness one side, diabetic emergency, blood in stool",ORANGE,6,3
+"wheezing, mild bloating, abdominal pain, mild sunburn, minor mouth ulcer",YELLOW,4,5
+"mild bloating, numbness in fingers, difficulty speaking suddenly, sprained ankle, severe pain",ORANGE,6,5
+"blood in stool, drug overdose suspected, persistent fatigue, severe burn",ORANGE,6,4
+"dry skin, mild stomach discomfort, swollen lymph nodes, mild headache",YELLOW,3,4
+"septic shock symptoms, mild headache, loss of consciousness brief, mild bloating",RED,7,4
+persistent headache,YELLOW,3,1
+"skin rash with fever, urinary burning",YELLOW,4,2
+"severe nosebleed, mild acne, facial drooping",ORANGE,6,3
+"severe head trauma, electrocution",RED,7,2
+"muscle soreness after exercise, anaphylaxis",RED,7,2
+"hiccups, blood in urine",YELLOW,4,2
+"stab wound, massive hemorrhage, heart attack symptoms",RED,7,3
+"mild body ache, insomnia, hiccups",GREEN,2,3
+"weight loss unintentional, loss of consciousness brief, eye injury",ORANGE,6,3
+"tension pneumothorax, not breathing, multi organ failure signs",RED,7,3
+minor bruise,GREEN,1,1
+"severe dehydration, numbness one side, coughing blood, numbness in fingers",ORANGE,6,4
+"jaundice, severe chest tightness",ORANGE,6,2
+"wheezing, severe infection signs, facial drooping, jaundice",ORANGE,6,4
+"ear pain, muscle soreness after exercise, mild fatigue",YELLOW,3,3
+"dry skin, blood in stool, difficulty speaking suddenly, muscle cramps",ORANGE,6,4
+"head injury, confusion, unconscious",RED,7,3
+"wheezing, severe nosebleed, severe dehydration, minor fracture pain",ORANGE,5,4
+"mild bloating, minor rash, mild constipation",GREEN,2,3
+"fever, mild bloating, runny nose, dandruff, high fever",YELLOW,4,5
+"blood in urine, severe asthma attack, skin infection",ORANGE,6,3
+"stuffy nose, common cold, minor bruise",GREEN,1,3
+"severe headache, severe pain, persistent fatigue",ORANGE,5,3
+"spinal injury suspected, blurred vision, septic shock symptoms",RED,7,3
+slight sore throat,GREEN,1,1
+"severe back pain radiating, loss of consciousness brief",ORANGE,6,2
+"chronic indigestion, seizure single, gunshot wound, severe bleeding uncontrolled, diabetic emergency",RED,7,5
+"jaundice, dry skin, minor mouth ulcer, muscle cramps",YELLOW,4,4
+"massive hemorrhage, electrocution, multi organ failure signs",RED,7,3
+"no pulse detected, severe bleeding uncontrolled",RED,7,2
+"occasional heartburn, difficulty speaking suddenly, severe headache, severe back pain radiating",ORANGE,6,4
+"coughing blood, severe infection signs, difficulty breathing",ORANGE,6,3
+stab wound,RED,7,1
+"mild bloating, minor rash, fever, mild allergies",YELLOW,4,4
+"mild anxiety, paper cut",GREEN,2,2
+"drowning, head injury, swollen lymph nodes",RED,7,3
+"skin rash with fever, eye pain, chronic indigestion",YELLOW,4,3
+"stuffy nose, minor rash",GREEN,2,2
+"mild body ache, mild anxiety",GREEN,2,2
+"massive hemorrhage, electrocution",RED,7,2
+"severe dehydration, frequent urination, severe infection signs, mild sunburn, joint pain",ORANGE,5,5
+minor rash,GREEN,2,1
+"blood in urine, weight loss unintentional, occasional heartburn, hiccups, stuffy nose",YELLOW,4,5
+"chemical exposure, open wound deep",ORANGE,6,2
+"sudden weakness, severe allergic reaction, insomnia, sprained ankle",ORANGE,6,4
+"multi organ failure signs, stab wound",RED,7,2
+"anaphylaxis, poisoning suspected, stab wound, unconscious",RED,7,4
+"not breathing, abdominal pain, cardiac arrest, mild nausea",RED,7,4
+"blurred vision, blood in urine",YELLOW,4,2
+"muscle cramps, back pain, fever",YELLOW,4,3
+mild nausea,GREEN,2,1
+"jaundice, mild fatigue",YELLOW,4,2
+"loss of consciousness brief, sudden weakness",ORANGE,6,2
+"mild itching, occasional heartburn",GREEN,2,2
+"mild cough, chest tightness, dizziness, severe head trauma, severe bleeding uncontrolled",RED,7,5
+"painful urination, blurred vision, ear pain",YELLOW,4,3
+"skin infection, urinary burning, blood in urine, minor bruise",YELLOW,4,4
+"occasional heartburn, mild stomach discomfort, back pain, migraine",YELLOW,4,4
+"weight loss unintentional, mild allergies, high fever, dehydration",YELLOW,4,4
+"severe back pain radiating, chapped lips, difficulty breathing",ORANGE,6,3
+"dry skin, ankle swelling, slight sore throat",YELLOW,3,3
+"mild bloating, mild nausea, diarrhea, abdominal pain, mild itching",YELLOW,4,5
+runny nose,GREEN,1,1
+"anaphylaxis, mild cough, mild body ache, chest pain, back pain, massive hemorrhage",RED,7,6
+"shortness of breath, confusion, broken bone visible",ORANGE,6,3
+"night sweats, electrocution",RED,7,2
+"severe back pain radiating, paper cut, coughing blood, chronic indigestion",ORANGE,6,4
+"mild sunburn, mild body ache, paper cut, fever",YELLOW,4,4
+"runny nose, sprained ankle, painful urination",YELLOW,3,3
+"open wound deep, paper cut",ORANGE,5,2
+"severe headache, severe asthma attack, insomnia, dehydration, persistent headache",ORANGE,6,5
+"mild constipation, open wound deep, dry skin, back pain, broken bone visible",ORANGE,6,5
+"nausea and vomiting, mild nausea, mild itching, mild headache, joint pain",YELLOW,4,5
+"mild headache, mild body ache",GREEN,2,2
+ankle swelling,YELLOW,3,1
+"severe pain, open wound deep, broken bone visible, migraine, vomiting, fever",ORANGE,6,6
+"sneezing, minor mouth ulcer, slight sore throat",GREEN,2,3
+"swollen lymph nodes, head injury, chest pain, severe head trauma, septic shock symptoms, sudden weakness",RED,7,6
+"numbness in fingers, back pain, blue lips, vomiting",RED,7,4
+"spinal injury suspected, mild anxiety, drowning",RED,7,3
+"sprained ankle, ear pain, eye injury, numbness in fingers",ORANGE,5,4
+"blood in urine, dehydration, mild body ache, mild acne, insomnia, painful urination",YELLOW,4,6
+"toothache severe, mild anxiety, skin rash with fever",YELLOW,4,3
+"drowning, not breathing, chest pain",RED,7,3
+"mild body ache, minor bruise, insomnia",GREEN,2,3
+"minor mouth ulcer, vomiting blood, coughing blood, severe allergic reaction, toothache severe, mild acne",ORANGE,6,6
+"fever, jaundice",YELLOW,4,2
+"back pain, eye pain, mild headache, dry skin",YELLOW,3,4
+"mild itching, abdominal pain, ankle swelling",YELLOW,4,3
+"stroke symptoms, severe head trauma, muscle soreness after exercise, heart attack symptoms",RED,7,4
+"nausea and vomiting, chest tightness, not breathing, dizziness",RED,7,4
+"joint pain, severe burn, facial drooping",ORANGE,6,3
+"muscle soreness after exercise, paper cut, occasional heartburn",GREEN,2,3
+mild stomach discomfort,GREEN,2,1
+"dehydration, sprained ankle",YELLOW,4,2
+"ear pain, dry skin, frequent urination, nausea and vomiting",YELLOW,4,4
+"swollen lymph nodes, mild fatigue, vomiting, mild cough",YELLOW,4,4
+"heart attack symptoms, mild anxiety",RED,7,2
+"seizure continuous, slight sore throat, dizziness",RED,7,3
+"mild allergies, mild cough, mild sunburn",GREEN,2,3
+"mild body ache, mild fatigue, ankle swelling, frequent urination",YELLOW,3,4
+minor bruise,GREEN,1,1
+anaphylaxis,RED,7,1
+"back pain, migraine, facial drooping, broken bone visible",ORANGE,6,4
+"mild allergies, broken bone visible, mild anxiety, drug overdose suspected",ORANGE,6,4
+"seizure continuous, gunshot wound, chest pain",RED,7,3
+sudden weakness,ORANGE,5,1
+"seizure single, confusion",ORANGE,5,2
+"massive hemorrhage, unconscious, broken bone visible, shortness of breath, septic shock symptoms",RED,7,5
+"severe trauma, watery eyes, mild body ache, anaphylaxis, drowning",RED,7,5
+mild body ache,GREEN,2,1
+"drowning, swollen lymph nodes, multi organ failure signs, loss of consciousness prolonged",RED,7,4
+"gunshot wound, choking, dry skin, paper cut",RED,7,4
+"fever, heart attack symptoms, seizure continuous, migraine, electrocution, difficulty speaking suddenly",RED,7,6
+"runny nose, blood in urine",YELLOW,4,2
+severe asthma attack,ORANGE,6,1
+spinal injury suspected,RED,7,1
+skin infection,YELLOW,3,1
+"severe head trauma, massive hemorrhage, swollen lymph nodes, severe allergic reaction, choking, runny nose",RED,7,6
+"back pain, severe head trauma, vomiting",RED,7,3
+"minor rash, minor mouth ulcer, runny nose",GREEN,2,3
+slight sore throat,GREEN,1,1
+"urinary burning, tension pneumothorax, electrocution, severe head trauma",RED,7,4
+"anaphylaxis, cardiac arrest",RED,7,2
+"mild nausea, back pain, hiccups, wheezing",YELLOW,4,4
+"open wound deep, broken bone visible, vomiting blood, mild cough, insomnia",ORANGE,6,5
+"mild constipation, mild body ache, stuffy nose",GREEN,2,3
+"mild bloating, head injury, severe burn, slight sore throat, severe pain, back pain",ORANGE,6,6
+"mild anxiety, heart attack symptoms, diabetic emergency, septic shock symptoms, severe head trauma, poisoning suspected",RED,7,6
+"minor bruise, mild stomach discomfort",GREEN,2,2
+"ear pain, paper cut, painful urination, minor mouth ulcer, numbness in fingers",YELLOW,3,5
+"difficulty speaking suddenly, swollen lymph nodes, choking",RED,7,3
+"fever, sore throat with fever, mild headache, minor mouth ulcer, minor bruise",YELLOW,4,5
+"stuffy nose, heart attack symptoms",RED,7,2
+dandruff,GREEN,1,1
+"stuffy nose, common cold",GREEN,1,2
+"wheezing, chapped lips, jaundice",YELLOW,4,3
+"ear pain, insomnia",YELLOW,3,2
+"eye injury, severe headache, severe infection signs",ORANGE,5,3
+"chapped lips, dizziness, mild allergies",YELLOW,4,3
+"head injury, severe headache",ORANGE,6,2
+"ankle swelling, ear pain, difficulty speaking suddenly, heart attack symptoms",RED,7,4
+"severe headache, unconscious, chronic indigestion, broken bone visible",RED,7,4
+mild bloating,GREEN,2,1
+"mild stomach discomfort, night sweats, migraine, watery eyes, muscle cramps, mild body ache",YELLOW,4,6
+"severe infection signs, dandruff, abdominal pain, shortness of breath",ORANGE,6,4
+"dry skin, mild fatigue",GREEN,2,2
+"severe allergic reaction, severe bleeding uncontrolled",RED,7,2
+"stuffy nose, mild anxiety",GREEN,2,2
+"dry skin, hiccups",GREEN,1,2
+"diabetic emergency, vomiting blood, sneezing",ORANGE,6,3
+"blurred vision, seizure continuous, chest tightness, chemical exposure, stroke symptoms",RED,7,5
+"loss of consciousness brief, sudden weakness",ORANGE,6,2
+"slight sore throat, chest tightness, wheezing, chapped lips, night sweats",YELLOW,4,5
+"slight sore throat, swollen lymph nodes, ankle swelling",YELLOW,3,3
+"no pulse detected, choking, heart attack symptoms, diarrhea",RED,7,4
+"skin rash with fever, mild headache, frequent urination, urinary burning",YELLOW,4,4
+"choking, abdominal pain, sudden weakness, hiccups, cardiac arrest, no pulse detected",RED,7,6
+"slight sore throat, chemical exposure, night sweats, blood in stool, ear pain, severe chest tightness",ORANGE,6,6
+"toothache severe, wheezing, minor fracture pain, mild sunburn, mild nausea, insomnia",YELLOW,4,6
+"mild stomach discomfort, minor rash",GREEN,2,2
+"gunshot wound, insomnia, stroke symptoms, anaphylaxis, muscle soreness after exercise",RED,7,5
+"unconscious, slight sore throat, anaphylaxis, stab wound, severe infection signs",RED,7,5
+"weight loss unintentional, persistent cough, common cold, ankle swelling",YELLOW,4,4
+"swollen lymph nodes, eye injury, animal bite deep, minor mouth ulcer",ORANGE,5,4
+"mild body ache, muscle soreness after exercise, common cold",GREEN,2,3
+"dandruff, mild acne, dehydration",YELLOW,4,3
+"mild stomach discomfort, watery eyes, dandruff, difficulty breathing, blood in stool",ORANGE,6,5
+"blue lips, vomiting blood, mild nausea, severe infection signs",RED,7,4
+"numbness one side, mild stomach discomfort, severe abdominal pain, difficulty breathing",ORANGE,6,4
+"diarrhea, severe head trauma, spinal injury suspected, mild fatigue",RED,7,4
+"open wound deep, painful urination, head injury, shortness of breath",ORANGE,6,4
+jaundice,YELLOW,4,1
+"persistent fatigue, loss of consciousness prolonged, spinal injury suspected",RED,7,3
+"nausea and vomiting, dizziness, night sweats",YELLOW,4,3
+"mild stomach discomfort, insomnia, mild bloating",GREEN,2,3
+"mild nausea, mild itching, insomnia",GREEN,2,3
+"painful urination, hiccups, chest pain, cardiac arrest",RED,7,4
+"difficulty speaking suddenly, severe chest tightness, persistent fatigue",ORANGE,6,3
+"severe nosebleed, occasional heartburn",ORANGE,5,2
+"difficulty speaking suddenly, severe dehydration, occasional heartburn",ORANGE,6,3
+"cardiac arrest, heart attack symptoms",RED,7,2
+"mild anxiety, runny nose, minor mouth ulcer",GREEN,2,3
+"mild acne, mild body ache, severe infection signs, eye injury, difficulty breathing, watery eyes",ORANGE,6,6
+"fever, mild acne, insomnia, common cold",YELLOW,4,4
+"blurred vision, chest tightness, severe back pain radiating, mild itching",ORANGE,5,4
+"paper cut, wheezing, mild headache, persistent headache",YELLOW,4,4
+"runny nose, chest tightness, blurred vision, frequent urination",YELLOW,4,4
+"insomnia, dizziness, shortness of breath",ORANGE,6,3
+"confusion, tension pneumothorax",RED,7,2
+"insomnia, mild itching, runny nose",GREEN,2,3
+"mild headache, abdominal pain, stuffy nose, persistent headache",YELLOW,4,4
+"occasional heartburn, joint pain",YELLOW,3,2
+"ear pain, dry skin, minor mouth ulcer",YELLOW,3,3
+"joint pain, toothache severe, jaundice",YELLOW,4,3
+"mild acne, chronic indigestion, head injury, sudden weakness, minor rash, vomiting blood",ORANGE,6,6
+"paper cut, chronic indigestion, mild bloating",YELLOW,3,3
+"confusion, numbness in fingers, tension pneumothorax",RED,7,3
+"mild headache, mild nausea, mild anxiety",GREEN,2,3
+"insomnia, muscle cramps, diarrhea, toothache severe, mild body ache, minor rash",YELLOW,3,6
+"minor rash, swollen lymph nodes, mild sunburn",YELLOW,3,3
+"common cold, occasional heartburn",GREEN,2,2
+"painful urination, mild acne, diabetic emergency, sudden weakness, difficulty breathing",ORANGE,6,5
+"mild anxiety, swollen lymph nodes, slight sore throat",YELLOW,3,3
+"wheezing, blurred vision",YELLOW,4,2
+"mild acne, stuffy nose",GREEN,1,2
+"tension pneumothorax, gunshot wound, seizure continuous",RED,7,3
+"stroke symptoms, mild itching",RED,7,2
+"paper cut, runny nose, sneezing",GREEN,1,3
+"dandruff, paper cut, coughing blood",ORANGE,6,3
+"wheezing, severe headache, severe back pain radiating, mild cough",ORANGE,5,4
+"spinal injury suspected, stroke symptoms, cardiac arrest",RED,7,3
+"slight sore throat, anaphylaxis, mild allergies, spinal injury suspected",RED,7,4
+"chronic indigestion, fever, dandruff, mild fatigue, eye pain",YELLOW,4,5
+"minor mouth ulcer, abdominal pain, minor bruise",YELLOW,4,3
+mild stomach discomfort,GREEN,2,1
+slight sore throat,GREEN,1,1
+mild cough,GREEN,1,1
+"dandruff, paper cut, joint pain",YELLOW,3,3
+"slight sore throat, muscle cramps, mild body ache",YELLOW,3,3
+"severe trauma, cardiac arrest",RED,7,2
+blue lips,RED,7,1
+"loss of consciousness prolonged, dehydration, drowning, difficulty speaking suddenly, choking",RED,7,5
+"hiccups, severe back pain radiating",ORANGE,5,2
+"heart attack symptoms, difficulty breathing, cardiac arrest",RED,7,3
+"persistent fatigue, watery eyes, swollen lymph nodes, occasional heartburn",YELLOW,3,4
+"anaphylaxis, drowning",RED,7,2
+"frequent urination, abdominal pain, confusion",ORANGE,5,3
+"sore throat with fever, weight loss unintentional, vomiting",YELLOW,4,3
+"stuffy nose, common cold",GREEN,1,2
+"vomiting blood, shortness of breath",ORANGE,6,2
+"dizziness, diarrhea",YELLOW,4,2
+minor mouth ulcer,GREEN,2,1
+"difficulty speaking suddenly, slight sore throat, animal bite deep, shortness of breath",ORANGE,6,4
+"loss of consciousness prolonged, severe bleeding uncontrolled, facial drooping, septic shock symptoms, dandruff, mild stomach discomfort",RED,7,6
+mild bloating,GREEN,2,1
+"diabetic emergency, numbness one side, jaundice",ORANGE,6,3
+"blood in urine, severe dehydration, chest pain, jaundice, no pulse detected, unconscious",RED,7,6
+"hiccups, vomiting, mild stomach discomfort, insomnia",YELLOW,4,4
+confusion,ORANGE,5,1
+"chapped lips, sneezing",GREEN,1,2
+"mild sunburn, weight loss unintentional, minor rash, mild acne",YELLOW,4,4
+"persistent cough, persistent headache",YELLOW,3,2
+"eye pain, abdominal pain, diarrhea, dry skin, paper cut, occasional heartburn",YELLOW,4,6
+"unconscious, electrocution",RED,7,2
+"massive hemorrhage, ankle swelling, drug overdose suspected",RED,7,3
+"hiccups, mild allergies, mild anxiety",GREEN,2,3
+"loss of consciousness brief, heart attack symptoms, multi organ failure signs",RED,7,3
+"high fever with chills, severe abdominal pain",ORANGE,6,2
+stuffy nose,GREEN,1,1
+"confusion, vomiting blood",ORANGE,6,2
+"dry skin, stuffy nose, swollen lymph nodes",YELLOW,3,3
+"skin rash with fever, unconscious, choking, spinal injury suspected",RED,7,4
+"minor rash, mild acne, eye pain, muscle cramps",YELLOW,3,4
+mild cough,GREEN,1,1
+"minor fracture pain, severe pain, ankle swelling, chest tightness, eye injury",ORANGE,5,5
+"loss of consciousness brief, numbness one side, minor rash, eye injury",ORANGE,6,4
+"runny nose, dandruff",GREEN,1,2
+"minor bruise, insomnia, mild itching",GREEN,2,3
+weight loss unintentional,YELLOW,4,1
+runny nose,GREEN,1,1
+"dizziness, sneezing, dandruff",YELLOW,4,3
+abdominal pain,YELLOW,4,1
+"muscle cramps, wheezing, common cold, severe nosebleed, seizure single",ORANGE,5,5
+"poisoning suspected, numbness one side",ORANGE,6,2
+"mild body ache, mild headache",GREEN,2,2
+"mild stomach discomfort, runny nose",GREEN,2,2
+"occasional heartburn, minor bruise, mild nausea",GREEN,2,3
+"paper cut, mild acne, mild allergies, muscle cramps",YELLOW,3,4
+"severe pain, mild bloating, severe back pain radiating, high fever, difficulty breathing",ORANGE,6,5
+"common cold, mild body ache, ankle swelling, mild fatigue",YELLOW,3,4
+"hiccups, sneezing",GREEN,1,2
+minor fracture pain,YELLOW,4,1
+"mild fatigue, runny nose, paper cut",GREEN,2,3
+"weight loss unintentional, mild fatigue, severe dehydration, severe infection signs",ORANGE,5,4
+"multi organ failure signs, severe head trauma, minor mouth ulcer",RED,7,3
+"chronic indigestion, tension pneumothorax, mild stomach discomfort, ear pain, loss of consciousness prolonged",RED,7,5
+"sudden weakness, blood in stool",ORANGE,5,2
+minor bruise,GREEN,1,1
+"minor fracture pain, watery eyes, wheezing, sprained ankle",YELLOW,4,4
+"night sweats, mild anxiety, runny nose, urinary burning",YELLOW,4,4
+"severe abdominal pain, diabetic emergency",ORANGE,6,2
+"persistent fatigue, runny nose, mild fatigue, poisoning suspected, severe back pain radiating, vomiting blood",ORANGE,6,6
+"loss of consciousness brief, blurred vision, sore throat with fever, frequent urination",ORANGE,6,4
+"mild cough, dandruff",GREEN,1,2
+"numbness in fingers, dizziness, painful urination",YELLOW,4,3
+"minor fracture pain, no pulse detected",RED,7,2
+"common cold, mild nausea, mild fatigue",GREEN,2,3
+"runny nose, paper cut, mild constipation",GREEN,2,3
+sprained ankle,YELLOW,3,1
+watery eyes,GREEN,1,1
+coughing blood,ORANGE,6,1
+"fever, chronic indigestion, sneezing, joint pain",YELLOW,4,4
+drowning,RED,7,1
+"chest pain, swollen lymph nodes, severe bleeding uncontrolled, electrocution, mild acne",RED,7,5
+"paper cut, mild acne",GREEN,1,2
+"vomiting blood, severe allergic reaction, high fever",ORANGE,6,3
+"sudden weakness, open wound deep",ORANGE,5,2
+runny nose,GREEN,1,1
+stuffy nose,GREEN,1,1
+"dizziness, stuffy nose, mild constipation, mild cough",YELLOW,4,4
+"mild itching, dandruff",GREEN,1,2
+hiccups,GREEN,1,1
+mild anxiety,GREEN,2,1
+"toothache severe, dry skin, muscle cramps, dizziness",YELLOW,4,4
+night sweats,YELLOW,4,1
+"not breathing, seizure continuous, severe head trauma",RED,7,3
+"persistent fatigue, severe headache, sudden weakness, numbness in fingers",ORANGE,5,4
+"sudden weakness, mild headache, severe pain, coughing blood, mild sunburn",ORANGE,6,5
+"severe infection signs, shortness of breath, sprained ankle, insomnia",ORANGE,6,4
+minor rash,GREEN,2,1
+"severe abdominal pain, tension pneumothorax, minor bruise, chest pain, no pulse detected",RED,7,5
+"mild anxiety, night sweats",YELLOW,4,2
+"ear pain, skin rash with fever, chapped lips, dry skin, dehydration",YELLOW,4,5
+"dizziness, dehydration, mild body ache, sneezing, mild anxiety, minor fracture pain",YELLOW,4,6
+"numbness one side, severe dehydration",ORANGE,6,2
+"severe back pain radiating, severe nosebleed, eye injury, migraine",ORANGE,5,4
+"gunshot wound, blood in urine, heart attack symptoms, abdominal pain, severe pain",RED,7,5
+"muscle soreness after exercise, mild bloating, watery eyes",GREEN,2,3
+"weight loss unintentional, massive hemorrhage",RED,7,2
+"mild nausea, mild cough, mild anxiety",GREEN,2,3
+blue lips,RED,7,1
+"hiccups, mild nausea, joint pain",YELLOW,3,3
+common cold,GREEN,1,1
+slight sore throat,GREEN,1,1
+jaundice,YELLOW,4,1
+"ankle swelling, minor mouth ulcer, paper cut, minor fracture pain, runny nose",YELLOW,4,5
+"slight sore throat, hiccups, mild headache, night sweats",YELLOW,4,4
+"severe headache, mild nausea, mild stomach discomfort, head injury, painful urination",ORANGE,6,5
+watery eyes,GREEN,1,1
+"dizziness, back pain, severe infection signs, hiccups",ORANGE,5,4
+"chest tightness, eye injury, night sweats",ORANGE,5,3
+"nausea and vomiting, persistent fatigue",YELLOW,4,2
+"mild itching, unconscious",RED,7,2
+"difficulty breathing, severe burn, swollen lymph nodes, stuffy nose",ORANGE,6,4
+"chemical exposure, open wound deep, severe chest tightness",ORANGE,6,3
+"sneezing, dry skin",GREEN,1,2
+"chemical exposure, eye pain, slight sore throat, coughing blood, muscle cramps",ORANGE,6,5
+"sore throat with fever, muscle soreness after exercise, mild fatigue, diarrhea",YELLOW,4,4
+"mild cough, minor bruise",GREEN,1,2
+"skin infection, sprained ankle, muscle soreness after exercise, joint pain",YELLOW,3,4
+"severe infection signs, blue lips, mild headache, loss of consciousness prolonged, urinary burning",RED,7,5
+minor fracture pain,YELLOW,4,1
+"loss of consciousness prolonged, common cold, spinal injury suspected",RED,7,3
+common cold,GREEN,1,1
+"severe head trauma, toothache severe, head injury",RED,7,3
+"severe chest tightness, poisoning suspected, coughing blood",ORANGE,6,3
+"frequent urination, mild stomach discomfort, mild allergies, muscle soreness after exercise, persistent fatigue, dehydration",YELLOW,4,6
+"no pulse detected, spinal injury suspected",RED,7,2
+"mild cough, runny nose",GREEN,1,2
+"heart attack symptoms, numbness in fingers, persistent cough, eye pain, spinal injury suspected",RED,7,5
+"insomnia, urinary burning, dry skin",YELLOW,4,3
+"common cold, mild nausea",GREEN,2,2
+"mild anxiety, mild acne",GREEN,2,2
+"persistent headache, severe infection signs, mild cough",ORANGE,5,3
+"blurred vision, severe abdominal pain, severe back pain radiating, vomiting blood, paper cut",ORANGE,6,5
+"dehydration, dizziness, muscle cramps, hiccups",YELLOW,4,4
+"frequent urination, animal bite deep, seizure continuous, drowning",RED,7,4
+"wheezing, painful urination, stuffy nose",YELLOW,4,3
+"hiccups, mild fatigue, mild anxiety",GREEN,2,3
+"severe burn, facial drooping, broken bone visible",ORANGE,6,3
+"dry skin, mild itching, seizure single",ORANGE,5,3
+mild acne,GREEN,1,1
+"dry skin, shortness of breath",ORANGE,6,2
+"ear pain, swollen lymph nodes",YELLOW,3,2
+jaundice,YELLOW,4,1
+"severe back pain radiating, ankle swelling, multi organ failure signs, skin infection, loss of consciousness prolonged, stab wound",RED,7,6
+"difficulty speaking suddenly, mild itching",ORANGE,6,2
+not breathing,RED,7,1
+numbness in fingers,YELLOW,3,1
+"eye injury, difficulty speaking suddenly, open wound deep",ORANGE,6,3
+"watery eyes, loss of consciousness prolonged, chest tightness, seizure continuous, sneezing",RED,7,5
+"severe dehydration, wheezing, severe chest tightness, loss of consciousness brief",ORANGE,6,4
+"sprained ankle, persistent fatigue, nausea and vomiting",YELLOW,4,3
+"wheezing, chapped lips, mild acne, mild allergies, frequent urination",YELLOW,4,5
+"seizure single, diarrhea, sprained ankle",ORANGE,5,3
+"animal bite deep, sudden weakness, dehydration, massive hemorrhage, heart attack symptoms, multi organ failure signs",RED,7,6
+"migraine, eye pain, severe dehydration, severe headache, mild sunburn",ORANGE,5,5
+"severe pain, urinary burning, open wound deep",ORANGE,5,3
+anaphylaxis,RED,7,1
+"blood in stool, blue lips, seizure single, severe chest tightness",RED,7,4
+unconscious,RED,7,1
+"cardiac arrest, gunshot wound, heart attack symptoms",RED,7,3
+"urinary burning, painful urination, slight sore throat",YELLOW,4,3
+"nausea and vomiting, cardiac arrest, swollen lymph nodes",RED,7,3
+"vomiting, dehydration",YELLOW,4,2
+"minor bruise, hiccups",GREEN,1,2
+"chemical exposure, open wound deep, painful urination, severe burn",ORANGE,6,4
+"severe abdominal pain, numbness one side",ORANGE,6,2
+"mild headache, mild sunburn",GREEN,2,2
+"common cold, mild allergies, muscle soreness after exercise",GREEN,2,3
+"septic shock symptoms, hiccups, ear pain, eye injury",RED,7,4
+"runny nose, blue lips",RED,7,2
+mild anxiety,GREEN,2,1
+"runny nose, mild itching, gunshot wound, severe burn",RED,7,4
+"broken bone visible, blue lips, heart attack symptoms",RED,7,3
+massive hemorrhage,RED,7,1
+"chapped lips, paper cut",GREEN,1,2
+no pulse detected,RED,7,1
+"common cold, minor fracture pain, toothache severe, minor bruise",YELLOW,4,4
+"mild constipation, runny nose",GREEN,2,2
+"severe nosebleed, joint pain, severe burn, swollen lymph nodes, severe infection signs",ORANGE,6,5
+"mild body ache, mild nausea",GREEN,2,2
+"sprained ankle, numbness in fingers, stuffy nose, mild sunburn",YELLOW,3,4
+"ankle swelling, persistent fatigue, fever",YELLOW,4,3
+"severe pain, stuffy nose, persistent cough, spinal injury suspected, chest pain, multi organ failure signs",RED,7,6
+migraine,YELLOW,4,1
+"mild sunburn, mild anxiety, sneezing",GREEN,2,3
+"vomiting blood, electrocution, multi organ failure signs, wheezing, severe allergic reaction",RED,7,5
+"hiccups, minor mouth ulcer, mild allergies",GREEN,2,3
+"mild allergies, blood in urine, eye pain",YELLOW,4,3
+"mild itching, paper cut",GREEN,1,2
+"electrocution, stroke symptoms, chest pain",RED,7,3
+chest tightness,YELLOW,4,1
+"night sweats, mild itching, severe infection signs, mild headache",ORANGE,5,4
+"minor rash, occasional heartburn, mild sunburn",GREEN,2,3
+common cold,GREEN,1,1
+"persistent fatigue, mild body ache, tension pneumothorax",RED,7,3
+"minor fracture pain, jaundice, drug overdose suspected",ORANGE,6,3
+"sore throat with fever, sprained ankle, mild cough, dry skin",YELLOW,4,4
+"mild cough, mild sunburn",GREEN,2,2
+"vomiting, mild sunburn, dandruff, swollen lymph nodes, back pain, mild acne",YELLOW,4,6
+"night sweats, chronic indigestion, urinary burning, paper cut",YELLOW,4,4
+"muscle soreness after exercise, hiccups, mild cough",GREEN,2,3
+"open wound deep, eye injury, loss of consciousness brief",ORANGE,6,3
+"hiccups, broken bone visible, persistent fatigue, severe back pain radiating, severe nosebleed",ORANGE,6,5
+"muscle soreness after exercise, mild acne, mild cough",GREEN,2,3
+"mild body ache, mild acne",GREEN,2,2
+"seizure continuous, electrocution, blurred vision, broken bone visible, severe trauma",RED,7,5
+"mild sunburn, sneezing",GREEN,2,2
+"mild fatigue, septic shock symptoms, mild stomach discomfort, skin infection, blue lips",RED,7,5
+"unconscious, frequent urination, severe dehydration, no pulse detected",RED,7,4
+mild fatigue,GREEN,2,1
+mild cough,GREEN,1,1
+minor rash,GREEN,2,1
+"stab wound, drowning, chemical exposure, migraine, stroke symptoms",RED,7,5
+mild itching,GREEN,1,1
+"blood in urine, mild fatigue, mild bloating",YELLOW,4,3
+persistent cough,YELLOW,3,1
+watery eyes,GREEN,1,1
+"stroke symptoms, eye injury, abdominal pain, severe trauma, severe allergic reaction",RED,7,5
+"multi organ failure signs, animal bite deep, eye injury, cardiac arrest",RED,7,4
+"mild constipation, dandruff",GREEN,2,2
+"diabetic emergency, severe asthma attack, severe infection signs",ORANGE,6,3
+"animal bite deep, minor mouth ulcer, shortness of breath, ankle swelling",ORANGE,6,4
+"chapped lips, dandruff",GREEN,1,2
+"ear pain, open wound deep",ORANGE,5,2
+"vomiting blood, difficulty speaking suddenly, vomiting",ORANGE,6,3
+"high fever with chills, diabetic emergency",ORANGE,6,2
+"ear pain, minor fracture pain, weight loss unintentional",YELLOW,4,3
+"insomnia, sneezing, common cold",GREEN,2,3
+"severe dehydration, confusion, facial drooping",ORANGE,6,3
+"sore throat with fever, dizziness, dehydration",YELLOW,4,3
+"high fever, severe chest tightness, diarrhea, mild sunburn, facial drooping",ORANGE,6,5
+"spinal injury suspected, ear pain, severe dehydration, eye injury, tension pneumothorax, seizure continuous",RED,7,6
+hiccups,GREEN,1,1
+"mild cough, muscle cramps, mild sunburn, mild headache",YELLOW,3,4
+"mild cough, slight sore throat, dizziness, not breathing",RED,7,4
+"drowning, severe head trauma",RED,7,2
+chapped lips,GREEN,1,1
+"common cold, sneezing, hiccups",GREEN,1,3
+"skin rash with fever, toothache severe, chapped lips, diabetic emergency",ORANGE,6,4
+"mild allergies, stab wound",RED,7,2
+"common cold, mild nausea, jaundice, painful urination, mild acne",YELLOW,4,5
+"blurred vision, mild constipation, ear pain",YELLOW,4,3
+"mild headache, painful urination, chronic indigestion, common cold, ear pain, insomnia",YELLOW,3,6
+"mild bloating, eye pain",YELLOW,3,2
+ear pain,YELLOW,3,1
+dry skin,GREEN,1,1
+"wheezing, mild constipation, seizure continuous, difficulty breathing, septic shock symptoms",RED,7,5
+drug overdose suspected,ORANGE,6,1
+"severe dehydration, muscle soreness after exercise, stuffy nose, wheezing",ORANGE,5,4
+"no pulse detected, sprained ankle, high fever, tension pneumothorax, gunshot wound, ear pain",RED,7,6
+"sore throat with fever, vomiting blood, nausea and vomiting, mild fatigue",ORANGE,6,4
+"mild fatigue, mild stomach discomfort",GREEN,2,2
+"stroke symptoms, minor fracture pain, loss of consciousness prolonged, no pulse detected, severe allergic reaction",RED,7,5
+"facial drooping, severe headache, weight loss unintentional",ORANGE,6,3
+"tension pneumothorax, multi organ failure signs, massive hemorrhage",RED,7,3
+"open wound deep, broken bone visible",ORANGE,6,2
+"severe chest tightness, persistent cough, open wound deep",ORANGE,6,3
+"common cold, eye pain, ankle swelling, night sweats, watery eyes, mild fatigue",YELLOW,4,6
+"multi organ failure signs, numbness in fingers, mild constipation, stroke symptoms, septic shock symptoms",RED,7,5
+"mild bloating, mild fatigue",GREEN,2,2
+"severe infection signs, numbness in fingers, nausea and vomiting, chemical exposure",ORANGE,6,4
+"dizziness, difficulty breathing",ORANGE,6,2
+muscle cramps,YELLOW,3,1
+"severe dehydration, confusion, fever, eye injury",ORANGE,5,4
+"frequent urination, vomiting",YELLOW,4,2
+"severe pain, poisoning suspected, severe infection signs",ORANGE,6,3
+"sore throat with fever, mild headache, unconscious, severe head trauma, tension pneumothorax",RED,7,5
+"muscle cramps, dehydration, mild fatigue",YELLOW,4,3
+"massive hemorrhage, electrocution, numbness in fingers",RED,7,3
+"toothache severe, paper cut, painful urination, swollen lymph nodes",YELLOW,3,4
+"insomnia, high fever, minor rash, loss of consciousness prolonged",RED,7,4
+"frequent urination, chronic indigestion, nausea and vomiting",YELLOW,4,3
+"minor rash, choking, minor mouth ulcer",RED,7,3
+"open wound deep, massive hemorrhage, severe allergic reaction, gunshot wound, drowning",RED,7,5
+"drowning, confusion, loss of consciousness prolonged",RED,7,3
+"muscle soreness after exercise, dry skin, mild acne",GREEN,2,3
+"mild stomach discomfort, paper cut, persistent headache, mild body ache",YELLOW,3,4
+"painful urination, chemical exposure, paper cut",ORANGE,6,3
+"dry skin, mild nausea",GREEN,2,2
+"dizziness, wheezing, toothache severe",YELLOW,4,3
+"sore throat with fever, mild itching, mild stomach discomfort",YELLOW,4,3
+"vomiting blood, seizure continuous, sneezing, multi organ failure signs",RED,7,4
+"night sweats, high fever, weight loss unintentional, mild cough, watery eyes, mild constipation",YELLOW,4,6
+"multi organ failure signs, severe bleeding uncontrolled",RED,7,2
+"diabetic emergency, poisoning suspected",ORANGE,6,2
+stuffy nose,GREEN,1,1
+"seizure single, blood in stool, chemical exposure",ORANGE,6,3
+"numbness one side, open wound deep, eye injury",ORANGE,6,3
+"severe infection signs, mild headache, chemical exposure, loss of consciousness brief",ORANGE,6,4
+"mild cough, skin rash with fever, abdominal pain, mild headache, mild body ache",YELLOW,4,5
+"mild acne, mild fatigue, mild anxiety",GREEN,2,3
+"gunshot wound, fever, severe bleeding uncontrolled, difficulty breathing, runny nose",RED,7,5
+"minor rash, runny nose, mild itching",GREEN,2,3
+severe nosebleed,ORANGE,5,1
+"paper cut, watery eyes, back pain, persistent cough",YELLOW,3,4
+"mild allergies, mild sunburn, skin infection, ear pain, mild headache",YELLOW,3,5
+"minor rash, dry skin, muscle cramps, minor fracture pain, sore throat with fever",YELLOW,4,5
+"sudden weakness, minor mouth ulcer, painful urination, severe pain",ORANGE,5,4
+"abdominal pain, mild cough, severe infection signs, eye injury",ORANGE,5,4
+"slight sore throat, multi organ failure signs",RED,7,2
+"severe bleeding uncontrolled, stroke symptoms, drowning",RED,7,3
+"watery eyes, mild itching",GREEN,1,2
+"not breathing, ear pain, severe burn, difficulty breathing",RED,7,4
+"wheezing, blurred vision, skin rash with fever, minor rash, muscle soreness after exercise",YELLOW,4,5
+"runny nose, mild nausea, sneezing",GREEN,2,3
+"severe back pain radiating, difficulty speaking suddenly, minor bruise, severe infection signs",ORANGE,6,4
+dizziness,YELLOW,4,1
+"dandruff, stuffy nose",GREEN,1,2
+"poisoning suspected, severe abdominal pain, severe asthma attack, back pain, persistent cough",ORANGE,6,5
+"facial drooping, back pain, chest pain",RED,7,3
+"jaundice, heart attack symptoms, high fever with chills, occasional heartburn",RED,7,4
+animal bite deep,ORANGE,5,1
+"loss of consciousness prolonged, mild constipation, skin rash with fever, severe head trauma, heart attack symptoms, minor mouth ulcer",RED,7,6
+"night sweats, toothache severe, hiccups, chronic indigestion",YELLOW,4,4
+"night sweats, joint pain",YELLOW,4,2
+"mild stomach discomfort, severe head trauma, stab wound, seizure continuous, painful urination",RED,7,5
+"unconscious, loss of consciousness brief, mild body ache, electrocution, sneezing",RED,7,5
+"common cold, slight sore throat, mild body ache",GREEN,2,3
+"hiccups, severe infection signs, chest pain, mild headache, gunshot wound",RED,7,5
+"mild anxiety, muscle cramps, vomiting, chronic indigestion",YELLOW,4,4
+"mild nausea, mild fatigue, hiccups",GREEN,2,3
+"jaundice, nausea and vomiting, urinary burning",YELLOW,4,3
+minor bruise,GREEN,1,1
+"nausea and vomiting, chest tightness, minor rash, muscle cramps",YELLOW,4,4
+"runny nose, dry skin, persistent fatigue",YELLOW,3,3
+"mild fatigue, minor mouth ulcer, ankle swelling, mild acne",YELLOW,3,4
+"dizziness, muscle cramps, sore throat with fever",YELLOW,4,3
+"mild anxiety, occasional heartburn, minor rash",GREEN,2,3
+"choking, persistent cough, eye pain, mild acne",RED,7,4
+"massive hemorrhage, stroke symptoms, severe abdominal pain",RED,7,3
+insomnia,GREEN,2,1
+"nausea and vomiting, chronic indigestion, cardiac arrest, diabetic emergency, spinal injury suspected",RED,7,5
+"weight loss unintentional, night sweats, toothache severe",YELLOW,4,3
+muscle soreness after exercise,GREEN,2,1
+"persistent cough, mild body ache, dizziness, toothache severe",YELLOW,4,4
+"not breathing, spinal injury suspected, stroke symptoms, abdominal pain",RED,7,4
+"vomiting blood, severe burn, sudden weakness",ORANGE,6,3
+"mild anxiety, insomnia, mild sunburn",GREEN,2,3
+"no pulse detected, chapped lips",RED,7,2
+"chapped lips, minor mouth ulcer",GREEN,2,2
+"drowning, loss of consciousness prolonged",RED,7,2
+"dizziness, no pulse detected, chemical exposure, anaphylaxis",RED,7,4
+"muscle soreness after exercise, stab wound",RED,7,2
+"severe headache, severe back pain radiating",ORANGE,5,2
+"gunshot wound, blue lips, no pulse detected",RED,7,3
+"massive hemorrhage, jaundice, muscle soreness after exercise, drowning",RED,7,4
+"dandruff, mild stomach discomfort",GREEN,2,2
+"stuffy nose, muscle cramps, jaundice, wheezing, mild acne",YELLOW,4,5
+"dehydration, occasional heartburn, chronic indigestion, mild cough, numbness in fingers",YELLOW,4,5
+confusion,ORANGE,5,1
+"numbness one side, high fever, difficulty speaking suddenly, blurred vision",ORANGE,6,4
+mild acne,GREEN,1,1
+"urinary burning, minor rash, swollen lymph nodes",YELLOW,4,3
+"chemical exposure, head injury, persistent cough, difficulty speaking suddenly",ORANGE,6,4
+"numbness in fingers, mild itching",YELLOW,3,2
+"severe headache, shortness of breath, chemical exposure",ORANGE,6,3
+"mild constipation, minor rash, mild cough",GREEN,2,3
+"difficulty speaking suddenly, high fever with chills, severe headache",ORANGE,6,3
+"toothache severe, mild bloating, ear pain, persistent headache",YELLOW,3,4
+jaundice,YELLOW,4,1
+diabetic emergency,ORANGE,6,1
+"mild acne, minor rash, mild stomach discomfort",GREEN,2,3
+"insomnia, skin infection, muscle cramps, ankle swelling, hiccups",YELLOW,3,5
+stuffy nose,GREEN,1,1
+"difficulty speaking suddenly, common cold",ORANGE,6,2
+"chemical exposure, difficulty breathing, slight sore throat",ORANGE,6,3
+runny nose,GREEN,1,1
+"common cold, dandruff, mild stomach discomfort",GREEN,2,3
+unconscious,RED,7,1
+"occasional heartburn, frequent urination, dehydration, dry skin",YELLOW,4,4
+"ear pain, severe back pain radiating, fever, mild anxiety",ORANGE,5,4
+"wheezing, hiccups, migraine",YELLOW,4,3
+"migraine, blood in stool, dandruff, open wound deep",ORANGE,5,4
+mild acne,GREEN,1,1
+"persistent headache, gunshot wound, chest tightness, heart attack symptoms, severe trauma, stuffy nose",RED,7,6
+slight sore throat,GREEN,1,1
+"dandruff, dizziness, blurred vision, hiccups, mild cough, persistent headache",YELLOW,4,6
+"electrocution, muscle cramps, difficulty speaking suddenly, diarrhea",RED,7,4
+"mild body ache, mild cough",GREEN,2,2
+"frequent urination, not breathing, loss of consciousness prolonged",RED,7,3
+"numbness in fingers, painful urination, chest tightness",YELLOW,4,3
+nausea and vomiting,YELLOW,4,1
+"wheezing, mild cough, painful urination, diarrhea, common cold, sneezing",YELLOW,4,6
+"mild headache, wheezing, mild constipation, head injury",ORANGE,6,4
+heart attack symptoms,RED,7,1
+"mild headache, mild fatigue",GREEN,2,2
+"stuffy nose, sprained ankle, occasional heartburn",YELLOW,3,3
+"choking, night sweats, seizure continuous",RED,7,3
+"anaphylaxis, muscle cramps, weight loss unintentional, drug overdose suspected",RED,7,4
+"blurred vision, ankle swelling",YELLOW,4,2
+"minor mouth ulcer, mild constipation, stuffy nose",GREEN,2,3
+"difficulty breathing, severe bleeding uncontrolled, chronic indigestion",RED,7,3
+"common cold, insomnia, sneezing",GREEN,2,3
+"mild constipation, anaphylaxis",RED,7,2
+"choking, toothache severe, septic shock symptoms",RED,7,3
+"severe chest tightness, sudden weakness",ORANGE,6,2
+"chronic indigestion, stuffy nose, muscle cramps, mild bloating, eye pain, mild nausea",YELLOW,3,6
+"minor mouth ulcer, stuffy nose, common cold, severe burn, head injury",ORANGE,6,5
+"heart attack symptoms, difficulty breathing, chest pain, shortness of breath, massive hemorrhage",RED,7,5
+"watery eyes, paper cut, chapped lips",GREEN,1,3
+"occasional heartburn, mild anxiety",GREEN,2,2
+"fever, migraine, frequent urination",YELLOW,4,3
+"mild bloating, mild constipation, abdominal pain, chest tightness, ear pain",YELLOW,4,5
+"mild stomach discomfort, runny nose, chapped lips",GREEN,2,3
+"multi organ failure signs, drowning",RED,7,2
+"skin infection, mild cough, sore throat with fever",YELLOW,4,3
+"broken bone visible, facial drooping, migraine, back pain",ORANGE,6,4
+"mild bloating, swollen lymph nodes, severe allergic reaction, sudden weakness, paper cut",ORANGE,6,5
+severe trauma,RED,7,1
+mild nausea,GREEN,2,1
+"back pain, animal bite deep",ORANGE,5,2
+"mild headache, muscle soreness after exercise",GREEN,2,2
+mild constipation,GREEN,2,1
+"confusion, no pulse detected",RED,7,2
+severe head trauma,RED,7,1
+"stab wound, drug overdose suspected",RED,7,2
+"mild body ache, stuffy nose, ear pain, mild acne",YELLOW,3,4
+"severe trauma, nausea and vomiting, severe dehydration, diabetic emergency",RED,7,4
+"shortness of breath, multi organ failure signs, spinal injury suspected, persistent cough, broken bone visible",RED,7,5
+minor rash,GREEN,2,1
+"mild bloating, dandruff, skin rash with fever, weight loss unintentional",YELLOW,4,4
+hiccups,GREEN,1,1
+"spinal injury suspected, severe trauma, multi organ failure signs",RED,7,3
+"chest pain, stroke symptoms, minor bruise, paper cut, stab wound",RED,7,5
+"sudden weakness, difficulty speaking suddenly, animal bite deep",ORANGE,6,3
+"difficulty breathing, severe infection signs, eye injury",ORANGE,6,3
+"loss of consciousness brief, skin rash with fever",ORANGE,6,2
+"coughing blood, vomiting blood",ORANGE,6,2
+"minor rash, eye pain, muscle cramps, mild stomach discomfort",YELLOW,3,4
+"watery eyes, mild body ache",GREEN,2,2
+"sneezing, skin infection, joint pain, mild anxiety, mild sunburn",YELLOW,3,5
+"mild nausea, sore throat with fever, chronic indigestion, mild acne",YELLOW,4,4
+"sneezing, painful urination, numbness in fingers, wheezing, runny nose",YELLOW,4,5
+"occasional heartburn, vomiting",YELLOW,4,2
+"runny nose, minor bruise, insomnia",GREEN,2,3
+"unconscious, electrocution",RED,7,2
+"abdominal pain, joint pain",YELLOW,4,2
+"mild fatigue, frequent urination",YELLOW,3,2
+persistent headache,YELLOW,3,1
+hiccups,GREEN,1,1
+"mild headache, mild anxiety, slight sore throat",GREEN,2,3
+hiccups,GREEN,1,1
+"mild body ache, skin infection, mild constipation",YELLOW,3,3
+diarrhea,YELLOW,3,1
+"mild bloating, mild headache, mild stomach discomfort",GREEN,2,3
+"mild stomach discomfort, paper cut",GREEN,2,2
+"mild acne, mild sunburn, minor mouth ulcer",GREEN,2,3
+"ankle swelling, severe chest tightness, unconscious, no pulse detected, insomnia",RED,7,5
+severe head trauma,RED,7,1
+"mild allergies, common cold, mild acne",GREEN,2,3
+"blurred vision, skin infection, skin rash with fever",YELLOW,4,3
+"dry skin, mild cough, common cold",GREEN,1,3
+"mild nausea, mild bloating",GREEN,2,2
+"muscle cramps, weight loss unintentional, minor bruise",YELLOW,4,3
+"sudden weakness, mild stomach discomfort, numbness one side, severe asthma attack, mild headache",ORANGE,6,5
+watery eyes,GREEN,1,1
+"severe pain, confusion, mild fatigue",ORANGE,5,3
+"severe back pain radiating, eye injury, open wound deep",ORANGE,5,3
+"mild itching, mild sunburn, numbness in fingers",YELLOW,3,3
+"mild itching, high fever, back pain, muscle soreness after exercise, dandruff",YELLOW,4,5
+"tension pneumothorax, unconscious, severe bleeding uncontrolled",RED,7,3
+"minor rash, swollen lymph nodes, dry skin, mild fatigue",YELLOW,3,4
+"joint pain, chapped lips, numbness in fingers, mild fatigue, mild itching, night sweats",YELLOW,4,6
+dizziness,YELLOW,4,1
+slight sore throat,GREEN,1,1
+"choking, stab wound",RED,7,2
+"mild stomach discomfort, mild headache",GREEN,2,2
+"open wound deep, multi organ failure signs, heart attack symptoms",RED,7,3
+"mild anxiety, chest pain, muscle soreness after exercise, watery eyes, severe head trauma, drowning",RED,7,6
+"chronic indigestion, vomiting, severe chest tightness",ORANGE,6,3
+"choking, severe trauma",RED,7,2
+"electrocution, cardiac arrest, eye injury",RED,7,3
+"difficulty breathing, severe allergic reaction",ORANGE,6,2
+"insomnia, mild constipation",GREEN,2,2
+occasional heartburn,GREEN,2,1
+"mild headache, mild fatigue",GREEN,2,2
+"seizure continuous, multi organ failure signs, gunshot wound",RED,7,3
+"dehydration, chronic indigestion, skin rash with fever",YELLOW,4,3
+coughing blood,ORANGE,6,1
+confusion,ORANGE,5,1
+"mild sunburn, mild itching, minor mouth ulcer",GREEN,2,3
+"insomnia, drowning, loss of consciousness prolonged",RED,7,3
+"sneezing, broken bone visible, minor bruise, difficulty speaking suddenly, numbness in fingers, sudden weakness",ORANGE,6,6
+"skin rash with fever, massive hemorrhage, anaphylaxis",RED,7,3
+"urinary burning, severe burn, drug overdose suspected, severe headache",ORANGE,6,4
+mild headache,GREEN,1,1
+"severe pain, severe chest tightness, facial drooping",ORANGE,6,3
+chest pain,RED,7,1
+"stuffy nose, chronic indigestion, chest tightness, chapped lips",YELLOW,4,4
+"gunshot wound, mild body ache",RED,7,2
+blood in urine,YELLOW,4,1
+"chemical exposure, skin infection, broken bone visible, eye injury",ORANGE,6,4
+"blue lips, choking, septic shock symptoms",RED,7,3
+"night sweats, wheezing, eye pain, mild itching, watery eyes, insomnia",YELLOW,4,6
+"mild body ache, ear pain, muscle cramps, mild stomach discomfort",YELLOW,3,4
+"minor rash, chapped lips, night sweats, weight loss unintentional, swollen lymph nodes, mild cough",YELLOW,4,6
+"confusion, sudden weakness, loss of consciousness brief",ORANGE,6,3
+mild bloating,GREEN,2,1
+"severe dehydration, mild cough, mild constipation, mild nausea",ORANGE,5,4
+minor bruise,GREEN,1,1
+"urinary burning, sprained ankle, jaundice",YELLOW,4,3
+"mild sunburn, septic shock symptoms",RED,7,2
+"back pain, severe allergic reaction, mild allergies, mild fatigue, chemical exposure, severe pain",ORANGE,6,6
+"anaphylaxis, heart attack symptoms, tension pneumothorax",RED,7,3
+vomiting blood,ORANGE,6,1
+"cardiac arrest, spinal injury suspected",RED,7,2
+"mild itching, occasional heartburn",GREEN,2,2
+"facial drooping, head injury, minor mouth ulcer",ORANGE,6,3
+"fever, dehydration, severe head trauma, multi organ failure signs, chapped lips",RED,7,5
+"chronic indigestion, mild fatigue, persistent fatigue, mild allergies, mild bloating",YELLOW,3,5
+"common cold, minor mouth ulcer",GREEN,2,2
+"mild stomach discomfort, chronic indigestion",YELLOW,3,2
+"septic shock symptoms, hiccups, sudden weakness",RED,7,3
+"dry skin, sprained ankle, mild allergies, painful urination, mild anxiety, eye pain",YELLOW,3,6
+paper cut,GREEN,1,1
+"loss of consciousness brief, mild nausea, sore throat with fever",ORANGE,6,3
+"muscle soreness after exercise, mild cough",GREEN,2,2
+"mild body ache, slight sore throat",GREEN,2,2
+severe chest tightness,ORANGE,6,1
+"anaphylaxis, seizure continuous, seizure single, loss of consciousness prolonged, common cold",RED,7,5
+"minor mouth ulcer, broken bone visible, paper cut, abdominal pain, confusion",ORANGE,6,5
+minor mouth ulcer,GREEN,2,1
+"severe abdominal pain, vomiting blood, dandruff, mild sunburn",ORANGE,6,4
+"mild nausea, mild fatigue",GREEN,2,2
+"persistent fatigue, dry skin",YELLOW,3,2
+"heart attack symptoms, muscle soreness after exercise, severe bleeding uncontrolled, blurred vision, drowning, sneezing",RED,7,6
+"runny nose, dry skin, chapped lips, chest tightness, ankle swelling, persistent cough",YELLOW,4,6
+"no pulse detected, cardiac arrest",RED,7,2
+"severe head trauma, no pulse detected, gunshot wound",RED,7,3
+"anaphylaxis, stab wound, heart attack symptoms",RED,7,3
+"choking, mild constipation",RED,7,2
+"ear pain, minor rash, insomnia, swollen lymph nodes",YELLOW,3,4
+"mild cough, stuffy nose, minor bruise",GREEN,1,3
+minor mouth ulcer,GREEN,2,1
+"slight sore throat, eye pain, mild constipation, dandruff",YELLOW,3,4
+"mild cough, back pain, blood in urine, occasional heartburn",YELLOW,4,4
+"massive hemorrhage, multi organ failure signs, no pulse detected",RED,7,3
+"mild bloating, mild headache, mild constipation",GREEN,2,3
+"chest pain, severe asthma attack, severe trauma",RED,7,3
+"nausea and vomiting, sore throat with fever, jaundice, chapped lips",YELLOW,4,4
+"high fever with chills, shortness of breath, severe back pain radiating",ORANGE,6,3
+"mild stomach discomfort, common cold, watery eyes",GREEN,2,3
+"persistent cough, severe asthma attack, occasional heartburn",ORANGE,6,3
+"wheezing, mild cough",YELLOW,4,2
+"facial drooping, stuffy nose, mild headache, diarrhea",ORANGE,6,4
+"shortness of breath, severe back pain radiating, severe allergic reaction",ORANGE,6,3
+"mild stomach discomfort, mild anxiety, toothache severe",YELLOW,3,3
+loss of consciousness brief,ORANGE,6,1
+"runny nose, minor mouth ulcer, mild acne",GREEN,2,3
+"swollen lymph nodes, severe dehydration, confusion, vomiting",ORANGE,5,4
+"watery eyes, insomnia, mild sunburn",GREEN,2,3
+"mild sunburn, weight loss unintentional, persistent fatigue, joint pain, mild headache, minor rash",YELLOW,4,6
+eye injury,ORANGE,5,1
+"abdominal pain, dizziness, nausea and vomiting",YELLOW,4,3
+"dandruff, persistent cough, dehydration, back pain, muscle soreness after exercise",YELLOW,4,5
+"night sweats, sore throat with fever, frequent urination",YELLOW,4,3
+"runny nose, mild bloating, paper cut",GREEN,2,3
+"hiccups, back pain, mild sunburn, severe trauma",RED,7,4
+"spinal injury suspected, severe pain, stab wound, toothache severe, weight loss unintentional, multi organ failure signs",RED,7,6
+"dandruff, mild cough",GREEN,1,2
+"numbness in fingers, stuffy nose",YELLOW,3,2
+"blood in urine, high fever, minor mouth ulcer, mild body ache",YELLOW,4,4
+"confusion, eye injury",ORANGE,5,2
+"muscle cramps, mild cough, runny nose, blood in urine",YELLOW,4,4
+"mild headache, minor rash",GREEN,2,2
+chapped lips,GREEN,1,1
+"chapped lips, dry skin, ankle swelling",YELLOW,3,3
+"dry skin, watery eyes, minor bruise",GREEN,1,3
+"broken bone visible, shortness of breath, numbness one side",ORANGE,6,3
+stuffy nose,GREEN,1,1
+severe allergic reaction,ORANGE,6,1
+"painful urination, open wound deep, blue lips, loss of consciousness prolonged, muscle cramps, electrocution",RED,7,6
+"muscle soreness after exercise, back pain, mild cough, mild nausea",YELLOW,3,4
+mild sunburn,GREEN,2,1
+"dizziness, mild nausea, joint pain, drug overdose suspected, seizure single",ORANGE,6,5
+"severe chest tightness, high fever with chills, difficulty breathing",ORANGE,6,3
+dandruff,GREEN,1,1
+"mild nausea, sneezing",GREEN,2,2
+"severe dehydration, broken bone visible",ORANGE,6,2
+"numbness one side, severe allergic reaction",ORANGE,6,2
+"minor bruise, mild itching",GREEN,1,2
+"mild itching, hiccups, runny nose",GREEN,1,3
+"severe dehydration, seizure single",ORANGE,5,2
+"high fever, occasional heartburn, eye pain, mild stomach discomfort, mild constipation",YELLOW,4,5
+"severe back pain radiating, severe chest tightness, mild fatigue, severe asthma attack",ORANGE,6,4
+"muscle soreness after exercise, chapped lips",GREEN,2,2
+"minor rash, minor bruise, minor fracture pain, abdominal pain, mild allergies, dehydration",YELLOW,4,6
+"mild fatigue, minor mouth ulcer, mild acne",GREEN,2,3
+"mild constipation, slight sore throat",GREEN,2,2
+"eye pain, sudden weakness, diabetic emergency, runny nose, muscle cramps",ORANGE,6,5
+high fever with chills,ORANGE,5,1
+"chapped lips, numbness one side, broken bone visible, insomnia",ORANGE,6,4
+"no pulse detected, multi organ failure signs",RED,7,2
+mild acne,GREEN,1,1
+"slight sore throat, mild allergies",GREEN,2,2
+"mild stomach discomfort, paper cut, mild body ache",GREEN,2,3
+"diarrhea, severe dehydration, numbness in fingers",ORANGE,5,3
+"mild acne, night sweats, joint pain, chronic indigestion",YELLOW,4,4
+"dry skin, mild headache, insomnia",GREEN,2,3
+"severe chest tightness, broken bone visible, shortness of breath",ORANGE,6,3
+"seizure single, vomiting blood",ORANGE,6,2
+"mild stomach discomfort, hiccups, sneezing",GREEN,2,3
+"mild bloating, minor bruise",GREEN,2,2
+"persistent cough, mild body ache, skin rash with fever, muscle soreness after exercise, blurred vision",YELLOW,4,5
+"abdominal pain, chest pain",RED,7,2
+"severe allergic reaction, severe head trauma, severe bleeding uncontrolled, blue lips, mild bloating",RED,7,5
+"difficulty speaking suddenly, chest tightness, minor rash, watery eyes",ORANGE,6,4
+"drug overdose suspected, jaundice, severe back pain radiating",ORANGE,6,3
+"dizziness, severe trauma, stab wound",RED,7,3
+"severe burn, mild headache",ORANGE,6,2
+"minor fracture pain, persistent headache, night sweats",YELLOW,4,3
+"mild body ache, blurred vision, mild allergies",YELLOW,4,3
+slight sore throat,GREEN,1,1
+"mild body ache, minor fracture pain",YELLOW,4,2
+"dizziness, open wound deep, loss of consciousness brief, dandruff, severe burn",ORANGE,6,5
+"anaphylaxis, stroke symptoms",RED,7,2
+"mild fatigue, mild itching, insomnia",GREEN,2,3
+"mild sunburn, eye pain",YELLOW,3,2
+"runny nose, paper cut, sneezing",GREEN,1,3
+"hiccups, mild sunburn, mild stomach discomfort",GREEN,2,3
+"seizure single, eye pain, severe back pain radiating",ORANGE,5,3
+"mild itching, insomnia, mild body ache",GREEN,2,3
+"confusion, migraine",ORANGE,5,2
+"severe bleeding uncontrolled, cardiac arrest, chest pain",RED,7,3
+"cardiac arrest, choking, persistent headache, tension pneumothorax",RED,7,4
+"coughing blood, difficulty breathing, watery eyes, poisoning suspected, mild allergies",ORANGE,6,5
+"vomiting blood, chemical exposure",ORANGE,6,2
+"stab wound, shortness of breath, stroke symptoms, severe trauma, severe chest tightness",RED,7,5
+"animal bite deep, minor bruise",ORANGE,5,2
+"mild bloating, mild acne",GREEN,2,2
+"mild sunburn, mild headache, insomnia",GREEN,2,3
+"minor mouth ulcer, mild acne, mild nausea",GREEN,2,3
+"high fever with chills, difficulty speaking suddenly",ORANGE,6,2
+"chest tightness, stroke symptoms, joint pain, animal bite deep",RED,7,4
+"mild nausea, dandruff",GREEN,2,2
+"watery eyes, mild fatigue",GREEN,2,2
+mild stomach discomfort,GREEN,2,1
+mild nausea,GREEN,2,1
+"mild acne, blood in urine, mild fatigue, mild allergies",YELLOW,4,4
+"hiccups, severe allergic reaction, severe burn, animal bite deep",ORANGE,6,4
+mild anxiety,GREEN,2,1
+"sneezing, diarrhea, severe allergic reaction, severe burn, muscle soreness after exercise",ORANGE,6,5
+"painful urination, chest tightness",YELLOW,4,2
+"shortness of breath, animal bite deep",ORANGE,6,2
+"shortness of breath, drowning, nausea and vomiting, gunshot wound",RED,7,4
+"mild nausea, watery eyes",GREEN,2,2
+"minor fracture pain, unconscious, septic shock symptoms",RED,7,3
+"high fever with chills, back pain, common cold, severe chest tightness",ORANGE,6,4
+"nausea and vomiting, vomiting, back pain, sneezing",YELLOW,4,4
+minor mouth ulcer,GREEN,2,1
+"loss of consciousness prolonged, urinary burning",RED,7,2
+severe trauma,RED,7,1
+"mild headache, urinary burning, animal bite deep",ORANGE,5,3
+mild itching,GREEN,1,1
+"mild stomach discomfort, persistent cough, mild acne",YELLOW,3,3
+"mild fatigue, paper cut, weight loss unintentional, runny nose",YELLOW,4,4
+"dehydration, mild cough, mild body ache, eye pain, muscle soreness after exercise",YELLOW,4,5
+"severe burn, severe asthma attack, severe back pain radiating",ORANGE,6,3
+"difficulty breathing, night sweats, stuffy nose, paper cut",ORANGE,6,4
+"not breathing, chest pain, anaphylaxis",RED,7,3
+"mild constipation, septic shock symptoms, not breathing, severe infection signs, drowning, jaundice",RED,7,6
+"sudden weakness, muscle soreness after exercise, frequent urination, chapped lips",ORANGE,5,4
+mild acne,GREEN,1,1
+"severe nosebleed, numbness one side, diabetic emergency",ORANGE,6,3
+severe nosebleed,ORANGE,5,1
+dehydration,YELLOW,4,1
+"paper cut, mild allergies",GREEN,2,2
+"diarrhea, muscle cramps, swollen lymph nodes",YELLOW,3,3
+"mild anxiety, mild fatigue, watery eyes",GREEN,2,3
+"muscle soreness after exercise, paper cut, toothache severe, insomnia, nausea and vomiting, sprained ankle",YELLOW,4,6
+"not breathing, severe trauma, no pulse detected",RED,7,3
+"open wound deep, mild body ache, blood in stool",ORANGE,5,3
+"electrocution, ear pain, anaphylaxis, severe nosebleed, severe chest tightness",RED,7,5
+"fever, stuffy nose",YELLOW,4,2
+"insomnia, paper cut",GREEN,2,2
+"dizziness, chest tightness, dehydration, facial drooping, severe asthma attack",ORANGE,6,5
+"vomiting blood, blurred vision, sneezing",ORANGE,6,3
+"joint pain, blood in urine, night sweats, sneezing",YELLOW,4,4
+"broken bone visible, muscle soreness after exercise, coughing blood",ORANGE,6,3
+"stuffy nose, common cold",GREEN,1,2
+"diarrhea, severe pain, loss of consciousness prolonged, mild nausea",RED,7,4
+"severe nosebleed, severe headache, minor bruise, occasional heartburn",ORANGE,5,4
+"dry skin, mild constipation, hiccups",GREEN,2,3
+"mild bloating, sprained ankle, mild cough, sore throat with fever, dehydration",YELLOW,4,5
+mild constipation,GREEN,2,1
+"blue lips, tension pneumothorax, animal bite deep, vomiting blood, unconscious, severe nosebleed",RED,7,6
+"chest pain, fever, numbness in fingers, severe trauma, not breathing",RED,7,5
+"muscle cramps, painful urination, eye pain",YELLOW,3,3
+"muscle cramps, mild cough, chapped lips, mild body ache",YELLOW,3,4
+muscle soreness after exercise,GREEN,2,1
+muscle soreness after exercise,GREEN,2,1
+toothache severe,YELLOW,3,1
+tension pneumothorax,RED,7,1
+"mild headache, severe nosebleed, mild nausea",ORANGE,5,3
+seizure single,ORANGE,5,1
+"chemical exposure, severe allergic reaction, seizure single",ORANGE,6,3
+"joint pain, chronic indigestion, sneezing, toothache severe, muscle soreness after exercise",YELLOW,3,5
+"chapped lips, runny nose, mild stomach discomfort",GREEN,2,3
+"head injury, muscle soreness after exercise",ORANGE,6,2
+"chapped lips, mild fatigue, mild itching",GREEN,2,3
+"unconscious, heart attack symptoms",RED,7,2
+"minor fracture pain, eye injury, difficulty speaking suddenly",ORANGE,6,3
+"runny nose, severe pain, severe abdominal pain, open wound deep",ORANGE,6,4
+"facial drooping, seizure single",ORANGE,6,2
+"eye injury, blood in stool, severe headache",ORANGE,5,3
+"jaundice, stuffy nose, mild cough, mild headache, sprained ankle, persistent fatigue",YELLOW,4,6
+"slight sore throat, chapped lips, minor bruise",GREEN,1,3
+"seizure continuous, drowning, unconscious",RED,7,3
+"massive hemorrhage, mild body ache, gunshot wound, severe pain, mild itching",RED,7,5
+"mild bloating, sneezing, mild body ache",GREEN,2,3
+"poisoning suspected, facial drooping, open wound deep",ORANGE,6,3
+"paper cut, swollen lymph nodes, fever, poisoning suspected",ORANGE,6,4
+sudden weakness,ORANGE,5,1
+"painful urination, facial drooping, occasional heartburn, mild nausea",ORANGE,6,4
+"jaundice, chapped lips, frequent urination, wheezing",YELLOW,4,4
+"weight loss unintentional, runny nose, mild cough, muscle soreness after exercise",YELLOW,4,4
+numbness in fingers,YELLOW,3,1
+"mild headache, runny nose, paper cut",GREEN,1,3
+"mild nausea, loss of consciousness brief, dry skin, chronic indigestion",ORANGE,6,4
+"mild body ache, minor rash",GREEN,2,2
+"dizziness, migraine",YELLOW,4,2
+"swollen lymph nodes, ear pain",YELLOW,3,2
+"severe pain, vomiting, massive hemorrhage, blue lips",RED,7,4
+"severe chest tightness, joint pain, sprained ankle, vomiting blood, muscle cramps",ORANGE,6,5
+occasional heartburn,GREEN,2,1
+"common cold, mild headache, watery eyes",GREEN,1,3
+"toothache severe, blood in urine, skin rash with fever",YELLOW,4,3
+severe nosebleed,ORANGE,5,1
+"loss of consciousness brief, weight loss unintentional, urinary burning, broken bone visible",ORANGE,6,4
+"severe back pain radiating, severe chest tightness, difficulty speaking suddenly, skin infection, slight sore throat, mild nausea",ORANGE,6,6
+"mild itching, mild constipation",GREEN,2,2
+"mild sunburn, numbness in fingers, slight sore throat, vomiting, minor bruise",YELLOW,4,5
+"mild headache, difficulty breathing, runny nose, abdominal pain",ORANGE,6,4
+"severe headache, watery eyes, minor bruise, vomiting blood, skin rash with fever",ORANGE,6,5
+occasional heartburn,GREEN,2,1
+"night sweats, nausea and vomiting, severe chest tightness",ORANGE,6,3
+"mild stomach discomfort, paper cut, slight sore throat",GREEN,2,3
+"severe headache, vomiting blood, severe burn",ORANGE,6,3
+"blue lips, heart attack symptoms, high fever with chills",RED,7,3
+"severe allergic reaction, mild nausea, diabetic emergency, ankle swelling",ORANGE,6,4
+"anaphylaxis, stab wound, minor rash, severe infection signs, severe bleeding uncontrolled",RED,7,5
+"minor bruise, persistent cough, dry skin",YELLOW,3,3
+"mild itching, sneezing",GREEN,1,2
+"facial drooping, drug overdose suspected",ORANGE,6,2
+"watery eyes, minor bruise",GREEN,1,2
+insomnia,GREEN,2,1
+"mild headache, not breathing, cardiac arrest, occasional heartburn, diarrhea",RED,7,5
+"mild bloating, mild nausea, occasional heartburn",GREEN,2,3
+"wheezing, vomiting blood, severe back pain radiating, chemical exposure",ORANGE,6,4
+"blood in urine, toothache severe, dry skin",YELLOW,4,3
+"seizure continuous, no pulse detected, chapped lips",RED,7,3
+"muscle cramps, chest tightness, sore throat with fever",YELLOW,4,3
+"muscle soreness after exercise, mild cough",GREEN,2,2
+"blurred vision, sore throat with fever",YELLOW,4,2
+"sprained ankle, broken bone visible, vomiting blood, muscle soreness after exercise",ORANGE,6,4
+"watery eyes, mild allergies, minor bruise",GREEN,2,3
+"hiccups, mild constipation, sneezing",GREEN,2,3
+"unconscious, drowning",RED,7,2
+"blood in urine, sprained ankle, dehydration",YELLOW,4,3
+"dizziness, nausea and vomiting, persistent fatigue",YELLOW,4,3
+"ankle swelling, painful urination",YELLOW,3,2
+"seizure single, severe chest tightness, chronic indigestion",ORANGE,6,3
+"paper cut, sneezing, mild nausea",GREEN,2,3
+ankle swelling,YELLOW,3,1
+"spinal injury suspected, shortness of breath",RED,7,2
+"severe bleeding uncontrolled, numbness in fingers, blood in stool, stroke symptoms",RED,7,4
+"back pain, persistent cough, joint pain",YELLOW,3,3
+"choking, anaphylaxis, severe back pain radiating",RED,7,3
+"difficulty breathing, mild itching, paper cut",ORANGE,6,3
+"skin infection, animal bite deep, painful urination",ORANGE,5,3
+"seizure single, stroke symptoms, ear pain",RED,7,3
+"night sweats, ankle swelling, mild stomach discomfort",YELLOW,4,3
+"cardiac arrest, eye pain, gunshot wound",RED,7,3
+"muscle cramps, gunshot wound",RED,7,2
+common cold,GREEN,1,1
+"broken bone visible, numbness in fingers, open wound deep, severe dehydration",ORANGE,6,4
+"numbness one side, chemical exposure",ORANGE,6,2
+"minor bruise, mild headache",GREEN,1,2
+"skin rash with fever, painful urination",YELLOW,4,2
+"severe back pain radiating, mild bloating, severe chest tightness",ORANGE,6,3
+"dandruff, insomnia, occasional heartburn",GREEN,2,3
+"hiccups, dry skin, mild constipation",GREEN,2,3
+"vomiting, high fever with chills, runny nose, severe nosebleed",ORANGE,5,4
+"minor mouth ulcer, mild sunburn, stuffy nose",GREEN,2,3
+"painful urination, mild stomach discomfort, toothache severe, runny nose, mild anxiety",YELLOW,3,5
+"mild bloating, muscle soreness after exercise, paper cut",GREEN,2,3
+"mild cough, occasional heartburn, mild constipation",GREEN,2,3
+"broken bone visible, severe back pain radiating, persistent headache",ORANGE,6,3
+"confusion, mild sunburn, mild fatigue",ORANGE,5,3
+"vomiting blood, animal bite deep, minor mouth ulcer",ORANGE,6,3
+"mild fatigue, blood in urine, minor bruise, mild allergies, persistent headache",YELLOW,4,5
+vomiting,YELLOW,4,1
+"persistent fatigue, mild acne, minor rash, diabetic emergency",ORANGE,6,4
+"muscle soreness after exercise, abdominal pain, chronic indigestion, slight sore throat, chest tightness",YELLOW,4,5
+"occasional heartburn, runny nose, persistent cough, migraine, minor rash, muscle cramps",YELLOW,4,6
+"mild itching, sneezing",GREEN,1,2
+hiccups,GREEN,1,1
+"minor fracture pain, dizziness, dry skin",YELLOW,4,3
+"mild stomach discomfort, back pain, persistent headache, urinary burning",YELLOW,4,4
+mild acne,GREEN,1,1
+"high fever with chills, coughing blood, sudden weakness, sneezing",ORANGE,6,4
+"loss of consciousness prolonged, mild headache, persistent cough, severe bleeding uncontrolled, diabetic emergency",RED,7,5
+"no pulse detected, muscle cramps, head injury, severe burn, seizure continuous",RED,7,5
+heart attack symptoms,RED,7,1
+"skin infection, mild anxiety, septic shock symptoms, chemical exposure",RED,7,4
+"jaundice, ankle swelling, persistent fatigue",YELLOW,4,3
+"coughing blood, massive hemorrhage",RED,7,2
+"stab wound, septic shock symptoms, severe back pain radiating",RED,7,3
+"persistent cough, dry skin, blurred vision",YELLOW,4,3
+"persistent fatigue, nausea and vomiting",YELLOW,4,2
+"severe trauma, drowning, chest pain",RED,7,3
+"watery eyes, blood in stool, mild body ache, numbness in fingers, poisoning suspected",ORANGE,6,5
+"shortness of breath, mild headache, weight loss unintentional, diabetic emergency",ORANGE,6,4
+"drug overdose suspected, common cold, loss of consciousness brief, dehydration, dandruff",ORANGE,6,5
+"weight loss unintentional, chronic indigestion",YELLOW,4,2
+"stuffy nose, blue lips",RED,7,2
+"high fever, sneezing, blurred vision, urinary burning",YELLOW,4,4
+"slight sore throat, mild constipation",GREEN,2,2
+"anaphylaxis, severe head trauma, massive hemorrhage",RED,7,3
+"chronic indigestion, ear pain, fever",YELLOW,4,3
+"toothache severe, mild sunburn, severe back pain radiating, frequent urination",ORANGE,5,4
+"mild stomach discomfort, painful urination, severe chest tightness, sneezing",ORANGE,6,4
+"mild fatigue, minor rash",GREEN,2,2
+"shortness of breath, numbness in fingers, severe pain, mild bloating, open wound deep",ORANGE,6,5
+"choking, mild anxiety, occasional heartburn, paper cut",RED,7,4
+stuffy nose,GREEN,1,1
+"occasional heartburn, ankle swelling, stuffy nose",YELLOW,3,3
+"joint pain, occasional heartburn, dehydration, dandruff, persistent cough, hiccups",YELLOW,4,6
+"severe allergic reaction, seizure single, animal bite deep",ORANGE,6,3
+"weight loss unintentional, chest tightness, mild sunburn",YELLOW,4,3
+"drowning, severe head trauma, anaphylaxis",RED,7,3
+"mild nausea, back pain, sneezing, minor rash",YELLOW,3,4
+stuffy nose,GREEN,1,1
+"vomiting, mild nausea, severe burn, night sweats",ORANGE,6,4
+"eye injury, vomiting blood, severe pain",ORANGE,6,3
+"sprained ankle, seizure single, blood in stool",ORANGE,5,3
+"severe allergic reaction, severe chest tightness, mild bloating, drug overdose suspected, mild fatigue",ORANGE,6,5
+watery eyes,GREEN,1,1
+"dehydration, severe head trauma, drowning",RED,7,3
+"eye injury, mild anxiety, weight loss unintentional, chest tightness",ORANGE,5,4
+blood in stool,ORANGE,5,1
+"stuffy nose, mild constipation, numbness in fingers, mild anxiety, vomiting",YELLOW,4,5
+"severe bleeding uncontrolled, severe headache, severe allergic reaction",RED,7,3
+"mild allergies, dry skin",GREEN,2,2
+"occasional heartburn, abdominal pain, minor bruise, back pain",YELLOW,4,4
+"hiccups, sneezing, runny nose",GREEN,1,3
+mild cough,GREEN,1,1
+mild allergies,GREEN,2,1
+"common cold, diabetic emergency, broken bone visible, mild fatigue, migraine",ORANGE,6,5
+"mild sunburn, blood in urine",YELLOW,4,2
+"eye pain, muscle soreness after exercise, mild body ache, numbness in fingers, wheezing, mild cough",YELLOW,4,6
+"abdominal pain, muscle cramps, blood in urine",YELLOW,4,3
+"stab wound, chronic indigestion, severe bleeding uncontrolled",RED,7,3
+"head injury, electrocution",RED,7,2
+"frequent urination, chapped lips, minor mouth ulcer, mild headache",YELLOW,3,4
+"sneezing, painful urination",YELLOW,3,2
+"difficulty breathing, mild allergies",ORANGE,6,2
+blurred vision,YELLOW,4,1
+gunshot wound,RED,7,1
+"broken bone visible, open wound deep, chest tightness",ORANGE,6,3
+"stroke symptoms, electrocution",RED,7,2
+"mild constipation, confusion, broken bone visible, frequent urination",ORANGE,6,4
+"mild cough, mild constipation, mild sunburn, ankle swelling, painful urination",YELLOW,3,5
+"paper cut, mild anxiety",GREEN,2,2
+"ear pain, skin infection",YELLOW,3,2
+paper cut,GREEN,1,1
+"watery eyes, mild body ache",GREEN,2,2
+mild nausea,GREEN,2,1
+"mild anxiety, skin rash with fever, wheezing, occasional heartburn, mild headache, numbness in fingers",YELLOW,4,6
+"mild nausea, mild sunburn, occasional heartburn, weight loss unintentional",YELLOW,4,4
+minor bruise,GREEN,1,1
+"chapped lips, mild constipation",GREEN,2,2
+"multi organ failure signs, vomiting, numbness in fingers, chest pain, not breathing",RED,7,5
+"urinary burning, mild cough, night sweats, severe dehydration, severe asthma attack, numbness one side",ORANGE,6,6
+"seizure continuous, stroke symptoms, gunshot wound",RED,7,3
+"sneezing, choking, not breathing, severe asthma attack, sudden weakness, seizure continuous",RED,7,6
+"mild headache, sneezing, mild body ache",GREEN,2,3
+"mild sunburn, mild anxiety",GREEN,2,2
+"joint pain, mild allergies, runny nose, mild acne",YELLOW,3,4
+"occasional heartburn, common cold, muscle soreness after exercise",GREEN,2,3
+"dandruff, animal bite deep, confusion, occasional heartburn, broken bone visible, mild anxiety",ORANGE,6,6
+"watery eyes, high fever",YELLOW,4,2
+"occasional heartburn, drug overdose suspected, shortness of breath, severe abdominal pain",ORANGE,6,4
+"hiccups, dry skin, stuffy nose, dizziness",YELLOW,4,4
+"mild acne, minor mouth ulcer",GREEN,2,2
+"sudden weakness, dandruff, multi organ failure signs, severe pain",RED,7,4
+"vomiting, migraine, mild acne",YELLOW,4,3
+"broken bone visible, severe abdominal pain",ORANGE,6,2
+"drowning, severe pain",RED,7,2
+"muscle soreness after exercise, minor mouth ulcer, mild itching",GREEN,2,3
+"chronic indigestion, watery eyes, mild stomach discomfort, skin infection",YELLOW,3,4
+"mild stomach discomfort, blood in urine, mild acne",YELLOW,4,3
+"dandruff, mild bloating, mild itching",GREEN,2,3
+"chronic indigestion, sneezing",YELLOW,3,2
+heart attack symptoms,RED,7,1
+"poisoning suspected, tension pneumothorax, high fever with chills, chest pain, ear pain",RED,7,5
+"mild fatigue, mild body ache, sneezing",GREEN,2,3
+"abdominal pain, chest tightness, stuffy nose",YELLOW,4,3
+"persistent fatigue, paper cut, insomnia, slight sore throat, vomiting",YELLOW,4,5
+"mild bloating, eye pain, dry skin, mild sunburn, abdominal pain, numbness in fingers",YELLOW,4,6
+mild body ache,GREEN,2,1
+confusion,ORANGE,5,1
+"minor mouth ulcer, mild acne, dry skin",GREEN,2,3
+"insomnia, sneezing, mild allergies",GREEN,2,3
+minor fracture pain,YELLOW,4,1
+"minor rash, dry skin, stuffy nose",GREEN,2,3
+"mild acne, mild constipation, frequent urination",YELLOW,3,3
+"severe back pain radiating, numbness in fingers, chapped lips, dizziness, animal bite deep",ORANGE,5,5
+"dry skin, chapped lips, minor rash",GREEN,2,3
+"dry skin, mild allergies",GREEN,2,2
+"toothache severe, chronic indigestion, mild cough, mild body ache, jaundice",YELLOW,4,5
+"massive hemorrhage, unconscious, severe head trauma",RED,7,3
+"runny nose, minor bruise, hiccups",GREEN,1,3
+"shortness of breath, persistent headache, stroke symptoms, drowning",RED,7,4
+"painful urination, multi organ failure signs, unconscious, severe head trauma",RED,7,4
+"animal bite deep, persistent headache, severe abdominal pain, poisoning suspected, mild stomach discomfort, diarrhea",ORANGE,6,6
+"sore throat with fever, occasional heartburn, sprained ankle",YELLOW,4,3
+"mild body ache, runny nose, mild sunburn",GREEN,2,3
+"vomiting blood, dehydration, septic shock symptoms",RED,7,3
+"no pulse detected, loss of consciousness prolonged, severe head trauma, skin infection, diarrhea, dry skin",RED,7,6
+"head injury, severe dehydration",ORANGE,6,2
+"runny nose, watery eyes, mild nausea",GREEN,2,3
+"common cold, dizziness, dandruff",YELLOW,4,3
+"seizure continuous, heart attack symptoms, urinary burning, stab wound",RED,7,4
+"tension pneumothorax, numbness one side, severe back pain radiating",RED,7,3
+"eye injury, facial drooping, vomiting blood",ORANGE,6,3
+"stuffy nose, mild headache, joint pain, night sweats",YELLOW,4,4
+"watery eyes, mild fatigue, muscle soreness after exercise",GREEN,2,3
+"joint pain, severe infection signs, mild acne, fever",ORANGE,5,4
+"head injury, loss of consciousness prolonged, choking, multi organ failure signs, weight loss unintentional, severe burn",RED,7,6
+"high fever with chills, swollen lymph nodes, persistent headache, coughing blood, severe infection signs",ORANGE,6,5
+"chest pain, no pulse detected, blue lips",RED,7,3
+"high fever with chills, facial drooping, ear pain, insomnia, persistent headache",ORANGE,6,5
+diarrhea,YELLOW,3,1
+"seizure single, chemical exposure, shortness of breath",ORANGE,6,3
+"persistent fatigue, chest tightness",YELLOW,4,2
+chest pain,RED,7,1
+"seizure continuous, occasional heartburn, heart attack symptoms, mild fatigue",RED,7,4
+"joint pain, wheezing, jaundice",YELLOW,4,3
+"dandruff, paper cut, mild cough",GREEN,1,3
+"severe allergic reaction, sudden weakness, mild anxiety, high fever with chills",ORANGE,6,4
+"high fever with chills, swollen lymph nodes, open wound deep, slight sore throat, severe headache",ORANGE,5,5
+"watery eyes, mild sunburn, mild stomach discomfort",GREEN,2,3
+mild acne,GREEN,1,1
+sneezing,GREEN,1,1
+"sudden weakness, toothache severe, difficulty speaking suddenly, abdominal pain, mild anxiety",ORANGE,6,5
+"mild cough, fever, eye pain, occasional heartburn",YELLOW,4,4
+"mild stomach discomfort, chapped lips",GREEN,2,2
+"mild itching, common cold, mild fatigue",GREEN,2,3
+"chronic indigestion, mild acne",YELLOW,3,2
+"mild fatigue, electrocution, stab wound, loss of consciousness prolonged",RED,7,4
+"persistent headache, mild itching, muscle cramps",YELLOW,3,3
+"mild fatigue, massive hemorrhage, chest tightness",RED,7,3
+minor bruise,GREEN,1,1
+slight sore throat,GREEN,1,1
+"mild body ache, mild sunburn, insomnia",GREEN,2,3
+"eye injury, vomiting blood, spinal injury suspected",RED,7,3
+"runny nose, diabetic emergency, mild anxiety, head injury, confusion",ORANGE,6,5
+"mild acne, chest tightness, persistent fatigue, persistent cough, mild body ache, mild nausea",YELLOW,4,6
+"sore throat with fever, hiccups",YELLOW,4,2
+"mild cough, confusion",ORANGE,5,2
+"severe bleeding uncontrolled, not breathing, vomiting, severe abdominal pain, minor bruise, stroke symptoms",RED,7,6
+"no pulse detected, multi organ failure signs, common cold, mild stomach discomfort, confusion",RED,7,5
+"severe infection signs, head injury, mild sunburn, frequent urination",ORANGE,6,4
+"painful urination, runny nose, vomiting",YELLOW,4,3
+"dry skin, minor mouth ulcer, muscle soreness after exercise",GREEN,2,3
+mild itching,GREEN,1,1
+"mild acne, minor bruise, watery eyes",GREEN,1,3
+"facial drooping, severe chest tightness, severe headache",ORANGE,6,3
+"mild body ache, hiccups, no pulse detected, numbness one side",RED,7,4
+"persistent headache, severe burn, severe infection signs, facial drooping",ORANGE,6,4
+"occasional heartburn, paper cut",GREEN,2,2
+"stroke symptoms, cardiac arrest",RED,7,2
+"persistent headache, muscle cramps, minor bruise, chronic indigestion, mild bloating, occasional heartburn",YELLOW,3,6
+"coughing blood, severe allergic reaction, severe nosebleed, weight loss unintentional",ORANGE,6,4
+"persistent fatigue, vomiting, frequent urination, stuffy nose, dandruff",YELLOW,4,5
+"dandruff, nausea and vomiting, eye injury",ORANGE,5,3
+"mild cough, mild allergies, dry skin",GREEN,2,3
+"seizure single, fever",ORANGE,5,2
+"diabetic emergency, blood in stool, high fever",ORANGE,6,3
+"nausea and vomiting, sore throat with fever, mild cough",YELLOW,4,3
+"runny nose, mild fatigue, diarrhea",YELLOW,3,3
+"chest pain, blue lips, high fever, confusion",RED,7,4
+"blue lips, cardiac arrest, severe bleeding uncontrolled",RED,7,3
+"severe chest tightness, mild body ache, swollen lymph nodes, stab wound",RED,7,4
+"mild allergies, blood in urine, ankle swelling, tension pneumothorax, not breathing",RED,7,5
+"minor mouth ulcer, dizziness",YELLOW,4,2
+"mild stomach discomfort, paper cut, runny nose",GREEN,2,3
+mild sunburn,GREEN,2,1
+"mild body ache, severe pain, broken bone visible, high fever, difficulty speaking suddenly, vomiting",ORANGE,6,6
+gunshot wound,RED,7,1
+"minor mouth ulcer, paper cut, watery eyes",GREEN,2,3
+animal bite deep,ORANGE,5,1
+"severe trauma, blue lips, loss of consciousness brief, mild constipation, watery eyes",RED,7,5
+"severe pain, open wound deep, severe allergic reaction, nausea and vomiting",ORANGE,6,4
+"sneezing, mild itching, mild anxiety",GREEN,2,3
+"severe chest tightness, open wound deep, shortness of breath",ORANGE,6,3
+sneezing,GREEN,1,1
+"mild constipation, slight sore throat, severe infection signs, open wound deep, severe abdominal pain",ORANGE,6,5
+"mild stomach discomfort, mild anxiety",GREEN,2,2
+"spinal injury suspected, multi organ failure signs",RED,7,2
+minor fracture pain,YELLOW,4,1
+"abdominal pain, massive hemorrhage",RED,7,2
+muscle soreness after exercise,GREEN,2,1
+"loss of consciousness prolonged, blue lips",RED,7,2
+"high fever with chills, weight loss unintentional, confusion, dizziness, vomiting",ORANGE,5,5
+mild allergies,GREEN,2,1
+"minor rash, chronic indigestion, mild stomach discomfort, coughing blood",ORANGE,6,4
+"mild sunburn, mild stomach discomfort",GREEN,2,2
+"seizure single, sprained ankle, severe headache",ORANGE,5,3
+severe burn,ORANGE,6,1
+gunshot wound,RED,7,1
+"blood in urine, broken bone visible, open wound deep",ORANGE,6,3
+"sudden weakness, mild headache, watery eyes, open wound deep",ORANGE,5,4
+"mild constipation, mild itching, mild fatigue",GREEN,2,3
+"severe burn, drug overdose suspected",ORANGE,6,2
+minor mouth ulcer,GREEN,2,1
+"insomnia, mild sunburn",GREEN,2,2
+severe trauma,RED,7,1
+"mild cough, mild headache",GREEN,1,2
+"broken bone visible, sore throat with fever",ORANGE,6,2
+"sprained ankle, persistent fatigue, nausea and vomiting",YELLOW,4,3
+"vomiting, mild headache, painful urination, mild fatigue, persistent fatigue, insomnia",YELLOW,4,6
+"persistent fatigue, dehydration",YELLOW,4,2
+"chronic indigestion, severe burn, blood in stool, muscle soreness after exercise",ORANGE,6,4
+"minor fracture pain, back pain, weight loss unintentional",YELLOW,4,3
+"slight sore throat, watery eyes",GREEN,1,2
+mild headache,GREEN,1,1
+"spinal injury suspected, eye pain, gunshot wound, stuffy nose, diarrhea, no pulse detected",RED,7,6
+"mild stomach discomfort, mild sunburn, minor rash",GREEN,2,3
+"mild stomach discomfort, mild nausea, migraine",YELLOW,4,3
+"occasional heartburn, weight loss unintentional, minor mouth ulcer, mild itching, joint pain",YELLOW,4,5
+"sneezing, abdominal pain, vomiting blood, hiccups",ORANGE,6,4
+"no pulse detected, shortness of breath, toothache severe, drowning, seizure continuous, blurred vision",RED,7,6
+"massive hemorrhage, drowning, eye pain, tension pneumothorax",RED,7,4
+"skin rash with fever, fever",YELLOW,4,2
+"hiccups, mild nausea, loss of consciousness prolonged, minor rash",RED,7,4
+"blood in stool, severe asthma attack",ORANGE,6,2
+"mild stomach discomfort, runny nose, minor rash",GREEN,2,3
+"mild cough, chest tightness, occasional heartburn, dry skin",YELLOW,4,4
+"severe headache, sudden weakness",ORANGE,5,2
+"common cold, cardiac arrest, not breathing",RED,7,3
+"heart attack symptoms, drowning, slight sore throat, gunshot wound",RED,7,4
+"tension pneumothorax, multi organ failure signs, severe trauma, broken bone visible",RED,7,4
+"runny nose, eye injury, septic shock symptoms",RED,7,3
+"loss of consciousness prolonged, watery eyes, mild itching",RED,7,3
+minor fracture pain,YELLOW,4,1
+minor bruise,GREEN,1,1
+"minor fracture pain, nausea and vomiting, numbness in fingers",YELLOW,4,3
+"spinal injury suspected, cardiac arrest, persistent fatigue, chest pain",RED,7,4
+watery eyes,GREEN,1,1
+"paper cut, mild body ache, dandruff",GREEN,2,3
+broken bone visible,ORANGE,6,1
+"stuffy nose, broken bone visible",ORANGE,6,2
+"choking, chest pain, watery eyes, gunshot wound, paper cut",RED,7,5
+"severe headache, severe allergic reaction, joint pain",ORANGE,6,3
+tension pneumothorax,RED,7,1
+"stuffy nose, mild sunburn, minor rash",GREEN,2,3
+"severe nosebleed, persistent cough",ORANGE,5,2
+"no pulse detected, not breathing, head injury, seizure single",RED,7,4
+"mild nausea, insomnia",GREEN,2,2
+muscle cramps,YELLOW,3,1
+"mild itching, runny nose",GREEN,1,2
+"broken bone visible, diabetic emergency, eye injury, nausea and vomiting, swollen lymph nodes",ORANGE,6,5
+"skin infection, mild sunburn, mild nausea, dry skin",YELLOW,3,4
+"sprained ankle, hiccups, runny nose, mild cough, blood in urine",YELLOW,4,5
+sneezing,GREEN,1,1
+"mild stomach discomfort, runny nose, mild nausea",GREEN,2,3
+"no pulse detected, numbness one side, septic shock symptoms, not breathing",RED,7,4
+minor mouth ulcer,GREEN,2,1
+"mild body ache, tension pneumothorax, difficulty breathing, coughing blood",RED,7,4
+"runny nose, mild acne, mild fatigue",GREEN,2,3
+"mild constipation, stroke symptoms",RED,7,2
+"skin rash with fever, mild bloating, no pulse detected, nausea and vomiting",RED,7,4
+"septic shock symptoms, seizure continuous, gunshot wound",RED,7,3
+"head injury, numbness one side",ORANGE,6,2
+"facial drooping, diabetic emergency, sneezing, drug overdose suspected",ORANGE,6,4
+"facial drooping, seizure continuous",RED,7,2
+"common cold, watery eyes, mild sunburn",GREEN,2,3
+"minor rash, occasional heartburn, persistent cough, urinary burning",YELLOW,4,4
+"cardiac arrest, chest pain",RED,7,2
+"common cold, sneezing, mild allergies",GREEN,2,3
+mild acne,GREEN,1,1
+"wheezing, migraine",YELLOW,4,2
+"minor rash, mild nausea",GREEN,2,2
+"mild itching, mild bloating, mild anxiety",GREEN,2,3
+"ear pain, persistent headache",YELLOW,3,2
+severe dehydration,ORANGE,5,1
+"gunshot wound, high fever with chills, cardiac arrest, ankle swelling",RED,7,4
+"animal bite deep, severe back pain radiating, chest pain, persistent fatigue",RED,7,4
+"spinal injury suspected, cardiac arrest, stab wound, chapped lips, mild headache, slight sore throat",RED,7,6
+muscle soreness after exercise,GREEN,2,1
+minor bruise,GREEN,1,1
+"night sweats, high fever with chills, sudden weakness, migraine, shortness of breath",ORANGE,6,5
+"minor rash, minor fracture pain, blurred vision, mild headache",YELLOW,4,4
+"mild allergies, watery eyes",GREEN,2,2
+"broken bone visible, difficulty speaking suddenly",ORANGE,6,2
+"numbness in fingers, loss of consciousness brief, frequent urination, mild sunburn",ORANGE,6,4
+"blood in stool, multi organ failure signs, broken bone visible",RED,7,3
+"insomnia, loss of consciousness prolonged, severe nosebleed",RED,7,3
+"persistent headache, not breathing, chemical exposure",RED,7,3
+"mild anxiety, mild constipation",GREEN,2,2
+"runny nose, severe asthma attack, high fever with chills, severe dehydration",ORANGE,6,4
+"drowning, fever, drug overdose suspected",RED,7,3
+hiccups,GREEN,1,1
+occasional heartburn,GREEN,2,1
+"mild cough, blurred vision, slight sore throat, mild body ache",YELLOW,4,4
+"runny nose, mild cough",GREEN,1,2
+"ankle swelling, unconscious, mild allergies, shortness of breath, electrocution",RED,7,5
+"dry skin, mild stomach discomfort, common cold",GREEN,2,3
+"hiccups, frequent urination, mild sunburn, sneezing",YELLOW,3,4
+"severe head trauma, multi organ failure signs, stroke symptoms",RED,7,3
+"skin infection, dehydration",YELLOW,4,2
+"chapped lips, blood in urine, mild acne, mild headache, migraine",YELLOW,4,5
+"urinary burning, hiccups, mild body ache, dandruff, nausea and vomiting",YELLOW,4,5
+dandruff,GREEN,1,1
+stuffy nose,GREEN,1,1
+"watery eyes, mild constipation",GREEN,2,2
+"chapped lips, runny nose",GREEN,1,2
+"stuffy nose, chapped lips, mild allergies",GREEN,2,3
+"paper cut, mild stomach discomfort",GREEN,2,2
+"fever, eye pain, muscle cramps, paper cut",YELLOW,4,4
+"dandruff, mild sunburn, mild anxiety",GREEN,2,3
+"common cold, hiccups, joint pain",YELLOW,3,3
+"drowning, loss of consciousness prolonged, tension pneumothorax",RED,7,3
+severe headache,ORANGE,5,1
+"dry skin, watery eyes",GREEN,1,2
+"coughing blood, severe infection signs, severe dehydration, swollen lymph nodes",ORANGE,6,4
+chemical exposure,ORANGE,6,1
+"severe bleeding uncontrolled, massive hemorrhage, tension pneumothorax",RED,7,3
+persistent headache,YELLOW,3,1
+"poisoning suspected, paper cut",ORANGE,6,2
+"mild fatigue, severe headache",ORANGE,5,2
+"mild headache, paper cut",GREEN,1,2
+"drowning, stab wound, gunshot wound, ankle swelling",RED,7,4
+"slight sore throat, mild itching",GREEN,1,2
+"seizure single, severe asthma attack",ORANGE,6,2
+"difficulty breathing, stuffy nose, muscle cramps",ORANGE,6,3
+"high fever, wheezing",YELLOW,4,2
+"stroke symptoms, choking, frequent urination",RED,7,3
+stab wound,RED,7,1
+"numbness in fingers, night sweats, persistent headache, mild allergies, paper cut, common cold",YELLOW,4,6
+"back pain, jaundice",YELLOW,4,2
+"numbness in fingers, paper cut, back pain, mild anxiety, swollen lymph nodes, mild body ache",YELLOW,3,6
+"wheezing, paper cut, mild bloating, mild itching, chest tightness, high fever",YELLOW,4,6
+"severe back pain radiating, broken bone visible",ORANGE,6,2
+chest pain,RED,7,1
+"mild cough, mild stomach discomfort, chapped lips",GREEN,2,3
+"blood in urine, sprained ankle, mild acne",YELLOW,4,3
+"vomiting, painful urination, diabetic emergency, chemical exposure",ORANGE,6,4
+"insomnia, watery eyes",GREEN,2,2
+vomiting blood,ORANGE,6,1
+"minor bruise, stuffy nose",GREEN,1,2
+"open wound deep, animal bite deep, shortness of breath",ORANGE,6,3
+"migraine, severe pain, mild allergies",ORANGE,5,3
+"blood in urine, stuffy nose, diarrhea",YELLOW,4,3
+"blood in stool, mild acne, muscle soreness after exercise, seizure single, mild nausea, confusion",ORANGE,5,6
+"choking, spinal injury suspected, not breathing",RED,7,3
+"jaundice, severe abdominal pain, tension pneumothorax, electrocution, massive hemorrhage, abdominal pain",RED,7,6
+"anaphylaxis, not breathing",RED,7,2
+"mild cough, slight sore throat",GREEN,1,2
+"mild cough, mild stomach discomfort, mild itching",GREEN,2,3
+"common cold, stuffy nose, mild fatigue",GREEN,2,3
+"severe bleeding uncontrolled, loss of consciousness prolonged, unconscious",RED,7,3
+"mild bloating, nausea and vomiting, sneezing, mild cough",YELLOW,4,4
+"mild constipation, persistent headache, mild cough, persistent cough, minor fracture pain",YELLOW,4,5
+no pulse detected,RED,7,1
+stroke symptoms,RED,7,1
+"severe burn, animal bite deep, eye injury, ankle swelling, mild itching, hiccups",ORANGE,6,6
+mild stomach discomfort,GREEN,2,1
+"slight sore throat, runny nose",GREEN,1,2
+"vomiting blood, severe abdominal pain",ORANGE,6,2
+"ear pain, vomiting, persistent cough",YELLOW,4,3
+"insomnia, swollen lymph nodes, occasional heartburn, minor bruise",YELLOW,3,4
+"mild stomach discomfort, stuffy nose, mild nausea",GREEN,2,3
+"paper cut, sprained ankle, dry skin",YELLOW,3,3
+"unconscious, watery eyes, vomiting blood, loss of consciousness prolonged, mild bloating",RED,7,5
+"no pulse detected, electrocution, stroke symptoms, fever",RED,7,4
+"nausea and vomiting, blurred vision, blue lips",RED,7,3
+"skin infection, nausea and vomiting, mild acne",YELLOW,4,3
+difficulty speaking suddenly,ORANGE,6,1
+"severe bleeding uncontrolled, tension pneumothorax, seizure continuous",RED,7,3
+"toothache severe, common cold",YELLOW,3,2
+"mild itching, mild headache, minor rash",GREEN,2,3
+"stuffy nose, chapped lips, mild anxiety",GREEN,2,3
+minor bruise,GREEN,1,1
+"mild headache, insomnia",GREEN,2,2
+"facial drooping, mild fatigue, hiccups, severe nosebleed, nausea and vomiting",ORANGE,6,5
+"persistent cough, mild headache, numbness in fingers",YELLOW,3,3
+"stroke symptoms, anaphylaxis, septic shock symptoms",RED,7,3
+"difficulty breathing, skin rash with fever, stab wound, stroke symptoms, watery eyes",RED,7,5
+"open wound deep, sudden weakness",ORANGE,5,2
+"gunshot wound, choking",RED,7,2
+"migraine, diarrhea, minor rash, nausea and vomiting, mild bloating",YELLOW,4,5
+watery eyes,GREEN,1,1
+"mild anxiety, slight sore throat, numbness in fingers",YELLOW,3,3
+"mild anxiety, nausea and vomiting, mild cough, mild fatigue",YELLOW,4,4
+"joint pain, sneezing, persistent fatigue",YELLOW,3,3
+"mild anxiety, high fever, night sweats, chronic indigestion, minor bruise",YELLOW,4,5
+"mild anxiety, ankle swelling, mild itching, abdominal pain, sneezing",YELLOW,4,5
+hiccups,GREEN,1,1
+mild fatigue,GREEN,2,1
+"ankle swelling, vomiting, eye pain",YELLOW,4,3
+"animal bite deep, facial drooping, head injury",ORANGE,6,3
+"high fever with chills, difficulty breathing",ORANGE,6,2
+"eye pain, diabetic emergency, vomiting blood, dry skin, mild allergies",ORANGE,6,5
+persistent fatigue,YELLOW,3,1
+"severe abdominal pain, severe back pain radiating, mild sunburn, persistent cough, minor mouth ulcer",ORANGE,6,5
+"muscle soreness after exercise, slight sore throat, dry skin",GREEN,2,3
+"loss of consciousness brief, severe dehydration",ORANGE,6,2
+"mild bloating, slight sore throat, mild stomach discomfort",GREEN,2,3
+minor bruise,GREEN,1,1
+"high fever, skin rash with fever, abdominal pain",YELLOW,4,3
+"persistent cough, abdominal pain, night sweats",YELLOW,4,3
+"confusion, runny nose, multi organ failure signs, electrocution, spinal injury suspected",RED,7,5
+stuffy nose,GREEN,1,1
+diabetic emergency,ORANGE,6,1
+"mild anxiety, mild cough, minor bruise",GREEN,2,3
+"persistent cough, hiccups, unconscious, no pulse detected, stab wound, swollen lymph nodes",RED,7,6
+"dry skin, muscle soreness after exercise",GREEN,2,2
+"facial drooping, vomiting blood, skin infection, loss of consciousness brief",ORANGE,6,4
+"diarrhea, skin infection, poisoning suspected",ORANGE,6,3
+"occasional heartburn, mild fatigue, persistent fatigue, paper cut",YELLOW,3,4
+"vomiting blood, spinal injury suspected, weight loss unintentional",RED,7,3
+"minor mouth ulcer, skin rash with fever, mild stomach discomfort",YELLOW,4,3
+"mild allergies, severe allergic reaction, animal bite deep, urinary burning",ORANGE,6,4
+"gunshot wound, loss of consciousness brief, chest pain, confusion",RED,7,4
+"watery eyes, paper cut, difficulty speaking suddenly, shortness of breath",ORANGE,6,4
+"severe dehydration, difficulty breathing",ORANGE,6,2
+"coughing blood, severe nosebleed, vomiting",ORANGE,6,3
+"multi organ failure signs, weight loss unintentional, severe nosebleed",RED,7,3
+"sneezing, occasional heartburn, paper cut",GREEN,2,3
+"sprained ankle, persistent fatigue, slight sore throat, hiccups, mild stomach discomfort",YELLOW,3,5
+"stuffy nose, mild stomach discomfort, runny nose",GREEN,2,3
+mild cough,GREEN,1,1
+"difficulty breathing, eye pain, persistent cough, poisoning suspected, occasional heartburn, chemical exposure",ORANGE,6,6
+"loss of consciousness prolonged, cardiac arrest, not breathing, broken bone visible",RED,7,4
+"runny nose, painful urination",YELLOW,3,2
+"persistent headache, jaundice, back pain",YELLOW,4,3
+"unconscious, stroke symptoms",RED,7,2
+"loss of consciousness brief, severe allergic reaction, wheezing, diarrhea",ORANGE,6,4
+"mild fatigue, severe burn, diabetic emergency, difficulty breathing, skin infection, fever",ORANGE,6,6
+"persistent headache, open wound deep, severe pain, stuffy nose, insomnia, confusion",ORANGE,5,6
+"slight sore throat, minor rash",GREEN,2,2
+chemical exposure,ORANGE,6,1
+"difficulty breathing, occasional heartburn, severe headache, frequent urination",ORANGE,6,4
+"mild constipation, mild cough",GREEN,2,2
+"open wound deep, loss of consciousness prolonged",RED,7,2
+"sudden weakness, mild itching, abdominal pain, occasional heartburn, facial drooping",ORANGE,6,5

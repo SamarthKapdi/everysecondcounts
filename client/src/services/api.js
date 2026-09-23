@@ -12,7 +12,7 @@ const api = axios.create({
 
 // Request interceptor to add token
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('pulsepath-token');
+    const token = localStorage.getItem('esc-token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,8 +26,8 @@ api.interceptors.response.use((response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
       // Handle unauthorized (clear token, redirect to login)
-      localStorage.removeItem('pulsepath-token');
-      localStorage.removeItem('pulsepath-refresh-token');
+      localStorage.removeItem('esc-token');
+      localStorage.removeItem('esc-refresh-token');
       if (window.location.pathname !== '/login') {
         window.location.href = '/login';
       }

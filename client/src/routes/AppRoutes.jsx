@@ -25,15 +25,24 @@ import IncomingEmergencies from '../pages/IncomingEmergencies';
 import ActivePatients from '../pages/ActivePatients';
 import Consultations from '../pages/Consultations';
 import SOSPage from '../pages/SOSPage';
+import AdmissionsDesk from '../pages/AdmissionsDesk';
+import PatientTimeline from '../pages/PatientTimeline';
+import DischargeSummary from '../pages/DischargeSummary';
+import InsuranceDashboard from '../pages/InsuranceDashboard';
+import ClaimsProcessor from '../pages/ClaimsProcessor';
+import LabTests from '../pages/LabTests';
+import BloodBank from '../pages/BloodBank';
+import TransplantCoordination from '../pages/TransplantCoordination';
+import Fundraising from '../pages/Fundraising';
 
 // --- Auth Guards ---
 
 const PublicRoute = ({ children }) => {
   const { token, loading } = useAuthStore();
-  const hasToken = token || localStorage.getItem('pulsepath-token');
+  const hasToken = token || localStorage.getItem('esc-token');
 
   if (hasToken && loading) {
-    return <div className="h-screen flex items-center justify-center text-sm font-semibold text-slate-400">Loading PulsePath AI...</div>;
+    return <div className="h-screen flex items-center justify-center text-sm font-semibold text-slate-400">Loading Every Second Counts...</div>;
   }
 
   if (hasToken) {
@@ -47,10 +56,10 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   const { token, user, loading } = useAuthStore();
 
   if (loading) {
-    return <div className="h-screen flex items-center justify-center text-sm font-semibold text-slate-400">Loading PulsePath AI...</div>;
+    return <div className="h-screen flex items-center justify-center text-sm font-semibold text-slate-400">Loading Every Second Counts...</div>;
   }
 
-  const hasToken = token || localStorage.getItem('pulsepath-token');
+  const hasToken = token || localStorage.getItem('esc-token');
 
   if (!hasToken) {
     return <Navigate to="/login" replace />;
@@ -73,7 +82,7 @@ const Protected = ({ children, roles }) => (
 
 const AppRoutes = () => {
   const { fetchProfile, token } = useAuthStore();
-  const hasToken = token || localStorage.getItem('pulsepath-token');
+  const hasToken = token || localStorage.getItem('esc-token');
 
   useEffect(() => {
     fetchProfile();
@@ -98,6 +107,9 @@ const AppRoutes = () => {
       <Route path="/consult" element={<Protected roles={['PATIENT', 'DOCTOR']}><ConsultDoctor /></Protected>} />
       <Route path="/consultation/:id" element={<Protected roles={['PATIENT', 'DOCTOR']}><ConsultationRoom /></Protected>} />
       <Route path="/emergency-history" element={<Protected roles={['PATIENT']}><EmergencyHistory /></Protected>} />
+      <Route path="/insurance" element={<Protected roles={['PATIENT']}><InsuranceDashboard /></Protected>} />
+      <Route path="/transplants" element={<Protected roles={['PATIENT', 'SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><TransplantCoordination /></Protected>} />
+      <Route path="/fundraising" element={<Protected roles={['PATIENT', 'SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><Fundraising /></Protected>} />
       <Route path="/sos" element={<Protected roles={['PATIENT']}><SOSPage /></Protected>} />
 
       {/* ── Doctor Routes ── */}
@@ -112,6 +124,12 @@ const AppRoutes = () => {
       <Route path="/ambulance-tracking" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF']}><AmbulanceTracking /></Protected>} />
       <Route path="/resources" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF']}><ResourceManagement /></Protected>} />
       <Route path="/staff" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF']}><StaffManagement /></Protected>} />
+      <Route path="/admissions" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><AdmissionsDesk /></Protected>} />
+      <Route path="/admissions/:id" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><PatientTimeline /></Protected>} />
+      <Route path="/admissions/:id/discharge" element={<Protected roles={['SUPER_ADMIN', 'DOCTOR']}><DischargeSummary /></Protected>} />
+      <Route path="/claims" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF']}><ClaimsProcessor /></Protected>} />
+      <Route path="/labs" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><LabTests /></Protected>} />
+      <Route path="/blood-bank" element={<Protected roles={['SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><BloodBank /></Protected>} />
 
       {/* ── Fallback ── */}
       <Route path="*" element={<Navigate to={hasToken ? '/dashboard' : '/login'} replace />} />

@@ -15,6 +15,10 @@ const initSocketIO = (server) => {
     }
   });
 
+  if (!process.env.JWT_SECRET) {
+    throw new Error('FATAL: JWT_SECRET environment variable is not set. SocketManager cannot start.');
+  }
+
   // JWT authentication middleware
   io.use((socket, next) => {
     const token = socket.handshake.auth?.token;
@@ -23,7 +27,8 @@ const initSocketIO = (server) => {
       return next();
     }
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'pulsepath-fallback-secret-key-1234');
+      if (!process.env.JWT_SECRET) return next(new Error('Authentication error: Missing secret'));
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
       socket.user = decoded;
       next();
     } catch (err) {
@@ -72,51 +77,34 @@ const initSocketIO = (server) => {
     });
 
     // ─── CONSULTATION FLOW ───
-    socket.on('consultation:request', async (data) => {
-      // data: { consultationId, patientName, query, doctorId? }
-      console.log('💬 Consultation requested:', data);
-      const roomId = `consultation:${data.consultationId}`;
-      socket.join(roomId);
-
-      // Persist to database (only if user is authenticated)
-      if (user?.id) {
-        try {
-          await prisma.consultation.upsert({
-            where: { id: data.consultationId },
-            update: {},
-            create: {
-              id: data.consultationId,
-              patientId: user.id,
-              doctorId: data.doctorId || null,
-              patientName: data.patientName || user.name || 'Patient',
-              query: data.query || 'General consultation',
-              status: 'PENDING',
-            },
-          });
-          console.log('   → Consultation saved to DB:', data.consultationId);
-        } catch (err) {
-          // Already saved via REST API — skip silently
-          if (!err.message?.includes('Unique constraint')) {
-            console.error('   → Error saving consultation to DB:', err.message);
-          }
+    socket.on('consultation:request', (data) => {
+      try {
+        if (!data || !data.doctorId) {
+          socket.emit('error', { message: 'Invalid consultation request format' });
+          return;
         }
-      }
+        console.log(`[Socket] Consultation request from ${socket.user.id} to doctor ${data.doctorId}`);
+        
+        // Check if doctor is actually online
+        let doctorOnline = false;
+        onlineUsers.forEach((val, key) => {
+          if (key === data.doctorId) doctorOnline = true;
+        });
 
-      const payload = {
-        consultationId: data.consultationId,
-        patientId: user?.id,
-        patientName: data.patientName || user?.name || 'Patient',
-        query: data.query || 'General consultation',
-        timestamp: new Date().toISOString(),
-      };
+        if (!doctorOnline) {
+          socket.emit('error', { message: 'Doctor is currently offline' });
+          return;
+        }
 
-      // Broadcast to all doctors
-      io.to('DOCTOR').emit('consultation:incoming', payload);
-
-      // Also emit directly to the targeted doctor's socket if specified
-      if (data.doctorId && onlineUsers.has(data.doctorId)) {
-        const targetSocket = onlineUsers.get(data.doctorId).socketId;
-        io.to(targetSocket).emit('consultation:incoming', payload);
+        // Relay to the specific doctor
+        io.to(`user_${data.doctorId}`).emit('consultation:incoming', {
+          patientId: socket.user.id,
+          patientName: data.patientName || 'A Patient',
+          timestamp: new Date()
+        });
+      } catch (error) {
+        console.error('[Socket] Consultation request error:', error);
+        socket.emit('error', { message: 'Failed to process consultation request' });
       }
     });
 

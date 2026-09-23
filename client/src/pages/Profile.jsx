@@ -45,14 +45,14 @@ const Profile = () => {
             {user?.name?.[0] || 'U'}
           </div>
           <div>
-            <h3 className="font-extrabold text-lg leading-snug">{user?.name || 'PulsePath User'}</h3>
+            <h3 className="font-extrabold text-lg leading-snug">{user?.name || 'Every Second Counts User'}</h3>
             <p className="text-xs text-primary font-bold uppercase tracking-wider mt-0.5 capitalize">{user?.role || 'Patient'}</p>
           </div>
 
           <div className="w-full pt-4 border-t border-slate-200/50 dark:border-slate-700/50 text-left space-y-3.5 text-xs">
             <div className="flex items-center gap-2.5 text-slate-500">
               <Mail className="w-4 h-4 text-primary" />
-              <span>{user?.email || 'user@pulsepath.ai'}</span>
+              <span>{user?.email || 'user@Every Second Counts.ai'}</span>
             </div>
             <div className="flex items-center gap-2.5 text-slate-500">
               <Phone className="w-4 h-4 text-cyan-500" />

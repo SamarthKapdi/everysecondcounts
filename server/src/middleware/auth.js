@@ -24,7 +24,8 @@ const protect = async (req, res, next) => {
     }
 
     // Verify token structure and expiry
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'pulsepath-fallback-secret-key-1234');
+    if (!process.env.JWT_SECRET) throw new Error('JWT_SECRET is not defined');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     
     // In a real production setup, we'd also check if the user still exists in DB
     // and if their password was changed recently.

@@ -7,7 +7,7 @@ const ChatBot = () => {
   const { isDark } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hello! I am PulsePath AI's Emergency Assistant. I can guide you through emergencies, check symptoms, or provide immediate medical first-aid instructions. How can I assist you today?", sender: 'bot' }
+    { id: 1, text: "Hello! I am Every Second Counts Emergency Assistant. I can guide you through emergencies, check symptoms, or provide immediate medical first-aid instructions. How can I assist you today?", sender: 'bot' }
   ]);
   const [input, setInput] = useState('');
   const chatEndRef = useRef(null);
@@ -64,7 +64,7 @@ const ChatBot = () => {
                   <Bot className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm">PulsePath AI Assistant</h4>
+                  <h4 className="font-semibold text-sm">Every Second Counts Assistant</h4>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-[10px] text-white/80">Ready to triage</span>

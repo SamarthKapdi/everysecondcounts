@@ -1,5 +1,5 @@
 /**
- * PulsePath AI — IoT-Style Telemetry Simulator
+ * Every Second Counts — IoT-Style Telemetry Simulator
  * Generates realistic patient vital signs streamed via Socket.IO.
  * No actual hardware — simulates believable medical telemetry for demo purposes.
  */

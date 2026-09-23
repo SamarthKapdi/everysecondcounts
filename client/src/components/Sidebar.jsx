@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, Stethoscope, Building2, BarChart3, User, FileText,
   Activity, MessageCircle, FileHeart, Users, ShieldAlert, Truck,
-  Package, Settings, LogOut, Menu, X, AlertCircle
+  Package, Settings, LogOut, Menu, X, AlertCircle, ClipboardList, FileCheck, FlaskConical, Droplet, HeartPulse, HandHeart
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import useAuthStore from '../store/authStore';
@@ -24,6 +24,9 @@ const Sidebar = () => {
     { to: '/report-analyzer', icon: FileHeart, label: 'AI Report Analyzer' },
     { to: '/hospitals', icon: Building2, label: 'Hospitals Nearby' },
     { to: '/consult', icon: MessageCircle, label: 'Consult Doctor' },
+    { to: '/insurance', icon: ShieldAlert, label: 'Insurance & Claims' },
+    { to: '/transplants', icon: HeartPulse, label: 'Organ Donation' },
+    { to: '/fundraising', icon: HandHeart, label: 'Fundraising' },
     { to: '/sos', icon: AlertCircle, label: 'Emergency SOS', highlight: true },
     { to: '/emergency-history', icon: Activity, label: 'Emergency History' },
     { to: '/profile', icon: User, label: 'Profile' },
@@ -34,6 +37,11 @@ const Sidebar = () => {
     { to: '/dashboard', icon: LayoutDashboard, label: 'Doctor Dashboard' },
     { to: '/incoming-emergencies', icon: ShieldAlert, label: 'Incoming Emergencies' },
     { to: '/active-patients', icon: Users, label: 'Active Patients' },
+    { to: '/admissions', icon: ClipboardList, label: 'Admissions' },
+    { to: '/labs', icon: FlaskConical, label: 'Pathology & Labs' },
+    { to: '/blood-bank', icon: Droplet, label: 'Blood Bank' },
+    { to: '/transplants', icon: HeartPulse, label: 'Transplants' },
+    { to: '/fundraising', icon: HandHeart, label: 'Fundraising' },
     { to: '/consultations', icon: MessageCircle, label: 'Consultations' },
     { to: '/ai-reports', icon: FileText, label: 'AI Reports' },
     { to: '/profile', icon: User, label: 'Profile' },
@@ -43,6 +51,12 @@ const Sidebar = () => {
   const adminLinks = [
     { to: '/dashboard', icon: LayoutDashboard, label: 'Operations Dashboard' },
     { to: '/hospital-network', icon: Building2, label: 'Hospital Network' },
+    { to: '/admissions', icon: ClipboardList, label: 'Admissions' },
+    { to: '/claims', icon: FileCheck, label: 'Claims Processing' },
+    { to: '/labs', icon: FlaskConical, label: 'Pathology & Labs' },
+    { to: '/blood-bank', icon: Droplet, label: 'Blood Bank' },
+    { to: '/transplants', icon: HeartPulse, label: 'Transplants' },
+    { to: '/fundraising', icon: HandHeart, label: 'Fundraising' },
     { to: '/ambulance-tracking', icon: Truck, label: 'Ambulance Tracking' },
     { to: '/resources', icon: Package, label: 'Resource Management' },
     { to: '/staff', icon: Users, label: 'Staff Management' },

@@ -7,7 +7,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(() => localStorage.getItem('pulsepath-token'));
+  const [token, setToken] = useState(() => localStorage.getItem('esc-token'));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,9 +36,9 @@ export const AuthProvider = ({ children }) => {
     const { user: userData } = res.data.data;
     setToken(newToken);
     setUser(userData);
-    localStorage.setItem('pulsepath-token', newToken);
+    localStorage.setItem('esc-token', newToken);
     if (res.data.tokens.refreshToken) {
-      localStorage.setItem('pulsepath-refresh-token', res.data.tokens.refreshToken);
+      localStorage.setItem('esc-refresh-token', res.data.tokens.refreshToken);
     }
     api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
     return userData;
@@ -50,9 +50,9 @@ export const AuthProvider = ({ children }) => {
     const { user: newUser } = res.data.data;
     setToken(newToken);
     setUser(newUser);
-    localStorage.setItem('pulsepath-token', newToken);
+    localStorage.setItem('esc-token', newToken);
     if (res.data.tokens.refreshToken) {
-      localStorage.setItem('pulsepath-refresh-token', res.data.tokens.refreshToken);
+      localStorage.setItem('esc-refresh-token', res.data.tokens.refreshToken);
     }
     api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
     return newUser;
@@ -61,8 +61,8 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('pulsepath-token');
-    localStorage.removeItem('pulsepath-refresh-token');
+    localStorage.removeItem('esc-token');
+    localStorage.removeItem('esc-refresh-token');
     delete api.defaults.headers.common['Authorization'];
   };
 

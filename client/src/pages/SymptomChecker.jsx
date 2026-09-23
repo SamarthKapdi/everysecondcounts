@@ -188,7 +188,7 @@ const SymptomChecker = () => {
     stopRecognition();
 
     try {
-      const token = localStorage.getItem('pulsepath-token');
+      const token = localStorage.getItem('esc-token');
       const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/symptoms/analyze-stream`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },

@@ -80,7 +80,7 @@ const Landing = () => {
 
           {/* Subtitle */}
           <motion.p variants={fadeUp} className={`text-base sm:text-lg max-w-2xl mx-auto mb-10 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-            PulsePath AI analyzes symptoms in under 3 seconds, predicts severity with explainable AI,
+            Every Second Counts analyzes symptoms in under 3 seconds, predicts severity with explainable AI,
             and routes patients to the optimal hospital — coordinating ambulances, beds, and specialists in real time.
           </motion.p>
 
@@ -194,7 +194,7 @@ const Landing = () => {
             Ready to <span className="gradient-text">Save Lives Faster?</span>
           </motion.h2>
           <motion.p variants={fadeUp} className={`mb-8 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-            Join the PulsePath AI emergency network. Every second counts.
+            Join the Every Second Counts emergency network. Every second counts.
           </motion.p>
           <motion.div variants={fadeUp}>
             <Link to="/register" className="btn-primary text-base py-4 px-10 justify-center">

@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Seeding PulsePath AI Database...');
+  console.log('🌱 Seeding Every Second Counts Database...');
 
   // Clear existing data (order matters for FK constraints)
   await prisma.consultation.deleteMany();
@@ -17,17 +17,17 @@ async function main() {
   await prisma.hospital.deleteMany();
   await prisma.user.deleteMany();
 
-  const passwordHash = await bcrypt.hash('pulsepath123', 12);
+  const passwordHash = await bcrypt.hash('Every Second Counts123', 12);
 
   // ── USERS ──────────────────────────────────────────────────────────
-  const admin = await prisma.user.create({ data: { name: 'System Admin', email: 'admin@pulsepath.ai', passwordHash, role: 'SUPER_ADMIN', phone: '+91-99999-88888' } });
-  const staff = await prisma.user.create({ data: { name: 'Hospital Staff', email: 'staff@pulsepath.ai', passwordHash, role: 'HOSPITAL_STAFF', phone: '+91-98888-11111' } });
-  const doctor = await prisma.user.create({ data: { name: 'Dr. Rahul Mehta', email: 'doctor@pulsepath.ai', passwordHash, role: 'DOCTOR', phone: '+91-97777-22222' } });
-  const doctor2 = await prisma.user.create({ data: { name: 'Dr. Priya Sharma', email: 'doctor2@pulsepath.ai', passwordHash, role: 'DOCTOR', phone: '+91-97777-33333' } });
-  const driver1 = await prisma.user.create({ data: { name: 'Ravi Kumar', email: 'driver1@pulsepath.ai', passwordHash, role: 'AMBULANCE_DRIVER', phone: '+91-95555-11111' } });
-  const driver2 = await prisma.user.create({ data: { name: 'Suresh Yadav', email: 'driver2@pulsepath.ai', passwordHash, role: 'AMBULANCE_DRIVER', phone: '+91-95555-22222' } });
-  const patient = await prisma.user.create({ data: { name: 'Samarth Kapdi', email: 'patient@pulsepath.ai', passwordHash, role: 'PATIENT', phone: '+91-96666-33333' } });
-  const patient2 = await prisma.user.create({ data: { name: 'Ashish Parihar', email: 'patient2@pulsepath.ai', passwordHash, role: 'PATIENT', phone: '+91-96666-44444' } });
+  const admin = await prisma.user.create({ data: { name: 'System Admin', email: 'admin@Every Second Counts.ai', passwordHash, role: 'SUPER_ADMIN', phone: '+91-99999-88888' } });
+  const staff = await prisma.user.create({ data: { name: 'Hospital Staff', email: 'staff@Every Second Counts.ai', passwordHash, role: 'HOSPITAL_STAFF', phone: '+91-98888-11111' } });
+  const doctor = await prisma.user.create({ data: { name: 'Dr. Rahul Mehta', email: 'doctor@Every Second Counts.ai', passwordHash, role: 'DOCTOR', phone: '+91-97777-22222' } });
+  const doctor2 = await prisma.user.create({ data: { name: 'Dr. Priya Sharma', email: 'doctor2@Every Second Counts.ai', passwordHash, role: 'DOCTOR', phone: '+91-97777-33333' } });
+  const driver1 = await prisma.user.create({ data: { name: 'Ravi Kumar', email: 'driver1@Every Second Counts.ai', passwordHash, role: 'AMBULANCE_DRIVER', phone: '+91-95555-11111' } });
+  const driver2 = await prisma.user.create({ data: { name: 'Suresh Yadav', email: 'driver2@Every Second Counts.ai', passwordHash, role: 'AMBULANCE_DRIVER', phone: '+91-95555-22222' } });
+  const patient = await prisma.user.create({ data: { name: 'Samarth Kapdi', email: 'patient@Every Second Counts.ai', passwordHash, role: 'PATIENT', phone: '+91-96666-33333' } });
+  const patient2 = await prisma.user.create({ data: { name: 'Ashish Parihar', email: 'patient2@Every Second Counts.ai', passwordHash, role: 'PATIENT', phone: '+91-96666-44444' } });
 
   console.log('✅ Created 8 users');
 
@@ -149,7 +149,7 @@ async function main() {
     data: {
       emergencyId: demoEmergency.id,
       doctorId: doctor.id,
-      note: 'Patient triage assessed via PulsePath AI. Cardiac markers to be checked upon arrival. Cath lab placed on standby.',
+      note: 'Patient triage assessed via Every Second Counts. Cardiac markers to be checked upon arrival. Cath lab placed on standby.',
     },
   });
 
@@ -182,15 +182,15 @@ async function main() {
 
   console.log('✅ Created resolved emergency case');
 
-  console.log('\n🎉 PulsePath AI Database seeded successfully!\n');
+  console.log('\n🎉 Every Second Counts Database seeded successfully!\n');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('Login Credentials:');
-  console.log('  Admin:      admin@pulsepath.ai / pulsepath123');
-  console.log('  Staff:      staff@pulsepath.ai / pulsepath123');
-  console.log('  Doctor 1:   doctor@pulsepath.ai / pulsepath123');
-  console.log('  Doctor 2:   doctor2@pulsepath.ai / pulsepath123');
-  console.log('  Patient 1:  patient@pulsepath.ai / pulsepath123');
-  console.log('  Patient 2:  patient2@pulsepath.ai / pulsepath123');
+  console.log('  Admin:      admin@Every Second Counts.ai / Every Second Counts123');
+  console.log('  Staff:      staff@Every Second Counts.ai / Every Second Counts123');
+  console.log('  Doctor 1:   doctor@Every Second Counts.ai / Every Second Counts123');
+  console.log('  Doctor 2:   doctor2@Every Second Counts.ai / Every Second Counts123');
+  console.log('  Patient 1:  patient@Every Second Counts.ai / Every Second Counts123');
+  console.log('  Patient 2:  patient2@Every Second Counts.ai / Every Second Counts123');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 }
 

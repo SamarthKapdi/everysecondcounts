@@ -6,13 +6,13 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('pulsepath-theme');
+    const saved = localStorage.getItem('esc-theme');
     return saved === 'dark';
   });
 
   useEffect(() => {
     document.body.classList.toggle('dark', isDark);
-    localStorage.setItem('pulsepath-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('esc-theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
   const toggleTheme = () => setIsDark(prev => !prev);

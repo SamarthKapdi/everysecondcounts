@@ -4,8 +4,8 @@ import { reconnectSocket } from '../hooks/useSocket';
 
 const useAuthStore = create((set, get) => ({
   user: null,
-  token: localStorage.getItem('pulsepath-token'),
-  refreshToken: localStorage.getItem('pulsepath-refresh-token'),
+  token: localStorage.getItem('esc-token'),
+  refreshToken: localStorage.getItem('esc-refresh-token'),
   loading: true,
   error: null,
 
@@ -18,8 +18,8 @@ const useAuthStore = create((set, get) => ({
       const { user } = res.data.data;
       const accessToken = res.data.tokens.accessToken;
       const refresh = res.data.tokens.refreshToken;
-      localStorage.setItem('pulsepath-token', accessToken);
-      if (refresh) localStorage.setItem('pulsepath-refresh-token', refresh);
+      localStorage.setItem('esc-token', accessToken);
+      if (refresh) localStorage.setItem('esc-refresh-token', refresh);
       api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       set({ user, token: accessToken, refreshToken: refresh, loading: false });
 
@@ -40,8 +40,8 @@ const useAuthStore = create((set, get) => ({
       const { user } = res.data.data;
       const accessToken = res.data.tokens.accessToken;
       const refresh = res.data.tokens.refreshToken;
-      localStorage.setItem('pulsepath-token', accessToken);
-      if (refresh) localStorage.setItem('pulsepath-refresh-token', refresh);
+      localStorage.setItem('esc-token', accessToken);
+      if (refresh) localStorage.setItem('esc-refresh-token', refresh);
       api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       set({ user, token: accessToken, refreshToken: refresh, loading: false });
       return user;
@@ -53,7 +53,7 @@ const useAuthStore = create((set, get) => ({
 
   fetchProfile: async () => {
     set({ loading: true, error: null });
-    const token = get().token || localStorage.getItem('pulsepath-token');
+    const token = get().token || localStorage.getItem('esc-token');
     if (!token) {
       delete api.defaults.headers.common['Authorization'];
       set({ user: null, token: null, refreshToken: null, loading: false });
@@ -71,8 +71,8 @@ const useAuthStore = create((set, get) => ({
   },
 
   logout: () => {
-    localStorage.removeItem('pulsepath-token');
-    localStorage.removeItem('pulsepath-refresh-token');
+    localStorage.removeItem('esc-token');
+    localStorage.removeItem('esc-refresh-token');
     delete api.defaults.headers.common['Authorization'];
     reconnectSocket(); // disconnect authenticated socket
     set({ user: null, token: null, refreshToken: null, loading: false });

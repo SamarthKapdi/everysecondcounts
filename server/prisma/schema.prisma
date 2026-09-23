@@ -33,6 +33,33 @@ enum Status {
   CANCELLED
 }
 
+enum AdmissionStage {
+  REGISTERED
+  TRIAGED
+  ADMITTED
+  IN_TREATMENT
+  UNDER_OBSERVATION
+  READY_FOR_DISCHARGE
+  DISCHARGED
+  TRANSFERRED
+}
+
+enum BillingStatus {
+  PENDING
+  PARTIALLY_PAID
+  FULLY_PAID
+  WAIVED
+  INSURANCE_PROCESSING
+}
+
+enum ClaimStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  APPEALED
+}
+
 model User {
   id            String    @id @default(uuid())
   name          String
@@ -52,6 +79,17 @@ model User {
   ambulances    Ambulance[]     @relation("AmbulanceDriver")
   patientConsultations  Consultation[] @relation("PatientConsultations")
   doctorConsultations   Consultation[] @relation("DoctorConsultations")
+  patientAdmissions     Admission[]    @relation("PatientAdmissions")
+  assignedAdmissions    Admission[]    @relation("AssignedDoctor")
+  insurancePolicies     InsurancePolicy[]
+  insuranceClaims       InsuranceClaim[]
+  testOrders            TestOrder[]
+  reviewedTestResults   TestResult[]   @relation("ReviewedResults")
+  requestedBloodRequests BloodRequest[] @relation("RequestedBlood")
+  registeredDonor       Donor?         @relation("RegisteredDonor")
+  transplantWaitlists   TransplantWaitlist[] @relation("PatientWaitlist")
+  fundraisingCampaigns  FundraisingCampaign[] @relation("PatientCampaigns")
+  contributions         Contribution[] @relation("UserContributions")
 }
 
 model Hospital {
@@ -71,6 +109,12 @@ model Hospital {
 
   emergencies   EmergencyCase[]
   resources     HospitalResource[]
+  admissions    Admission[]
+  insuranceClaims InsuranceClaim[]
+  bloodInventories BloodInventory[]
+  fulfilledBloodRequests BloodRequest[] @relation("FulfilledBlood")
+
+  @@index([isActive])
 }
 
 model HospitalResource {
@@ -109,6 +153,7 @@ model EmergencyCase {
   triageLogs        TriageLog[]
   aiAnalyses        AIAnalysis[]
   doctorNotes       DoctorNote[]
+  admission         Admission?
 
   @@index([patientId])
   @@index([hospitalId])
@@ -129,6 +174,7 @@ model Ambulance {
   emergencies   EmergencyCase[]
 
   @@index([driverId])
+  @@index([status])
 }
 
 model TriageLog {
@@ -157,13 +203,14 @@ model DoctorNote {
 
   @@index([emergencyId])
   @@index([doctorId])
+  @@index([createdAt])
 }
 
 model AIAnalysis {
   id            String    @id @default(uuid())
   emergencyId   String
   inputSymptoms String[]
-  aiResponse    Json      // Stores the structured JSON response from Gemini
+  aiResponse    Json      // Stores the structured JSON response from the AI engine
   createdAt     DateTime  @default(now())
 
   emergency     EmergencyCase @relation(fields: [emergencyId], references: [id])
@@ -200,4 +247,309 @@ model Notification {
   createdAt     DateTime  @default(now())
 
   @@index([userId])
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE A: Patient Lifecycle Management
+// ═══════════════════════════════════════════════════════════════
+
+model Admission {
+  id                String          @id @default(uuid())
+  emergencyCaseId   String          @unique
+  patientId         String
+  hospitalId        String
+  stage             AdmissionStage  @default(REGISTERED)
+  assignedDoctorId  String?
+  admittedAt        DateTime?
+  dischargedAt      DateTime?
+  dischargeSummary  String?         @db.Text
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  emergencyCase     EmergencyCase   @relation(fields: [emergencyCaseId], references: [id])
+  patient           User            @relation("PatientAdmissions", fields: [patientId], references: [id])
+  hospital          Hospital        @relation(fields: [hospitalId], references: [id])
+  assignedDoctor    User?           @relation("AssignedDoctor", fields: [assignedDoctorId], references: [id])
+  billing           Billing?
+  testOrders        TestOrder[]
+  bloodRequests     BloodRequest[]
+  fundraisingCampaigns FundraisingCampaign[]
+
+  @@index([patientId])
+  @@index([hospitalId])
+  @@index([stage])
+  @@index([assignedDoctorId])
+}
+
+model Billing {
+  id              String        @id @default(uuid())
+  admissionId     String        @unique
+  totalAmount     Float         @default(0)
+  amountPaid      Float         @default(0)
+  status          BillingStatus @default(PENDING)
+  itemizedCharges Json?         // [{description, amount, category}]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  admission       Admission     @relation(fields: [admissionId], references: [id])
+  insuranceClaim  InsuranceClaim?
+
+  @@index([status])
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE B: Insurance & Claims Processing
+// ═══════════════════════════════════════════════════════════════
+
+model InsurancePolicy {
+  id              String    @id @default(uuid())
+  patientId       String
+  provider        String    // e.g., "HDFC Ergo", "Star Health"
+  policyNumber    String    @unique
+  coverageAmount  Float     @default(0)
+  validUntil      DateTime
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  patient         User      @relation(fields: [patientId], references: [id])
+  claims          InsuranceClaim[]
+
+  @@index([patientId])
+  @@index([policyNumber])
+}
+
+model InsuranceClaim {
+  id                String          @id @default(uuid())
+  policyId          String
+  patientId         String
+  hospitalId        String
+  billingId         String          @unique
+  claimAmount       Float
+  approvedAmount    Float?          @default(0)
+  status            ClaimStatus     @default(SUBMITTED)
+  claimDocuments    Json?           // URLs of uploaded PDFs
+  reviewerNotes     String?         @db.Text
+  submittedAt       DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  policy            InsurancePolicy @relation(fields: [policyId], references: [id])
+  patient           User            @relation(fields: [patientId], references: [id])
+  hospital          Hospital        @relation(fields: [hospitalId], references: [id])
+  billing           Billing         @relation(fields: [billingId], references: [id])
+
+  @@index([policyId])
+  @@index([patientId])
+  @@index([hospitalId])
+  @@index([status])
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE C: Pathology / Lab Test Management
+// ═══════════════════════════════════════════════════════════════
+
+enum TestStatus {
+  ORDERED
+  SAMPLE_COLLECTED
+  IN_LAB
+  COMPLETED
+  CANCELLED
+}
+
+model TestOrder {
+  id              String      @id @default(uuid())
+  admissionId     String
+  orderedById     String
+  testType        String      // e.g., "CBC", "Lipid Profile"
+  status          TestStatus  @default(ORDERED)
+  orderedAt       DateTime    @default(now())
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  admission       Admission   @relation(fields: [admissionId], references: [id])
+  orderedBy       User        @relation(fields: [orderedById], references: [id])
+  result          TestResult?
+
+  @@index([admissionId])
+  @@index([orderedById])
+  @@index([status])
+}
+
+model TestResult {
+  id              String      @id @default(uuid())
+  testOrderId     String      @unique
+  resultData      Json?       // Structured findings
+  reportFileUrl   String?     // Path to uploaded PDF/Image
+  extractedText   String?     @db.Text
+  reviewedById    String?
+  reviewedAt      DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  testOrder       TestOrder   @relation(fields: [testOrderId], references: [id])
+  reviewedBy      User?       @relation("ReviewedResults", fields: [reviewedById], references: [id])
+
+  @@index([testOrderId])
+  @@index([reviewedById])
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE D: Blood Bank Management
+// ═══════════════════════════════════════════════════════════════
+
+enum BloodGroup {
+  A_POS
+  A_NEG
+  B_POS
+  B_NEG
+  AB_POS
+  AB_NEG
+  O_POS
+  O_NEG
+}
+
+enum BloodRequestStatus {
+  REQUESTED
+  MATCHED
+  FULFILLED
+  UNAVAILABLE
+}
+
+model BloodInventory {
+  id              String      @id @default(uuid())
+  hospitalId      String
+  bloodGroup      BloodGroup
+  unitsAvailable  Int         @default(0)
+  lastUpdated     DateTime    @default(now()) @updatedAt
+
+  hospital        Hospital    @relation(fields: [hospitalId], references: [id])
+
+  @@unique([hospitalId, bloodGroup])
+}
+
+model BloodRequest {
+  id                        String             @id @default(uuid())
+  admissionId               String
+  bloodGroup                BloodGroup
+  unitsRequested            Int
+  status                    BloodRequestStatus @default(REQUESTED)
+  requestedById             String
+  fulfilledAt               DateTime?
+  fulfilledFromHospitalId   String?
+  createdAt                 DateTime           @default(now())
+  updatedAt                 DateTime           @updatedAt
+
+  admission                 Admission          @relation(fields: [admissionId], references: [id])
+  requestedBy               User               @relation("RequestedBlood", fields: [requestedById], references: [id])
+  fulfilledFromHospital     Hospital?          @relation("FulfilledBlood", fields: [fulfilledFromHospitalId], references: [id])
+
+  @@index([admissionId])
+  @@index([bloodGroup])
+  @@index([status])
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE E: Transplant Coordination
+// ═══════════════════════════════════════════════════════════════
+
+enum OrganType {
+  KIDNEY
+  LIVER
+  HEART
+  LUNG
+  PANCREAS
+  CORNEA
+  BONE_MARROW
+}
+
+enum WaitlistStatus {
+  WAITING
+  MATCHED
+  TRANSPLANTED
+  REMOVED
+}
+
+model Donor {
+  id                String      @id @default(uuid())
+  userId            String?     @unique
+  externalDonorName String?
+  bloodGroup        BloodGroup
+  organType         OrganType
+  isActive          Boolean     @default(true)
+  registeredAt      DateTime    @default(now())
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  user              User?       @relation("RegisteredDonor", fields: [userId], references: [id])
+  matchedWaitlists  TransplantWaitlist[] @relation("MatchedDonor")
+
+  @@index([bloodGroup])
+  @@index([organType])
+}
+
+model TransplantWaitlist {
+  id              String          @id @default(uuid())
+  patientId       String
+  organType       OrganType
+  bloodGroup      BloodGroup
+  urgencyScore    Int             // 1-10 (10 is most urgent)
+  waitingSince    DateTime        @default(now())
+  status          WaitlistStatus  @default(WAITING)
+  matchedDonorId  String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  patient         User            @relation("PatientWaitlist", fields: [patientId], references: [id])
+  matchedDonor    Donor?          @relation("MatchedDonor", fields: [matchedDonorId], references: [id])
+
+  @@index([patientId])
+  @@index([organType])
+  @@index([bloodGroup])
+  @@index([status])
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE F: Fundraising / Financial Assistance
+// ═══════════════════════════════════════════════════════════════
+
+enum CampaignStatus {
+  ACTIVE
+  CLOSED
+  CANCELLED
+}
+
+model FundraisingCampaign {
+  id              String            @id @default(uuid())
+  admissionId     String?
+  patientId       String
+  title           String
+  description     String            @db.Text
+  targetAmount    Float
+  amountRaised    Float             @default(0)
+  status          CampaignStatus    @default(ACTIVE)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  admission       Admission?        @relation(fields: [admissionId], references: [id])
+  patient         User              @relation("PatientCampaigns", fields: [patientId], references: [id])
+  contributions   Contribution[]
+
+  @@index([patientId])
+  @@index([status])
+}
+
+model Contribution {
+  id              String                @id @default(uuid())
+  campaignId      String
+  contributorName String?               // Optional if anonymous
+  userId          String?
+  amount          Float
+  contributedAt   DateTime              @default(now())
+  isAnonymous     Boolean               @default(false)
+  createdAt       DateTime              @default(now())
+
+  campaign        FundraisingCampaign   @relation(fields: [campaignId], references: [id])
+  user            User?                 @relation("UserContributions", fields: [userId], references: [id])
+
+  @@index([campaignId])
 }

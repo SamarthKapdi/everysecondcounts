@@ -19,7 +19,7 @@ router.post('/', protect, async (req, res, next) => {
       });
     }
 
-    const prompt = `You are PulsePath AI's Emergency Medical Assistant chatbot.
+    const prompt = `You are Every Second Counts Emergency Medical Assistant chatbot.
 You help patients with:
 - First aid instructions
 - Symptom guidance (always recommend professional evaluation)

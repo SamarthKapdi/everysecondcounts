@@ -19,6 +19,12 @@ const symptomRoutes = require('./routes/symptomRoutes');
 const mediaRoutes = require('./routes/mediaRoutes');
 const userRoutes = require('./routes/userRoutes');
 const ambulanceRoutes = require('./routes/ambulanceRoutes');
+const admissionRoutes = require('./routes/admissionRoutes');
+const insuranceRoutes = require('./routes/insuranceRoutes');
+const labRoutes = require('./routes/labRoutes');
+const bloodBankRoutes = require('./routes/bloodBankRoutes');
+const transplantRoutes = require('./routes/transplantRoutes');
+const fundraisingRoutes = require('./routes/fundraisingRoutes');
 const http = require('http');
 const { initSocketIO } = require('./sockets/socketManager');
 const { errorHandler } = require('./middleware/errorHandler');
@@ -55,6 +61,12 @@ app.use('/api/consultations', consultationRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/ambulances', ambulanceRoutes);
+app.use('/api/admissions', admissionRoutes);
+app.use('/api/insurance', insuranceRoutes);
+app.use('/api/labs', labRoutes);
+app.use('/api/blood-bank', bloodBankRoutes);
+app.use('/api/transplants', transplantRoutes);
+app.use('/api/fundraising', fundraisingRoutes);
 
 // AI Symptom + Report Analyzer (with multer for file uploads)
 const multer = require('multer');
@@ -69,14 +81,14 @@ app.use('/api/symptoms', (req, res, next) => {
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'PulsePath AI API is running', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', message: 'Every Second Counts API is running', timestamp: new Date().toISOString() });
 });
 
 // Error handling
 app.use(errorHandler);
 
 server.listen(PORT, () => {
-  console.log(`🏥 PulsePath AI Server running on port ${PORT}`);
+  console.log(`🏥 Every Second Counts Server running on port ${PORT}`);
   console.log(`📡 Real-time Socket.IO layer initialized`);
 });
 

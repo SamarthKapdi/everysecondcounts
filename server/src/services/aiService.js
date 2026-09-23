@@ -1,6 +1,6 @@
 /**
- * PulsePath AI Service — Hybrid AI Symptom Analysis Engine
- * Combines deterministic rule-based medical logic with Gemini AI for explainability.
+ * Every Second Counts Service - Hybrid AI Symptom Analysis Engine
+ * Combines deterministic rule-based medical logic with a locally trained ML model for explainability.
  */
 
 // Critical keywords that immediately trigger RED severity (Rule-based Layer)
@@ -50,80 +50,52 @@ const performRuleBasedTriage = (symptoms) => {
 };
 
 /**
- * Gemini AI Integration Service (Explanation Layer)
+ * Local ML Model Integration (Tier 2 — Trained TF-IDF + SVM Classifier)
+ *
+ * Calls the locally hosted FastAPI prediction service instead of an external API.
+ * The model was trained on a symptom-severity dataset using scikit-learn.
+ * See docs/model-metrics.md for accuracy, precision, recall, and F1 scores.
+ *
+ * Architecture: TF-IDF Vectorizer (unigram+bigram) → CalibratedClassifierCV(LinearSVC)
+ * Test Accuracy: ~97.7% | 5-fold CV: ~97.7% ± 0.4%
  */
-const callGeminiAI = async (symptoms) => {
-  const apiKey = process.env.GEMINI_API_KEY;
-  
-  if (!apiKey) {
-    throw new Error('GEMINI_API_KEY is not configured in environment variables.');
-  }
+const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://localhost:8001';
 
-  const prompt = `
-  You are an expert AI emergency medical triage assistant for PulsePath AI.
-  Analyze the following patient input: [${symptoms.join(', ')}]
-  
-  CRITICAL LANGUAGE RULE: Detect the language of the user's input and respond in the SAME language.
-  - Hindi (Devanagari) → respond in Hindi
-  - Hinglish (Roman script Hindi like "bukhar", "sar dard") → respond in Hinglish
-  - English → respond in English
-  
-  First, determine if the input contains ANY valid medical symptoms, health concerns, or emergency descriptions.
-  If the input is just a greeting (like "hi", "hello"), random text, or unrelated to health, set "isValid" to false.
-
-  Respond ONLY with a valid JSON object using the following exact structure, with no markdown formatting or extra text.
-  {
-    "isValid": <boolean>,
-    "message": "<If isValid is false, provide a friendly message in the user's language asking them to describe their medical symptoms. If true, leave empty>",
-    "severity": "GREEN" | "YELLOW" | "ORANGE" | "RED",
-    "confidenceScore": <float between 0.0 and 1.0>,
-    "reasoning": "<Detailed but concise medical reasoning. MUST be in the user's language.>",
-    "recommendedAction": "<Specific action to take. MUST be in the user's language.>"
-  }
-  `;
-
+const callLocalMLModel = async (symptoms) => {
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+    const response = await fetch(`${ML_SERVICE_URL}/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.2, // Low temperature for deterministic medical output
-          responseMimeType: 'application/json',
-        }
-      }),
-      signal: AbortSignal.timeout(15000) // 15-second timeout
+      body: JSON.stringify({ symptoms }),
+      signal: AbortSignal.timeout(5000) // 5-second timeout (local service is fast)
     });
 
-    const data = await response.json();
-    
-    if (data.error) {
-      throw new Error(data.error.message);
+    if (!response.ok) {
+      throw new Error(`ML service returned status ${response.status}`);
     }
 
-    const aiText = data.candidates[0].content.parts[0].text;
-    const parsedData = JSON.parse(aiText);
-    
+    const data = await response.json();
+
     return {
-      isValid: parsedData.isValid !== undefined ? parsedData.isValid : true,
-      message: parsedData.message || null,
-      severity: parsedData.severity || 'GREEN',
-      confidenceScore: parsedData.confidenceScore || 0,
-      reasoning: parsedData.reasoning || '',
-      recommendedAction: parsedData.recommendedAction || '',
-      isRuleOverride: false
+      isValid: true,
+      message: null,
+      severity: data.severity || 'GREEN',
+      confidenceScore: data.confidenceScore || 0,
+      reasoning: data.reasoning || '',
+      recommendedAction: data.recommendedAction || '',
+      isRuleOverride: false,
+      triageEngine: data.triageEngine || 'Every Second Counts ML Classifier v1.0'
     };
 
   } catch (error) {
-    console.error(`Gemini AI Triage Error: ${error.message}`);
-    return null; // Fallback to basic logic
+    console.error(`Local ML Triage Error: ${error.message}`);
+    return null; // Falls through to Tier 3 (deterministic fallback scorer)
   }
 };
 
 /**
  * Intelligent Fallback Triage — symptom-weighted scoring engine
- * Provides realistic triage even if Gemini is unavailable
+ * Provides realistic triage even if the ML service is unavailable
  */
 const SYMPTOM_SCORES = {
   // High risk (score 8-10)
@@ -195,7 +167,7 @@ const performFallbackTriage = (symptoms) => {
     reasoning,
     recommendedAction: action,
     isRuleOverride: false,
-    triageEngine: 'PulsePath Symptom Scoring Engine v2.0',
+    triageEngine: 'Every Second Counts Symptom Scoring Engine v2.0',
   };
 };
 
@@ -220,10 +192,10 @@ const analyzeSymptoms = async (symptoms) => {
     return ruleResult;
   }
 
-  // 2. AI Triage (Explanation & Nuance)
-  const aiResult = await callGeminiAI(symptoms);
-  if (aiResult) {
-    return aiResult;
+  // 2. ML Model Triage (Trained TF-IDF + SVM Classifier — local, no external API)
+  const mlResult = await callLocalMLModel(symptoms);
+  if (mlResult) {
+    return mlResult;
   }
 
   // 3. Fallback Triage (System Resilience)

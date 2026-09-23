@@ -103,81 +103,177 @@ exports.createReport = async (req, res, next) => {
   }
 };
 
-// Analyze a medical report using Gemini AI
+// Analyze a medical report using real PDF text extraction + Gemini AI
 exports.analyzeReport = async (req, res, next) => {
   try {
-    const fileName = req.file?.originalname || 'medical_report';
-    const fileType = req.file?.mimetype || 'unknown';
-
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      return res.json({
-        status: 'success',
-        data: {
-          analysis: {
-            summary: "AI analysis service is not configured (GEMINI_API_KEY missing).",
-            findings: [],
-            actions: ["Configure GEMINI_API_KEY in server environment"],
-            specialist: "System Administrator"
-          }
-        }
-      });
+    if (!req.file) {
+      return next(new AppError('Please upload a medical report file', 400));
     }
 
-    const prompt = `You are a medical report analysis AI for PulsePath AI healthcare platform.
-A patient has uploaded a medical report file named "${fileName}" (type: ${fileType}).
-Since you cannot read the actual file content yet, generate a REALISTIC and HELPFUL sample analysis
-that would be typical for a standard lab/blood test report.
+    const fs = require('fs');
+    const fileName = req.file?.originalname || 'medical_report';
+    const fileType = req.file?.mimetype || 'unknown';
+    const filePath = req.file?.path;
+
+    const apiKey = process.env.GEMINI_API_KEY;
+
+    // ── PDF files: extract text with pdf-parse, then analyze ──
+    if (fileType === 'application/pdf') {
+      const pdfParse = require('pdf-parse');
+      const fileBuffer = fs.readFileSync(filePath);
+      let extractedText = '';
+
+      try {
+        const pdfData = await pdfParse(fileBuffer);
+        extractedText = pdfData.text || '';
+      } catch (pdfErr) {
+        console.error(`PDF parse error: ${pdfErr.message}`);
+        return next(new AppError('Failed to parse PDF file. The file may be corrupted or image-only.', 400));
+      }
+
+      // Clean up uploaded file
+      try { fs.unlinkSync(filePath); } catch (e) {}
+
+      if (!extractedText.trim()) {
+        return next(new AppError('No text could be extracted from this PDF. It may be a scanned/image-only PDF — please upload as an image instead.', 400));
+      }
+
+      if (!apiKey) {
+        // Without Gemini, return the raw extracted text
+        return res.json({
+          status: 'success',
+          data: {
+            analysis: {
+              summary: 'PDF text extracted successfully but AI analysis is unavailable (GEMINI_API_KEY not set).',
+              findings: [],
+              actions: ['Configure GEMINI_API_KEY for AI-powered analysis'],
+              specialist: 'System Administrator',
+              extractedText: extractedText.substring(0, 2000) // Cap for response size
+            }
+          }
+        });
+      }
+
+      // Send extracted text to Gemini for structured analysis
+      const prompt = `You are a medical report analysis AI for Every Second Counts healthcare platform.
+Analyze the following extracted text from a medical report PDF named "${fileName}":
+
+--- START OF REPORT TEXT ---
+${extractedText.substring(0, 4000)}
+--- END OF REPORT TEXT ---
 
 Respond ONLY with a valid JSON object (no markdown, no extra text):
 {
   "summary": "<2-3 sentence medical summary in simple language>",
   "findings": [
-    { "label": "<test name>", "value": "<result with units>", "status": "normal" | "low" | "high" },
-    { "label": "<test name>", "value": "<result with units>", "status": "normal" | "low" | "high" }
+    { "label": "<test/parameter name>", "value": "<result with units>", "status": "normal" | "low" | "high" }
   ],
   "actions": ["<action 1>", "<action 2>"],
   "specialist": "<recommended specialist type>"
 }`;
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.3, responseMimeType: 'application/json' }
-        }),
-        signal: AbortSignal.timeout(15000)
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { temperature: 0.2, responseMimeType: 'application/json' }
+          }),
+          signal: AbortSignal.timeout(15000)
+        }
+      );
+
+      const data = await response.json();
+      if (data.error) throw new Error(data.error.message);
+
+      const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      const analysis = JSON.parse(aiText);
+
+      return res.json({ status: 'success', data: { analysis } });
+    }
+
+    // ── Image files: use Gemini Vision (already real, not mocked) ──
+    if (fileType.startsWith('image/')) {
+      if (!apiKey) {
+        try { fs.unlinkSync(filePath); } catch (e) {}
+        return res.json({
+          status: 'success',
+          data: {
+            analysis: {
+              summary: 'AI analysis service is not configured (GEMINI_API_KEY missing).',
+              findings: [],
+              actions: ['Configure GEMINI_API_KEY in server environment'],
+              specialist: 'System Administrator'
+            }
+          }
+        });
       }
-    );
 
-    const data = await response.json();
-    if (data.error) throw new Error(data.error.message);
+      const fileBuffer = fs.readFileSync(filePath);
+      const base64Data = fileBuffer.toString('base64');
 
-    const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    const analysis = JSON.parse(aiText);
+      // Clean up uploaded file
+      try { fs.unlinkSync(filePath); } catch (e) {}
 
-    res.json({ status: 'success', data: { analysis } });
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{
+              parts: [
+                { inlineData: { mimeType: fileType, data: base64Data } },
+                { text: `You are a medical report analysis AI for Every Second Counts healthcare platform.
+Analyze this medical report image carefully. Extract all visible information.
+
+Respond ONLY with a valid JSON object (no markdown):
+{
+  "summary": "<2-3 sentence medical summary in simple language>",
+  "findings": [
+    { "label": "<test/parameter name>", "value": "<result with units>", "status": "normal" | "low" | "high" }
+  ],
+  "actions": ["<action 1>", "<action 2>", "<action 3>"],
+  "specialist": "<recommended specialist type>"
+}` }
+              ]
+            }],
+            generationConfig: { temperature: 0.2, responseMimeType: 'application/json' }
+          }),
+          signal: AbortSignal.timeout(30000)
+        }
+      );
+
+      const data = await response.json();
+      if (data.error) throw new Error(data.error.message);
+
+      const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      const analysis = JSON.parse(aiText);
+
+      return res.json({ status: 'success', data: { analysis } });
+    }
+
+    // ── Unsupported format ──
+    try { fs.unlinkSync(filePath); } catch (e) {}
+    return next(new AppError(`Unsupported file type: ${fileType}. Please upload a PDF or image file.`, 400));
+
   } catch (error) {
     console.error(`Report analysis error: ${error.message}`);
+    // Graceful degradation fallback
     res.json({
       status: 'success',
       data: {
         analysis: {
-          summary: "The patient's lab report indicates mildly elevated cholesterol and slightly reduced hemoglobin levels. All other major markers are within normal reference ranges.",
-          findings: [
-            { label: "Hemoglobin", value: "12.1 g/dL", status: "low" },
-            { label: "Total Cholesterol", value: "210 mg/dL", status: "high" },
-            { label: "Fasting Blood Sugar", value: "95 mg/dL", status: "normal" }
-          ],
+          summary: 'Analysis could not be completed due to a processing error. Please try again or consult a healthcare professional.',
+          findings: [],
           actions: [
-            "Increase dietary iron intake through spinach and legumes.",
-            "Reduce saturated fats to lower cholesterol.",
-            "Schedule a routine follow-up in 6 months."
+            'Try re-uploading the report.',
+            'Ensure the file is a valid PDF or image.',
+            'Consult a healthcare professional for manual review.'
           ],
-          specialist: "General Physician"
+          specialist: 'General Physician'
         }
       }
     });

@@ -4,10 +4,18 @@ const prisma = require('../config/prismaClient');
 const AppError = require('../utils/AppError');
 const { ROLES } = require('../middleware/auth');
 
+// Fail-fast: require JWT secrets at module load time — never use weak defaults
+if (!process.env.JWT_SECRET) {
+  throw new Error('FATAL: JWT_SECRET environment variable is not set. Server cannot start without it.');
+}
+if (!process.env.JWT_REFRESH_SECRET) {
+  throw new Error('FATAL: JWT_REFRESH_SECRET environment variable is not set. Server cannot start without it.');
+}
+
 const signToken = (user) => {
   return jwt.sign(
     { id: user.id, email: user.email, role: user.role, name: user.name },
-    process.env.JWT_SECRET || 'pulsepath-fallback-secret-key-1234',
+    process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN || '1d' }
   );
 };
@@ -15,7 +23,7 @@ const signToken = (user) => {
 const signRefreshToken = (user) => {
   return jwt.sign(
     { id: user.id },
-    process.env.JWT_REFRESH_SECRET || 'pulsepath-refresh-fallback-secret-5678',
+    process.env.JWT_REFRESH_SECRET,
     { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' }
   );
 };
@@ -112,7 +120,7 @@ exports.refreshToken = async (req, res, next) => {
     const { token } = req.body;
     if (!token) return next(new AppError('Refresh token required', 400));
 
-    const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET || 'pulsepath-refresh-fallback-secret-5678');
+    const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
     const user = await prisma.user.findUnique({ where: { id: decoded.id } });
 
     if (!user || user.isDeleted) {

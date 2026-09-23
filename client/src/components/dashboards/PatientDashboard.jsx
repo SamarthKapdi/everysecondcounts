@@ -54,7 +54,7 @@ const PatientDashboard = () => {
               Welcome, <span className="text-blue-500">{user?.name?.split(' ')[0] || 'Patient'}</span>
             </h1>
             <p className={`text-sm md:text-base mb-8 leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              PulsePath AI is ready to assist you. Describe your symptoms for an instant AI-powered triage assessment, or connect with a specialist for a live consultation.
+              Every Second Counts is ready to assist you. Describe your symptoms for an instant AI-powered triage assessment, or connect with a specialist for a live consultation.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">

@@ -35,7 +35,7 @@ const HospitalNetwork = () => {
       <motion.div initial="hidden" animate="visible" variants={fadeUp}>
         <h1 className="text-2xl md:text-3xl font-black">Hospital Network</h1>
         <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
-          Manage and monitor all partner hospitals in the PulsePath network.
+          Manage and monitor all partner hospitals in the Every Second Counts network.
         </p>
       </motion.div>
 

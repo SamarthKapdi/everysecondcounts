@@ -48,7 +48,7 @@ const ReportAnalyzer = () => {
     setStreamText('');
 
     try {
-      const token = localStorage.getItem('pulsepath-token');
+      const token = localStorage.getItem('esc-token');
       const formData = new FormData();
       formData.append('report', file);
 

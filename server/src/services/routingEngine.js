@@ -1,5 +1,5 @@
 /**
- * PulsePath AI — Smart Hospital Routing Engine
+ * Every Second Counts — Smart Hospital Routing Engine
  * Ranks hospitals using a weighted multi-factor algorithm to find the optimal destination.
  * Factors: distance, bed availability, ICU support, specialty match, hospital load, trauma readiness.
  */

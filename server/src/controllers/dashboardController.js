@@ -40,6 +40,8 @@ exports.getStats = async (req, res, next) => {
 };
 
 // Get emergency trends (last 7 days) — works with Prisma raw query for grouping
+// NOTE: This query uses PostgreSQL-specific syntax (COUNT(*) FILTER (WHERE ...) and ::int cast).
+// It will NOT run on MySQL or SQLite. Every Second Counts is committed to PostgreSQL as its database.
 exports.getTrends = async (req, res, next) => {
   try {
     const trends = await prisma.$queryRaw`

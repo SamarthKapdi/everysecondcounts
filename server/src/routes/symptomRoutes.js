@@ -26,20 +26,6 @@ router.post('/analyze-stream', protect, async (req, res) => {
   res.flushHeaders();
 
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      const fallback = {
-        isValid: true,
-        severity: 'YELLOW',
-        confidenceScore: 0.5,
-        reasoning: 'AI service not configured. Please set GEMINI_API_KEY.',
-        recommendedAction: 'Contact system administrator.',
-        isRuleOverride: false
-      };
-      res.write(`data: ${JSON.stringify({ type: 'complete', data: fallback })}\n\n`);
-      res.write('data: [DONE]\n\n');
-      return res.end();
-    }
 
     // Check for rule-based override first
     const normalizedText = symptoms.join(' ').toLowerCase();
@@ -91,127 +77,72 @@ router.post('/analyze-stream', protect, async (req, res) => {
       return res.end();
     }
 
-    // Use Gemini streaming
-    const prompt = `You are an expert AI emergency medical triage assistant for PulsePath AI.
-Analyze the following patient symptoms: [${symptoms.join(', ')}]
-
-CRITICAL LANGUAGE RULE: You MUST detect the language of the user's input. 
-- If the user wrote in Hindi (Devanagari script like बुखार, सिरदर्द), respond ENTIRELY in Hindi.
-- If the user wrote in Hinglish (Roman script Hindi like "bukhar", "sar dard", "pet me dard"), respond ENTIRELY in Hinglish (Hindi written in Roman/English script).
-- If the user wrote in English, respond in English.
-- NEVER mix languages. Match the user's language exactly.
-
-First, determine if the input contains ANY valid medical symptoms or health concerns.
-If the input is just a greeting, random text, or unrelated to health, set "isValid" to false.
-
-Respond ONLY with a valid JSON object (no markdown):
-{
-  "isValid": <boolean>,
-  "message": "<If isValid is false, provide a friendly message in THE USER'S LANGUAGE asking them to describe medical symptoms. If true, leave empty>",
-  "severity": "GREEN" | "YELLOW" | "ORANGE" | "RED",
-  "confidenceScore": <float between 0.0 and 1.0>,
-  "reasoning": "<Detailed medical reasoning in 2-3 sentences. MUST be in the SAME LANGUAGE as the user's input.>",
-  "recommendedAction": "<Specific action to take. MUST be in the SAME LANGUAGE as the user's input.>"
-}`;
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=${apiKey}`,
-      {
+    // ── Tier 2: Local ML Model (TF-IDF + SVM — no external API) ──
+    const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://localhost:8001';
+    
+    try {
+      const mlResponse = await fetch(`${ML_SERVICE_URL}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.2,
-            responseMimeType: 'application/json',
-          }
-        }),
-        signal: AbortSignal.timeout(30000)
+        body: JSON.stringify({ symptoms }),
+        signal: AbortSignal.timeout(5000)
+      });
+
+      if (!mlResponse.ok) {
+        throw new Error(`ML service returned ${mlResponse.status}`);
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(`Gemini API error: ${response.status}`);
-    }
+      const mlData = await mlResponse.json();
 
-    let fullText = '';
-    const reader = response.body;
-    
-    // Use Node.js streaming to read the SSE from Gemini
-    const { Readable } = require('stream');
-    const readable = Readable.fromWeb(reader);
-
-    readable.on('data', (chunk) => {
-      const lines = chunk.toString().split('\n');
-      for (const line of lines) {
-        if (line.startsWith('data: ')) {
-          const jsonStr = line.slice(6).trim();
-          if (jsonStr === '[DONE]') continue;
-          try {
-            const parsed = JSON.parse(jsonStr);
-            const text = parsed?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-            if (text) {
-              fullText += text;
-              res.write(`data: ${JSON.stringify({ type: 'chunk', text })}\n\n`);
-            }
-          } catch (e) { /* skip malformed lines */ }
-        }
-      }
-    });
-
-    readable.on('end', () => {
-      try {
-        // Clean the full text - remove markdown code blocks if present
-        let cleaned = fullText.trim();
-        if (cleaned.startsWith('```json')) cleaned = cleaned.slice(7);
-        if (cleaned.startsWith('```')) cleaned = cleaned.slice(3);
-        if (cleaned.endsWith('```')) cleaned = cleaned.slice(0, -3);
-        cleaned = cleaned.trim();
-        
-        const analysis = JSON.parse(cleaned);
-        const result = {
-          isValid: analysis.isValid !== undefined ? analysis.isValid : true,
-          message: analysis.message || null,
-          severity: analysis.severity || 'GREEN',
-          confidenceScore: analysis.confidenceScore || 0,
-          reasoning: analysis.reasoning || '',
-          recommendedAction: analysis.recommendedAction || '',
-          isRuleOverride: false
-        };
-        
-        res.write(`data: ${JSON.stringify({ type: 'complete', data: result })}\n\n`);
-        saveToSymptomHistory(req.user.id, symptoms, result);
-      } catch (e) {
-        // If JSON parsing fails, send fallback
-        const fallback = {
-          isValid: true,
-          severity: 'YELLOW',
-          confidenceScore: 0.5,
-          reasoning: fullText || 'Analysis completed but output format was unexpected.',
-          recommendedAction: 'Please consult a healthcare professional for proper evaluation.',
-          isRuleOverride: false
-        };
-        res.write(`data: ${JSON.stringify({ type: 'complete', data: fallback })}\n\n`);
-        saveToSymptomHistory(req.user.id, symptoms, fallback);
-      }
-      res.write('data: [DONE]\n\n');
-      res.end();
-    });
-
-    readable.on('error', (err) => {
-      console.error('Stream error:', err.message);
-      const fallback = {
+      const result = {
         isValid: true,
-        severity: 'YELLOW',
-        confidenceScore: 0.5,
-        reasoning: 'AI stream interrupted. Defaulting to moderate urgency for safety.',
-        recommendedAction: 'Please consult a healthcare professional.',
-        isRuleOverride: false
+        message: null,
+        severity: mlData.severity || 'GREEN',
+        confidenceScore: mlData.confidenceScore || 0,
+        reasoning: mlData.reasoning || '',
+        recommendedAction: mlData.recommendedAction || '',
+        isRuleOverride: false,
+        triageEngine: mlData.triageEngine || 'Every Second Counts ML Classifier v1.0'
       };
-      res.write(`data: ${JSON.stringify({ type: 'complete', data: fallback })}\n\n`);
+
+      // Stream the reasoning word-by-word for UX continuity (same pattern as rule-based path)
+      const words = result.reasoning.split(' ');
+      for (let i = 0; i < words.length; i++) {
+        res.write(`data: ${JSON.stringify({ type: 'chunk', text: words[i] + ' ' })}\n\n`);
+      }
+
+      res.write(`data: ${JSON.stringify({ type: 'complete', data: result })}\n\n`);
+      saveToSymptomHistory(req.user.id, symptoms, result);
       res.write('data: [DONE]\n\n');
-      res.end();
-    });
+      return res.end();
+
+    } catch (mlError) {
+      console.error('ML service unavailable, using fallback scorer:', mlError.message);
+
+      // ── Tier 3: Deterministic Fallback Scorer ──
+      const { analyzeSymptoms } = require('../services/aiService');
+      const fallbackResult = await analyzeSymptoms(symptoms);
+
+      const fbResult = {
+        isValid: true,
+        message: null,
+        severity: fallbackResult.severity || 'YELLOW',
+        confidenceScore: fallbackResult.confidenceScore || 0.5,
+        reasoning: fallbackResult.reasoning || 'Analysis completed via fallback scoring engine.',
+        recommendedAction: fallbackResult.recommendedAction || 'Please consult a healthcare professional.',
+        isRuleOverride: fallbackResult.isRuleOverride || false,
+      };
+
+      const fbWords = fbResult.reasoning.split(' ');
+      for (let i = 0; i < fbWords.length; i++) {
+        res.write(`data: ${JSON.stringify({ type: 'chunk', text: fbWords[i] + ' ' })}\n\n`);
+      }
+
+      res.write(`data: ${JSON.stringify({ type: 'complete', data: fbResult })}\n\n`);
+      saveToSymptomHistory(req.user.id, symptoms, fbResult);
+      res.write('data: [DONE]\n\n');
+      return res.end();
+    }
 
   } catch (error) {
     console.error('Symptom stream error:', error.message);
@@ -314,7 +245,7 @@ router.post('/report-analyze-stream', protect, async (req, res) => {
               }
             },
             {
-              text: `You are a medical report analysis AI for PulsePath AI healthcare platform.
+              text: `You are a medical report analysis AI for Every Second Counts healthcare platform.
 Analyze this medical report image carefully. Extract all visible information.
 
 Respond ONLY with a valid JSON object (no markdown):
@@ -336,7 +267,7 @@ Respond ONLY with a valid JSON object (no markdown):
       requestBody = {
         contents: [{
           parts: [{
-            text: `You are a medical report analysis AI for PulsePath AI healthcare platform.
+            text: `You are a medical report analysis AI for Every Second Counts healthcare platform.
 A patient has uploaded a medical report file named "${fileName}" (type: ${fileType}).
 Generate a comprehensive and realistic analysis based on the file type.
 
