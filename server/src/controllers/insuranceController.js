@@ -135,7 +135,7 @@ exports.getClaims = async (req, res, next) => {
         hospital: { select: { name: true } },
         billing: { select: { totalAmount: true, amountPaid: true, status: true } }
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { submittedAt: 'desc' }
     });
 
     res.json({

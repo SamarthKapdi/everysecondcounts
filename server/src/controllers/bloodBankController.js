@@ -51,7 +51,14 @@ exports.getInventory = async (req, res, next) => {
     const inventory = await prisma.bloodInventory.findMany({
       where,
       include: {
-        hospital: { select: { name: true, location: true } }
+        hospital: {
+          select: {
+            name: true,
+            address: true,
+            locationLat: true,
+            locationLng: true
+          }
+        }
       },
       orderBy: { lastUpdated: 'desc' }
     });
