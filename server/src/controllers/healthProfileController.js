@@ -248,7 +248,7 @@ exports.updateProfile = async (req, res, next) => {
       existingConditions: existingConditions || null,
       currentMedications: currentMedications || null,
       allergies: allergies || null,
-      emergencyContact: emergencyContact || null,
+      emergencyContact: typeof emergencyContact === 'object' && emergencyContact !== null ? JSON.stringify(emergencyContact) : (emergencyContact || null),
       consentToHealthMonitoring: consentToHealthMonitoring !== undefined ? Boolean(consentToHealthMonitoring) : true
     };
 

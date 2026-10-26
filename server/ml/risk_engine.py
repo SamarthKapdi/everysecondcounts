@@ -345,7 +345,7 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
 
     # 4. Clinical Safety Overrides & Dynamic Deterioration Escalation
-    has_recent_red_flag = any(c.get('redFlag') for c in checkins[-3:]) if checkins else False
+    has_recent_red_flag = any(c.get('redFlag') for c in checkins[:5]) if checkins else False
     if has_recent_red_flag:
         final_score = max(final_score, 75.0)
     elif d_stats.get('meanSymptomScore', 0) >= 45.0 or d_stats.get('symptomSlope', 0) >= 5.0 or d_stats.get('spo2Min', 98.0) <= 90.0 or d_stats.get('bpDeviation', 0) >= 25.0:

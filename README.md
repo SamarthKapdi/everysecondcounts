@@ -94,23 +94,36 @@ flowchart TD
 | **Database** | PostgreSQL |
 | **Other** | PDF-Parse, Pytesseract, Bcrypt |
 
-## Local ML Architecture
-All AI runs locally; no third-party AI services or cloud API keys are used anywhere in Every Second Counts.
+## Zero-API-Key & Fully Local Guarantee
+**Every Second Counts operates 100% locally with zero cloud dependencies and zero API keys.** All triage decisions, first-aid advice, lab extractions, and sudden-attack predictions are executed on-premises using calibrated Scikit-Learn models and deterministic clinical safeguards. No external AI APIs (such as OpenAI, Anthropic, or Google Gemini) are called anywhere in the platform.
 
-1. **Emergency Triage Classifier**:
-   - **97.66% test accuracy**, **97.69% cross-validated**, trained locally on 3,200 triage cases.
-   - 3-tier hybrid architecture (Rule override -> TF-IDF + Calibrated LinearSVC -> Deterministic Scorer).
-   - Details: [Triage Model Metrics](docs/model-metrics.md).
+## Local Machine Learning Architecture
+Detailed architectural documentation: [Full Architecture Guide](docs/architecture.md)
 
-2. **First-Aid Intent Classifier & Chatbot**:
-   - 12-class TF-IDF + LogisticRegression first-aid responder with calibrated safe fallbacks below confidence threshold. Zero external API calls.
+1. **Emergency Triage Classifier (`POST /predict`)**:
+   - **97.66% test accuracy**, **97.69% cross-validated**, trained locally on 3,200 clinical emergency cases.
+   - 3-tier hybrid pipeline: Hard Rule Override (<1ms) → TF-IDF + Calibrated LinearSVC → Deterministic Scorer Fallback.
+   - Documentation: [Triage Model Metrics](docs/model-metrics.md).
 
-3. **Medical Report & Lab Analyzer (`POST /analyze-report`)**:
-   - **Category Classifier**: 100% test accuracy across 9 diagnostic panels (CBC, Lipid, Diabetes, Liver, Kidney, Thyroid, Vitamins, Cardiology, General) -> maps to clinical specialist.
+2. **First-Aid Intent Classifier & Safe Responder (`POST /chat`)**:
+   - 12-class TF-IDF + LogisticRegression first-aid intent classifier with templated safe emergency responses (bleeding, burns, choking, stroke, chest pain, fever, anaphylaxis).
+   - Calibrated safe fallback below confidence threshold: routes to doctor consultation or SOS dispatch.
+
+3. **Medical Report & Lab Diagnostic Analyzer (`POST /analyze-report`)**:
+   - **Category Classifier**: 100% test accuracy across 9 diagnostic panels (CBC, Lipid, Diabetes, Liver, Kidney, Thyroid, Vitamins, Cardiology, General) -> automatically maps to clinical specialist.
    - **Severity Classifier**: 97.5% test accuracy on flagged abnormal vectors (`NORMAL`, `MONITOR`, `CONSULT_SOON`, `URGENT`).
-   - **Lab Extraction**: 50+ common laboratory tests with synonyms, units normalization, age/sex reference ranges, and abnormal flagging.
-   - **Guard against low-quality input**: Transparently returns `"could not read this file"` rather than fabricating medical findings.
-   - Details: [Report Model Metrics & Multi-Source Evaluation](docs/report-model-metrics.md).
+   - **Lab Extraction**: 50+ common laboratory tests with synonym matching, unit normalization, age/sex reference ranges, and critical abnormal flagging.
+   - **Low-Quality Safeguard**: Transparently returns `"could not read this file"` on low-contrast scans rather than hallucinating findings.
+   - Documentation: [Report Model Metrics & Multi-Source Evaluation](docs/report-model-metrics.md).
+
+4. **Multi-Modal Sudden-Attack Risk Engine (`POST /predict-risk`)**:
+   - **Static Baseline (35%)**: Calibrated Logistic Regression trained on public UCI Cleveland Heart Disease dataset (303 records, Brier score = 0.1084, AUC = 0.9310).
+   - **Dynamic Trajectory (65%)**: Calibrated Gradient Boosting trained on 3,000 longitudinal patient trajectories (12 dynamic features: symptom slopes, vitals deviations, SpO2 dips, missed check-ins, medication adherence).
+   - **Meta-Blend & Tiers**: Blended 0–100 risk score categorized into `LOW`, `MODERATE`, `HIGH`, `CRITICAL`.
+   - **Hard Safety Override**: Any acute red-flag check-in in the last 48 hours unconditionally forces a minimum score of 75 and tier `>= HIGH`.
+   - **Strict Wording Compliance**: Never outputs "you are safe" or "no risk". `LOW` tier explicitly renders: *"No elevated risk detected from the data you entered."*
+   - **Deterministic Fallback**: Labeled `v1.0-deterministic-fallback (estimated basic mode)` when ML service is offline.
+   - Documentation: [Sudden-Attack Risk Model](docs/risk-model.md).
 
 ### Optical Character Recognition (OCR) Setup on Windows
 - **PDF Extraction**: Uses native PyMuPDF (`fitz`), works out of the box with zero system dependencies.
