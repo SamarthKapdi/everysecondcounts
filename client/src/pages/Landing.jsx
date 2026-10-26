@@ -11,7 +11,7 @@ const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } };
 const stagger = { visible: { transition: { staggerChildren: 0.12 } } };
 
 const FEATURES = [
-  { icon: Brain, title: 'AI Triage Engine', desc: 'Hybrid rule-based + Gemini AI analyzes symptoms in seconds with explainable confidence scoring.', color: 'from-blue-500 to-cyan-400' },
+  { icon: Brain, title: 'AI Triage Engine', desc: 'All AI runs locally; no third-party AI services. Locally trained ML + rule engine analyzes symptoms in seconds with explainable confidence scoring.', color: 'from-blue-500 to-cyan-400' },
   { icon: MapPin, title: 'Smart Hospital Routing', desc: 'Multi-factor algorithm considers distance, ICU beds, load, and specialty to find the optimal hospital.', color: 'from-emerald-500 to-teal-400' },
   { icon: Radio, title: 'Real-Time Telemetry', desc: 'Live patient vitals streaming — heart rate, SpO2, blood pressure, ECG — with deterioration alerts.', color: 'from-orange-500 to-amber-400' },
   { icon: Ambulance, title: 'Live Ambulance Tracking', desc: 'GPS-enabled ambulance dispatch with real-time ETA updates and route visualization.', color: 'from-red-500 to-pink-400' },

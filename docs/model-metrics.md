@@ -66,8 +66,7 @@ To validate that the model generalizes beyond its training templates, we tested 
 3. **Not a substitute for clinical judgment**: This model is a first-pass screening tool. All triage decisions should be reviewed by qualified medical personnel.
 
 ## Model Integration
-The trained model is served via a local FastAPI microservice at `http://localhost:8001/predict`.
-It replaces the external Gemini API call in `aiService.js` (Tier 2 of the hybrid triage engine).
+It eliminates external AI API calls in `aiService.js` (Tier 2 of the hybrid triage engine). All AI runs locally.
 
 ### Triage Pipeline (3-Tier Hybrid Architecture)
 1. **Tier 1 — Rule-Based Pre-Screener**: Keyword matching for critical symptoms (chest pain, stroke, etc.). Guarantees no false negatives for life-threatening emergencies.

@@ -14,11 +14,11 @@ In a medical emergency, every second between symptom onset and definitive care s
 The current emergency healthcare system is heavily siloed and relies on manual, delayed decision-making during critical moments. Patients often arrive at hospitals that lack the required specialists, available beds, or specific blood types, leading to dangerous secondary transfers and loss of the Golden Hour. Every Second Counts bridges this gap by unifying symptom triage, dynamic hospital capacity telemetry, and end-to-end patient lifecycle management into a single, real-time platform.
 
 ## Key Features
-- 🧠 **Hybrid AI Triage**: Rule-Based pre-screening + Locally Trained ML Classifier + Deterministic Fallback.
+- 🧠 **Hybrid AI Triage**: Rule-Based pre-screening + Locally Trained ML Classifier + Deterministic Fallback. All AI runs locally; no third-party AI services.
 - 🏥 **Multi-Criteria Hospital Routing**: Geospatial routing (Haversine) combined with weighted clinical readiness scoring.
 - 📋 **Patient Lifecycle Management**: Seamless tracking from Admission → Treatment → Discharge.
 - 🛡️ **Insurance Claim Processing**: Integrated claim initiation and status tracking.
-- 🔬 **Pathology & Lab Test Management**: Real PDF extraction of lab results. *(Image-based medical report analysis uses Gemini Vision)*.
+- 🔬 **Pathology & Lab Test Management**: Real PDF extraction of lab results with local parsing and validation.
 - 🩸 **Blood Bank Management**: Cross-hospital matching for critical blood inventory.
 - 🫀 **Transplant Coordination**: Donor-recipient matching engine based on urgency and medical compatibility.
 - 💖 **Fundraising & Financial Assistance**: Embedded support for crowdsourced patient funding.
@@ -135,7 +135,7 @@ Update `.env` with your PostgreSQL credentials:
 DATABASE_URL="postgresql://postgres:YOUR_PASSWORD@localhost:5432/everysecondcounts?schema=public"
 JWT_SECRET="your_secure_jwt_secret"
 JWT_REFRESH_SECRET="your_secure_refresh_secret"
-EXTERNAL_AI_API_KEY="optional_gemini_key_for_vision_features"
+ML_SERVICE_URL="http://localhost:8001"
 ```
 
 ### 3. Database Setup

@@ -15,26 +15,41 @@ Endpoints:
 
 import os
 import sys
+
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
+
 import joblib
 import numpy as np
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(SCRIPT_DIR, 'models', 'triage_model.pkl')
+FIRST_AID_MODEL_PATH = os.path.join(SCRIPT_DIR, 'models', 'first_aid_model.pkl')
 
 # ── Load model at startup ───────────────────────────────────────────────────
 if not os.path.exists(MODEL_PATH):
-    print(f'❌ Model file not found at: {MODEL_PATH}')
+    print(f'Model file not found at: {MODEL_PATH}')
     print('   Run train_model.py first.')
     sys.exit(1)
 
-print(f'🔧 Loading triage model from: {MODEL_PATH}')
+print(f'Loading triage model from: {MODEL_PATH}')
 model = joblib.load(MODEL_PATH)
-print('✅ Model loaded successfully')
+print('Triage model loaded successfully')
+
+first_aid_data = None
+if os.path.exists(FIRST_AID_MODEL_PATH):
+    try:
+        first_aid_data = joblib.load(FIRST_AID_MODEL_PATH)
+        print('First-aid intent model loaded successfully')
+    except Exception as e:
+        print(f'Could not load first aid model: {e}')
 
 # ── Severity metadata ───────────────────────────────────────────────────────
 SEVERITY_META = {
@@ -140,6 +155,58 @@ async def predict(request: PredictRequest):
         )
 
 
+class ChatIntentRequest(BaseModel):
+    message: str
+
+class ChatIntentResponse(BaseModel):
+    intent: str
+    confidence: float
+    reply: str
+    isFallback: bool
+
+@app.post('/chat/intent', response_model=ChatIntentResponse)
+async def predict_intent(req: ChatIntentRequest):
+    if not req.message or not req.message.strip():
+        raise HTTPException(status_code=400, detail='Message cannot be empty')
+
+    if not first_aid_data:
+        # Fallback when model is missing
+        return ChatIntentResponse(
+            intent='fallback',
+            confidence=0.0,
+            reply=(
+                "I am Every Second Counts Emergency First-Aid Assistant. "
+                "For your safety, please contact a healthcare professional or use our SOS button if this is an acute crisis."
+            ),
+            isFallback=True
+        )
+
+    pipeline = first_aid_data['pipeline']
+    responses = first_aid_data['responses']
+    threshold = first_aid_data.get('confidence_threshold', 0.28)
+
+    probs = pipeline.predict_proba([req.message])[0]
+    max_idx = int(np.argmax(probs))
+    intent = str(pipeline.classes_[max_idx])
+    conf = float(probs[max_idx])
+
+    if conf < threshold:
+        return ChatIntentResponse(
+            intent=intent,
+            confidence=round(conf, 4),
+            reply=responses.get('fallback'),
+            isFallback=True
+        )
+
+    reply_text = responses.get(intent, responses.get('fallback'))
+    return ChatIntentResponse(
+        intent=intent,
+        confidence=round(conf, 4),
+        reply=reply_text,
+        isFallback=False
+    )
+
+
 @app.get('/health')
 async def health_check():
     """Health check endpoint."""
@@ -147,6 +214,7 @@ async def health_check():
         'status': 'healthy',
         'model_loaded': model is not None,
         'model_classes': list(model.classes_) if hasattr(model, 'classes_') else [],
+        'first_aid_model_loaded': first_aid_data is not None,
         'service': 'Every Second Counts AI Triage ML Service',
         'version': '1.0.0'
     }

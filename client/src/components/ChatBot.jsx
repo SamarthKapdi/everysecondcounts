@@ -3,13 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot, User, CornerDownLeft, Sparkles } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
+import api from '../services/api';
+
 const ChatBot = () => {
   const { isDark } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hello! I am Every Second Counts Emergency Assistant. I can guide you through emergencies, check symptoms, or provide immediate medical first-aid instructions. How can I assist you today?", sender: 'bot' }
+    { id: 1, text: "Hello! I am Every Second Counts Emergency Assistant. All AI runs locally. I can provide immediate first-aid guidance for burns, bleeding, choking, chest pain, and other emergencies. How can I assist you today?", sender: 'bot' }
   ]);
   const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
 
   useEffect(() => {
@@ -18,31 +21,36 @@ const ChatBot = () => {
 
   const handleSend = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || loading) return;
 
     const userMsg = input.trim();
     setMessages(prev => [...prev, { id: Date.now(), text: userMsg, sender: 'user' }]);
     setInput('');
+    setLoading(true);
 
-    // Simulate AI thinking and replying
-    setTimeout(() => {
-      let botResponse = "I'm processing that symptom. For an official clinical assessment, please use our 'AI Symptom Checker' tool. If this is a life-threatening crisis, press the red SOS button or call emergency services immediately!";
-      
+    try {
+      const res = await api.post('/chat', { message: userMsg });
+      const reply = res.data?.data?.reply || "I'm not sure. Please contact a doctor or use the SOS button.";
+      setMessages(prev => [...prev, { id: Date.now() + 1, text: reply, sender: 'bot' }]);
+    } catch (err) {
+      // Fallback if network or auth error
+      let botResponse = "I'm not sure about that condition. For your safety, please contact a doctor, use our AI Symptom Checker, or press the SOS button.";
       const lower = userMsg.toLowerCase();
       if (lower.includes('chest pain') || lower.includes('heart attack')) {
-        botResponse = "🚨 CRITICAL FIRST AID INSTRUCTION: Chest pain could indicate a serious cardiac event. 1. Call emergency services immediately. 2. Sit down, try to remain calm. 3. Chew an aspirin (325mg) if available and not allergic. 4. Unlock your front door for emergency crew.";
+        botResponse = "🚨 CRITICAL FIRST AID: Chest pain may indicate a cardiac emergency. 1. Call 112/108 or tap SOS immediately. 2. Rest quietly. 3. Chew an aspirin (325mg) if not allergic. 4. Unlock your door for paramedics.";
       } else if (lower.includes('bleeding')) {
-        botResponse = "🩸 FIRST AID FOR BLEEDING: 1. Apply direct pressure to the wound with a clean cloth or bandage. 2. Elevate the injured area above the heart level. 3. If bleeding does not stop, continue applying pressure and seek immediate medical care.";
+        botResponse = "🩸 FIRST AID FOR BLEEDING: 1. Apply firm direct pressure with a clean cloth. 2. Elevate the wound above heart level. 3. Add more cloths on top if soaked. 4. Seek emergency care immediately.";
       } else if (lower.includes('burn')) {
-        botResponse = "🔥 FIRST AID FOR BURNS: 1. Cool the burn immediately under cool running water for 10-15 minutes. 2. Do not use ice. 3. Cover loosely with sterile non-stick dressing. 4. Take over-the-counter pain reliever if suitable.";
-      } else if (lower.includes('stroke') || lower.includes('numb')) {
-        botResponse = "🧠 STROKE SYMPTOM WARNING (FAST): 1. F (Face drooping). 2. A (Arm weakness). 3. S (Speech difficulty). 4. T (Time to call emergency services!). Time is critical. Do not wait.";
+        botResponse = "🔥 FIRST AID FOR BURNS: 1. Cool under running water for 10-20 minutes. 2. Do not apply ice or grease. 3. Cover loosely with sterile dressing. 4. Seek emergency evaluation.";
+      } else if (lower.includes('stroke') || lower.includes('droop')) {
+        botResponse = "🧠 STROKE WARNING (F.A.S.T.): Check Face, Arms, Speech. Time is critical—call 112/108 immediately. Do not administer aspirin or food.";
       } else if (lower.includes('choking')) {
-        botResponse = "🗣️ CHOKING ASSISTANCE: If adult is conscious, perform the Heimlich Maneuver: 1. Stand behind the person. 2. Wrap arms around waist. 3. Make a fist and place thumb side just above navel. 4. Grasp fist and perform quick, upward thrusts.";
+        botResponse = "🗣️ CHOKING FIRST AID: 1. Give 5 back blows between shoulder blades. 2. Give 5 upward abdominal thrusts (Heimlich maneuver). 3. Call 112/108 if unconscious.";
       }
-
       setMessages(prev => [...prev, { id: Date.now() + 1, text: botResponse, sender: 'bot' }]);
-    }, 1000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
