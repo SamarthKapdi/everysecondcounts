@@ -26,6 +26,7 @@ const bloodBankRoutes = require('./routes/bloodBankRoutes');
 const transplantRoutes = require('./routes/transplantRoutes');
 const fundraisingRoutes = require('./routes/fundraisingRoutes');
 const healthProfileRoutes = require('./routes/healthProfileRoutes');
+const checkinRoutes = require('./routes/checkinRoutes');
 const http = require('http');
 const { initSocketIO } = require('./sockets/socketManager');
 const { errorHandler } = require('./middleware/errorHandler');
@@ -68,6 +69,7 @@ app.use('/api/labs', labRoutes);
 app.use('/api/blood-bank', bloodBankRoutes);
 app.use('/api/transplants', transplantRoutes);
 app.use('/api/fundraising', fundraisingRoutes);
+app.use('/api/checkins', checkinRoutes);
 
 // AI Symptom + Report Analyzer (with multer for file uploads)
 const multer = require('multer');

@@ -23,6 +23,7 @@ const Sidebar = () => {
     { to: '/symptom-checker', icon: Stethoscope, label: 'AI Symptom Analyzer' },
     { to: '/report-analyzer', icon: FileHeart, label: 'AI Report Analyzer' },
     { to: '/health-profile', icon: HeartPulse, label: 'Health Profile' },
+    { to: '/daily-checkin', icon: ClipboardList, label: 'Daily Check-in' },
     { to: '/hospitals', icon: Building2, label: 'Hospitals Nearby' },
     { to: '/consult', icon: MessageCircle, label: 'Consult Doctor' },
     { to: '/insurance', icon: ShieldAlert, label: 'Insurance & Claims' },
