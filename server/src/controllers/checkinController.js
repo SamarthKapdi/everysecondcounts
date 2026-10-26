@@ -230,7 +230,20 @@ exports.getTodayStatus = async (req, res, next) => {
 exports.submitCheckin = async (req, res, next) => {
   try {
     const patientId = req.user.id;
-    const { answers, selfReportedVitals, slot: requestedSlot, testSlotOverride, testDateOverride } = req.body;
+    const { answers, selfReportedVitals, slot: requestedSlot, testSlotOverride, testDateOverride, consentGiven } = req.body;
+
+    if (consentGiven === false) {
+      return next(new AppError('Health monitoring consent required to participate in daily check-ins.', 403));
+    }
+
+    // Verify patient health monitoring consent in profile
+    const existingProfile = await prisma.healthProfile.findUnique({
+      where: { patientId },
+      select: { consentToHealthMonitoring: true }
+    });
+    if (existingProfile && existingProfile.consentToHealthMonitoring === false) {
+      return next(new AppError('Health monitoring consent required to participate in daily check-ins.', 403));
+    }
 
     if (!answers || typeof answers !== 'object') {
       return next(new AppError('Please complete quiz questions', 400));
@@ -403,3 +416,10 @@ exports.getHistory = async (req, res, next) => {
     next(error);
   }
 };
+
+// Export helper utilities for testing
+exports.getKolkataTime = getKolkataTime;
+exports.getSlotForHour = getSlotForHour;
+exports.SLOT_WINDOWS = SLOT_WINDOWS;
+exports.evaluateRedFlag = evaluateRedFlag;
+exports.computeSymptomScore = computeSymptomScore;

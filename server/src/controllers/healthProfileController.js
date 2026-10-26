@@ -280,3 +280,7 @@ exports.updateProfile = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.calculateCompleteness = calculateCompleteness;
+exports.validateRanges = validateRanges;
+

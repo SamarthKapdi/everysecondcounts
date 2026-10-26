@@ -197,7 +197,35 @@ def evaluate_factors(profile: dict, dynamic_stats: dict, baseline_risk: float, d
             'detail': 'Severe warning signs (e.g. chest pain at rest or neurological weakness) flagged in recent check-in.'
         })
 
-    # 2. Symptom slope & elevation
+    # 2. SpO2 Dip (Acute hypoxemia alarm)
+    spo2_min = dynamic_stats.get('spo2Min', 98.0)
+    if spo2_min < 93.0:
+        factors.append({
+            'factor': 'Blood Oxygen Desaturation',
+            'severity': 'high',
+            'detail': f"SpO2 minimum dipped to {spo2_min}%, indicating potential respiratory/cardiac compromise."
+        })
+
+    # 3. Blood pressure deviation / acute spike
+    bp_dev = dynamic_stats.get('bpDeviation', 0)
+    base_sys = profile.get('restingBpSystolic')
+    if bp_dev >= 15.0:
+        factors.append({
+            'factor': 'Acute Blood Pressure Spike',
+            'severity': 'high',
+            'detail': f"Self-reported systolic blood pressure deviated +{bp_dev} mmHg above personal baseline."
+        })
+
+    # 4. Medication Adherence
+    med_adh = dynamic_stats.get('medicationAdherence', 100.0)
+    if med_adh < 70.0:
+        factors.append({
+            'factor': 'Suboptimal Medication Adherence',
+            'severity': 'moderate',
+            'detail': f"Only {med_adh}% of scheduled medication doses were confirmed taken recently."
+        })
+
+    # 5. Symptom slope & elevation
     slope = dynamic_stats.get('symptomSlope', 0)
     mean_sym = dynamic_stats.get('meanSymptomScore', 0)
     if slope > 2.0:
@@ -213,54 +241,73 @@ def evaluate_factors(profile: dict, dynamic_stats: dict, baseline_risk: float, d
             'detail': f"Average recent symptom score of {mean_sym}/100 exceeds baseline threshold."
         })
 
-    # 3. Blood pressure deviation / baseline hypertension
-    bp_dev = dynamic_stats.get('bpDeviation', 0)
-    base_sys = profile.get('restingBpSystolic')
-    if bp_dev >= 15.0:
-        factors.append({
-            'factor': 'Acute Blood Pressure Spike',
-            'severity': 'high',
-            'detail': f"Self-reported systolic blood pressure deviated +{bp_dev} mmHg above personal baseline."
-        })
-    elif base_sys and base_sys >= 140:
+    # 6. Baseline hypertension (if no acute spike already recorded)
+    if base_sys and base_sys >= 140 and bp_dev < 15.0:
         factors.append({
             'factor': 'Baseline Hypertension',
             'severity': 'moderate',
             'detail': f"Known resting systolic BP is elevated at {base_sys} mmHg."
         })
 
-    # 4. SpO2 Dip
-    spo2_min = dynamic_stats.get('spo2Min', 98.0)
-    if spo2_min < 93.0:
+    # 6. Tobacco / Smoking factor
+    smoking = profile.get('smokingStatus', '')
+    if smoking == 'CURRENT':
         factors.append({
-            'factor': 'Blood Oxygen Desaturation',
+            'factor': 'Active Tobacco Smoking',
             'severity': 'high',
-            'detail': f"SpO2 minimum dipped to {spo2_min}%, indicating potential respiratory/cardiac compromise."
+            'detail': 'Active tobacco smoking is a primary driver of arterial plaque formation and endothelial strain.'
         })
-
-    # 5. Medication Adherence
-    med_adh = dynamic_stats.get('medicationAdherence', 100.0)
-    if med_adh < 70.0:
+    elif smoking == 'NEVER' and len(factors) < 4:
         factors.append({
-            'factor': 'Suboptimal Medication Adherence',
-            'severity': 'moderate',
-            'detail': f"Only {med_adh}% of scheduled medication doses were confirmed taken recently."
+            'factor': 'Tobacco-Free Status',
+            'severity': 'low',
+            'detail': 'Absence of smoking history significantly preserves vascular compliance.'
         })
 
-    # 6. Baseline Cardiovascular Profile Risk
-    if baseline_risk >= 50.0:
+    # 7. Serum Cholesterol / Metabolic profile
+    chol = profile.get('totalCholesterol')
+    if chol and chol >= 240:
+        factors.append({
+            'factor': 'Elevated Serum Cholesterol',
+            'severity': 'moderate',
+            'detail': f"Total cholesterol of {chol} mg/dL exceeds desirable clinical threshold."
+        })
+    elif chol and chol < 200 and len(factors) < 4:
+        factors.append({
+            'factor': 'Favorable Lipid Profile',
+            'severity': 'low',
+            'detail': f"Total cholesterol of {chol} mg/dL is within desirable clinical bounds."
+        })
+
+    # 8. Fasting Glucose
+    fbs = profile.get('fastingGlucose')
+    if fbs and fbs >= 126:
+        factors.append({
+            'factor': 'Elevated Fasting Glucose',
+            'severity': 'moderate',
+            'detail': f"Fasting glucose of {fbs} mg/dL indicates impaired glycemic regulation."
+        })
+
+    # 9. Baseline Cardiovascular Profile Risk
+    if baseline_risk >= 40.0:
         factors.append({
             'factor': 'Static Baseline Cardiovascular Markers',
-            'severity': 'moderate',
+            'severity': 'moderate' if baseline_risk < 60 else 'high',
             'detail': f"UCI Cleveland baseline model indicates {baseline_risk}% pre-existing clinical vulnerability."
         })
 
-    # Fallback default if all quiet
-    if not factors:
+    # Fallback to ensure at least 3-5 high-quality factors
+    if len(factors) < 3:
         factors.append({
-            'factor': 'Stable Vitals & Normal Adherence',
-            'severity': 'normal',
-            'detail': 'Symptom scores, resting blood pressure, and daily check-in habits remain in normal range.'
+            'factor': 'Epidemiological Baseline Calibration',
+            'severity': 'low' if baseline_risk < 35 else 'moderate',
+            'detail': f"Calibrated baseline risk evaluated at {baseline_risk}% from verified clinical covariates."
+        })
+    if len(factors) < 3:
+        factors.append({
+            'factor': 'Stable Longitudinal Tracking',
+            'severity': 'low',
+            'detail': 'Recent symptom scores, resting vitals, and check-in cadence demonstrate steady stability.'
         })
 
     return factors[:5]
@@ -297,10 +344,16 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     # 3. Meta-Blend
     final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
 
-    # 4. Hard Safety Overrides
+    # 4. Clinical Safety Overrides & Dynamic Deterioration Escalation
     has_recent_red_flag = any(c.get('redFlag') for c in checkins[-3:]) if checkins else False
     if has_recent_red_flag:
         final_score = max(final_score, 75.0)
+    elif d_stats.get('meanSymptomScore', 0) >= 45.0 or d_stats.get('symptomSlope', 0) >= 5.0 or d_stats.get('spo2Min', 98.0) <= 90.0 or d_stats.get('bpDeviation', 0) >= 25.0:
+        final_score = max(final_score, 65.0)
+    elif d_stats.get('meanSymptomScore', 0) >= 30.0 or d_stats.get('symptomSlope', 0) >= 2.0 or (profile.get('restingBpSystolic') and profile.get('restingBpSystolic') >= 170):
+        final_score = max(final_score, 45.0)
+    elif baseline_risk >= 50.0 or (profile.get('restingBpSystolic') and profile.get('restingBpSystolic') >= 150):
+        final_score = max(final_score, 35.0)
 
     # 5. Tier Determination
     if final_score >= 80.0:

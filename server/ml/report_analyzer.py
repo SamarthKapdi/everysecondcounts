@@ -701,12 +701,18 @@ def extract_lab_values(text: str, sex: str = 'unknown', age: int = None) -> list
     return results
 
 
-def analyze_report(file_bytes: bytes, filename: str, sex: str = 'unknown', age: int = None) -> dict:
+def analyze_report(file_bytes: bytes = None, filename: str = None, sex: str = 'unknown', age: int = None, text_content: str = None) -> dict:
     """
     Main pipeline entrypoint.
     Returns structured analysis payload conforming to Every Second Counts API contract.
     """
-    extracted_text, method = extract_text_from_bytes(file_bytes, filename)
+    if text_content:
+        extracted_text = text_content
+        method = "text_input"
+    elif file_bytes is not None and filename:
+        extracted_text, method = extract_text_from_bytes(file_bytes, filename)
+    else:
+        extracted_text, method = "", "no_input"
 
     # 1. Guard against empty / unreadable files
     if len(extracted_text) < 20:

@@ -90,9 +90,11 @@ app.use('/api/health', healthProfileRoutes);
 // Error handling
 app.use(errorHandler);
 
-server.listen(PORT, () => {
-  console.log(`🏥 Every Second Counts Server running on port ${PORT}`);
-  console.log(`📡 Real-time Socket.IO layer initialized`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(PORT, () => {
+    console.log(`🏥 Every Second Counts Server running on port ${PORT}`);
+    console.log(`📡 Real-time Socket.IO layer initialized`);
+  });
+}
 
 module.exports = { app, server };

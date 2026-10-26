@@ -9,7 +9,8 @@
     "db:migrate": "npx prisma migrate dev",
     "db:seed": "node prisma/seed.js",
     "db:studio": "npx prisma studio",
-    "db:generate": "npx prisma generate"
+    "db:generate": "npx prisma generate",
+    "test": "jest --runInBand --detectOpenHandles --forceExit"
   },
   "keywords": [
     "healthcare",
@@ -43,6 +44,8 @@
     "uuid": "^14.0.0"
   },
   "devDependencies": {
-    "prisma": "^5.22.0"
+    "jest": "^30.5.2",
+    "prisma": "^5.22.0",
+    "supertest": "^7.3.1"
   }
 }

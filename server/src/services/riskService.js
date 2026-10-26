@@ -42,21 +42,100 @@ function computeFallbackRisk(profile, checkins) {
   else if (finalScore >= 60 || hasRecentRedFlag) tier = 'HIGH';
   else if (finalScore >= 30) tier = 'MODERATE';
 
-  const factors = [
-    {
-      factor: 'Estimated Baseline (Basic Mode)',
-      severity: baseScore >= 40 ? 'high' : 'normal',
-      detail: 'Computed using rule-based deterministic clinical guidelines while ML microservice is offline.'
-    }
-  ];
+  const factors = [];
 
   if (hasRecentRedFlag) {
-    factors.unshift({
+    factors.push({
       factor: 'Acute Red-Flag Symptom Flagged',
-      severity: 'critical',
-      detail: 'Emergency symptom reported during recent daily check-in (Hard override enforced).'
+      severity: 'high',
+      detail: 'Emergency symptom reported during recent daily check-in (Hard safety override enforced).'
     });
   }
+
+  // Blood pressure factor
+  if (profile && profile.restingBpSystolic) {
+    if (profile.restingBpSystolic >= 140 || (profile.restingBpDiastolic && profile.restingBpDiastolic >= 90)) {
+      factors.push({
+        factor: 'Elevated Blood Pressure (Hypertension)',
+        severity: profile.restingBpSystolic >= 160 ? 'high' : 'moderate',
+        detail: `Systolic BP recorded at ${profile.restingBpSystolic} mmHg (above clinical threshold).`
+      });
+    } else {
+      factors.push({
+        factor: 'Normal Blood Pressure',
+        severity: 'low',
+        detail: `Systolic BP recorded within normal range at ${profile.restingBpSystolic} mmHg.`
+      });
+    }
+  }
+
+  // Tobacco / Smoking factor
+  if (profile && profile.smokingStatus === 'CURRENT') {
+    factors.push({
+      factor: 'Active Tobacco Smoking',
+      severity: 'high',
+      detail: 'Active smoking significantly accelerates vascular endothelial damage and plaque vulnerability.'
+    });
+  } else if (profile && profile.smokingStatus === 'NEVER') {
+    factors.push({
+      factor: 'Non-Smoker Profile',
+      severity: 'low',
+      detail: 'No tobacco-related cardiovascular risk amplification detected.'
+    });
+  }
+
+  // Metabolic factor (Cholesterol / Glucose)
+  if (profile && ((profile.totalCholesterol && profile.totalCholesterol >= 240) || (profile.fastingGlucose && profile.fastingGlucose >= 126))) {
+    factors.push({
+      factor: 'Metabolic & Lipid Elevation',
+      severity: 'moderate',
+      detail: 'Elevated serum cholesterol or fasting glucose contributes to long-term arterial stiffness.'
+    });
+  } else if (profile && profile.totalCholesterol && profile.totalCholesterol < 200) {
+    factors.push({
+      factor: 'Optimal Lipid Levels',
+      severity: 'low',
+      detail: `Serum total cholesterol measured at optimal levels (${profile.totalCholesterol} mg/dL).`
+    });
+  }
+
+  // Symptom check-in trajectory
+  if (checkins && checkins.length > 0) {
+    const scores = checkins.map(c => c.symptomScore || 0);
+    const meanScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+    if (meanScore >= 40) {
+      factors.push({
+        factor: 'High Self-Reported Symptom Burden',
+        severity: 'high',
+        detail: `Average symptom severity across recent check-ins is elevated at ${Math.round(meanScore)}/100.`
+      });
+    } else if (meanScore > 15) {
+      factors.push({
+        factor: 'Mild Symptom Fluctuations',
+        severity: 'moderate',
+        detail: `Recent check-in symptoms show minor intermittent activity (${Math.round(meanScore)}/100).`
+      });
+    } else {
+      factors.push({
+        factor: 'Low Symptom Burden',
+        severity: 'low',
+        detail: 'Recent daily check-ins demonstrate steady stability without acute distress.'
+      });
+    }
+  } else {
+    factors.push({
+      factor: 'Limited Check-in History',
+      severity: 'moderate',
+      detail: 'No longitudinal check-in entries logged yet; completing 3x daily quiz refines calibration.'
+    });
+  }
+
+  // Ensure baseline engine factor is included
+  factors.push({
+    factor: 'Deterministic Clinical Baseline',
+    severity: baseScore >= 50 ? 'high' : baseScore >= 30 ? 'moderate' : 'low',
+    detail: 'Score evaluated using deterministic clinical guidelines while ML microservice is offline.'
+  });
 
   const action = tier === 'CRITICAL'
     ? 'CRITICAL ALERT: Seek immediate emergency medical care (112 / 108) or visit nearest ICU hospital.'
