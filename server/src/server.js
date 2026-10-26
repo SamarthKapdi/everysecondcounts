@@ -25,6 +25,7 @@ const labRoutes = require('./routes/labRoutes');
 const bloodBankRoutes = require('./routes/bloodBankRoutes');
 const transplantRoutes = require('./routes/transplantRoutes');
 const fundraisingRoutes = require('./routes/fundraisingRoutes');
+const healthProfileRoutes = require('./routes/healthProfileRoutes');
 const http = require('http');
 const { initSocketIO } = require('./sockets/socketManager');
 const { errorHandler } = require('./middleware/errorHandler');
@@ -79,10 +80,8 @@ app.use('/api/symptoms', (req, res, next) => {
   next();
 }, symptomRoutes);
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Every Second Counts API is running', timestamp: new Date().toISOString() });
-});
+// Health check & Patient Health Profile
+app.use('/api/health', healthProfileRoutes);
 
 // Error handling
 app.use(errorHandler);

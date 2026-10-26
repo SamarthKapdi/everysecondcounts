@@ -90,6 +90,9 @@ model User {
   transplantWaitlists   TransplantWaitlist[] @relation("PatientWaitlist")
   fundraisingCampaigns  FundraisingCampaign[] @relation("PatientCampaigns")
   contributions         Contribution[] @relation("UserContributions")
+  healthProfile         HealthProfile?
+  dailyCheckins         DailyCheckin[]
+  riskAssessments       RiskAssessment[]
 }
 
 model Hospital {
@@ -553,3 +556,90 @@ model Contribution {
 
   @@index([campaignId])
 }
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE G: Patient Health Profile & Local Health Monitoring
+// ═══════════════════════════════════════════════════════════════
+
+model HealthProfile {
+  id                        String    @id @default(uuid())
+  patientId                 String    @unique
+  dateOfBirth               DateTime?
+  sex                       String?   // MALE, FEMALE, OTHER
+  heightCm                  Float?
+  weightKg                  Float?
+  bmi                       Float?
+  bloodGroup                String?
+  restingBpSystolic         Int?
+  restingBpDiastolic        Int?
+  restingHeartRate          Int?
+  totalCholesterol          Float?
+  ldl                       Float?
+  hdl                       Float?
+  triglycerides             Float?
+  fastingGlucose            Float?
+  hba1c                     Float?
+  smokingStatus             String?   // NEVER, FORMER, CURRENT
+  alcoholUse                String?   // NONE, OCCASIONAL, MODERATE, HEAVY
+  activityLevel             String?   // SEDENTARY, LIGHT, MODERATE, VERY_ACTIVE
+  sleepHoursAvg             Float?
+  familyHistoryHeartDisease Boolean   @default(false)
+  familyHistoryStroke       Boolean   @default(false)
+  familyHistoryDiabetes     Boolean   @default(false)
+  existingConditions        Json?     // { diabetes: bool, hypertension: bool, heartDisease: bool, asthma: bool, kidneyDisease: bool, thyroid: bool }
+  currentMedications        String?   @db.Text
+  allergies                 String?   @db.Text
+  emergencyContact          String?
+  consentToHealthMonitoring Boolean   @default(false)
+  completenessPercent       Int       @default(0)
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
+
+  patient                   User      @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@index([patientId])
+}
+
+enum CheckinSlot {
+  MORNING
+  AFTERNOON
+  EVENING
+}
+
+model DailyCheckin {
+  id                 String       @id @default(uuid())
+  patientId          String
+  date               String       // YYYY-MM-DD
+  slot               CheckinSlot
+  answers            Json         // Quiz answers
+  selfReportedVitals Json?        // { systolic, diastolic, heartRate, spo2, glucose, weight, temperature }
+  symptomScore       Float        @default(0)
+  redFlag            Boolean      @default(false)
+  createdAt          DateTime     @default(now())
+
+  patient            User         @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@unique([patientId, date, slot])
+  @@index([patientId])
+  @@index([date])
+}
+
+model RiskAssessment {
+  id                 String    @id @default(uuid())
+  patientId          String
+  baselineRisk       Float     @default(0)
+  dynamicRisk        Float     @default(0)
+  finalScore         Float     @default(0)
+  tier               String    @default("LOW") // LOW, MODERATE, HIGH, CRITICAL
+  factors            Json?     // Array of contributing factors
+  recommendedAction  String    @db.Text
+  modelVersion       String    @default("v1.0-local")
+  dataConfidence     String    @default("HIGH") // HIGH, MODERATE, LOW
+  createdAt          DateTime  @default(now())
+
+  patient            User      @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@index([patientId])
+  @@index([createdAt])
+}
+
