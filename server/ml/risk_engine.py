@@ -1,0 +1,386 @@
+"""
+Every Second Counts — Sudden-Attack Risk Prediction Engine
+Inference module implementing:
+1. Static Baseline Model (UCI Cleveland calibrated classifier)
+2. Dynamic Trend Model (7 & 14-day check-in features)
+3. Meta-Model Blend & Hard Safety Overrides (any red flag forces >= HIGH)
+4. Plain-language contributing factors & tier actions
+5. Strict ethical wording compliance (no "you are safe" / "no risk")
+"""
+
+import os
+import sys
+import joblib
+import numpy as np
+from datetime import datetime, date
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(SCRIPT_DIR, 'models', 'risk_model.pkl')
+
+risk_artifacts = None
+if os.path.exists(MODEL_PATH):
+    try:
+        risk_artifacts = joblib.load(MODEL_PATH)
+    except Exception as e:
+        print(f"Warning: Could not load risk_model.pkl: {e}", file=sys.stderr)
+
+
+def calculate_age(dob_str):
+    if not dob_str:
+        return 55.0
+    try:
+        if isinstance(dob_str, str):
+            dob = datetime.fromisoformat(dob_str.replace('Z', '+00:00')).date()
+        elif hasattr(dob_str, 'date'):
+            dob = dob_str.date()
+        else:
+            dob = dob_str
+        today = date.today()
+        return float(today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day)))
+    except Exception:
+        return 55.0
+
+
+def compute_baseline_features(profile: dict, medians: dict) -> list:
+    """
+    Maps PatientHealthProfile fields to UCI Cleveland features:
+    ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+    """
+    age = calculate_age(profile.get('dateOfBirth'))
+    
+    # Sex: 1=Male, 0=Female
+    sex_val = 1.0 if str(profile.get('sex', '')).upper().startswith('M') else 0.0
+    
+    # Chest pain: if patient reported heart disease condition -> 3 or 4, else 4 (asymptomatic baseline)
+    conds = profile.get('existingConditions') or {}
+    cp = 3.0 if conds.get('heartDisease') else 4.0
+    
+    # Resting BP Systolic
+    trestbps = float(profile.get('restingBpSystolic') or medians.get('trestbps', 130.0))
+    
+    # Total Cholesterol
+    chol = float(profile.get('totalCholesterol') or medians.get('chol', 240.0))
+    
+    # Fasting blood sugar > 120
+    fasting_glu = profile.get('fastingGlucose')
+    fbs = 1.0 if (fasting_glu and fasting_glu > 120.0) or conds.get('diabetes') else 0.0
+    
+    # Rest ECG (baseline default normal = 0)
+    restecg = medians.get('restecg', 0.0)
+    
+    # Thalach (estimated maximum heart rate or resting HR * 1.5)
+    resting_hr = profile.get('restingHeartRate')
+    thalach = float(resting_hr * 1.6) if resting_hr else float(220.0 - age)
+    
+    # Exang (exercise induced angina)
+    exang = 1.0 if conds.get('heartDisease') else 0.0
+    
+    # Stress test & fluoroscopy parameters (imputed from clinical medians when absent)
+    oldpeak = medians.get('oldpeak', 0.8)
+    slope = medians.get('slope', 1.0)
+    ca = medians.get('ca', 0.0)
+    thal = medians.get('thal', 3.0)
+
+    return [age, sex_val, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
+
+
+def compute_dynamic_features(checkins: list, profile: dict) -> tuple[list, dict]:
+    """
+    Computes trajectory features over the checkins:
+    0: meanSymptomScore7d
+    1: maxSymptomScore7d
+    2: symptomScoreSlope
+    3: redFlagCount7d
+    4: missedCheckinsCount7d
+    5: bpSystolicDeviation
+    6: heartRateDeviation
+    7: spo2Min7d
+    8: glucoseDeviation
+    9: sleepInsomniaScore
+    10: stressScore
+    11: medicationAdherence
+    """
+    if not checkins:
+        # Default neutral baseline trajectory
+        return [10.0, 15.0, 0.0, 0, 0, 0.0, 0.0, 98.0, 0.0, 2.0, 2.0, 1.0], {}
+
+    scores = [c.get('symptomScore', 0) for c in checkins]
+    mean_sym = float(np.mean(scores))
+    max_sym = float(np.max(scores))
+
+    # Slope computation
+    if len(scores) >= 2:
+        x = np.arange(len(scores))
+        slope = float(np.polyfit(x, scores, 1)[0])
+    else:
+        slope = 0.0
+
+    red_flag_count = sum(1 for c in checkins if c.get('redFlag'))
+    
+    # Estimate missed checkins (assuming 3 per day over observed days)
+    unique_dates = len(set(c.get('date') for c in checkins if c.get('date')))
+    expected_checkins = max(len(checkins), unique_dates * 3)
+    missed_count = max(0, expected_checkins - len(checkins))
+
+    # Vitals deviations against profile baseline
+    base_sys = profile.get('restingBpSystolic') or 120.0
+    base_hr = profile.get('restingHeartRate') or 72.0
+    base_glu = profile.get('fastingGlucose') or 95.0
+
+    sys_readings = []
+    hr_readings = []
+    spo2_readings = []
+    glu_readings = []
+    sleep_readings = []
+    stress_readings = []
+    med_readings = []
+
+    for c in checkins:
+        v = c.get('selfReportedVitals') or {}
+        if v.get('systolic'): sys_readings.append(v['systolic'])
+        if v.get('heartRate'): hr_readings.append(v['heartRate'])
+        if v.get('spo2'): spo2_readings.append(v['spo2'])
+        if v.get('glucose'): glu_readings.append(v['glucose'])
+
+        ans = c.get('answers') or {}
+        # Sleep score: good=1, fair=2, restless=6, insomnia=9
+        sleep_map = {'good': 1, 'fair': 2, 'restless': 6, 'insomnia': 9}
+        if ans.get('sleepQuality'): sleep_readings.append(sleep_map.get(ans['sleepQuality'], 2))
+
+        # Stress score: low=1, moderate=3, high=7, extreme=10
+        stress_map = {'low': 1, 'moderate': 3, 'high': 7, 'extreme': 10}
+        if ans.get('stressLevel'): stress_readings.append(stress_map.get(ans['stressLevel'], 2))
+
+        # Medication adherence: all_taken=1.0, partially=0.5, missed=0.0
+        med_map = {'all_taken': 1.0, 'partially': 0.5, 'missed': 0.0, 'not_applicable': 1.0}
+        if ans.get('medicationTaken'): med_readings.append(med_map.get(ans['medicationTaken'], 1.0))
+
+    bp_dev = float(np.mean(sys_readings) - base_sys) if sys_readings else 0.0
+    hr_dev = float(np.mean(hr_readings) - base_hr) if hr_readings else 0.0
+    spo2_min = float(np.min(spo2_readings)) if spo2_readings else 98.0
+    glu_dev = float(np.mean(glu_readings) - base_glu) if glu_readings else 0.0
+    sleep_score = float(np.mean(sleep_readings)) if sleep_readings else 2.0
+    stress_score = float(np.mean(stress_readings)) if stress_readings else 2.0
+    med_adh = float(np.mean(med_readings)) if med_readings else 1.0
+
+    features = [
+        mean_sym, max_sym, slope, red_flag_count, missed_count,
+        bp_dev, hr_dev, spo2_min, glu_dev, sleep_score, stress_score, med_adh
+    ]
+
+    meta_stats = {
+        'meanSymptomScore': round(mean_sym, 1),
+        'maxSymptomScore': round(max_sym, 1),
+        'symptomSlope': round(slope, 2),
+        'redFlagCount': red_flag_count,
+        'missedCheckins': missed_count,
+        'bpDeviation': round(bp_dev, 1),
+        'hrDeviation': round(hr_dev, 1),
+        'spo2Min': round(spo2_min, 1),
+        'medicationAdherence': round(med_adh * 100, 1)
+    }
+
+    return features, meta_stats
+
+
+def evaluate_factors(profile: dict, dynamic_stats: dict, baseline_risk: float, dynamic_risk: float, red_flag_recent: bool) -> list:
+    """
+    Generates plain-language top 3-5 contributing factors based on attributions.
+    """
+    factors = []
+
+    # 1. Red flag presence
+    if red_flag_recent or dynamic_stats.get('redFlagCount', 0) > 0:
+        factors.append({
+            'factor': 'Acute Red-Flag Symptom Triggered',
+            'severity': 'critical',
+            'detail': 'Severe warning signs (e.g. chest pain at rest or neurological weakness) flagged in recent check-in.'
+        })
+
+    # 2. Symptom slope & elevation
+    slope = dynamic_stats.get('symptomSlope', 0)
+    mean_sym = dynamic_stats.get('meanSymptomScore', 0)
+    if slope > 2.0:
+        factors.append({
+            'factor': 'Rising Symptom Trend',
+            'severity': 'high',
+            'detail': f"Symptom progression slope is climbing steadily (+{slope} pts/check-in) across recent logs."
+        })
+    elif mean_sym >= 35.0:
+        factors.append({
+            'factor': 'Persistent Elevated Symptoms',
+            'severity': 'moderate',
+            'detail': f"Average recent symptom score of {mean_sym}/100 exceeds baseline threshold."
+        })
+
+    # 3. Blood pressure deviation / baseline hypertension
+    bp_dev = dynamic_stats.get('bpDeviation', 0)
+    base_sys = profile.get('restingBpSystolic')
+    if bp_dev >= 15.0:
+        factors.append({
+            'factor': 'Acute Blood Pressure Spike',
+            'severity': 'high',
+            'detail': f"Self-reported systolic blood pressure deviated +{bp_dev} mmHg above personal baseline."
+        })
+    elif base_sys and base_sys >= 140:
+        factors.append({
+            'factor': 'Baseline Hypertension',
+            'severity': 'moderate',
+            'detail': f"Known resting systolic BP is elevated at {base_sys} mmHg."
+        })
+
+    # 4. SpO2 Dip
+    spo2_min = dynamic_stats.get('spo2Min', 98.0)
+    if spo2_min < 93.0:
+        factors.append({
+            'factor': 'Blood Oxygen Desaturation',
+            'severity': 'high',
+            'detail': f"SpO2 minimum dipped to {spo2_min}%, indicating potential respiratory/cardiac compromise."
+        })
+
+    # 5. Medication Adherence
+    med_adh = dynamic_stats.get('medicationAdherence', 100.0)
+    if med_adh < 70.0:
+        factors.append({
+            'factor': 'Suboptimal Medication Adherence',
+            'severity': 'moderate',
+            'detail': f"Only {med_adh}% of scheduled medication doses were confirmed taken recently."
+        })
+
+    # 6. Baseline Cardiovascular Profile Risk
+    if baseline_risk >= 50.0:
+        factors.append({
+            'factor': 'Static Baseline Cardiovascular Markers',
+            'severity': 'moderate',
+            'detail': f"UCI Cleveland baseline model indicates {baseline_risk}% pre-existing clinical vulnerability."
+        })
+
+    # Fallback default if all quiet
+    if not factors:
+        factors.append({
+            'factor': 'Stable Vitals & Normal Adherence',
+            'severity': 'normal',
+            'detail': 'Symptom scores, resting blood pressure, and daily check-in habits remain in normal range.'
+        })
+
+    return factors[:5]
+
+
+def predict_risk(profile: dict, checkins: list) -> dict:
+    """
+    Main prediction function.
+    Returns structured risk payload conforming to Every Second Counts contract.
+    """
+    if not risk_artifacts:
+        # Fallback heuristic calculation if model unpickled
+        return fallback_risk_calculation(profile, checkins)
+
+    b_model = risk_artifacts['baseline_model']
+    b_scaler = risk_artifacts['baseline_scaler']
+    b_medians = risk_artifacts['baseline_medians']
+    d_model = risk_artifacts['dynamic_model']
+    d_scaler = risk_artifacts['dynamic_scaler']
+    weights = risk_artifacts.get('weights', {'baseline': 0.35, 'dynamic': 0.65})
+
+    # 1. Static Baseline Prediction
+    b_features = compute_baseline_features(profile, b_medians)
+    b_scaled = b_scaler.transform([b_features])
+    b_prob = float(b_model.predict_proba(b_scaled)[0, 1])
+    baseline_risk = round(b_prob * 100, 1)
+
+    # 2. Dynamic Trajectory Prediction
+    d_features, d_stats = compute_dynamic_features(checkins, profile)
+    d_scaled = d_scaler.transform([d_features])
+    d_prob = float(d_model.predict_proba(d_scaled)[0, 1])
+    dynamic_risk = round(d_prob * 100, 1)
+
+    # 3. Meta-Blend
+    final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
+
+    # 4. Hard Safety Overrides
+    has_recent_red_flag = any(c.get('redFlag') for c in checkins[-3:]) if checkins else False
+    if has_recent_red_flag:
+        final_score = max(final_score, 75.0)
+
+    # 5. Tier Determination
+    if final_score >= 80.0:
+        tier = 'CRITICAL'
+    elif final_score >= 60.0 or has_recent_red_flag:
+        tier = 'HIGH'
+    elif final_score >= 30.0:
+        tier = 'MODERATE'
+    else:
+        tier = 'LOW'
+
+    # Contributing factors
+    factors = evaluate_factors(profile, d_stats, baseline_risk, dynamic_risk, has_recent_red_flag)
+
+    # Recommended action per tier
+    if tier == 'CRITICAL':
+        action = 'CRITICAL ALERT: Immediate emergency care required. Call Emergency Services (112/108) immediately or visit the nearest Trauma Center with ICU. Do not drive yourself.'
+    elif tier == 'HIGH':
+        action = 'Urgent Clinical Review Advised: Elevated sudden-attack indicators detected. Contact your cardiologist or consulting physician within 24 hours. Monitor for acute chest pain or breathlessness.'
+    elif tier == 'MODERATE':
+        action = 'Moderate Risk Detected: Review symptoms with your primary physician within 1-2 weeks. Track resting vitals closely and maintain medication adherence.'
+    else:
+        action = 'No elevated risk detected from the data you entered. Maintain healthy lifestyle habits, continue taking prescribed medications, and complete your 3 daily check-ins.'
+
+    # Data confidence flag
+    completeness = profile.get('completenessPercent', 0)
+    checkin_count = len(checkins) if checkins else 0
+    if completeness >= 70 and checkin_count >= 5:
+        data_confidence = 'HIGH'
+    elif completeness >= 40 or checkin_count >= 2:
+        data_confidence = 'MODERATE'
+    else:
+        data_confidence = 'LOW'
+
+    return {
+        'baselineRisk': baseline_risk,
+        'dynamicRisk': dynamic_risk,
+        'finalScore': final_score,
+        'tier': tier,
+        'factors': factors,
+        'recommendedAction': action,
+        'modelVersion': 'v1.0-local-uci-hybrid',
+        'dataConfidence': data_confidence,
+        'isRuleOverride': has_recent_red_flag,
+        'disclaimer': 'Decision-Support Disclaimer: This local machine learning assessment is intended for risk screening and early warning support, not an official medical diagnosis. Never ignore worsening symptoms.'
+    }
+
+
+def fallback_risk_calculation(profile: dict, checkins: list) -> dict:
+    """
+    Deterministic fallback when ML model file cannot be loaded.
+    Guarantees check-ins and risk calculations never crash.
+    """
+    base_score = 15.0
+    if profile.get('restingBpSystolic', 0) >= 140: base_score += 15.0
+    if profile.get('totalCholesterol', 0) >= 240: base_score += 10.0
+    if profile.get('fastingGlucose', 0) >= 126: base_score += 10.0
+
+    dynamic_score = 10.0
+    has_red_flag = False
+    if checkins:
+        scores = [c.get('symptomScore', 0) for c in checkins]
+        dynamic_score = float(np.mean(scores))
+        has_red_flag = any(c.get('redFlag') for c in checkins)
+
+    final = round(0.4 * base_score + 0.6 * dynamic_score, 1)
+    if has_red_flag:
+        final = max(final, 75.0)
+
+    tier = 'CRITICAL' if final >= 80 else 'HIGH' if final >= 60 else 'MODERATE' if final >= 30 else 'LOW'
+
+    return {
+        'baselineRisk': base_score,
+        'dynamicRisk': dynamic_score,
+        'finalScore': final,
+        'tier': tier,
+        'factors': [{'factor': 'Deterministic Fallback Heuristic', 'severity': 'normal', 'detail': 'Calculated via deterministic baseline fallback engine.'}],
+        'recommendedAction': 'Consult a healthcare professional for clinical risk evaluation.',
+        'modelVersion': 'v1.0-deterministic-fallback',
+        'dataConfidence': 'LOW',
+        'isRuleOverride': has_red_flag,
+        'disclaimer': 'Decision-Support Disclaimer: Calculated in basic mode. Intended for screening only, not medical diagnosis.'
+    }

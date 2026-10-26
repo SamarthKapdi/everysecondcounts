@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Activity, Clock, CheckCircle2, ChevronRight, User, Phone, FileText, ArrowLeft, HeartPulse, Stethoscope, AlertTriangle } from 'lucide-react';
+import { Activity, Clock, CheckCircle2, ChevronRight, User, Phone, FileText, ArrowLeft, HeartPulse, Stethoscope, AlertTriangle, ShieldAlert } from 'lucide-react';
 import api from '../services/api';
 import useAuthStore from '../store/authStore';
 import { useTheme } from '../context/ThemeContext';
@@ -89,11 +89,18 @@ const PatientTimeline = () => {
                 </div>
               </div>
               
-              {admission.emergencyCase?.severity === 'RED' && (
-                <div className="px-3 py-1.5 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg text-sm font-bold flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4" /> CRITICAL CASE
-                </div>
-              )}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => navigate(`/risk-dashboard?patientId=${admission.patientId}`)}
+                  className="px-3 py-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-500 text-xs font-bold hover:bg-rose-500/20 transition-all flex items-center gap-1.5">
+                  <ShieldAlert className="w-3.5 h-3.5" /> Risk Dashboard
+                </button>
+                {admission.emergencyCase?.severity === 'RED' && (
+                  <div className="px-3 py-1.5 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg text-sm font-bold flex items-center gap-2">
+                    <AlertTriangle className="w-4 h-4" /> CRITICAL CASE
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 

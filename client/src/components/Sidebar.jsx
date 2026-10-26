@@ -24,6 +24,7 @@ const Sidebar = () => {
     { to: '/report-analyzer', icon: FileHeart, label: 'AI Report Analyzer' },
     { to: '/health-profile', icon: HeartPulse, label: 'Health Profile' },
     { to: '/daily-checkin', icon: ClipboardList, label: 'Daily Check-in' },
+    { to: '/risk-dashboard', icon: ShieldAlert, label: 'Risk Dashboard' },
     { to: '/hospitals', icon: Building2, label: 'Hospitals Nearby' },
     { to: '/consult', icon: MessageCircle, label: 'Consult Doctor' },
     { to: '/insurance', icon: ShieldAlert, label: 'Insurance & Claims' },

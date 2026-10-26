@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { HeartPulse, Clock, ChevronDown, ChevronUp, Send } from 'lucide-react';
+import { HeartPulse, Clock, ChevronDown, ChevronUp, Send, ShieldAlert } from 'lucide-react';
 import api from '../services/api';
 import toast from 'react-hot-toast';
 
@@ -11,6 +12,7 @@ const SEVERITY_DOT = { RED: 'bg-red-500', ORANGE: 'bg-orange-500', YELLOW: 'bg-y
 
 const ActivePatients = () => {
   const { isDark } = useTheme();
+  const navigate = useNavigate();
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -81,7 +83,17 @@ const ActivePatients = () => {
                 <p className="font-bold text-sm">{p.patient?.name || 'Unknown Patient'}</p>
                 <p className={`text-[10px] ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Case ID: {p.id}</p>
               </div>
-              <div className={`w-3 h-3 rounded-full ${SEVERITY_DOT[p.severity] || SEVERITY_DOT.YELLOW}`} />
+              <div className="flex items-center gap-1.5">
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
+                  p.severity === 'RED' ? 'bg-red-500/15 text-red-500 border border-red-500/30' :
+                  p.severity === 'ORANGE' ? 'bg-rose-500/15 text-rose-500 border border-rose-500/30' :
+                  p.severity === 'YELLOW' ? 'bg-amber-500/15 text-amber-500 border border-amber-500/30' :
+                  'bg-emerald-500/15 text-emerald-500 border border-emerald-500/30'
+                }`}>
+                  Risk: {p.severity === 'RED' ? 'CRITICAL' : p.severity === 'ORANGE' ? 'HIGH' : p.severity === 'YELLOW' ? 'MODERATE' : 'LOW'}
+                </span>
+                <div className={`w-3 h-3 rounded-full ${SEVERITY_DOT[p.severity] || SEVERITY_DOT.YELLOW}`} />
+              </div>
             </div>
             <div className="space-y-2">
               <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -98,10 +110,15 @@ const ActivePatients = () => {
             </div>
             <div className="flex gap-2 mt-4">
               <button onClick={() => toggleExpand(p.id)} className="flex-1 py-2 rounded-xl bg-blue-500/10 text-blue-500 text-[10px] font-bold hover:bg-blue-500/20 transition-colors flex items-center justify-center gap-1">
-                {expandedId === p.id ? <><ChevronUp className="w-3 h-3" /> Hide Details</> : <><ChevronDown className="w-3 h-3" /> View Details</>}
+                {expandedId === p.id ? <><ChevronUp className="w-3 h-3" /> Hide</> : <><ChevronDown className="w-3 h-3" /> Details</>}
               </button>
-              <button onClick={() => { setExpandedId(p.id); document.getElementById(`note-${p.id}`)?.focus(); }} className="flex-1 py-2 rounded-xl bg-purple-500/10 text-purple-500 text-[10px] font-bold hover:bg-purple-500/20 transition-colors">
-                Add Note
+              <button
+                onClick={() => navigate(`/risk-dashboard?patientId=${p.patientId || p.patient?.id}`)}
+                className="py-2 px-3 rounded-xl bg-rose-500/10 text-rose-500 text-[10px] font-bold hover:bg-rose-500/20 transition-colors flex items-center justify-center gap-1">
+                <ShieldAlert className="w-3 h-3" /> Risk Dashboard
+              </button>
+              <button onClick={() => { setExpandedId(p.id); document.getElementById(`note-${p.id}`)?.focus(); }} className="py-2 px-3 rounded-xl bg-purple-500/10 text-purple-500 text-[10px] font-bold hover:bg-purple-500/20 transition-colors">
+                Note
               </button>
             </div>
 

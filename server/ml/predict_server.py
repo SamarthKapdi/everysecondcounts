@@ -29,6 +29,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 from report_analyzer import analyze_report
+from risk_engine import predict_risk
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -226,6 +227,21 @@ async def analyze_medical_report(
         return res
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Report analysis error: {str(e)}")
+
+
+@app.post('/predict-risk')
+async def predict_sudden_attack_risk(req: dict):
+    """
+    Sudden-Attack Risk Prediction Engine Endpoint.
+    Combines static UCI Cleveland baseline model with dynamic 7 & 14-day check-in trend features.
+    """
+    try:
+        profile = req.get('profile') or {}
+        checkins = req.get('checkins') or []
+        res = predict_risk(profile, checkins)
+        return res
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Risk prediction error: {str(e)}")
 
 
 @app.get('/health')

@@ -1,5 +1,6 @@
 const prisma = require('../config/prismaClient');
 const AppError = require('../utils/AppError');
+const { recomputePatientRisk } = require('../services/riskService');
 
 /**
  * Returns current date string (YYYY-MM-DD), current hour (0-23), and full Date in Asia/Kolkata
@@ -327,13 +328,22 @@ exports.submitCheckin = async (req, res, next) => {
       });
     }
 
+    // Recompute sudden-attack risk assessment
+    let riskAssessment = null;
+    try {
+      riskAssessment = await recomputePatientRisk(patientId, io);
+    } catch (riskErr) {
+      console.warn('Risk recomputation warning:', riskErr.message);
+    }
+
     res.status(201).json({
       status: 'success',
       data: {
         checkin,
         streak,
         redFlag,
-        nearbyHospitals: redFlag ? nearbyHospitals : []
+        nearbyHospitals: redFlag ? nearbyHospitals : [],
+        riskAssessment
       }
     });
   } catch (error) {

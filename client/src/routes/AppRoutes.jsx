@@ -36,6 +36,7 @@ import TransplantCoordination from '../pages/TransplantCoordination';
 import Fundraising from '../pages/Fundraising';
 import HealthProfile from '../pages/HealthProfile';
 import DailyCheckin from '../pages/DailyCheckin';
+import RiskDashboard from '../pages/RiskDashboard';
 
 // --- Auth Guards ---
 
@@ -112,6 +113,7 @@ const AppRoutes = () => {
       <Route path="/insurance" element={<Protected roles={['PATIENT']}><InsuranceDashboard /></Protected>} />
       <Route path="/health-profile" element={<Protected roles={['PATIENT', 'DOCTOR', 'SUPER_ADMIN', 'HOSPITAL_STAFF']}><HealthProfile /></Protected>} />
       <Route path="/daily-checkin" element={<Protected roles={['PATIENT', 'DOCTOR', 'SUPER_ADMIN', 'HOSPITAL_STAFF']}><DailyCheckin /></Protected>} />
+      <Route path="/risk-dashboard" element={<Protected roles={['PATIENT', 'DOCTOR', 'SUPER_ADMIN', 'HOSPITAL_STAFF']}><RiskDashboard /></Protected>} />
       <Route path="/transplants" element={<Protected roles={['PATIENT', 'SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><TransplantCoordination /></Protected>} />
       <Route path="/fundraising" element={<Protected roles={['PATIENT', 'SUPER_ADMIN', 'HOSPITAL_STAFF', 'DOCTOR']}><Fundraising /></Protected>} />
       <Route path="/sos" element={<Protected roles={['PATIENT']}><SOSPage /></Protected>} />
