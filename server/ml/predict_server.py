@@ -23,10 +23,12 @@ if hasattr(sys.stderr, 'reconfigure'):
 
 import joblib
 import numpy as np
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
+
+from report_analyzer import analyze_report
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -205,6 +207,25 @@ async def predict_intent(req: ChatIntentRequest):
         reply=reply_text,
         isFallback=False
     )
+
+
+@app.post('/analyze-report')
+async def analyze_medical_report(
+    file: UploadFile = File(...),
+    sex: str = Form('unknown'),
+    age: Optional[int] = Form(None)
+):
+    """
+    Local Medical Report Analysis Pipeline.
+    Extracts text from PDF/image, identifies 50+ lab values, computes severity and category via local ML,
+    and returns a plain-language summary with clinical specialist recommendation.
+    """
+    try:
+        content = await file.read()
+        res = analyze_report(content, file.filename or 'report', sex=sex, age=age)
+        return res
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Report analysis error: {str(e)}")
 
 
 @app.get('/health')

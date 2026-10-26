@@ -95,15 +95,40 @@ exports.uploadResult = async (req, res, next) => {
     let extractedText = null;
     let structuredData = null;
 
-    // Use priority #1 AI extraction logic if it's a PDF
-    if (fileType === 'application/pdf') {
-      try {
-        const pdfParse = require('pdf-parse');
-        const fileBuffer = fs.readFileSync(filePath);
-        const pdfData = await pdfParse(fileBuffer);
-        extractedText = pdfData.text || '';
-      } catch (err) {
-        console.error('PDF extraction failed:', err);
+    const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://localhost:8001';
+
+    // Extract structured lab data using local ML report analyzer
+    try {
+      const FormData = require('form-data');
+      const formData = new FormData();
+      formData.append('file', fs.createReadStream(filePath), {
+        filename: req.file.originalname || 'report.pdf',
+        contentType: fileType
+      });
+
+      const mlRes = await fetch(`${ML_SERVICE_URL}/analyze-report`, {
+        method: 'POST',
+        body: formData,
+        headers: formData.getHeaders(),
+        signal: AbortSignal.timeout(15000)
+      });
+
+      if (mlRes.ok) {
+        const mlData = await mlRes.json();
+        extractedText = mlData.extractedText || null;
+        structuredData = mlData.extractedLabValues || mlData.findings || null;
+      }
+    } catch (mlErr) {
+      console.warn('Local ML report analysis failed for lab order, falling back to basic extraction:', mlErr.message);
+      if (fileType === 'application/pdf') {
+        try {
+          const pdfParse = require('pdf-parse');
+          const fileBuffer = fs.readFileSync(filePath);
+          const pdfData = await pdfParse(fileBuffer);
+          extractedText = pdfData.text || '';
+        } catch (err) {
+          console.error('PDF extraction failed:', err);
+        }
       }
     }
 

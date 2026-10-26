@@ -67,7 +67,7 @@ flowchart TD
         DB[(PostgreSQL + Prisma)]:::data
         Redis[(Redis Cache)]:::data
         MLService{{FastAPI ML Server<br/>TF-IDF + SVM}}:::ml
-        Vision[External AI<br/>Vision Analysis]:::ml
+        Vision[Local ML<br/>Report Analysis]:::ml
     end
 
     %% Connections
@@ -90,19 +90,34 @@ flowchart TD
 |---|---|
 | **Frontend** | React, Vite, Tailwind CSS, Zustand, Socket.IO Client |
 | **Backend** | Node.js, Express, Prisma ORM, Socket.IO, JWT Auth |
-| **Machine Learning** | Python, FastAPI, Scikit-learn (TF-IDF + LinearSVC) |
+| **Machine Learning** | Python, FastAPI, Scikit-learn (TF-IDF + LinearSVC/LogisticRegression), PyMuPDF |
 | **Database** | PostgreSQL |
-| **Other** | PDF-Parse, Bcrypt |
+| **Other** | PDF-Parse, Pytesseract, Bcrypt |
 
-## ML Model Highlights
-> **97.66% test accuracy**, **97.69% cross-validated**, trained entirely locally — no external AI API dependency for the core triage pipeline.
+## Local ML Architecture
+All AI runs locally; no third-party AI services or cloud API keys are used anywhere in Every Second Counts.
 
-The triage engine utilizes a 3-tier hybrid architecture ensuring safety and reliability:
-1. **Tier 1 (Rule-Based)**: Guaranteed detection of life-threatening conditions (e.g., stroke, cardiac arrest).
-2. **Tier 2 (Locally Trained ML)**: TF-IDF vectorizer with Calibrated LinearSVC trained on a synthetic dataset of 3,200 labeled samples.
-3. **Tier 3 (Deterministic Scorer)**: Fallback weighted scoring system if the ML service is down.
+1. **Emergency Triage Classifier**:
+   - **97.66% test accuracy**, **97.69% cross-validated**, trained locally on 3,200 triage cases.
+   - 3-tier hybrid architecture (Rule override -> TF-IDF + Calibrated LinearSVC -> Deterministic Scorer).
+   - Details: [Triage Model Metrics](docs/model-metrics.md).
 
-For full details, view the [Model Metrics Documentation](docs/model-metrics.md).
+2. **First-Aid Intent Classifier & Chatbot**:
+   - 12-class TF-IDF + LogisticRegression first-aid responder with calibrated safe fallbacks below confidence threshold. Zero external API calls.
+
+3. **Medical Report & Lab Analyzer (`POST /analyze-report`)**:
+   - **Category Classifier**: 100% test accuracy across 9 diagnostic panels (CBC, Lipid, Diabetes, Liver, Kidney, Thyroid, Vitamins, Cardiology, General) -> maps to clinical specialist.
+   - **Severity Classifier**: 97.5% test accuracy on flagged abnormal vectors (`NORMAL`, `MONITOR`, `CONSULT_SOON`, `URGENT`).
+   - **Lab Extraction**: 50+ common laboratory tests with synonyms, units normalization, age/sex reference ranges, and abnormal flagging.
+   - **Guard against low-quality input**: Transparently returns `"could not read this file"` rather than fabricating medical findings.
+   - Details: [Report Model Metrics & Multi-Source Evaluation](docs/report-model-metrics.md).
+
+### Optical Character Recognition (OCR) Setup on Windows
+- **PDF Extraction**: Uses native PyMuPDF (`fitz`), works out of the box with zero system dependencies.
+- **Image OCR (Optional)**: For analyzing image files (`.png`, `.jpg`), install Tesseract OCR for Windows:
+  1. Download the Windows installer from [UB-Mannheim Tesseract OCR](https://github.com/UB-Mannheim/tesseract/wiki).
+  2. Install to default path `C:\Program Files\Tesseract-OCR` and add to your system PATH.
+  3. If Tesseract is not installed or image contrast is insufficient, the system safely falls back with a clear message requesting a digital PDF.
 
 ## Getting Started
 
