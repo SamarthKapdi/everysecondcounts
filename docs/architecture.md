@@ -79,7 +79,7 @@ flowchart TD
 ### 3. Sudden-Attack Risk Prediction Engine (`server/ml/models/risk_model.pkl`)
 - **Multi-Modal Architecture**:
   - *Static Baseline (35% weight)*: Calibrated Logistic Regression trained on public UCI Cleveland Heart Disease dataset (303 records, 13 clinical covariates, Brier score = 0.1084, AUC = 0.9310).
-  - *Dynamic Trajectory (65% weight)*: Calibrated Gradient Boosting trained on 3,000 longitudinal patient check-in trajectories (12 dynamic features: symptom slopes, SpO2 dips, blood pressure deviation, medication adherence, missed check-in counts).
+  - *Dynamic Trajectory (65% weight)*: Transparent weighted trend score over symptom level/slope, SpO2 dips, blood-pressure deviation, medication adherence, red flags, and missed check-ins. ML is used for the UCI baseline only.
   - *Meta-Model Blend*: Computes 0–100 sudden-attack risk score categorized into 4 tiers (`LOW`, `MODERATE`, `HIGH`, `CRITICAL`).
   - *Hard Safety Override*: Any acute red flag in the last 48 hours unconditionally forces a minimum score of 75 and tier `CRITICAL`.
   - *Validity limitation*: the UCI baseline is a proxy for angiographic heart-disease presence; dynamic trajectories and scripted scenarios are synthetic and not clinically validated.
