@@ -46,7 +46,7 @@ const SOSButton = () => {
             message: 'SOS trigger emergency push button from dashboard',
           });
           setSosActive(true);
-          toast.success(res.data.message || 'SOS Triggered! Ambulance and hospitals notified.', { duration: 6000 });
+          toast.success(res.data.message || 'SOS triggered. In-app clinical staff alert created.', { duration: 6000 });
         },
         async (error) => {
           const res = await api.post('/sos/trigger', {
@@ -54,7 +54,7 @@ const SOSButton = () => {
             message: 'SOS trigger emergency push button (Location Denied)',
           });
           setSosActive(true);
-          toast.success('SOS Triggered! Location denied but hospitals and dispatch have been notified.', { duration: 6000 });
+          toast.success('SOS triggered. Location denied; an in-app clinical staff alert was created.', { duration: 6000 });
         }
       );
     } catch (err) {
@@ -68,7 +68,7 @@ const SOSButton = () => {
     <div className="flex flex-col items-center justify-center p-6 text-center">
       <h3 className="text-xl font-bold mb-2">Emergency SOS Button</h3>
       <p className="text-sm text-slate-500 mb-6 max-w-sm">
-        Press and hold the button for 3 seconds to trigger an instant emergency alert, dispatch nearest ambulance and notify nearest hospitals.
+        Press and hold the button for 3 seconds to create an in-app emergency alert; ambulance dispatch is simulated locally.
       </p>
 
       <div className="relative w-44 h-44 flex items-center justify-center">

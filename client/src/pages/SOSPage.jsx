@@ -105,7 +105,7 @@ const SOSPage = () => {
           <ShieldAlert className="w-8 h-8 text-red-500" /> Emergency SOS
         </h1>
         <p className={`text-sm mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-          Trigger instant emergency alert — dispatches ambulance and notifies nearest hospitals
+          Trigger an in-app emergency alert for available clinical staff; ambulance dispatch is simulated locally.
         </p>
       </motion.div>
 
@@ -194,7 +194,7 @@ const SOSPage = () => {
               </p>
               <p className={`text-xs ${isDark ? 'text-emerald-500/80' : 'text-emerald-700'}`}>
                 {sosData.estimatedResponseTime || '8-12 minutes'} estimated response time.
-                {sosData.ambulanceDispatched ? ` Ambulance ${sosData.ambulanceDispatched.vehicleNumber} dispatched.` : ' Nearest ambulance notified.'}
+                {sosData.ambulanceDispatched ? ` Ambulance ${sosData.ambulanceDispatched.vehicleNumber} marked for dispatch.` : ' No ambulance was available in the local simulator.'}
               </p>
             </motion.div>
           )}

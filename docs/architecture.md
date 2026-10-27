@@ -82,6 +82,7 @@ flowchart TD
   - *Dynamic Trajectory (65% weight)*: Calibrated Gradient Boosting trained on 3,000 longitudinal patient check-in trajectories (12 dynamic features: symptom slopes, SpO2 dips, blood pressure deviation, medication adherence, missed check-in counts).
   - *Meta-Model Blend*: Computes 0–100 sudden-attack risk score categorized into 4 tiers (`LOW`, `MODERATE`, `HIGH`, `CRITICAL`).
   - *Hard Safety Override*: Any acute red flag in the last 48 hours unconditionally forces a minimum score of 75 and tier `CRITICAL`.
+  - *Validity limitation*: the UCI baseline is a proxy for angiographic heart-disease presence; dynamic trajectories and scripted scenarios are synthetic and not clinically validated.
   - *Plain-Language Contributing Factors*: Returns top 3–5 actionable factors with severity badges (`[CRITICAL]`, `[HIGH]`, `[MODERATE]`, `[LOW]`).
   - *Strict Wording Rule*: Never outputs "you are safe" or "no risk". `LOW` tier explicitly displays: *"No elevated risk detected from the data you entered."*
   - *Offline Fallback*: Deterministic clinical guidelines labeled `v1.0-deterministic-fallback (estimated basic mode)`.

@@ -64,7 +64,7 @@ exports.triggerSOS = async (req, res, next) => {
 
     res.status(201).json({
       status: 'success',
-      message: 'SOS alert triggered! Emergency services have been notified.',
+      message: 'SOS alert triggered. An in-app clinical staff alert was created.',
       data: {
         emergency,
         ambulanceDispatched: dispatchedAmbulance,

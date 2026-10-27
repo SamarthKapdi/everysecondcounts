@@ -1,5 +1,12 @@
 # Sudden-Attack Risk Prediction Engine Documentation
 
+> **Scope and validity:** The baseline model predicts the presence of angiographic
+> heart disease in the UCI Cleveland dataset, used here only as a proxy for
+> static cardiovascular vulnerability. It does not predict that a sudden attack
+> will occur. The dynamic model and the ten scenario trajectories are synthetic
+> and authored for prototype consistency checks. Nothing in this system is
+> clinically validated or a substitute for medical assessment.
+
 ## 1. Executive Summary & Clinical Intent
 The Every Second Counts Sudden-Attack Risk Prediction Engine is a **two-tier, hybrid local machine learning system** designed to screen for sudden cardiovascular decompensation, impending myocardial infarction, and acute stroke risks without any cloud AI or third-party APIs.
 
@@ -20,24 +27,31 @@ The Every Second Counts Sudden-Attack Risk Prediction Engine is a **two-tier, hy
 - **Target**: Angiographic disease status (`target = 1` if coronary artery diameter narrowing > 50%, else `0`).
 - **Class Balance**: 164 No Heart Disease (54.1%), 139 Heart Disease Present (45.9%).
 
-### Feature Mapping from Patient Health Profile
+### Exact Feature Mapping from Patient Health Profile
 | UCI Attribute | Clinical Description | Patient Health Profile Counterpart | Handling when Missing in Profile |
 |:---|:---|:---|:---|
 | `age` | Age in years | Computed from `dateOfBirth` | Imputed median (55 years) |
-| `sex` | Biological sex | `sex` ('MALE'=1, 'FEMALE'=0) | Imputed mode (1) |
-| `cp` | Chest pain type | `existingConditions.heartDisease` / self-report | Imputed baseline (4 = asymptomatic) |
+| `sex` | Biological sex | `sex` ('MALE'=1, otherwise 0) | Imputed as 0 when absent |
+| `cp` | Chest pain type | `existingConditions.heartDisease` -> 3; otherwise 4 | Imputed baseline (4 = asymptomatic) |
 | `trestbps` | Resting blood pressure (mmHg) | `restingBpSystolic` | Imputed median (130 mmHg) |
 | `chol` | Serum total cholesterol (mg/dL) | `totalCholesterol` | Imputed median (240 mg/dL) |
 | `fbs` | Fasting blood sugar > 120 mg/dL | `fastingGlucose` > 120 or `diabetes` condition | Imputed (0) |
-| `restecg` | Resting ECG results | Clinical baseline or report findings | Imputed normal (0) |
-| `thalach` | Maximum achieved heart rate | 220 - age (or resting HR * 1.5) | Imputed median (153 bpm) |
-| `exang` | Exercise-induced angina | Self-reported exertional chest pain | Imputed (0) |
-| `oldpeak` | ST depression | Extracted from ECG report if uploaded | Imputed median (0.8) |
-| `slope` | Slope of ST segment | Extracted from ECG report if uploaded | Imputed (1) |
-| `ca` | Major vessels via fluoroscopy | Catheterization report if available | Imputed (0) |
-| `thal` | Thallium scintigraphy | Clinical nuclear imaging | Imputed normal (3) |
+| `restecg` | Resting ECG results | Not currently supplied by the profile/report path | Imputed median/default (0) |
+| `thalach` | Maximum achieved heart rate | `restingHeartRate * 1.6`, otherwise `220 - age` | Imputed by model median only when no estimate is possible |
+| `exang` | Exercise-induced angina | `existingConditions.heartDisease` -> 1; otherwise 0 | Imputed (0) |
+| `oldpeak` | ST depression | Not currently supplied by the profile/report path | Imputed model median (0.8) |
+| `slope` | Slope of ST segment | Not currently supplied by the profile/report path | Imputed model median (1) |
+| `ca` | Major vessels via fluoroscopy | Not currently supplied by the profile/report path | Imputed model median (0) |
+| `thal` | Thallium scintigraphy | Not currently supplied by the profile/report path | Imputed model median/default (3) |
 
-*Profile fields without direct UCI counterpart*: `weightKg`, `heightCm`, `bmi`, `smokingStatus`, `alcoholUse`, `activityLevel`, `sleepHoursAvg`, `hba1c`, `ldl`, `hdl`, `triglycerides`, `familyHistoryHeartDisease`. These fields are utilized in profile completeness calculation and lifestyle weighting factors.
+The profile has no counterpart for `restecg`, `oldpeak`, `slope`, `ca`, or
+`thal` unless a future report parser supplies those test results; the inference
+code imputes the documented medians/defaults. It also has no direct counterpart
+for `weightKg`, `heightCm`, `bmi`, `smokingStatus`, `alcoholUse`,
+`activityLevel`, `sleepHoursAvg`, `hba1c`, `ldl`, `hdl`, `triglycerides`, or
+`familyHistoryHeartDisease`. These fields are not silently converted into UCI
+features. Known CAD, prior MI, prior CABG/stent, heart failure, and CKD are
+handled as transparent post-model baseline modifiers.
 
 ### Model Calibration & Comparison
 We evaluated both `LogisticRegression` and `GradientBoostingClassifier` with `CalibratedClassifierCV(method='sigmoid', cv=5)` on a held-out 25% test split:
@@ -84,9 +98,11 @@ Because longitudinally tracked 3x daily patient check-in datasets with verified 
 12. `medicationAdherence`: Fraction of prescribed doses confirmed taken.
 
 ### Dynamic Trend Performance
-- **ROC-AUC**: 1.0000
-- **Recall (Tuned for High Safety)**: 1.0000
-- **Precision**: 1.0000
+- **ROC-AUC**: 1.0000 on the generated synthetic trajectories
+- **Recall**: 1.0000 on the generated synthetic trajectories
+- **Precision**: 1.0000 on the generated synthetic trajectories
+
+These are synthetic benchmark metrics, not real-world or clinical validation.
 
 ---
 

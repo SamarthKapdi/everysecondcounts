@@ -124,6 +124,7 @@ Detailed architectural documentation: [Full Architecture Guide](docs/architectur
    - **Strict Wording Compliance**: Never outputs "you are safe" or "no risk". `LOW` tier explicitly renders: *"No elevated risk detected from the data you entered."*
    - **Deterministic Fallback**: Labeled `v1.0-deterministic-fallback (estimated basic mode)` when ML service is offline.
    - Documentation: [Sudden-Attack Risk Model](docs/risk-model.md).
+   - **Validity limitation**: the UCI baseline predicts angiographic heart-disease presence as a proxy, while the dynamic model and scenarios use synthetic trajectories. This is a screening and decision-support prototype, not a clinically validated predictor of sudden events.
 
 ### Optical Character Recognition (OCR) Setup on Windows
 - **PDF Extraction**: Uses native PyMuPDF (`fitz`), works out of the box with zero system dependencies.

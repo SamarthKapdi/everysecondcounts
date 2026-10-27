@@ -124,7 +124,7 @@ const ReportAnalyzer = () => {
               <FileHeart className="w-7 h-7 text-emerald-500" /> AI Report Analyzer
             </h1>
             <p className={`text-xs mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              Upload lab reports or prescriptions. AI extracts findings in simple language.
+              Upload a digital PDF or a clear PNG/JPG scan. Local PyMuPDF and Tesseract OCR extract findings; unreadable scans are rejected.
             </p>
           </div>
           <button onClick={loadHistory}

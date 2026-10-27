@@ -22,8 +22,11 @@ Every Second Counts uses a **two-stage local ML + rule-based pipeline** for anal
 ## Performance Metrics
 
 ### 1. Report Category Classifier
-- **Overall Test Accuracy**: 1.0000 (100.00%)
-- **5-Fold Cross-Validation**: 1.0000 +/- 0.0000
+- **Synthetic-template recognition**: 1.0000 on held-out generated templates
+- **5-Fold Cross-Validation**: 1.0000 +/- 0.0000 on that synthetic corpus
+
+This figure means the classifier recognizes its synthetic templates. It is not
+real-world accuracy and must not be presented as clinical validation.
 
 ```
               precision    recall  f1-score   support
@@ -71,17 +74,21 @@ Exposed locally via FastAPI microservice at `POST /analyze-report`. Fully self-c
 
 ## Real-World & Multi-Source Document Evaluation
 
-We tested the local report analysis pipeline against 5 differently-sourced sample clinical documents representing various formats, layouts, and document qualities (including one degraded noisy scan).
+The repository evaluation harness runs the local report analysis pipeline
+against five bundled fixtures representing different layouts and document
+qualities. These are test fixtures, not five independently sourced real
+clinical reports, so the results below are an engineering smoke test rather
+than a real-world accuracy study.
 
 ### Test Results Summary
 
 | Document | Format | Category | Severity | Specialist | Extracted Tests | Abnormal | Outcome / Accuracy Notes |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| **cbc_report.pdf** | PDF | CBC | CONSULT_SOON | Hematologist | 14 / 14 | 7 | **100% extraction accuracy**. Successfully flagged low Hemoglobin, low RBC, high WBC, low PCV, low MCV, low MCH, high Neutrophils, and high ESR. |
-| **lipid_profile.pdf** | PDF | LIPID | CONSULT_SOON | Cardiologist | 5 / 5 | 4 | **100% extraction accuracy**. Correctly identified high Total Cholesterol (248), high Triglycerides (285), low HDL (36), and high LDL (164). |
-| **diabetes_panel.pdf** | PDF | DIABETES | CONSULT_SOON | Endocrinologist | 3 / 3 | 3 | **100% extraction accuracy**. Correctly identified high Fasting Glucose (168), high Postprandial Glucose (242), and high HbA1c (8.6%). |
-| **kidney_metabolic.pdf** | PDF | KIDNEY | CONSULT_SOON | Nephrologist | 7 / 7 | 5 | **100% extraction accuracy**. Identified elevated Creatinine (2.9), BUN (44), Urea (88), Uric Acid (8.4), and high Potassium (5.7). |
-| **messy_scan.png** | PNG (Image) | GENERAL | NORMAL | General Physician | 0 | 0 | **Honest Extraction Guard**. The degraded, low-contrast scan failed OCR readability threshold (<20 characters of valid text). Rather than hallucinating clinical values, the system returned a transparent `"could not read this file"` failure response advising the user to upload a digital PDF or high-resolution document. |
+| **cbc_report.pdf** | PDF fixture | CBC | CONSULT_SOON | Hematologist | 14 / 14 | 7 | Extraction smoke test passed; values were matched by the local parser. |
+| **lipid_profile.pdf** | PDF fixture | LIPID | CONSULT_SOON | Cardiologist | 5 / 5 | 4 | Extraction smoke test passed; values were matched by the local parser. |
+| **diabetes_panel.pdf** | PDF fixture | DIABETES | CONSULT_SOON | Endocrinologist | 3 / 3 | 3 | Extraction smoke test passed; values were matched by the local parser. |
+| **kidney_metabolic.pdf** | PDF fixture | KIDNEY | CONSULT_SOON | Nephrologist | 7 / 7 | 5 | Extraction smoke test passed; values were matched by the local parser. |
+| **messy_scan.png** | PNG fixture | GENERAL | NORMAL | General Physician | 0 | 0 | OCR readability guard returned `"could not read this file"` without fabricating values. |
 
 ### Failure Modes & Limitations
 1. **Low-Resolution Scans / Handwritten Notes**: Pure image files degraded below OCR binarization threshold will return an explicit extraction failure. The system will **never** fabricate or guess lab values.

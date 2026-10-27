@@ -1,9 +1,9 @@
 """
-Every Second Counts — Sudden-Attack Risk Prediction Engine
+Every Second Counts — Cardiovascular Screening Risk Engine
 Inference module implementing:
 1. Static Baseline Model (UCI Cleveland calibrated classifier)
 2. Dynamic Trend Model (7 & 14-day check-in features)
-3. Meta-Model Blend & Hard Safety Overrides (any red flag forces >= HIGH)
+3. Meta-Model Blend & Hard Safety Overrides (any red flag forces CRITICAL)
 4. Plain-language contributing factors & tier actions
 5. Strict ethical wording compliance (no "you are safe" / "no risk")
 """

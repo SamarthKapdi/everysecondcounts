@@ -27,6 +27,7 @@ except ImportError:
 
 try:
     from PIL import Image
+    from PIL import ImageOps, ImageEnhance
     import pytesseract
 except ImportError:
     Image = None
@@ -606,7 +607,15 @@ def extract_text_from_bytes(file_bytes: bytes, filename: str) -> tuple[str, str]
         try:
             img = Image.open(io.BytesIO(file_bytes))
             text = pytesseract.image_to_string(img)
-            method = "pytesseract"
+            if len(text.strip()) < 20:
+                enhanced = ImageOps.autocontrast(img.convert('L'))
+                enhanced = ImageEnhance.Sharpness(enhanced).enhance(2.0)
+                retry_text = pytesseract.image_to_string(enhanced)
+                if len(retry_text.strip()) > len(text.strip()):
+                    text = retry_text
+                    method = "pytesseract-autocontrast"
+                else:
+                    method = "pytesseract"
         except Exception as e:
             text = ""
             method = f"pytesseract error: {str(e)}"
