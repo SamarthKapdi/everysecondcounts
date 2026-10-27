@@ -616,6 +616,9 @@ def extract_text_from_bytes(file_bytes: bytes, filename: str) -> tuple[str, str]
                     method = "pytesseract-autocontrast"
                 else:
                     method = "pytesseract"
+        except pytesseract.TesseractNotFoundError:
+            text = ""
+            method = "OCR engine not installed"
         except Exception as e:
             text = ""
             method = f"pytesseract error: {str(e)}"
@@ -725,6 +728,19 @@ def analyze_report(file_bytes: bytes = None, filename: str = None, sex: str = 'u
 
     # 1. Guard against empty / unreadable files
     if len(extracted_text) < 20:
+        if method == 'OCR engine not installed':
+            return {
+                'success': False,
+                'error': 'OCR engine not installed',
+                'message': 'Image OCR requires the Tesseract OCR engine. Install Tesseract and ensure it is available on PATH.',
+                'extractionMethod': method,
+                'summary': 'Could not run image OCR because the Tesseract OCR engine is not installed.',
+                'findings': [],
+                'actions': ['Install Tesseract OCR and upload the image again.'],
+                'specialist': 'General Physician',
+                'severity': 'NORMAL',
+                'category': 'GENERAL'
+            }
         return {
             'success': False,
             'error': 'could not read this file',

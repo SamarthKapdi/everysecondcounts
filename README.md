@@ -132,6 +132,9 @@ Detailed architectural documentation: [Full Architecture Guide](docs/architectur
   1. Download the Windows installer from [UB-Mannheim Tesseract OCR](https://github.com/UB-Mannheim/tesseract/wiki).
   2. Install to default path `C:\Program Files\Tesseract-OCR` and add to your system PATH.
   3. If Tesseract is not installed or image contrast is insufficient, the system safely falls back with a clear message requesting a digital PDF.
+  4. Verify installation in a new terminal with `tesseract --version`. If it is
+     unavailable, image analysis returns `OCR engine not installed`; PDF text
+     extraction remains available through PyMuPDF.
 
 ## Getting Started
 
