@@ -71,7 +71,7 @@ flowchart TD
   - 50+ laboratory parameter regex dictionary with synonym matching, unit normalization, and age/sex physiological reference ranges.
   - Transparent guard against low-contrast or illegible files (returns `"could not read this file"` rather than hallucinating findings).
 - **ML Classifiers**:
-  - *Category Classifier*: Multinomial Naive Bayes / SGDClassifier (100% test accuracy across 9 diagnostic panels: CBC, Lipid, Diabetes, Liver, Kidney, Thyroid, Vitamins, Cardiology, General) -> automatically routes to appropriate medical specialist.
+  - *Category Classifier*: Multinomial Naive Bayes / SGDClassifier recognizes its synthetic templates across 9 diagnostic panels; this is not real-world accuracy or clinical validation.
   - *Severity Classifier*: Random Forest / Logistic Regression (97.5% test accuracy) predicting severity classes (`NORMAL`, `MONITOR`, `CONSULT_SOON`, `URGENT`).
   - *Hard Override*: Any parameter breaching critical thresholds (e.g. Troponin I > 0.04 ng/mL, Platelets < 50,000 /uL) automatically forces `URGENT` triage.
 - **Documentation**: [`docs/report-model-metrics.md`](./report-model-metrics.md).
