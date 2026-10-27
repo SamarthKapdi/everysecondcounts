@@ -11,6 +11,7 @@
  *    - Strict wording compliance (zero "you are safe" / "no risk")
  */
 
+require('dotenv').config();
 const http = require('http');
 const prisma = require('./src/config/prismaClient');
 const jwt = require('jsonwebtoken');

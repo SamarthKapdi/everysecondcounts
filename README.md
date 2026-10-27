@@ -175,8 +175,8 @@ ML_SERVICE_URL="http://localhost:8001"
 # Create the database in psql
 createdb everysecondcounts
 
-# Run Prisma migrations and seed the database
-npx prisma migrate dev --name init
+# Apply all committed Prisma migrations and seed the database
+npx prisma migrate deploy
 npx prisma db seed
 ```
 *(The seeder creates default accounts like `admin@esc.health` / `esc12345678`)*
