@@ -95,7 +95,7 @@ flowchart TD
 | **Other** | PDF-Parse, Pytesseract, Bcrypt |
 
 ## Zero-API-Key & Fully Local Guarantee
-**Every Second Counts operates 100% locally with zero cloud dependencies and zero API keys.** All triage decisions, first-aid advice, lab extractions, and sudden-attack predictions are executed on-premises using calibrated Scikit-Learn models and deterministic clinical safeguards. No external AI APIs (such as OpenAI, Anthropic, or Google Gemini) are called anywhere in the platform.
+**Every Second Counts operates 100% locally with zero cloud dependencies and zero API keys.** Risk screening uses an ML baseline trained on UCI Heart Disease (a proxy task) plus a transparent rule-based trend score and deterministic safety rules. It is screening and decision support, not clinically validated, and does not predict sudden attacks. No external AI APIs (such as OpenAI, Anthropic, or Google Gemini) are called anywhere in the platform.
 
 ## Local Machine Learning Architecture
 Detailed architectural documentation: [Full Architecture Guide](docs/architecture.md)
@@ -124,7 +124,7 @@ Detailed architectural documentation: [Full Architecture Guide](docs/architectur
    - **Strict Wording Compliance**: Never outputs "you are safe" or "no risk". `LOW` tier explicitly renders: *"No elevated risk detected from the data you entered."*
    - **Deterministic Fallback**: Labeled `v1.0-deterministic-fallback (estimated basic mode)` when ML service is offline.
    - Documentation: [Sudden-Attack Risk Model](docs/risk-model.md).
-   - **Validity limitation**: the UCI baseline predicts angiographic heart-disease presence as a proxy, while the dynamic model and scenarios use synthetic trajectories. This is a screening and decision-support prototype, not a clinically validated predictor of sudden events.
+   - **Validity limitation**: the UCI baseline predicts angiographic heart-disease presence as a proxy; the trend score and scenarios are synthetic and authored. This is screening and decision support, not a clinically validated predictor of sudden events.
 
 ### Optical Character Recognition (OCR) Setup on Windows
 - **PDF Extraction**: Uses native PyMuPDF (`fitz`), works out of the box with zero system dependencies.

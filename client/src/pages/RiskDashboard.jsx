@@ -100,7 +100,7 @@ const RiskDashboard = () => {
             <div>
               <h1 className="text-2xl md:text-3xl font-black tracking-tight">Sudden-Attack Risk Dashboard</h1>
               <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                Hybrid Multi-Modal Local ML: Static UCI Cleveland baseline blended with recent 14-day symptom trends.
+                ML baseline trained on UCI Heart Disease (a proxy task) + transparent rule-based trend score + deterministic safety rules. Screening and decision support; not clinically validated.
               </p>
             </div>
           </div>
