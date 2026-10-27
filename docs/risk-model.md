@@ -104,6 +104,12 @@ missed check-ins 5%, vital deviation 5%, and medication non-adherence 5%.
 This transparent score is an engineering safety heuristic, not clinical
 validation.
 
+The final score also applies a conservative floor of `0.6 * baseline after
+history modifiers`, so a near-zero trend score cannot suppress a high baseline.
+At least two of CAD, prior MI/CABG/stent, heart failure, and CKD force
+`MODERATE`; adding SpO2 below 92, rising symptoms, or missed medication forces
+`HIGH`.
+
 ---
 
 ## 4. Meta-Blend, Risk Tiers & Contributing Factors

@@ -365,6 +365,10 @@ def predict_risk(profile: dict, checkins: list) -> dict:
         baseline_risk = round(min(100.0, baseline_risk + history_modifiers), 1)
         final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
 
+    # Conservative blend: the dynamic component must not suppress a high
+    # baseline vulnerability signal.
+    final_score = max(final_score, round(0.6 * baseline_risk, 1))
+
     # 4. Clinical Safety Overrides. These are explicit safety floors, not
     # model validation claims or a saturation of independent predictions.
     has_recent_red_flag = any(c.get('redFlag') for c in checkins[:5]) if checkins else False
@@ -377,7 +381,7 @@ def predict_risk(profile: dict, checkins: list) -> dict:
         [profile.get('restingBpDiastolic') or 0] +
         [v.get('diastolic') or 0 for v in all_vitals]
     )
-    max_hr = max([v.get('heartRate') or 0 for v in all_vitals])
+    max_hr = max([v.get('heartRate') or 0 for v in all_vitals] or [0])
     min_hr = min([v.get('heartRate') for v in all_vitals if v.get('heartRate')] or [999])
     symptom_present = d_stats.get('meanSymptomScore', 0) > 0 or d_stats.get('maxSymptomScore', 0) > 0
     objective_vital_alerts = []
@@ -388,10 +392,29 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     if (max_hr > 130 or min_hr < 40) and symptom_present:
         objective_vital_alerts.append('Extreme heart rate with symptoms')
 
+    burden_conditions = (
+        conditions.get('heartDisease') or conditions.get('cad'),
+        conditions.get('priorMI') or conditions.get('myocardialInfarction'),
+        conditions.get('priorCABG') or conditions.get('cabg') or conditions.get('priorStent') or conditions.get('stent'),
+        conditions.get('heartFailure') or conditions.get('congestiveHeartFailure'),
+        conditions.get('ckd') or conditions.get('chronicKidneyDisease')
+    )
+    burden_count = sum(bool(value) for value in burden_conditions)
+    rising_symptoms = d_stats.get('symptomSlope', 0.0) > 2.0
+    missed_medication = d_stats.get('medicationAdherence', 100.0) < 70.0
+
     if has_recent_red_flag:
         final_score = max(final_score, 75.0)
     elif objective_vital_alerts:
         final_score = max(final_score, 60.0)
+    elif burden_count >= 2 and (
+        d_stats.get('spo2Min', 98.0) < 92.0 or rising_symptoms or missed_medication
+    ):
+        final_score = max(final_score, 60.0)
+    elif burden_count >= 2:
+        final_score = max(final_score, 30.0)
+    elif dynamic_risk >= 25.0:
+        final_score = max(final_score, 30.0)
 
     # 5. Tier Determination
     if final_score >= 75.0:
@@ -447,6 +470,7 @@ def predict_risk(profile: dict, checkins: list) -> dict:
         'dataConfidence': data_confidence,
         'isRuleOverride': has_recent_red_flag,
         'safetyRuleAlerts': objective_vital_alerts,
+        'historyBurdenCount': burden_count,
         'disclaimer': 'Decision-Support Disclaimer: This local machine learning assessment is intended for risk screening and early warning support, not an official medical diagnosis. Never ignore worsening symptoms.'
     }
 
