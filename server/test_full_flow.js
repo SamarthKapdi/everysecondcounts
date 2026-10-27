@@ -239,7 +239,9 @@ async function verifyFullFlow() {
   const docRiskRes = await request(5000, `/api/risk/patient/${patientId}`, 'GET', null, doctorToken);
   console.log(`  Doctor GET /api/risk/patient/:id: HTTP ${docRiskRes.status}`);
   const docData = docRiskRes.data?.data;
-  console.log(`  Doctor Can See Patient Profile: ${Boolean(docData?.profile)}`);
+  const docProfileRes = await request(5000, `/api/health/profile?patientId=${patientId}`, 'GET', null, doctorToken);
+  console.log(`  Doctor GET /api/health/profile?patientId=: HTTP ${docProfileRes.status}`);
+  console.log(`  Doctor Can See Patient Profile: ${docProfileRes.status === 200}`);
   console.log(`  Doctor Can See Risk History (${docData?.history?.length} records): ${docData?.history?.length > 0}`);
   console.log(`  Doctor Top Contributing Factors:`);
   (patientAssessment?.factors || []).forEach(f => {

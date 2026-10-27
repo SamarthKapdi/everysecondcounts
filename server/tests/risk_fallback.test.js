@@ -68,8 +68,24 @@ describe('Deterministic Risk Engine Fallback Tests', () => {
 
     expect(result.isRuleOverride).toBe(true);
     expect(result.finalScore).toBeGreaterThanOrEqual(75);
+    expect(result.appliedFloors).toContainEqual({
+      rule: 'Acute red-flag symptom',
+      floor: 75
+    });
     expect(['HIGH', 'CRITICAL']).toContain(result.tier);
     expect(result.factors.some(f => f.severity === 'high')).toBe(true);
+  });
+
+  test('fallback preserves applied safety floors for a red flag', () => {
+    const result = computeFallbackRisk(
+      { restingBpSystolic: 120, restingBpDiastolic: 80, smokingStatus: 'NEVER' },
+      [{ symptomScore: 90, redFlag: true }]
+    );
+
+    expect(result.appliedFloors).toEqual([
+      { rule: 'Acute red-flag symptom', floor: 75 }
+    ]);
+    expect(result.finalScore).toBeGreaterThanOrEqual(result.appliedFloors[0].floor);
   });
 
   test('strictly adheres to wording rules: never outputs "you are safe" or "no risk"', () => {
