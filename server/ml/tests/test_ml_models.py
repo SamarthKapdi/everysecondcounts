@@ -21,6 +21,7 @@ if ML_DIR not in sys.path:
 
 from report_analyzer import analyze_report, LAB_DICTIONARY
 from risk_engine import predict_risk, compute_baseline_features, compute_dynamic_features
+from run_patient_scenarios import SCENARIOS
 
 
 @pytest.fixture(scope="session")
@@ -243,6 +244,62 @@ def test_factor_severity_is_derived_and_capped_by_tier():
     assert result['tier'] == 'LOW'
     assert all(f['severity'] == 'low' for f in result['factors'])
     assert all('contribution' in f for f in result['factors'])
+
+
+def test_author_set_scenario_tier_sanity_checks():
+    """These authored ordering checks are not clinical validation."""
+    ranks = {'LOW': 0, 'MODERATE': 1, 'HIGH': 2, 'CRITICAL': 3}
+    expected = {
+        1: ('LOW', 0), 2: ('MODERATE', 0), 3: ('MODERATE', 1),
+        4: ('MODERATE', 1), 5: ('CRITICAL', 3), 6: ('MODERATE', 1),
+        7: ('HIGH', 2), 8: ('LOW', 0), 9: ('HIGH', 2), 10: ('HIGH', 2)
+    }
+    results = {
+        s['id']: predict_risk(s['profile'], s['checkins'])
+        for s in SCENARIOS
+    }
+    for scenario_id, (tier, minimum_rank) in expected.items():
+        actual_rank = ranks[results[scenario_id]['tier']]
+        assert actual_rank >= minimum_rank, (scenario_id, results[scenario_id]['tier'])
+        if tier == 'LOW':
+            assert results[scenario_id]['tier'] == tier
+        if tier == 'MODERATE' and scenario_id == 2:
+            assert actual_rank <= ranks[tier]
+
+
+def test_safety_monotonicity_sanity_checks():
+    """Authored monotonicity checks are safety sanity checks, not validation."""
+    base = {
+        'dateOfBirth': '1990-01-01',
+        'sex': 'FEMALE',
+        'restingBpSystolic': 120,
+        'restingBpDiastolic': 80,
+        'totalCholesterol': 180,
+        'existingConditions': {}
+    }
+    stable = [{'symptomScore': 10, 'redFlag': False, 'date': '2026-10-25'}]
+    with_risk_factor = {**base, 'restingBpSystolic': 180}
+    assert predict_risk(with_risk_factor, stable)['finalScore'] >= predict_risk(base, stable)['finalScore']
+
+    no_flag = predict_risk(base, [{'symptomScore': 20, 'redFlag': False}])
+    red_flag = predict_risk(base, [{'symptomScore': 20, 'redFlag': True}])
+    assert ranks_for_test(red_flag['tier']) >= ranks_for_test(no_flag['tier'])
+
+    complete = [
+        {'symptomScore': 10, 'redFlag': False, 'date': '2026-10-25'},
+        {'symptomScore': 10, 'redFlag': False, 'date': '2026-10-25'},
+        {'symptomScore': 10, 'redFlag': False, 'date': '2026-10-25'}
+    ]
+    missed = [{'symptomScore': 10, 'redFlag': False, 'date': '2026-10-25'}]
+    assert predict_risk(base, missed)['finalScore'] >= predict_risk(base, complete)['finalScore']
+
+    healthy = predict_risk(SCENARIOS[0]['profile'], SCENARIOS[0]['checkins'])
+    comorbid = predict_risk(SCENARIOS[6]['profile'], SCENARIOS[6]['checkins'])
+    assert healthy['finalScore'] <= comorbid['finalScore']
+
+
+def ranks_for_test(tier):
+    return {'LOW': 0, 'MODERATE': 1, 'HIGH': 2, 'CRITICAL': 3}[tier]
 
 
 # ── 5. Probability Calibration & Distribution Tests ─────────────────────────

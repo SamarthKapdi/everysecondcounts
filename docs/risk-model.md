@@ -110,6 +110,10 @@ At least two of CAD, prior MI/CABG/stent, heart failure, and CKD force
 `MODERATE`; adding SpO2 below 92, rising symptoms, or missed medication forces
 `HIGH`.
 
+The scenario minimum tiers and monotonicity checks in the test suite are
+author-set sanity checks for implementation safety only; they are not clinical
+validation and do not establish predictive performance.
+
 ---
 
 ## 4. Meta-Blend, Risk Tiers & Contributing Factors
