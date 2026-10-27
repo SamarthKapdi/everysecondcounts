@@ -44,6 +44,10 @@ const SLOT_WINDOWS = {
   EVENING: { start: 17, end: 24, label: '17:00 - 24:00 IST' }
 };
 
+function isTestOverrideAllowed(nodeEnv, override) {
+  return nodeEnv !== 'production' && Boolean(override);
+}
+
 /**
  * Evaluates red-flag emergency symptoms (deterministic rule override)
  */
@@ -256,7 +260,7 @@ exports.submitCheckin = async (req, res, next) => {
     const naturallyActiveSlot = getSlotForHour(hour);
     let effectiveSlot = naturallyActiveSlot;
 
-    if (process.env.NODE_ENV !== 'production' && testSlotOverride) {
+    if (isTestOverrideAllowed(process.env.NODE_ENV, testSlotOverride)) {
       effectiveSlot = testSlotOverride;
     } else if (requestedSlot) {
       effectiveSlot = requestedSlot;
@@ -267,7 +271,7 @@ exports.submitCheckin = async (req, res, next) => {
     }
 
     // Verify requested slot matches active window unless test override allowed
-    const isTestOverride = process.env.NODE_ENV !== 'production' && Boolean(testSlotOverride);
+    const isTestOverride = isTestOverrideAllowed(process.env.NODE_ENV, testSlotOverride);
     if (!isTestOverride) {
       const window = SLOT_WINDOWS[effectiveSlot];
       if (!window || hour < window.start || hour >= window.end) {
@@ -423,3 +427,4 @@ exports.getSlotForHour = getSlotForHour;
 exports.SLOT_WINDOWS = SLOT_WINDOWS;
 exports.evaluateRedFlag = evaluateRedFlag;
 exports.computeSymptomScore = computeSymptomScore;
+exports.isTestOverrideAllowed = isTestOverrideAllowed;

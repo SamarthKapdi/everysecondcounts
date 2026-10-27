@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const {
   getSlotForHour,
   evaluateRedFlag,
-  computeSymptomScore
+  computeSymptomScore,
+  isTestOverrideAllowed
 } = require('../src/controllers/checkinController');
 
 describe('Check-in System Unit & Integration Tests', () => {
@@ -44,6 +45,12 @@ describe('Check-in System Unit & Integration Tests', () => {
   });
 
   describe('1. Slot-Window Enforcement (Asia/Kolkata)', () => {
+    test('ignores test slot override in production', () => {
+      expect(isTestOverrideAllowed('test', 'EVENING')).toBe(true);
+      expect(isTestOverrideAllowed('development', 'MORNING')).toBe(true);
+      expect(isTestOverrideAllowed('production', 'EVENING')).toBe(false);
+    });
+
     test('getSlotForHour correctly assigns slots across the 24-hour cycle', () => {
       // 05:00 to 11:59 is MORNING
       expect(getSlotForHour(5)).toBe('MORNING');
