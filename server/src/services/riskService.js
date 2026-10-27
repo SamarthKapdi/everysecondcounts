@@ -31,10 +31,13 @@ function computeFallbackRisk(profile, checkins) {
   dynamicScore = Math.min(100.0, dynamicScore);
 
   let finalScore = Math.round(0.35 * baseScore + 0.65 * dynamicScore);
+  const modelBlendScore = finalScore;
+  const appliedFloors = [];
 
   // Hard red-flag override
   if (hasRecentRedFlag) {
     finalScore = Math.max(finalScore, 75.0);
+    appliedFloors.push({ rule: 'Acute red-flag symptom', floor: 75.0 });
   }
 
   let tier = 'LOW';
@@ -149,6 +152,8 @@ function computeFallbackRisk(profile, checkins) {
     baselineRisk: Math.round(baseScore),
     dynamicRisk: Math.round(dynamicScore),
     finalScore,
+    modelBlendScore,
+    appliedFloors,
     tier,
     factors,
     recommendedAction: action,
@@ -212,6 +217,7 @@ async function recomputePatientRisk(patientId, io = null) {
         finalScore: riskOutput.finalScore,
         tier: riskOutput.tier,
         factors: riskOutput.factors,
+        appliedFloors: riskOutput.appliedFloors || [],
         recommendedAction: riskOutput.recommendedAction,
         modelVersion: riskOutput.modelVersion,
         dataConfidence: riskOutput.dataConfidence

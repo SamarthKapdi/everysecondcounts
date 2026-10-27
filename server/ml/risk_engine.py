@@ -380,7 +380,16 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     dynamic_risk, dynamic_components = compute_dynamic_trend_score(d_stats)
 
     # 3. Meta-Blend
-    final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
+    model_blend = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
+    final_score = model_blend
+    applied_floors = []
+
+    def apply_floor(rule: str, floor: float):
+        nonlocal final_score
+        floor = round(floor, 1)
+        if final_score < floor:
+            final_score = floor
+            applied_floors.append({'rule': rule, 'floor': floor})
 
     # The UCI model cannot observe several important profile histories. Apply
     # transparent modifiers after its probability is calculated rather than
@@ -395,11 +404,12 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     )
     if history_modifiers:
         baseline_risk = round(min(100.0, baseline_risk + history_modifiers), 1)
-        final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
+        model_blend = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
+        final_score = model_blend
 
     # Conservative blend: the dynamic component must not suppress a high
     # baseline vulnerability signal.
-    final_score = max(final_score, round(0.6 * baseline_risk, 1))
+    apply_floor('Conservative baseline protection', 0.6 * baseline_risk)
 
     # 4. Clinical Safety Overrides. These are explicit safety floors, not
     # model validation claims or a saturation of independent predictions.
@@ -436,17 +446,17 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     missed_medication = d_stats.get('medicationAdherence', 100.0) < 70.0
 
     if has_recent_red_flag:
-        final_score = max(final_score, 75.0)
+        apply_floor('Acute red-flag symptom', 75.0)
     elif objective_vital_alerts:
-        final_score = max(final_score, 60.0)
+        apply_floor('Objective vital-sign alert', 60.0)
     elif burden_count >= 2 and (
         d_stats.get('spo2Min', 98.0) < 92.0 or rising_symptoms or missed_medication
     ):
-        final_score = max(final_score, 60.0)
+        apply_floor('Multiple major conditions plus aggravating trend', 60.0)
     elif burden_count >= 2:
-        final_score = max(final_score, 30.0)
+        apply_floor('Multiple major conditions', 30.0)
     elif dynamic_risk >= 25.0:
-        final_score = max(final_score, 30.0)
+        apply_floor('Elevated dynamic trend', 30.0)
 
     # 5. Tier Determination
     if final_score >= 75.0:
@@ -496,8 +506,10 @@ def predict_risk(profile: dict, checkins: list) -> dict:
         'baselineRisk': baseline_risk,
         'dynamicRisk': dynamic_risk,
         'blendWeights': weights,
-        'unmodifiedBlendScore': round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1),
+        'modelBlendScore': model_blend,
+        'unmodifiedBlendScore': model_blend,
         'finalScore': final_score,
+        'appliedFloors': applied_floors,
         'tier': tier,
         'factors': factors,
         'recommendedAction': action,

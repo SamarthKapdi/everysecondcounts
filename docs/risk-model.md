@@ -109,6 +109,9 @@ history modifiers`, so a near-zero trend score cannot suppress a high baseline.
 At least two of CAD, prior MI/CABG/stent, heart failure, and CKD force
 `MODERATE`; adding SpO2 below 92, rising symptoms, or missed medication forces
 `HIGH`.
+The API exposes each floor that actually raised the score in `appliedFloors`,
+with its rule name and numeric floor. The UI presents these entries separately
+from the model blend so a safety floor is not misrepresented as a model score.
 
 The scenario minimum tiers and monotonicity checks in the test suite are
 author-set sanity checks for implementation safety only; they are not clinical

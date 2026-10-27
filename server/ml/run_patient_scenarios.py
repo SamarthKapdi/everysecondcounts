@@ -252,7 +252,7 @@ def run_all_scenarios():
     print("  EVERY SECOND COUNTS — 10 SCRIPTED PATIENT SCENARIOS (RISK ENGINE EVIDENCE)")
     print("=" * 115)
 
-    header = f"{'#':<3} | {'Scenario Name':<28} | {'Baseline':<8} | {'Dynamic':<8} | {'Blend B/D':<10} | {'Score':<6} | {'Tier':<9} | {'Top Contributing Factor'}"
+    header = f"{'#':<3} | {'Scenario Name':<28} | {'Baseline':<8} | {'Dynamic':<8} | {'Model Blend':<11} | {'Applied Floors':<42} | {'Score':<6} | {'Tier':<9} | {'Top Contributing Factor'}"
     print(header)
     print("-" * 145)
 
@@ -272,7 +272,8 @@ def run_all_scenarios():
             "baseline": res["baselineRisk"],
             "dynamic": res["dynamicRisk"],
             "blend_weights": res.get("blendWeights"),
-            "unmodified_blend": res.get("unmodifiedBlendScore"),
+            "model_blend": res.get("modelBlendScore", res.get("unmodifiedBlendScore")),
+            "applied_floors": res.get("appliedFloors", []),
             "tier": res["tier"],
             "top_factor": factor_display,
             "override": res["isRuleOverride"]
@@ -280,7 +281,8 @@ def run_all_scenarios():
         results_table.append(row)
 
         weights = res.get("blendWeights", {"baseline": 0.35, "dynamic": 0.65})
-        print(f"{sc['id']:<3} | {sc['name']:<28} | {res['baselineRisk']:>8.1f} | {res['dynamicRisk']:>8.1f} | {weights['baseline']:.2f}/{weights['dynamic']:.2f}     | {res['finalScore']:<6.1f} | {res['tier']:<9} | {factor_display}")
+        floors = ", ".join(f"{floor['rule']}={floor['floor']:.1f}" for floor in res.get("appliedFloors", [])) or "-"
+        print(f"{sc['id']:<3} | {sc['name']:<28} | {res['baselineRisk']:>8.1f} | {res['dynamicRisk']:>8.1f} | {res.get('modelBlendScore', res.get('unmodifiedBlendScore')):>11.1f} | {floors[:41]:<42} | {res['finalScore']:<6.1f} | {res['tier']:<9} | {factor_display}")
 
     print("-" * 145)
     print("Safety Overrides & Verification:")

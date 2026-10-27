@@ -246,6 +246,16 @@ def test_factor_severity_is_derived_and_capped_by_tier():
     assert all('contribution' in f for f in result['factors'])
 
 
+def test_floor_equal_scores_have_matching_applied_floor():
+    for scenario in SCENARIOS:
+        result = predict_risk(scenario['profile'], scenario['checkins'])
+        floors = [floor['floor'] for floor in result['appliedFloors']]
+        if floors:
+            assert any(result['finalScore'] == floor for floor in floors), (
+                f"Final score {result['finalScore']} has no matching applied floor: {floors}"
+            )
+
+
 def test_author_set_scenario_tier_sanity_checks():
     """These authored ordering checks are not clinical validation."""
     ranks = {'LOW': 0, 'MODERATE': 1, 'HIGH': 2, 'CRITICAL': 3}

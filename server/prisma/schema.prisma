@@ -632,6 +632,7 @@ model RiskAssessment {
   finalScore         Float     @default(0)
   tier               String    @default("LOW") // LOW, MODERATE, HIGH, CRITICAL
   factors            Json?     // Array of contributing factors
+  appliedFloors      Json?     // Safety floors applied during scoring
   recommendedAction  String    @db.Text
   modelVersion       String    @default("v1.0-local")
   dataConfidence     String    @default("HIGH") // HIGH, MODERATE, LOW
@@ -642,4 +643,3 @@ model RiskAssessment {
   @@index([patientId])
   @@index([createdAt])
 }
-

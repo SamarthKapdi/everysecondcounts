@@ -171,6 +171,17 @@ const RiskDashboard = () => {
         </motion.div>
       )}
 
+      {assessment?.appliedFloors?.length > 0 && (
+        <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs text-amber-700 dark:text-amber-300">
+          <div className="font-bold">Safety rule applied{targetPatientId ? ' — clinician view' : ''}</div>
+          <ul className="mt-1 list-disc pl-4">
+            {assessment.appliedFloors.map((floor, index) => (
+              <li key={`${floor.rule}-${index}`}>{floor.rule} (floor {floor.floor}/100)</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* Main Grid: Gauge + Model Breakdown + Prescribed Action */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Card 1: Risk Gauge */}
