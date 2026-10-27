@@ -228,6 +228,23 @@ def test_risk_model_red_flag_hard_override():
     assert result['tier'] in ['HIGH', 'CRITICAL'], f"Tier should be HIGH or CRITICAL, got {result['tier']}"
 
 
+def test_factor_severity_is_derived_and_capped_by_tier():
+    """A low-tier result must not expose high-severity contributing factors."""
+    result = predict_risk({
+        'dateOfBirth': '2001-04-15',
+        'sex': 'FEMALE',
+        'restingBpSystolic': 112,
+        'restingBpDiastolic': 74,
+        'totalCholesterol': 165,
+        'smokingStatus': 'NEVER',
+        'existingConditions': {}
+    }, [{'symptomScore': 0, 'redFlag': False}])
+
+    assert result['tier'] == 'LOW'
+    assert all(f['severity'] == 'low' for f in result['factors'])
+    assert all('contribution' in f for f in result['factors'])
+
+
 # ── 5. Probability Calibration & Distribution Tests ─────────────────────────
 
 def test_probability_calibration_and_distribution(risk_bundle):
@@ -260,4 +277,3 @@ def test_probability_calibration_and_distribution(risk_bundle):
     assert np.std(probabilities) > 0.15, "Probability distribution lacks adequate variance across demographic gradient"
     # General positive trend with cardiovascular strain
     assert probabilities[-1] > probabilities[0], "Probabilities must increase as cardiovascular strain escalates"
-

@@ -206,6 +206,38 @@ def compute_dynamic_trend_score(dynamic_stats: dict) -> tuple[float, dict]:
     return round(min(100.0, sum(components.values())), 1), components
 
 
+def factor_contribution(factor: str, baseline_risk: float) -> float:
+    factor_lower = factor.lower()
+    if 'red-flag' in factor_lower:
+        return 75.0
+    if 'desaturation' in factor_lower or 'oxygen saturation' in factor_lower or 'blood pressure' in factor_lower or 'heart rate' in factor_lower:
+        return 20.0
+    if 'rising symptom' in factor_lower:
+        return 18.0
+    if 'persistent elevated' in factor_lower or 'medication adherence' in factor_lower:
+        return 12.0
+    if 'static baseline' in factor_lower:
+        return baseline_risk * 0.35
+    if 'metabolic' in factor_lower or 'glucose' in factor_lower or 'tobacco' in factor_lower:
+        return 8.0
+    return 4.0
+
+
+def apply_factor_severity(factors: list, final_score: float) -> list:
+    tier_cap = (
+        0 if final_score < 30 else
+        1 if final_score < 60 else
+        2 if final_score < 75 else 3
+    )
+    labels = ['low', 'moderate', 'high', 'critical']
+    for factor in factors:
+        contribution = float(factor.get('contribution', 0.0))
+        level = 3 if contribution >= 35 else 2 if contribution >= 18 else 1 if contribution >= 8 else 0
+        factor['contribution'] = round(contribution, 1)
+        factor['severity'] = labels[min(level, tier_cap)]
+    return factors
+
+
 def evaluate_factors(profile: dict, dynamic_stats: dict, baseline_risk: float, dynamic_risk: float, red_flag_recent: bool) -> list:
     """
     Generates plain-language top 3-5 contributing factors based on attributions.
@@ -435,6 +467,10 @@ def predict_risk(profile: dict, checkins: list) -> dict:
             'detail': 'Objective vital-sign safety rule triggered; urgent clinical assessment is required.'
         })
     factors = factors[:5]
+    factors = apply_factor_severity(
+        [{**factor, 'contribution': factor_contribution(factor['factor'], baseline_risk)} for factor in factors],
+        final_score
+    )
 
     # Recommended action per tier
     if tier == 'CRITICAL':
