@@ -2,7 +2,7 @@
 Every Second Counts — Cardiovascular Screening Risk Engine
 Inference module implementing:
 1. Static Baseline Model (UCI Cleveland calibrated classifier)
-2. Dynamic Trend Model (7 & 14-day check-in features)
+2. Transparent Dynamic Trend Score (7 & 14-day check-in features)
 3. Meta-Model Blend & Hard Safety Overrides (any red flag forces CRITICAL)
 4. Plain-language contributing factors & tier actions
 5. Strict ethical wording compliance (no "you are safe" / "no risk")
@@ -154,6 +154,7 @@ def compute_dynamic_features(checkins: list, profile: dict) -> tuple[list, dict]
         # Medication adherence: all_taken=1.0, partially=0.5, missed=0.0
         med_map = {'all_taken': 1.0, 'partially': 0.5, 'missed': 0.0, 'not_applicable': 1.0}
         if ans.get('medicationTaken'): med_readings.append(med_map.get(ans['medicationTaken'], 1.0))
+        elif ans.get('missedMedication') is True: med_readings.append(0.0)
 
     bp_dev = float(np.mean(sys_readings) - base_sys) if sys_readings else 0.0
     hr_dev = float(np.mean(hr_readings) - base_hr) if hr_readings else 0.0
@@ -181,6 +182,28 @@ def compute_dynamic_features(checkins: list, profile: dict) -> tuple[list, dict]
     }
 
     return features, meta_stats
+
+
+def compute_dynamic_trend_score(dynamic_stats: dict) -> tuple[float, dict]:
+    """Score observed trajectory signals transparently; no dynamic ML model is used."""
+    mean_symptom = min(max(dynamic_stats.get('meanSymptomScore', 0.0), 0.0), 100.0)
+    positive_slope = min(max(dynamic_stats.get('symptomSlope', 0.0), 0.0), 20.0)
+    red_flags = min(max(dynamic_stats.get('redFlagCount', 0), 0), 1)
+    missed = min(max(dynamic_stats.get('missedCheckins', 0), 0), 6)
+    bp_deviation = min(max(dynamic_stats.get('bpDeviation', 0.0), 0.0), 40.0)
+    hr_deviation = min(max(dynamic_stats.get('hrDeviation', 0.0), 0.0), 40.0)
+    oxygen_deficit = min(max(98.0 - dynamic_stats.get('spo2Min', 98.0), 0.0), 13.0)
+    adherence = min(max(dynamic_stats.get('medicationAdherence', 100.0), 0.0), 100.0)
+
+    components = {
+        'symptomLevel': 0.35 * mean_symptom,
+        'symptomSlope': 0.25 * (positive_slope / 20.0 * 100.0),
+        'redFlagCount': 0.25 * (red_flags * 100.0),
+        'missedCheckins': 0.05 * (missed / 6.0 * 100.0),
+        'vitalDeviation': 0.05 * ((bp_deviation / 40.0 + hr_deviation / 40.0 + oxygen_deficit / 13.0) / 3.0 * 100.0),
+        'medicationAdherence': 0.05 * (100.0 - adherence)
+    }
+    return round(min(100.0, sum(components.values())), 1), components
 
 
 def evaluate_factors(profile: dict, dynamic_stats: dict, baseline_risk: float, dynamic_risk: float, red_flag_recent: bool) -> list:
@@ -311,8 +334,6 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     b_model = risk_artifacts['baseline_model']
     b_scaler = risk_artifacts['baseline_scaler']
     b_medians = risk_artifacts['baseline_medians']
-    d_model = risk_artifacts['dynamic_model']
-    d_scaler = risk_artifacts['dynamic_scaler']
     weights = risk_artifacts.get('weights', {'baseline': 0.35, 'dynamic': 0.65})
 
     # 1. Static Baseline Prediction
@@ -321,11 +342,10 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     b_prob = float(b_model.predict_proba(b_scaled)[0, 1])
     baseline_risk = round(b_prob * 100, 1)
 
-    # 2. Dynamic Trajectory Prediction
+    # 2. Transparent Dynamic Trend Score. The former synthetic ML model was
+    # calibrated but stepwise on real scenario inputs and did not rank them.
     d_features, d_stats = compute_dynamic_features(checkins, profile)
-    d_scaled = d_scaler.transform([d_features])
-    d_prob = float(d_model.predict_proba(d_scaled)[0, 1])
-    dynamic_risk = round(d_prob * 100, 1)
+    dynamic_risk, dynamic_components = compute_dynamic_trend_score(d_stats)
 
     # 3. Meta-Blend
     final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
@@ -422,7 +442,8 @@ def predict_risk(profile: dict, checkins: list) -> dict:
         'tier': tier,
         'factors': factors,
         'recommendedAction': action,
-        'modelVersion': 'v1.0-local-uci-hybrid',
+        'modelVersion': 'v1.1-local-uci-baseline-transparent-trend',
+        'dynamicComponents': dynamic_components,
         'dataConfidence': data_confidence,
         'isRuleOverride': has_recent_red_flag,
         'safetyRuleAlerts': objective_vital_alerts,

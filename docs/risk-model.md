@@ -11,7 +11,7 @@
 The Every Second Counts Sudden-Attack Risk Prediction Engine is a **two-tier, hybrid local machine learning system** designed to screen for sudden cardiovascular decompensation, impending myocardial infarction, and acute stroke risks without any cloud AI or third-party APIs.
 
 - **Tier A (Static Baseline Risk)**: Evaluates static cardiovascular profile attributes trained on the real public **UCI Cleveland Heart Disease dataset**.
-- **Tier B (Dynamic Trend Risk)**: Evaluates temporal trajectory features derived from 7-day and 14-day 3x daily quiz check-ins (symptom trajectory slope, vital deviations, red-flag events, sleep/stress trend, medication adherence).
+- **Tier B (Dynamic Trend Risk)**: Uses a transparent weighted score over temporal trajectory features derived from 7-day and 14-day 3x daily quiz check-ins. ML is used for the UCI baseline only; the dynamic component is deliberately rule-based because the prior synthetic ML artifact collapsed distinct scenarios into a few probability levels.
 - **Meta-Blend & Safety Overrides**: Blends baseline (35%) and dynamic (65%) risks, enforcing explicit safety rules. An acute red-flag symptom forces a score of at least 75 and therefore `CRITICAL`.
 
 > **Important Disclosure & Clinical Wording Rules**:  
@@ -97,12 +97,12 @@ Because longitudinally tracked 3x daily patient check-in datasets with verified 
 11. `stressScore`: Daily stress and anxiety self-score.
 12. `medicationAdherence`: Fraction of prescribed doses confirmed taken.
 
-### Dynamic Trend Performance
-- **ROC-AUC**: 1.0000 on the generated synthetic trajectories
-- **Recall**: 1.0000 on the generated synthetic trajectories
-- **Precision**: 1.0000 on the generated synthetic trajectories
-
-These are synthetic benchmark metrics, not real-world or clinical validation.
+### Dynamic Trend Score
+The dynamic component is not reported as a trained ML metric. Its documented
+weights are: symptom level 35%, positive symptom slope 25%, red-flag count 25%,
+missed check-ins 5%, vital deviation 5%, and medication non-adherence 5%.
+This transparent score is an engineering safety heuristic, not clinical
+validation.
 
 ---
 

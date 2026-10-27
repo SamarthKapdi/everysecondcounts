@@ -118,7 +118,7 @@ Detailed architectural documentation: [Full Architecture Guide](docs/architectur
 
 4. **Multi-Modal Sudden-Attack Risk Engine (`POST /predict-risk`)**:
    - **Static Baseline (35%)**: Calibrated Logistic Regression trained on public UCI Cleveland Heart Disease dataset (303 records, Brier score = 0.1084, AUC = 0.9310).
-   - **Dynamic Trajectory (65%)**: Calibrated Gradient Boosting trained on 3,000 longitudinal patient trajectories (12 dynamic features: symptom slopes, vitals deviations, SpO2 dips, missed check-ins, medication adherence).
+   - **Dynamic Trajectory (65%)**: Transparent weighted trend score over symptom level/slope, red flags, missed check-ins, vital deviations, and medication adherence. ML is used for the UCI baseline only.
    - **Meta-Blend & Tiers**: Blended 0–100 risk score categorized into `LOW`, `MODERATE`, `HIGH`, `CRITICAL`.
    - **Hard Safety Override**: Any acute red-flag check-in in the last 48 hours unconditionally forces a minimum score of 75 and tier `CRITICAL`.
    - **Strict Wording Compliance**: Never outputs "you are safe" or "no risk". `LOW` tier explicitly renders: *"No elevated risk detected from the data you entered."*
