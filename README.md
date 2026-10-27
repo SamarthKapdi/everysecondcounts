@@ -110,7 +110,7 @@ Detailed architectural documentation: [Full Architecture Guide](docs/architectur
    - Calibrated safe fallback below confidence threshold: routes to doctor consultation or SOS dispatch.
 
 3. **Medical Report & Lab Diagnostic Analyzer (`POST /analyze-report`)**:
-   - **Category Classifier**: 100% test accuracy across 9 diagnostic panels (CBC, Lipid, Diabetes, Liver, Kidney, Thyroid, Vitamins, Cardiology, General) -> automatically maps to clinical specialist.
+   - **Category Classifier**: Recognizes its synthetic report templates across 9 diagnostic panels; this is not real-world accuracy.
    - **Severity Classifier**: 97.5% test accuracy on flagged abnormal vectors (`NORMAL`, `MONITOR`, `CONSULT_SOON`, `URGENT`).
    - **Lab Extraction**: 50+ common laboratory tests with synonym matching, unit normalization, age/sex reference ranges, and critical abnormal flagging.
    - **Low-Quality Safeguard**: Transparently returns `"could not read this file"` on low-contrast scans rather than hallucinating findings.
@@ -120,7 +120,7 @@ Detailed architectural documentation: [Full Architecture Guide](docs/architectur
    - **Static Baseline (35%)**: Calibrated Logistic Regression trained on public UCI Cleveland Heart Disease dataset (303 records, Brier score = 0.1084, AUC = 0.9310).
    - **Dynamic Trajectory (65%)**: Calibrated Gradient Boosting trained on 3,000 longitudinal patient trajectories (12 dynamic features: symptom slopes, vitals deviations, SpO2 dips, missed check-ins, medication adherence).
    - **Meta-Blend & Tiers**: Blended 0–100 risk score categorized into `LOW`, `MODERATE`, `HIGH`, `CRITICAL`.
-   - **Hard Safety Override**: Any acute red-flag check-in in the last 48 hours unconditionally forces a minimum score of 75 and tier `>= HIGH`.
+   - **Hard Safety Override**: Any acute red-flag check-in in the last 48 hours unconditionally forces a minimum score of 75 and tier `CRITICAL`.
    - **Strict Wording Compliance**: Never outputs "you are safe" or "no risk". `LOW` tier explicitly renders: *"No elevated risk detected from the data you entered."*
    - **Deterministic Fallback**: Labeled `v1.0-deterministic-fallback (estimated basic mode)` when ML service is offline.
    - Documentation: [Sudden-Attack Risk Model](docs/risk-model.md).

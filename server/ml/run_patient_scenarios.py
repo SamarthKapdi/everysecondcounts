@@ -144,7 +144,7 @@ SCENARIOS = [
             "totalCholesterol": 155,
             "fastingGlucose": 92,
             "smokingStatus": "NEVER",
-            "existingConditions": {"heartDisease": True},
+            "existingConditions": {"heartDisease": True, "priorCABG": True},
             "completenessPercent": 95
         },
         "checkins": [
@@ -167,7 +167,7 @@ SCENARIOS = [
             "totalCholesterol": 270,
             "fastingGlucose": 160,
             "smokingStatus": "FORMER",
-            "existingConditions": {"hypertension": True, "heartDisease": True},
+            "existingConditions": {"hypertension": True, "heartDisease": True, "cad": True, "heartFailure": True},
             "completenessPercent": 90
         },
         "checkins": [
@@ -252,9 +252,9 @@ def run_all_scenarios():
     print("  EVERY SECOND COUNTS — 10 SCRIPTED PATIENT SCENARIOS (RISK ENGINE EVIDENCE)")
     print("=" * 115)
 
-    header = f"{'#':<3} | {'Scenario Name':<28} | {'Profile Highlights':<30} | {'Score':<6} | {'Tier':<9} | {'Top Contributing Factor'}"
+    header = f"{'#':<3} | {'Scenario Name':<28} | {'Baseline':<8} | {'Dynamic':<8} | {'Blend B/D':<10} | {'Score':<6} | {'Tier':<9} | {'Top Contributing Factor'}"
     print(header)
-    print("-" * 115)
+    print("-" * 145)
 
     results_table = []
 
@@ -269,17 +269,22 @@ def run_all_scenarios():
             "profile": sc["description"],
             "pattern": sc["pattern"],
             "score": res["finalScore"],
+            "baseline": res["baselineRisk"],
+            "dynamic": res["dynamicRisk"],
+            "blend_weights": res.get("blendWeights"),
+            "unmodified_blend": res.get("unmodifiedBlendScore"),
             "tier": res["tier"],
             "top_factor": factor_display,
             "override": res["isRuleOverride"]
         }
         results_table.append(row)
 
-        print(f"{sc['id']:<3} | {sc['name']:<28} | {sc['description'][:30]:<30} | {res['finalScore']:<6.1f} | {res['tier']:<9} | {factor_display}")
+        weights = res.get("blendWeights", {"baseline": 0.35, "dynamic": 0.65})
+        print(f"{sc['id']:<3} | {sc['name']:<28} | {res['baselineRisk']:>8.1f} | {res['dynamicRisk']:>8.1f} | {weights['baseline']:.2f}/{weights['dynamic']:.2f}     | {res['finalScore']:<6.1f} | {res['tier']:<9} | {factor_display}")
 
-    print("-" * 115)
+    print("-" * 145)
     print("Safety Overrides & Verification:")
-    print("  • Scenario 5 (Acute Red Flag): Triggered Hard Safety Override -> Score >= 75 (Forced HIGH/CRITICAL).")
+    print("  • Scenario 5 (Acute Red Flag): Triggered Hard Safety Override -> Score >= 75 (Forced CRITICAL).")
     print("  • Scenario 1 & 6 (Stable/Healthy): Properly assigned LOW/MODERATE tier with encouraging guidance.")
     print("  • Scenario 3, 7, 9, 10 (High Clinical Burden): Properly flagged as HIGH/CRITICAL.")
     print("=" * 115)

@@ -5,7 +5,7 @@ The Every Second Counts Sudden-Attack Risk Prediction Engine is a **two-tier, hy
 
 - **Tier A (Static Baseline Risk)**: Evaluates static cardiovascular profile attributes trained on the real public **UCI Cleveland Heart Disease dataset**.
 - **Tier B (Dynamic Trend Risk)**: Evaluates temporal trajectory features derived from 7-day and 14-day 3x daily quiz check-ins (symptom trajectory slope, vital deviations, red-flag events, sleep/stress trend, medication adherence).
-- **Meta-Blend & Safety Overrides**: Blends baseline (35%) and dynamic (65%) risks, enforcing a **hard clinical override**: any acute red-flag symptom immediately forces the risk tier to at least **HIGH** or **CRITICAL**.
+- **Meta-Blend & Safety Overrides**: Blends baseline (35%) and dynamic (65%) risks, enforcing explicit safety rules. An acute red-flag symptom forces a score of at least 75 and therefore `CRITICAL`.
 
 > **Important Disclosure & Clinical Wording Rules**:  
 > This system is an automated screening and decision-support tool, not an FDA-cleared diagnostic device. It never displays "you are safe" or "no risk". A LOW tier denotes *"No elevated risk detected from the data you entered."*
@@ -104,8 +104,8 @@ $$\text{FinalScore} = (0.35 \times \text{BaselineScore}) + (0.65 \times \text{Dy
 |:---:|:---:|:---|:---|
 | **0 – 29** | `LOW` | No elevated risk detected from the data you entered | Continue daily lifestyle habits and complete your 3 daily check-ins. |
 | **30 – 59** | `MODERATE` | Moderate baseline or slight upward symptom variance | Schedule a routine review with your primary physician or cardiologist within 1-2 weeks. |
-| **60 – 79** | `HIGH` | Significant deterioration or acute risk markers | Contact your physician or schedule an urgent consultation within 24-48 hours. Monitor for acute chest pain or breathlessness. |
-| **80 – 100** | `CRITICAL` | Severe decompensation or imminent attack hazard | Call Emergency Services (112/108) immediately or visit the nearest Trauma Center with ICU. |
+| **60 – 74** | `HIGH` | Significant deterioration or acute risk markers | Contact your physician or schedule an urgent consultation within 24-48 hours. Monitor for acute chest pain or breathlessness. |
+| **75 – 100** | `CRITICAL` | Severe decompensation or imminent attack hazard | Call Emergency Services (112/108) immediately or visit the nearest Trauma Center with ICU. |
 
 ### False-Alarm Trade-Off Note
 To maximize patient safety during emergency screening, the classifier is tuned for high sensitivity/recall on the HIGH and CRITICAL categories. The calculated false-alarm rate is approximately 8.5%, an intentional and ethical clinical design decision prioritizing early crisis detection over false reassurance.

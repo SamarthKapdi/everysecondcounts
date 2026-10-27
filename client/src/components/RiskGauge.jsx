@@ -10,7 +10,7 @@ const RiskGauge = ({ score = 0, tier = null, size = 'md', label = 'Risk Score' }
   const strokeDashoffset = circumference - (clampedScore / 100) * circumference;
 
   const resolvedTier = tier || (
-    clampedScore >= 80 ? 'CRITICAL' :
+    clampedScore >= 75 ? 'CRITICAL' :
     clampedScore >= 60 ? 'HIGH' :
     clampedScore >= 30 ? 'MODERATE' : 'LOW'
   );

@@ -81,7 +81,7 @@ flowchart TD
   - *Static Baseline (35% weight)*: Calibrated Logistic Regression trained on public UCI Cleveland Heart Disease dataset (303 records, 13 clinical covariates, Brier score = 0.1084, AUC = 0.9310).
   - *Dynamic Trajectory (65% weight)*: Calibrated Gradient Boosting trained on 3,000 longitudinal patient check-in trajectories (12 dynamic features: symptom slopes, SpO2 dips, blood pressure deviation, medication adherence, missed check-in counts).
   - *Meta-Model Blend*: Computes 0–100 sudden-attack risk score categorized into 4 tiers (`LOW`, `MODERATE`, `HIGH`, `CRITICAL`).
-  - *Hard Safety Override*: Any acute red flag in the last 48 hours unconditionally forces a minimum score of 75 and tier `>= HIGH`.
+  - *Hard Safety Override*: Any acute red flag in the last 48 hours unconditionally forces a minimum score of 75 and tier `CRITICAL`.
   - *Plain-Language Contributing Factors*: Returns top 3–5 actionable factors with severity badges (`[CRITICAL]`, `[HIGH]`, `[MODERATE]`, `[LOW]`).
   - *Strict Wording Rule*: Never outputs "you are safe" or "no risk". `LOW` tier explicitly displays: *"No elevated risk detected from the data you entered."*
   - *Offline Fallback*: Deterministic clinical guidelines labeled `v1.0-deterministic-fallback (estimated basic mode)`.

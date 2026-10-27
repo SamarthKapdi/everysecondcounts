@@ -302,7 +302,7 @@ def main():
         'dynamic_scaler': dynamic['scaler'],
         'dynamic_features': dynamic['feature_names'],
         'weights': {'baseline': 0.35, 'dynamic': 0.65},
-        'tier_thresholds': {'LOW': 0, 'MODERATE': 30, 'HIGH': 60, 'CRITICAL': 80}
+        'tier_thresholds': {'LOW': 0, 'MODERATE': 30, 'HIGH': 60, 'CRITICAL': 75}
     }
     joblib.dump(payload, MODEL_PATH)
     print(f"\nSaved integrated Risk Prediction Model to: {MODEL_PATH}")
@@ -408,8 +408,8 @@ $$\\text{{FinalScore}} = (0.35 \\times \\text{{BaselineScore}}) + (0.65 \\times 
 |:---:|:---:|:---|:---|
 | **0 – 29** | `LOW` | No elevated risk detected from the data you entered | Continue daily lifestyle habits and complete your 3 daily check-ins. |
 | **30 – 59** | `MODERATE` | Moderate baseline or slight upward symptom variance | Schedule a routine review with your primary physician or cardiologist within 1-2 weeks. |
-| **60 – 79** | `HIGH` | Significant deterioration or acute risk markers | Contact your physician or schedule an urgent consultation within 24-48 hours. Monitor for acute chest pain or breathlessness. |
-| **80 – 100** | `CRITICAL` | Severe decompensation or imminent attack hazard | Call Emergency Services (112/108) immediately or visit the nearest Trauma Center with ICU. |
+| **60 – 74** | `HIGH` | Significant deterioration or acute risk markers | Contact your physician or schedule an urgent consultation within 24-48 hours. Monitor for acute chest pain or breathlessness. |
+| **75 – 100** | `CRITICAL` | Severe decompensation or imminent attack hazard | Call Emergency Services (112/108) immediately or visit the nearest Trauma Center with ICU. |
 
 ### False-Alarm Trade-Off Note
 To maximize patient safety during emergency screening, the classifier is tuned for high sensitivity/recall on the HIGH and CRITICAL categories. The calculated false-alarm rate is approximately 8.5%, an intentional and ethical clinical design decision prioritizing early crisis detection over false reassurance.

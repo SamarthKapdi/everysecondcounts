@@ -38,7 +38,7 @@ function computeFallbackRisk(profile, checkins) {
   }
 
   let tier = 'LOW';
-  if (finalScore >= 80) tier = 'CRITICAL';
+  if (finalScore >= 75) tier = 'CRITICAL';
   else if (finalScore >= 60 || hasRecentRedFlag) tier = 'HIGH';
   else if (finalScore >= 30) tier = 'MODERATE';
 

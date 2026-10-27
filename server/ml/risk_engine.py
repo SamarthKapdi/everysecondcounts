@@ -257,13 +257,6 @@ def evaluate_factors(profile: dict, dynamic_stats: dict, baseline_risk: float, d
             'severity': 'high',
             'detail': 'Active tobacco smoking is a primary driver of arterial plaque formation and endothelial strain.'
         })
-    elif smoking == 'NEVER' and len(factors) < 4:
-        factors.append({
-            'factor': 'Tobacco-Free Status',
-            'severity': 'low',
-            'detail': 'Absence of smoking history significantly preserves vascular compliance.'
-        })
-
     # 7. Serum Cholesterol / Metabolic profile
     chol = profile.get('totalCholesterol')
     if chol and chol >= 240:
@@ -272,13 +265,6 @@ def evaluate_factors(profile: dict, dynamic_stats: dict, baseline_risk: float, d
             'severity': 'moderate',
             'detail': f"Total cholesterol of {chol} mg/dL exceeds desirable clinical threshold."
         })
-    elif chol and chol < 200 and len(factors) < 4:
-        factors.append({
-            'factor': 'Favorable Lipid Profile',
-            'severity': 'low',
-            'detail': f"Total cholesterol of {chol} mg/dL is within desirable clinical bounds."
-        })
-
     # 8. Fasting Glucose
     fbs = profile.get('fastingGlucose')
     if fbs and fbs >= 126:
@@ -344,19 +330,51 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     # 3. Meta-Blend
     final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
 
-    # 4. Clinical Safety Overrides & Dynamic Deterioration Escalation
+    # The UCI model cannot observe several important profile histories. Apply
+    # transparent modifiers after its probability is calculated rather than
+    # pretending those fields are UCI features.
+    conditions = profile.get('existingConditions') or {}
+    history_modifiers = (
+        (12.0 if conditions.get('priorMI') or conditions.get('myocardialInfarction') else 0.0) +
+        (12.0 if conditions.get('priorCABG') or conditions.get('cabg') or conditions.get('priorStent') or conditions.get('stent') else 0.0) +
+        (10.0 if conditions.get('heartFailure') or conditions.get('congestiveHeartFailure') else 0.0) +
+        (8.0 if conditions.get('ckd') or conditions.get('chronicKidneyDisease') else 0.0) +
+        (8.0 if conditions.get('heartDisease') or conditions.get('cad') else 0.0)
+    )
+    if history_modifiers:
+        baseline_risk = round(min(100.0, baseline_risk + history_modifiers), 1)
+        final_score = round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1)
+
+    # 4. Clinical Safety Overrides. These are explicit safety floors, not
+    # model validation claims or a saturation of independent predictions.
     has_recent_red_flag = any(c.get('redFlag') for c in checkins[:5]) if checkins else False
+    all_vitals = [c.get('selfReportedVitals') or {} for c in checkins]
+    max_systolic = max(
+        [profile.get('restingBpSystolic') or 0] +
+        [v.get('systolic') or 0 for v in all_vitals]
+    )
+    max_diastolic = max(
+        [profile.get('restingBpDiastolic') or 0] +
+        [v.get('diastolic') or 0 for v in all_vitals]
+    )
+    max_hr = max([v.get('heartRate') or 0 for v in all_vitals])
+    min_hr = min([v.get('heartRate') for v in all_vitals if v.get('heartRate')] or [999])
+    symptom_present = d_stats.get('meanSymptomScore', 0) > 0 or d_stats.get('maxSymptomScore', 0) > 0
+    objective_vital_alerts = []
+    if max_systolic >= 180 or max_diastolic >= 120 or (max_systolic >= 180 and symptom_present):
+        objective_vital_alerts.append('Severely elevated blood pressure')
+    if d_stats.get('spo2Min', 98.0) < 90:
+        objective_vital_alerts.append('Low oxygen saturation')
+    if (max_hr > 130 or min_hr < 40) and symptom_present:
+        objective_vital_alerts.append('Extreme heart rate with symptoms')
+
     if has_recent_red_flag:
         final_score = max(final_score, 75.0)
-    elif d_stats.get('meanSymptomScore', 0) >= 45.0 or d_stats.get('symptomSlope', 0) >= 5.0 or d_stats.get('spo2Min', 98.0) <= 90.0 or d_stats.get('bpDeviation', 0) >= 25.0:
-        final_score = max(final_score, 65.0)
-    elif d_stats.get('meanSymptomScore', 0) >= 30.0 or d_stats.get('symptomSlope', 0) >= 2.0 or (profile.get('restingBpSystolic') and profile.get('restingBpSystolic') >= 170):
-        final_score = max(final_score, 45.0)
-    elif baseline_risk >= 50.0 or (profile.get('restingBpSystolic') and profile.get('restingBpSystolic') >= 150):
-        final_score = max(final_score, 35.0)
+    elif objective_vital_alerts:
+        final_score = max(final_score, 60.0)
 
     # 5. Tier Determination
-    if final_score >= 80.0:
+    if final_score >= 75.0:
         tier = 'CRITICAL'
     elif final_score >= 60.0 or has_recent_red_flag:
         tier = 'HIGH'
@@ -367,6 +385,13 @@ def predict_risk(profile: dict, checkins: list) -> dict:
 
     # Contributing factors
     factors = evaluate_factors(profile, d_stats, baseline_risk, dynamic_risk, has_recent_red_flag)
+    for alert in objective_vital_alerts:
+        factors.insert(0, {
+            'factor': alert,
+            'severity': 'high',
+            'detail': 'Objective vital-sign safety rule triggered; urgent clinical assessment is required.'
+        })
+    factors = factors[:5]
 
     # Recommended action per tier
     if tier == 'CRITICAL':
@@ -391,6 +416,8 @@ def predict_risk(profile: dict, checkins: list) -> dict:
     return {
         'baselineRisk': baseline_risk,
         'dynamicRisk': dynamic_risk,
+        'blendWeights': weights,
+        'unmodifiedBlendScore': round(weights['baseline'] * baseline_risk + weights['dynamic'] * dynamic_risk, 1),
         'finalScore': final_score,
         'tier': tier,
         'factors': factors,
@@ -398,6 +425,7 @@ def predict_risk(profile: dict, checkins: list) -> dict:
         'modelVersion': 'v1.0-local-uci-hybrid',
         'dataConfidence': data_confidence,
         'isRuleOverride': has_recent_red_flag,
+        'safetyRuleAlerts': objective_vital_alerts,
         'disclaimer': 'Decision-Support Disclaimer: This local machine learning assessment is intended for risk screening and early warning support, not an official medical diagnosis. Never ignore worsening symptoms.'
     }
 
@@ -423,7 +451,7 @@ def fallback_risk_calculation(profile: dict, checkins: list) -> dict:
     if has_red_flag:
         final = max(final, 75.0)
 
-    tier = 'CRITICAL' if final >= 80 else 'HIGH' if final >= 60 else 'MODERATE' if final >= 30 else 'LOW'
+    tier = 'CRITICAL' if final >= 75 else 'HIGH' if final >= 60 else 'MODERATE' if final >= 30 else 'LOW'
 
     return {
         'baselineRisk': base_score,
